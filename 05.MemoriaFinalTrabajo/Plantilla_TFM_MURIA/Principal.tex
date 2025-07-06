@@ -1,0 +1,486 @@
+%%% Documento tipo para trabajos en LaTeX.
+%%% Copyleft: Jesús Balsa, Juan F. García.
+
+% Tipo de documento:
+\documentclass[12pt,a4paper,onecolumn,oneside]{report}
+\newcommand{\mychapter}[2]{
+	\setcounter{chapter}{#1}
+	\setcounter{section}{0}
+	\chapter*{#2}
+	\addcontentsline{toc}{chapter}{#2}
+}
+
+% Opcional: Tamaño personalizado para los márgenes:
+\usepackage[a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
+\usepackage{float}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{lscape}
+\usepackage{longtable}
+\newcommand{\tabtitle}[1]{\cellcolor{CSGreen}\color{white}\textbf{#1}\rule{0pt}{20pt}}
+\newcommand{\ltt}[1]{\cellcolor{CSGreen}\color{white}\textbf{#1}\rule{0pt}{8pt}}
+\newcommand{\rtabtitle}[1]{\cellcolor{CSRed}\color{white}\textbf{#1}\rule{0pt}{20pt}}
+\usepackage{multirow}
+\usepackage[utf8]{inputenc} % Codificación UTF-8.
+\usepackage[T1]{fontenc}    % Para usar caracteres con tilde.
+\usepackage[spanish,es-tabla]{babel} % Escritura en castellano.
+\usepackage{eurosym}  % Para el símbolo del EURO (€).
+\usepackage{graphicx} % Paquete de imágenes, para introducir figuras.
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage[usenames,dvipsnames]{color} % Texto en colores.
+\usepackage[table, RGB, usenames,dvipsnames]{xcolor}   % Extra colors.
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{lesslightblue}{rgb}{0.7,0.7,1.0}
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstdefinelanguage{shell}
+{
+  backgroundcolor=\color{black},
+  rulecolor=\color{codegray},
+  basicstyle=\footnotesize\ttfamily\color{white},
+  morecomment=[l]{\#},
+  commentstyle=\footnotesize\ttfamily\color{lesslightblue}
+}
+
+\lstset{style=mystyle}
+
+\renewcommand{\lstlistingname}{Script}
+\usepackage{url}      % Para escritura de URLs.
+\usepackage[breaklinks]{hyperref} % Hiperreferencias.
+\usepackage{amsmath,amssymb} % Para los símbolos matemáticos.
+\usepackage{cite}     % Para las citas de referencias (crea el superíndice).
+\usepackage{listings} % Para coloreado de código fuente.
+\usepackage{verbatim} % Para textos tipo consola y otros formatos.
+\usepackage{fancyvrb} % Más opciones de verbatim.
+\usepackage{parskip}  % OPCIONAL: Separa los párrafos con una línea en blanco.
+\setlength{\parindent}{15pt} % Sangría de párrafos estándar (15 puntos). Necesario incluirla si se usa el paquete 'parskip'.
+\usepackage[export]{adjustbox}
+\usepackage{caption}  % Para personalizar los pies de foto.
+
+% Opciones del paquete caption para los pies de imágenes y tablas:
+\captionsetup{figurename=Figura, tablename=Tabla, labelsep=colon, labelfont=bf, font=small, justification=centering}
+
+% Para el control de líneas viudas y huérfanas (líneas sueltas en páginas nuevas):
+\usepackage[all]{nowidow}
+
+\usepackage[nottoc]{tocbibind}    % Incluye el apartado "Referencias" en el índice.
+%\def\spanishrefname{Bibliografía} % Para que ponga "Bibliografía" en lugar de "Referencias". SÓLO se aplica a formato "article". En "report" ya pone "Bibliografía".
+
+\usepackage{fancyhdr}
+
+\setlength{\unitlength}{1 cm} % Unidad de trabajo de medidas.
+
+\renewcommand*{\baselinestretch}{1.25} % Altura del INTERLINEADO.
+\renewcommand{\shorthandsspanish}{}    % Para que corte las palabras según el castellano.
+\usepackage{longtable}
+\usepackage{dirtree}
+\usepackage{multirow }
+
+% Propiedades para el PDF generado (METADATOS):
+\newcommand{\authorNames}{Aitor García Blanco}
+\newcommand{\pdftitle}{Detección de células defectuosas en imágenes médicas}
+\hypersetup{
+  pdftitle={\pdftitle},% Título
+  pdfauthor={\authorNames},% Autor
+  pdfsubject={\pdftitle \ - \authorNames},% Asunto
+% pdfkeywords={Opcional: algunas palabras clave}%
+}
+
+% Para la representación de código fuente:
+% Para BASH:
+\lstset{
+	language=bash,
+	basicstyle=\scriptsize,
+	frame=single,
+	numbers=left,
+	numberstyle=\scriptsize,
+	stepnumber=1,
+	numbersep=9pt,
+	backgroundcolor=\color{White},
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=4,
+	captionpos=b,
+	breaklines=true,
+	keywordstyle=\color{blue}\bfseries,
+	%identifierstyle=\color{green}\bfseries,
+	stringstyle=\color{orange}\bfseries,
+	commentstyle=\color{gray}\bfseries
+}
+% Para C++:
+%\lstset{
+%	language=C++,
+%	frame=single,
+%	keywordstyle=\color{Green}\bfseries,
+%	identifierstyle=\color{BlueViolet},
+%	stringstyle=\color{Red},
+%	commentstyle=\color{MidnightBlue}
+%}
+
+\usepackage{fancyhdr} % Para el tamaño y estilo de los encabezados.
+
+\fancypagestyle{headings}{% Redefine el estilo "headings".
+	\fancyhf{} % Clear all header and footer fields.
+	\lhead{\small \it Máster Universitario en Robótica e Inteligencia Artificial} 
+	\rhead{\small \it Página \thepage}      % Nº de página a la derecha. Tamaño "small".
+	\renewcommand{\headrulewidth}{1pt}
+}
+
+% Ajustes para división manual de palabras:
+\hyphenation{Python} % Impide que la palabra Python sea dividida al acabar una línea.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO DEL DOCUMENTO: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\input{Plantillas/Plantilla_Portada}
+
+% Página de FIRMAS:
+\newpage
+
+\thispagestyle{empty} % para que no se numere esta página.
+
+\input{Plantillas/Plantilla_Firmas}
+
+\newpage
+\pagestyle{plain}
+
+\renewcommand{\thepage}{\roman{page}}
+\setcounter{page}{1} % Esta página es la 1.
+
+% Página con el ÍNDICE GENERAL
+\tableofcontents
+
+% Página con el ÍNDICE DE FIGURAS
+\listoffigures
+
+% Página con el ÍNDICE DE TABLAS
+\listoftables
+
+% Página con el GLOSARIO:
+\mychapter{0}{Glosario de términos}
+\label{chap:glosario}
+% A partir de aquí ya se incluye el encabezado en las páginas:
+\pagestyle{headings}
+
+% Al ser un capítulo sin número, hay que indicarle qué título añadir al encabezado de la página:
+\markboth{GLOSARIO}{} 
+
+\begin{description}
+	
+	\item[ciberseguridad]: Protección de los sistemas informáticos y de sus redes de comunicaciones, con el objetivo de mantener segura la información que procesan.
+
+\end{description} 
+
+%%%% Inicio de los CAPÍTULOS %%%%
+\newpage
+\renewcommand{\thepage}{\arabic{page}}
+\setcounter{page}{1} % Esta página es la 1.
+
+\mychapter{0}{Introducción}
+\label{Introducción}
+
+\section*{Planteamiento del problema}
+
+\section*{Objetivos}
+
+En este Trabajo de Fin de Máster, se plantean una serie de objetivos interconectados que tienen como finalidad principal:
+
+\fbox{\begin{minipage}{14cm}
+Objetivo principal
+\end{minipage}}
+% mejorar la capacidad de los robots en el entorno de la competición\\ RoboCup y su aplicabilidad en escenarios del mundo real.
+
+De este modo, se pretenden abordar los siguientes objetivos: 
+
+\begin{itemize}
+ 
+
+    \item[$O_1$]
+
+    \item[$O_2$] 
+    
+    \item[$O_3$] 
+\end{itemize}
+
+
+
+\section*{Metodología}
+
+
+\section*{Tecnologías utilizadas}
+
+
+
+\section*{Estructura del trabajo}
+
+
+
+\chapter{Estudio del problema}
+\label{Estudio del problema}
+
+En este capítulo, se establece el contexto del estudio explorando las tecnologías, plataformas, herramientas y trabajos previos relacionados que sirven como base para la investigación.
+
+\section{El contexto del problema}
+
+
+
+\section{El estado de la cuestión}
+
+
+
+\section{La definición del problema}
+
+
+\chapter{Gestión de proyecto software}
+\label{Gestión de proyecto software}
+
+
+
+\section{Alcance del proyecto}
+\label{Alcance del proyecto}
+
+\subsection{Definición del proyecto}
+
+
+
+\subsection{Estimación de tareas y recursos}
+
+
+
+\subsection{Presupuesto}
+
+
+\subsubsection{Coste de personal}
+
+
+\subsubsection{Coste del hardware}
+
+
+
+\subsubsection{Coste total}
+
+\section{Plan de trabajo}
+\label{Plan de trabajo}
+
+
+\subsection{Identificación de tareas}
+\label{Identificación de tareas}
+
+
+
+\subsection{Estimación de tareas}
+\label{Estimación de tareas}
+
+
+
+\section{Gestión de recursos}
+\label{Gestión de recursos}
+
+\subsection{Asignación de recursos}
+\label{asignacion de recursos}
+
+
+
+
+\section{Gestión de riesgos}
+
+\subsection{Identificación de riesgos}
+
+
+\section{Legislación y normativa}
+
+En el marco de ejecución de este proyecto, se ha llevado a cabo un riguroso cumplimiento de la legislación y normativa vigente. A continuación, se detalla cómo el proyecto se ajusta y adhiere a las leyes pertinentes:
+
+\begin{itemize}
+    \item \textbf{Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales}\cite{LOPD2018}
+    
+    Este proyecto respeta plenamente la Ley Orgánica 3/2018, la cual reconoce el derecho fundamental a la protección de datos personales. La creación del dataset se ha desarrollado de acuerdo con las disposiciones de la ley, asegurando la legalidad en el tratamiento de datos. Los permisos explícitos obtenidos para el uso de imágenes garantizan la privacidad de los individuos. Además, las pruebas y el desarrollo se realizaron en un entorno controlado para evitar perjuicios en materia de datos a terceros. Aunque las imágenes capturadas por la cámara del robot no se almacenan, se garantiza que el procesamiento cumple con los principios de protección de datos establecidos en la ley.
+    \item \textbf{Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos (RGPD)}\cite{RGPD2016}
+
+    La creación del dataset en este proyecto se ajusta a los principios del RGPD, asegurando la legalidad y transparencia en el tratamiento de datos personales. Se han implementado medidas técnicas y organizativas para garantizar la seguridad y privacidad de los datos presentes en el dataset, cumpliendo así con las normativas del RGPD.
+    \item \textbf{Propuesta de Reglamento del Parlamento Europeo y del Consejo sobre Inteligencia Artificial (PRLIA)}\cite{PRIA2021}
+
+    El proyecto ha sido diseñado y ejecutado considerando de manera integral las disposiciones y requisitos establecidos por la PRLIA. Un documento legislativo propuesto por la Unión Europea para regular el uso de la inteligencia artificial en diversos ámbitos. Esta propuesta tiene como objetivo establecer normas armonizadas en materia de inteligencia artificial para garantizar la seguridad, ética y transparencia en su desarrollo y aplicación. Aunque el proyecto no involucra una IA de alto riesgo, se han tenido en cuenta las recomendaciones éticas reflejadas en el marco ético del proyecto. No se ha incumplido ninguna disposición de la PRLIA, ya que no se han violado derechos fundamentales ni se han utilizado técnicas subliminales o vulnerabilidades de grupos específicos.
+    \item \textbf{Real Decreto Legislativo 1/1996 sobre Propiedad Intelectual}\cite{RDL1996}
+    
+    En conformidad con el Real Decreto Legislativo 1/1996, el proyecto respeta la normativa sobre propiedad intelectual. Se ha optado por utilizar únicamente código y herramientas de software libre y de código abierto para garantizar el cumplimiento de la normativa en materia de propiedad intelectual.
+\end{itemize}
+
+\chapter{Solución}
+\label{Solución}
+
+\section{Descripción de la solución}
+
+
+\section{El proceso de desarrollo}
+
+\subsection{Análisis}
+\label{analisis}
+
+
+\subsubsection{Definición de requisitos}
+
+\begin{itemize}
+    \item Requisitos funcionales (RF)
+
+           \textbf{RF1: }
+           
+           
+    \item Requisitos no funcionales
+
+    \textbf{RNF1}: 
+\end{itemize}
+
+\subsubsection{Especificación de requisitos}
+
+\arrayrulecolor[HTML]{B9DAE1}
+% \begin{longtable} {|p{3cm}|p{11cm}|} \hline
+% \rowcolor[HTML]{67D1E6} CU-01 & Capturar imágenes de la cámara  \\ \hline
+% Versión & 1.0 \\ \hline
+% Descripción & El sistema se subscribe al topic de ROS 2 encargado de publicar
+% las imágenes en tiempo real de la cámara del robot o cualquier
+% cámara externa conectada al ordenador.\\ \hline
+% Actores &  Nodo Detector\\ \hline
+% Precondición &  La cámara debe estar publicando en el topic de ROS 2.\\ \hline
+% Flujo básico & 
+% \begin{tabular}{p{2cm}|p{8cm}}
+%  Paso & Acción \\ \hline
+%  1 & Se inicializa el nodo Detector.\\ \hline
+%  2 &  Se cargan los parámetros indicados por el usuario.\\ \hline
+%  3 &  El nodo se subscribe al topic de ROS en el que está publicando la cámara.\\ \hline
+% \end{tabular}\\ \hline
+% Flujo alternativo &  \\ \hline
+% Postcondición &  El nodo Detector recibe las imágenes de la cámara en tiempo real.\\ \hline
+% \caption{Caso de uso 1}
+% \end{longtable} \vspace{0.5cm}
+
+
+
+\subsection{Diseño}
+
+
+
+\subsubsection{Descripción Detallada}
+\label{diseño detallado}
+
+
+
+\subsection{Implementación}
+
+
+\subsection{Pruebas}
+
+
+\section{El producto del desarrollo}
+
+
+\chapter{Evaluación}
+\label{Evaluación}
+
+
+\section{Proceso de evaluación}
+
+
+
+\section{Análisis de resultados}
+
+
+
+\mychapter{1}{Conclusión}
+
+
+
+\subsection*{Aportaciones realizadas}
+
+
+
+\subsection*{Problemas encontrados}
+
+
+
+\section*{Opiniones personales}
+
+
+
+
+\subsection*{Trabajos futuros}
+
+
+\subsection*{Agradecimientos}
+
+
+
+%%%% BIBLIOGRAFÍA %%%%
+\renewcommand\bibname{Lista de referencias}
+
+%\bibliography{Refs-proyecto}    % Fichero con las referencias.
+%Información bibliográfica citada en el texto del trabajo. Otras lecturas recomendadas o consultadas, de figurar, aparecerán en anexos.
+%Se debe seguir la norma ISO 690 (buscar en google ISO 690 ugr)
+
+% % También se puede optar por incluir las referencias desde aquí mismo:
+% \begin{thebibliography}{1}
+	
+
+	
+
+% \bibitem{CSSP}
+% {CSSP, D.}:
+% \newblock \textit{Recommended Practice: Improving Industrial Control Systems
+%   Cybersecurity with Defense-In-Depth Strategies}.
+% \newblock US-CERT Defense In Depth. (Octubre 2009)
+
+% \end{thebibliography}
+
+\bibliographystyle{plain} % Fichero con el formato de la bibliografía.
+\nocite{*}
+\bibliography{referencias}
+%\bibliographystyle{unsrt} %plain %apalike
+
+
+%%%% ANEXOS %%%%
+\renewcommand{\appendixname}{Anexo}
+\appendix
+
+\chapter{Control de versiones}
+\label{Control de versiones}
+
+En el marco del desarrollo de este Trabajo de Fin de Máster (TFM), se ha empleado GitHub como servicio de control de versiones para gestionar eficientemente el código generado. GitHub ha proporcionado una plataforma robusta que facilita la colaboración, el seguimiento de cambios y la gestión de versiones de manera integral.
+
+
+\chapter{Seguimiento de proyecto fin de máster}
+\label{Seguimiento de proyecto fin de máster}
+
+%Obligatorio. Seguimiento del trabajo real.
+
+\section{Forma de seguimiento}
+
+\section{Planificación inicial}
+
+\section{Planificación final}
+%Si el trabajo ha consistido en la elaboración de una aplicación se incluirá el manual de usuario de la misma.
+
+
+
+\end{document}
