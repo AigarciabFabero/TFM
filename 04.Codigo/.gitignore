@@ -1,4 +1,5 @@
 /runs/
+/cell_detection_App/
 /__pycache__/
 /labelImg/
 /Fast_RCNN_models
