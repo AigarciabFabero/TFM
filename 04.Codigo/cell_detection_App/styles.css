@@ -1,0 +1,23 @@
+    body, .stApp {
+        min-height: 100vh;
+        background: linear-gradient(109.6deg, #000000 11.2%, #0b8491 91.1%);
+    }
+    .main-header {
+        font-size: 3rem;
+        color: #1e90ff;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .stImage {
+        border: 2px solid #1e90ff;
+        border-radius: 10px;
+    }
+    .metric-card {
+        background-color: #f0f8ff;
+        padding: 1rem;
+        border-radius: 10px;
+        border: 1px solid #1e90ff;
+    }
+    section[data-testid="stSidebar"] {
+        border-radius: 10px;
+    }
