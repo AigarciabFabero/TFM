@@ -28,6 +28,7 @@ def optuna_objective(trial, model):
     }
 
     trial_name = f"optuna_trial_{trial.number}"
+    print(model)
 
     try:
         results = model.train(

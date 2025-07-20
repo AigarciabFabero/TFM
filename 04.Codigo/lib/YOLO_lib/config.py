@@ -1,8 +1,8 @@
 SEED = 42
-N_TRIALS = 1
-EPOCH_OPTUNA = 2
+N_TRIALS = 5
+EPOCH_OPTUNA = 25
 EPOCH_TRAIN = 60
-BATCH = 1
+BATCH = 4
 IMGSZ = 704
 
 models = {
@@ -19,5 +19,5 @@ models = {
     "yolov12s": "yolo_output/yolo_models/yolo12s.pt",
     "yolov12m": "yolo_output/yolo_models/yolo12m.pt",
     "yolov12l": "yolo_output/yolo_models/yolo12l.pt",
-    "yolov12x": "yolo_output/yolo_models/yolo",
+    "yolov12x": "yolo_output/yolo_models/yolo12x.pt",
 }
