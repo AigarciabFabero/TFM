@@ -1,4 +1,5 @@
 from sklearn.model_selection import KFold
+import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
 import shutil
 import yaml
@@ -117,5 +118,6 @@ def plot_kfold_metrics(metrics_df, model_output_kfold):
     plt.title(f'Métricas por Fold - {model_output_kfold}')
     plt.legend()
     plt.grid(True)
+    plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(1))
     plt.tight_layout()
     plt.show()
