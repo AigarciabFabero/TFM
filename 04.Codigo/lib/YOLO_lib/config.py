@@ -21,3 +21,15 @@ models = {
     "yolov12l": "yolo_output/yolo_models/yolo12l.pt",
     "yolov12x": "yolo_output/yolo_models/yolo12x.pt",
 }
+
+results_csv_paths = {
+    'yolov12n': 'runs/detect/yolov12n/results.csv',
+    'yolov11n': 'runs/detect/yolov11n/results.csv',
+    'yolov11l': 'runs/detect/yolov11l/results.csv',
+    'yolov11s': 'runs/detect/yolov11s/results.csv',
+    'yolov11ny': 'runs/detect/yolov11ny/results.csv',
+    'yolov11ny_new': 'runs/detect/yolov11ny/results.csv',
+    'yolov11s_optuna': 'runs/detect/final_model_optunav11s/results.csv',
+    'yolov12s_optuna': 'runs/detect/final_model_optunav12s/results.csv',
+    'yolov12m_optuna': 'runs/detect/final_model_optunav12m/results.csv',
+}
