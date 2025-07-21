@@ -16,7 +16,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-with open("styles.css") as f:
+with open("assets/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # Cache del modelo para mejorar rendimiento
@@ -26,8 +26,7 @@ def load_model(model_name):
     model_paths = {
         "YOLOv12s Optimizado": "models/final_model_optunav12s/weights/best.pt",
         "YOLOv11s Optimizado": "models/final_model_optunav11s/weights/best.pt",
-        "YOLOv12n": "models/yolo12n/weights/best.pt",
-        "YOLOv11n": "models/yolo11n/weights/best.pt"
+        "YOLOv10n": "models/final_model_yolov10n/weights/best.pt"
     }
     model_path = model_paths[model_name]
     if not os.path.exists(model_path):
@@ -100,8 +99,7 @@ def main():
     model_options = [
         "YOLOv12s Optimizado",
         "YOLOv11s Optimizado",
-        "YOLOv12n",
-        "YOLOv11n"
+        "YOLOv10n"
     ]
     selected_model = st.sidebar.selectbox(
         "Selecciona el modelo",
