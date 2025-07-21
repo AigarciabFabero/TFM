@@ -1,8 +1,9 @@
 from . import config
 import optuna
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 
-def optuna_objective(trial, model):
+def optuna_objective(trial, model, selected_model):
     """
     Funciónn para la optimización de parámetros con Optuna
 
@@ -39,7 +40,7 @@ def optuna_objective(trial, model):
         # 'dfl': trial.suggest_float('dfl', 0.5, 3.0),
     }
 
-    trial_name = f"optuna_trial_{trial.number}"
+    trial_name = f"optuna_trial_{selected_model}_{trial.number}"
 
     try:
         results = model.train(
@@ -78,6 +79,7 @@ def optuna_optimization_history(study, output_path, title_suffix=''):
     plt.xlabel('Trial')
     plt.ylabel('mAP@0.5:0.95')
     plt.grid(True, alpha=0.3)
+    plt.gca().xaxis.set_major_locator(ticker.MaxNLocator(integer=True))
 
     # Gráfico 2: Mejores valores acumulados
     plt.subplot(2, 2, 2)
@@ -92,6 +94,7 @@ def optuna_optimization_history(study, output_path, title_suffix=''):
     plt.xlabel('Trial')
     plt.ylabel('Mejor mAP@0.5:0.95')
     plt.grid(True, alpha=0.3)
+    plt.gca().xaxis.set_major_locator(ticker.MaxNLocator(integer=True))
 
     # Gráfico 3: Distribución de valores
     plt.subplot(2, 2, 3)
