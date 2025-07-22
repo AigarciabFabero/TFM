@@ -1,6 +1,7 @@
 import streamlit as st
 import cv2
-import os, io, time
+import os
+import time
 import numpy as np
 from PIL import Image
 from ultralytics import YOLO
@@ -81,19 +82,8 @@ def process_image(image, model, confidence_threshold=0.5):
     except Exception as e:
         st.error(f"❌ Error procesando la imagen: {str(e)}")
         return None
-
-def main():
-    st.markdown('<h1 class="main-header">🔬 Detector de Células</h1>', unsafe_allow_html=True)
     
-    st.markdown("""
-    ### Instrucciones:
-    1. **Selecciona el modelo**
-    1. **Sube una imagen** médica tipo
-    2. **Ajusta el umbral** de confianza si es necesario
-    3. **Visualiza los resultados** con detecciones automáticas
-    """)
-    
-    # Sidebar para controles
+def sidebar_config(device):
     st.sidebar.header("⚙️ Configuración")
 
     model_options = [
@@ -122,21 +112,51 @@ def main():
     enable_zoom = st.sidebar.checkbox("🔍 Zoom", value=False)
     
     st.sidebar.markdown("### Info del Modelo")
-    st.sidebar.info(f"**Modelo**: YOLOv12s Optimizado\n**Umbral**: {confidence_threshold} **Dispositivo**: {device}")
+    st.sidebar.info(f"**Modelo**: {selected_model}\n**Umbral**: {confidence_threshold} **Dispositivo**: {device}")
+
+    return model, confidence_threshold, enable_zoom
+
+def main():
+    st.markdown('<h1 class="main-header">🔬 Detector de Células</h1>', unsafe_allow_html=True)
     
-    uploaded_file = st.file_uploader(
-        "",
-        type=['png', 'jpg', 'jpeg'],
-        help="Formatos soportados: PNG, JPG, JPEG"
-    )
+    st.markdown("""
+    ### Instrucciones:
+    1. **Selecciona el modelo**
+    2. **Sube una imagen** médica tipo
+    3. **Ajusta el umbral** de confianza si es necesario
+    4. **Visualiza los resultados** con detecciones automáticas
+    """)
     
-    if uploaded_file is not None:
-        # Mostrar imagen original
-        col1, col2 = st.columns(2)
+    # Barra lateral de configuración
+    model, confidence_threshold, enable_zoom = sidebar_config(device)
+    
+    col_upload1, col_upload2 = st.columns(2)
+
+    with col_upload1:
+        uploaded_image_file = st.file_uploader(
+            "Sube una imagen",
+            type=['png', 'jpg', 'jpeg'],
+            help="Formatos soportados: PNG, JPG, JPEG"
+        )
+
+    with col_upload2:
+        uploaded_xml_file = st.file_uploader(
+            "Sube un archivo XML (opcional)",
+            type=['xml'],
+            help="Ground truth en formato Pascal VOC XML"
+        )
+
+    if uploaded_image_file is not None:
+        col1_image, col2_image = st.columns(2)
+
+        if uploaded_xml_file is not None:
+            print("hay xml")
+        else:
+            print("no hay xml")
         
-        with col1:
+        with col1_image:
             st.markdown("### Imagen Original")
-            image = Image.open(uploaded_file)
+            image = Image.open(uploaded_image_file)
             if enable_zoom:
                 image_zoom(image)
             else: 
@@ -149,7 +169,7 @@ def main():
             """)
             st.markdown('</div>', unsafe_allow_html=True)
         
-        with col2:
+        with col2_image:
             st.markdown("### Resultados de Detección")
             
             with st.spinner("🔄 Procesando imagen..."):
@@ -199,7 +219,7 @@ if __name__ == "__main__":
     main()
 
 
-# Me gustaría añadir una checkbox para actibar o desactivar las predicciones sobre la imagen y los groung truth
+# Me gustaría añadir una checkbox para activar o desactivar las predicciones sobre la imagen y los groung truth
 # comparativa de modelos 
 # si hay GT pintar métricas 
 # Zoom y navegacion sobre la imagen 
