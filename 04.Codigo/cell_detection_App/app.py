@@ -10,7 +10,6 @@ from streamlit_image_zoom import image_zoom
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-# Configuración de la página
 st.set_page_config(
     page_title="🔬 Detector de Células",
     layout="wide",
@@ -22,7 +21,7 @@ with open("assets/styles.css") as f:
 
 # Cache del modelo para mejorar rendimiento
 @st.cache_resource
-def load_model(model_name):
+def load_model_YOLO(model_name):
     """Carga el modelo YOLO seleccionado"""
     model_paths = {
         "YOLOv12s Optimizado": "models/final_model_optunav12s/weights/best.pt",
@@ -35,30 +34,23 @@ def load_model(model_name):
         st.stop()
     return YOLO(model_path)
 
-def process_image(image, model, confidence_threshold=0.5):
+def process_image_YOLO(image, model, confidence_threshold=0.5):
     """Procesa una imagen con YOLO y devuelve los resultados"""
     try:
-        # Convertir PIL a formato OpenCV
         img_array = np.array(image)
         if len(img_array.shape) == 3:
             img_array = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
         
-        # Inferencia
         results = model(img_array, conf=confidence_threshold)
         
-        # Procesar resultados
         processed_results = []
         for r in results:
-            # Obtener imagen con detecciones
             im_array = r.plot(labels=False, conf=True)
             
-            # Convertir de BGR a RGB para mostrar en Streamlit
             im_array = cv2.cvtColor(im_array, cv2.COLOR_BGR2RGB)
             
-            # Contar detecciones
             num_detections = len(r.boxes) if r.boxes is not None else 0
             
-            # Información detallada
             detection_info = []
             if r.boxes is not None:
                 for i, box in enumerate(r.boxes):
@@ -97,7 +89,7 @@ def sidebar_config(device):
         index=0
     )
     
-    model = load_model(selected_model)
+    model = load_model_YOLO(selected_model)
     model = model.to(device)
     
     confidence_threshold = st.sidebar.slider(
@@ -174,7 +166,7 @@ def main():
             
             with st.spinner("🔄 Procesando imagen..."):
                 start_time = time.time()
-                results = process_image(image, model, confidence_threshold)
+                results = process_image_YOLO(image, model, confidence_threshold)
                 process_time = time.time() - start_time
             
             if results:
@@ -221,8 +213,9 @@ if __name__ == "__main__":
 
 # Me gustaría añadir una checkbox para activar o desactivar las predicciones sobre la imagen y los groung truth
 # comparativa de modelos 
-# si hay GT pintar métricas 
-# Zoom y navegacion sobre la imagen 
+
+
+
 
 # from torchvision.models.detection import fasterrcnn_resnet50_fpn_v2, FastRCNNPredictor
 # from torchvision.transforms import functional as F
