@@ -7,6 +7,7 @@ from PIL import Image
 from ultralytics import YOLO
 import torch
 from streamlit_image_zoom import image_zoom
+import xml.etree.ElementTree as ET
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
@@ -24,15 +25,17 @@ with open("assets/styles.css") as f:
 def load_model_YOLO(model_name):
     """Carga el modelo YOLO seleccionado"""
     model_paths = {
-        "YOLOv12s Optimizado": "models/final_model_optunav12s/weights/best.pt",
-        "YOLOv11s Optimizado": "models/final_model_optunav11s/weights/best.pt",
-        "YOLOv10n": "models/final_model_yolov10n/weights/best.pt"
+        "YOLOv12s": "models/final_model_optunav12s/weights/best.pt",
+        "YOLOv11s": "models/final_model_optunav11s/weights/best.pt",
+        "YOLOv10n": "models/final_model_yolov10n/weights/best.pt",
+        "YOLOv9s": "models/final_model_yolov9s/weights/best.pt"
     }
     model_path = model_paths[model_name]
     if not os.path.exists(model_path):
         st.error(f"❌ No se encontró el modelo en: {model_path}")
         st.stop()
     return YOLO(model_path)
+
 
 def process_image_YOLO(image, model, confidence_threshold=0.5):
     """Procesa una imagen con YOLO y devuelve los resultados"""
@@ -75,13 +78,44 @@ def process_image_YOLO(image, model, confidence_threshold=0.5):
         st.error(f"❌ Error procesando la imagen: {str(e)}")
         return None
     
+
+def read_voc_xml(xml_file):
+    """Lee un archivo xml en formato Pascal VOC y devuelve las bounding box Ground Truth"""
+    gt_boxes=[]
+    try:
+        tree = ET.parse(xml_file)
+        root = tree.getroot()
+        for obj in root.findall('object'):
+            bbox = obj.find('bndbox')
+            x1 = int(float(bbox.find('xmin').text))
+            y1 = int(float(bbox.find('ymin').text))  
+            x2 = int(float(bbox.find('xmax').text))  
+            y2 = int(float(bbox.find('ymax').text))  
+            gt_boxes.append([x1, y1, x2, y2]) 
+    except Exception as e:
+        st.warning(f"No se puede leer el xml: {e}")
+    return gt_boxes
+
+    
+def draw_gt_boxes(image_array, gt_boxes, color=(255,0,0)):
+    """Se dibujan las bounding boxes sobre la imagen"""
+    img = image_array.copy()
+    num_boxes = 0
+    for box in gt_boxes:
+        num_boxes += 1
+        x1,y1,x2,y2 = box
+        cv2.rectangle(img, (x1,y1), (x2,y2), color, 2)
+    return img, num_boxes
+
+
 def sidebar_config(device):
     st.sidebar.header("⚙️ Configuración")
 
     model_options = [
-        "YOLOv12s Optimizado",
-        "YOLOv11s Optimizado",
-        "YOLOv10n"
+        "YOLOv12s",
+        "YOLOv11s",
+        "YOLOv10n",
+        "YOLOv9s"
     ]
     selected_model = st.sidebar.selectbox(
         "Selecciona el modelo",
@@ -102,11 +136,12 @@ def sidebar_config(device):
     )
 
     enable_zoom = st.sidebar.checkbox("🔍 Zoom", value=False)
+    enable_gt = st.sidebar.checkbox("Ground Truth", value=True)
     
-    st.sidebar.markdown("### Info del Modelo")
-    st.sidebar.info(f"**Modelo**: {selected_model}\n**Umbral**: {confidence_threshold} **Dispositivo**: {device}")
+    st.sidebar.info(f"**Dispositivo**: {device}")
 
-    return model, confidence_threshold, enable_zoom
+    return model, confidence_threshold, enable_zoom, enable_gt
+
 
 def main():
     st.markdown('<h1 class="main-header">🔬 Detector de Células</h1>', unsafe_allow_html=True)
@@ -120,7 +155,7 @@ def main():
     """)
     
     # Barra lateral de configuración
-    model, confidence_threshold, enable_zoom = sidebar_config(device)
+    model, confidence_threshold, enable_zoom, enable_gt = sidebar_config(device)
     
     col_upload1, col_upload2 = st.columns(2)
 
@@ -141,24 +176,29 @@ def main():
     if uploaded_image_file is not None:
         col1_image, col2_image = st.columns(2)
 
-        if uploaded_xml_file is not None:
-            print("hay xml")
-        else:
-            print("no hay xml")
+        gt_boxes = []
+        if uploaded_xml_file is not None and enable_gt:
+           gt_boxes = read_voc_xml(uploaded_xml_file)
         
         with col1_image:
             st.markdown("### Imagen Original")
             image = Image.open(uploaded_image_file)
+            image_np = np.array(image)
+            num_boxes = None
+            if enable_gt:
+                image_np, num_boxes = draw_gt_boxes(image_np, gt_boxes, color=(0,255,0))
             if enable_zoom:
-                image_zoom(image)
+                image_zoom(image_np)
             else: 
-                st.image(image, use_container_width=True)
+                st.image(image_np, use_container_width=True)
             
             st.markdown(f"""
-            **Dimensiones**: {image.size[0]} x {image.size[1]} px  
-            **Formato**: {image.format}  
+            **Numero de células redondas**: {num_boxes} <br>
+            **Dimensiones**: {image.size[0]} x {image.size[1]} px <br> 
+            **Formato**: {image.format} <br> 
             **Modo**: {image.mode}
-            """)
+            """,
+            unsafe_allow_html=True)
             st.markdown('</div>', unsafe_allow_html=True)
         
         with col2_image:
@@ -206,6 +246,7 @@ def main():
                 
             else:
                 st.error("❌ No se pudo procesar la imagen")
+
 
 if __name__ == "__main__":
     main()
