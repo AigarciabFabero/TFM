@@ -1,13 +1,11 @@
 import streamlit as st
 import cv2
+import io
 import os
 import numpy as np
 from ultralytics import YOLO
 import xml.etree.ElementTree as ET
 
-
-import io
-import xml.etree.ElementTree as ET
 
 st.set_page_config(
     page_title="🔬 Detector de Células", layout="wide", initial_sidebar_state="expanded"
@@ -132,7 +130,7 @@ def sidebar_config(device):
     )
 
     enable_zoom = st.sidebar.checkbox("🔍 Zoom", value=False)
-    enable_gt = st.sidebar.checkbox("Ground Truth", value=True)
+    enable_gt = st.sidebar.checkbox("Ground Truth", value=False)
 
     st.sidebar.info(f"**Dispositivo**: {device}")
 
