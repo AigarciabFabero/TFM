@@ -8,7 +8,6 @@ from utils import utils
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-
 def main():
     with open("assets/styles.css") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -147,9 +146,22 @@ def main():
                     st.error("❌ No se pudo procesar la imagen")
 
     with tab2:
-
         st.markdown('<h1 class="main-header">🔬 Detector de Células</h1>', unsafe_allow_html=True)
-        # Aquí tu código para seleccionar carpeta, navegar entre imágenes, mostrar métricas globales, etc.
+        col1, col2 = st.columns(2)
+
+        with col1:
+            uploaded_files = st.file_uploader(
+                "Selecciona imágenes (puedes seleccionar varios archivos a la vez)",
+                type=["jpg", "jpeg", "png"],
+                accept_multiple_files=True
+            )
+
+        with col2:
+            uploaded_files_xml = st.file_uploader(
+                "Selecciona archivos XML (puedes seleccionar varios archivos a la vez)",
+                type=["xml"],
+                accept_multiple_files=True
+            )
 
 
 if __name__ == "__main__":

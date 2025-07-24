@@ -1,5 +1,5 @@
 SEED = 42
-N_TRIALS = 6
+N_TRIALS = 7
 EPOCH_OPTUNA = 25
 EPOCH_TRAIN = 60
 BATCH = 10
@@ -17,6 +17,7 @@ models = {
     "yolov11l": "yolo_output/yolo_models/yolo11l.pt",
     "yolov11x": "yolo_output/yolo_models/yolo11x.pt",
     "yolov11ny": "yolo_output/yolo_models/yolo11n.yaml",
+    "yolo11s": "yolo_output/yolo_models/yolo11s.yaml",
 
     #YOLOv12
     "yolov12n": "yolo_output/yolo_models/yolo12n.pt",
