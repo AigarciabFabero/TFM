@@ -31,8 +31,13 @@ def process_image_YOLO(image, model, confidence_threshold=0.5):
     """Procesa una imagen con YOLO y devuelve los resultados"""
     try:
         img_array = np.array(image)
-        if len(img_array.shape) == 3:
-            img_array = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
+        if len(img_array.shape) == 2:
+            img_array = cv2.cvtColor(img_array, cv2.COLOR_GRAY2BGR)
+        elif len(img_array.shape) == 3:
+            if img_array.shape[2] == 1:
+                img_array = cv2.cvtColor(img_array, cv2.COLOR_GRAY2BGR)
+            else:
+                img_array = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
 
         results = model(img_array, conf=confidence_threshold)
 
