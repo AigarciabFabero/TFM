@@ -5,6 +5,10 @@ import numpy as np
 from ultralytics import YOLO
 import xml.etree.ElementTree as ET
 
+
+import io
+import xml.etree.ElementTree as ET
+
 st.set_page_config(
     page_title="🔬 Detector de Células", layout="wide", initial_sidebar_state="expanded"
 )
@@ -133,6 +137,41 @@ def sidebar_config(device):
     st.sidebar.info(f"**Dispositivo**: {device}")
 
     return model, confidence_threshold, enable_zoom, enable_gt
+
+
+def save_pascal_voc_xml_to_buffer(image_filename, image_size, detections, folder="original_images", path="", database="Unknown"):
+    annotation = ET.Element("annotation")
+    ET.SubElement(annotation, "folder").text = folder
+    ET.SubElement(annotation, "filename").text = image_filename
+    ET.SubElement(annotation, "path").text = path
+
+    source = ET.SubElement(annotation, "source")
+    ET.SubElement(source, "database").text = database
+
+    size = ET.SubElement(annotation, "size")
+    ET.SubElement(size, "width").text = str(image_size[0])
+    ET.SubElement(size, "height").text = str(image_size[1])
+    ET.SubElement(size, "depth").text = str(image_size[2])
+
+    ET.SubElement(annotation, "segmented").text = "0"
+
+    for det in detections:
+        obj = ET.SubElement(annotation, "object")
+        ET.SubElement(obj, "name").text = "cell"
+        ET.SubElement(obj, "pose").text = "Unspecified"
+        ET.SubElement(obj, "truncated").text = str(det.get("truncated", 0))
+        ET.SubElement(obj, "difficult").text = str(det.get("difficult", 0))
+        bbox = ET.SubElement(obj, "bndbox")
+        x1, y1, x2, y2 = det["bbox"]
+        ET.SubElement(bbox, "xmin").text = str(x1)
+        ET.SubElement(bbox, "ymin").text = str(y1)
+        ET.SubElement(bbox, "xmax").text = str(x2)
+        ET.SubElement(bbox, "ymax").text = str(y2)
+
+    xml_buffer = io.BytesIO()
+    tree = ET.ElementTree(annotation)
+    tree.write(xml_buffer, encoding="utf-8", xml_declaration=True)
+    return xml_buffer.getvalue()
 
 
 # from torchvision.models.detection import fasterrcnn_resnet50_fpn_v2, FastRCNNPredictor

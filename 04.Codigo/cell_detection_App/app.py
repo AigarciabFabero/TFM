@@ -65,12 +65,21 @@ def main():
             else:
                 st.image(image_np, use_container_width=True)
 
+            mode_desc = {
+                "RGB": "Color (3 canales)",
+                "L": "Escala de grises (1 canal)",
+                "RGBA": "Color + transparencia (4 canales)",
+                "1": "Binaria",
+            }
+
+            modo_texto = mode_desc.get(image.mode, image.mode)
+
             st.markdown(
                 f"""
             **Numero de células redondas**: {num_boxes} <br>
             **Dimensiones**: {image.size[0]} x {image.size[1]} px <br> 
             **Formato**: {image.format} <br> 
-            **Modo**: {image.mode}
+            **Modo**: {modo_texto}
             """,
                 unsafe_allow_html=True,
             )
@@ -83,6 +92,11 @@ def main():
                 start_time = time.time()
                 results = utils.process_image_YOLO(image, model, confidence_threshold)
                 process_time = time.time() - start_time
+
+                detection_info = results[0]["detection_info"]
+                image_filename = uploaded_image_file.name  
+                image_size = (image.width, image.height, 3) # o 1 si es grayscale
+                xml_bytes = utils.save_pascal_voc_xml_to_buffer(image_filename, image_size, detection_info)
 
             if results:
                 result = results[0]  # Tomar el primer resultado
@@ -106,7 +120,6 @@ def main():
 
                 # Tabla de detecciones detallada
                 if result["detection_info"]:
-                    st.markdown("### Detalle de Detecciones")
 
                     detection_data = []
                     for det in result["detection_info"]:
@@ -118,8 +131,15 @@ def main():
                                 "Coordenadas": f"({det['bbox'][0]}, {det['bbox'][1]}) - ({det['bbox'][2]}, {det['bbox'][3]})",
                             }
                         )
+                    with st.expander("Detalles de las detecciones"):
+                        st.dataframe(detection_data, use_container_width=True)
 
-                    st.dataframe(detection_data, use_container_width=True)
+                st.download_button(
+                    label="Descargar XML",
+                    data=xml_bytes,
+                    file_name=f"{image_filename.split('.')[0]}.xml",
+                    mime="application/xml"
+                )
 
             else:
                 st.error("❌ No se pudo procesar la imagen")
