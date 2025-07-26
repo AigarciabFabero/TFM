@@ -4,11 +4,11 @@ from pathlib import Path
 BASE_DATASETS = Path("../03.Datasets")
 
 # Rutas de datos originales (para análisis)
-ORIGINAL_TRAIN_IMAGES = BASE_DATASETS / "04.Images_for_training_test" / "01.Training"
-ORIGINAL_TRAIN_LABELS = BASE_DATASETS / "04.Images_for_training_test" / "01a.Training_Labelling" / "annotations"
+ORIGINAL_TRAIN_IMAGES = BASE_DATASETS / "Images_for_training_test" / "01a.Training_Labelling" / "original_images"
+ORIGINAL_TRAIN_LABELS = BASE_DATASETS / "Images_for_training_test" / "01a.Training_Labelling" / "annotations"
 
-ORIGINAL_TEST_IMAGES = BASE_DATASETS / "04.Images_for_training_test" / "02.Test"
-ORIGINAL_TEST_LABELS = BASE_DATASETS / "04.Images_for_training_test" / "02a.Test_Labelling" / "annotations"
+ORIGINAL_TEST_IMAGES = BASE_DATASETS / "Images_for_training_test" / "02a.Test_Labelling" / "original_images"
+ORIGINAL_TEST_LABELS = BASE_DATASETS / "Images_for_training_test" / "02a.Test_Labelling" / "annotations"
 
 # Rutas de salida YOLO
 YOLO_BASE = BASE_DATASETS / "YOLO_Datasets"
