@@ -1,5 +1,7 @@
 from pathlib import Path
 
+SEED = 42
+
 # Path padre al Dataset
 BASE_DATASETS = Path("../03.Datasets")
 

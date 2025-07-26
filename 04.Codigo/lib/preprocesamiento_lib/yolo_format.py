@@ -5,6 +5,7 @@ import shutil
 import cv2
 import os
 import xml.etree.ElementTree as ET
+from sklearn.model_selection import train_test_split
 
 class CPreprocessing_YOLO:
     def __init__(self):
@@ -145,7 +146,7 @@ class CPreprocessing_YOLO:
                 shutil.copyfile(src_path, dst_path)
     
     
-    def split_dataset(self, images_path, labels_path, output_dir, train_ratio=0.8):
+    def split_dataset(self, images_path, labels_path, output_dir, train_ratio=0.8, seed=None):
         if (os.path.exists(output_dir)):
             shutil.rmtree(output_dir)
             print(f"Directorio {output_dir} eliminado y será recreado")
@@ -161,11 +162,7 @@ class CPreprocessing_YOLO:
         os.makedirs(test_lbl_dir,  exist_ok=True)
     
         images = [f for f in os.listdir(images_path) if f.endswith('.jpg')]
-        random.shuffle(images)
-    
-        train_count = int(len(images) * train_ratio)
-        train_files = images[:train_count]
-        test_files  = images[train_count:]
+        train_files, test_files = train_test_split(images, train_size=train_ratio, random_state=seed)
     
         def copy_file(src_folder, dst_folder, filename):
             src_path = os.path.join(src_folder, filename)
