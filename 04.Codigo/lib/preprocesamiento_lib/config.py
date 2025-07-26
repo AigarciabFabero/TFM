@@ -12,6 +12,13 @@ ORIGINAL_TRAIN_LABELS = BASE_DATASETS / "Images_for_training_test" / "01a.Traini
 ORIGINAL_TEST_IMAGES = BASE_DATASETS / "Images_for_training_test" / "02a.Test_Labelling" / "original_images"
 ORIGINAL_TEST_LABELS = BASE_DATASETS / "Images_for_training_test" / "02a.Test_Labelling" / "annotations"
 
+# Rutas relativas para los datasets de Evaluacion_Empresa
+EVAL_EMPRESA_TEST2_IMAGES = BASE_DATASETS / "Evaluacion_Empresa" / "TEST 2" / "INPUT TEST 2"
+EVAL_EMPRESA_TEST3_IMAGES = BASE_DATASETS / "Evaluacion_Empresa" / "TEST 3" / "INPUT_TEST 3"
+
+EVAL_EMPRESA_TEST2_XML = BASE_DATASETS / "Evaluacion_Empresa" / "TEST 2" / "annotations"
+EVAL_EMPRESA_TEST3_XML = BASE_DATASETS / "Evaluacion_Empresa" / "TEST 3" / "annotations"
+
 # Rutas de salida YOLO
 YOLO_BASE = BASE_DATASETS / "YOLO_Datasets"
 YOLO_TRAIN_IMAGES = YOLO_BASE / "train" / "images"

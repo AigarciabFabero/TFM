@@ -97,3 +97,12 @@ def draw_visual_boxes(base_path):
     for dim, count in dimension_count.items():
         print(f"Dimension {dim}: {count} imágenes")
     print(f"Número total de imágenes: {total_images}")
+
+def contar_instancias_xml(carpeta_xml):
+    total = 0
+    for archivo in os.listdir(carpeta_xml):
+        if archivo.endswith('.xml'):
+            tree = ET.parse(os.path.join(carpeta_xml, archivo))
+            root = tree.getroot()
+            total += len(root.findall('object'))
+    return total
