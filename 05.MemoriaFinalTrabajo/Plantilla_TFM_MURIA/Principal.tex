@@ -148,10 +148,16 @@
 % Ajustes para división manual de palabras:
 \hyphenation{Python} % Impide que la palabra Python sea dividida al acabar una línea.
 
+\usepackage{titlesec}
+\titleformat{\chapter}[hang]
+  {\normalfont\huge\bfseries}
+  {\thechapter.}{1em}{}
+
+\titlespacing*{\chapter}{0pt}{0pt}{1em}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO DEL DOCUMENTO: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\renewcommand{\chaptername}{}
 \begin{document}
 
 \input{Plantillas/Plantilla_Portada}
@@ -170,6 +176,7 @@
 \setcounter{page}{1} % Esta página es la 1.
 
 % Página con el ÍNDICE GENERAL
+\renewcommand{\contentsname}{Índice}
 \tableofcontents
 
 % Página con el ÍNDICE DE FIGURAS
@@ -193,24 +200,24 @@
 
 \end{description} 
 
-%%%% Inicio de los CAPÍTULOS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%                                           Inicio de los CAPÍTULOS                                           %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \renewcommand{\thepage}{\arabic{page}}
 \setcounter{page}{1} % Esta página es la 1.
 
-\mychapter{0}{Introducción}
-\label{Introducción}
-
-\section*{Planteamiento del problema}
-
-\section*{Objetivos}
+\chapter{Introducción}
+\section{Contexto y motivación}
+\section{Definición del problema}
+\section{Estado del arte e hipótesis}
+\section{Objetivos}
 
 En este Trabajo de Fin de Máster, se plantean una serie de objetivos interconectados que tienen como finalidad principal:
 
 \fbox{\begin{minipage}{14cm}
 Objetivo principal
 \end{minipage}}
-% mejorar la capacidad de los robots en el entorno de la competición\\ RoboCup y su aplicabilidad en escenarios del mundo real.
 
 De este modo, se pretenden abordar los siguientes objetivos: 
 
@@ -237,20 +244,23 @@ De este modo, se pretenden abordar los siguientes objetivos:
 
 
 
-\chapter{Estudio del problema}
-\label{Estudio del problema}
+\chapter{Antecedentes}
+\label{Antecedentes}
 
 En este capítulo, se establece el contexto del estudio explorando las tecnologías, plataformas, herramientas y trabajos previos relacionados que sirven como base para la investigación.
 
-\section{El contexto del problema}
+\section{Contexto médico}
 
+\section{Visión por computador}
+\section{Arquitecturas de \textit{Deep Learning}}
+\subsection{Modelos de una etapa: YOLO}
+\subsection{Modelos de dos estapas: Fast RCNN}
 
-
-\section{El estado de la cuestión}
-
-
-
-\section{La definición del problema}
+\section{Técnicas avanzadas para la mejora de modelos}
+\subsection{Aumento de datos (\textit{Data Augmentation})}
+\subsection{Optimización de hiperparámetros}
+\subsection{Validación cruzada}
+\subsection{Ensablado de modelos}
 
 
 \chapter{Gestión de proyecto software}
@@ -293,21 +303,25 @@ En este capítulo, se establece el contexto del estudio explorando las tecnolog�
 \subsection{Estimación de tareas}
 \label{Estimación de tareas}
 
+\subsection{Planificación de tareas}
+\label{Planificación de tareas}
+
 
 
 \section{Gestión de recursos}
 \label{Gestión de recursos}
+
+\subsection{Especificación de recursos}
+\label{Especificación de recursos}
 
 \subsection{Asignación de recursos}
 \label{asignacion de recursos}
 
 
 
-
 \section{Gestión de riesgos}
-
 \subsection{Identificación de riesgos}
-
+\subsection{Análisis de riesgos}
 
 \section{Legislación y normativa}
 
@@ -328,32 +342,25 @@ En el marco de ejecución de este proyecto, se ha llevado a cabo un riguroso cum
     En conformidad con el Real Decreto Legislativo 1/1996, el proyecto respeta la normativa sobre propiedad intelectual. Se ha optado por utilizar únicamente código y herramientas de software libre y de código abierto para garantizar el cumplimiento de la normativa en materia de propiedad intelectual.
 \end{itemize}
 
-\chapter{Solución}
-\label{Solución}
+\chapter{Experimentación}
+\label{Experimentación}
 
-\section{Descripción de la solución}
-
-
-\section{El proceso de desarrollo}
-
-\subsection{Análisis}
-\label{analisis}
+\section{Dataset}
 
 
-\subsubsection{Definición de requisitos}
+\section{Entorno de desarrollo}
+\subsection{\textit{Hardware}}
+\subsection{\textit{Software}}
 
-\begin{itemize}
-    \item Requisitos funcionales (RF)
+\section{Configuraciones}
+\subsection{Entrenamiento}
+\subsection{Validación cruzada}
+\subsection{Ensamblado de modelos}
 
-           \textbf{RF1: }
-           
-           
-    \item Requisitos no funcionales
-
-    \textbf{RNF1}: 
-\end{itemize}
-
-\subsubsection{Especificación de requisitos}
+\section{Métricas}
+\subsection{\textit{Precision}}
+\subsection{\textit{Recall}}
+\subsection{\textit{mean Average Precision}}
 
 \arrayrulecolor[HTML]{B9DAE1}
 % \begin{longtable} {|p{3cm}|p{11cm}|} \hline
@@ -376,41 +383,25 @@ En el marco de ejecución de este proyecto, se ha llevado a cabo un riguroso cum
 % \caption{Caso de uso 1}
 % \end{longtable} \vspace{0.5cm}
 
+\chapter{Resultados}
+\label{Resultados}
 
+\section{Resultados de los modelos}
+\subsection{YOLO}
+\subsection{Fast-RCNN}
+\subsection{Ensemble}
+\subsection{Modelo personalizado}
 
-\subsection{Diseño}
+\section{Discursión de resultados}
 
+\chapter{Herramienta Web}
+\section{Objetivos de la herramienta}
+\section{Arquitectura (Frontend, Backend)}
 
-
-\subsubsection{Descripción Detallada}
-\label{diseño detallado}
-
-
-
-\subsection{Implementación}
-
-
-\subsection{Pruebas}
-
-
-\section{El producto del desarrollo}
-
-
-\chapter{Evaluación}
-\label{Evaluación}
-
-
-\section{Proceso de evaluación}
-
-
-
-\section{Análisis de resultados}
-
-
-
-\mychapter{1}{Conclusión}
-
-
+\chapter{Conclusión}
+\section{Conclusión general}
+\section{Limitaciones del estudio}
+\section{Lineas de trabajo futuro}
 
 \subsection*{Aportaciones realizadas}
 
@@ -419,10 +410,7 @@ En el marco de ejecución de este proyecto, se ha llevado a cabo un riguroso cum
 \subsection*{Problemas encontrados}
 
 
-
 \section*{Opiniones personales}
-
-
 
 
 \subsection*{Trabajos futuros}
@@ -433,7 +421,7 @@ En el marco de ejecución de este proyecto, se ha llevado a cabo un riguroso cum
 
 
 %%%% BIBLIOGRAFÍA %%%%
-\renewcommand\bibname{Lista de referencias}
+\renewcommand\bibname{Bibliografía}
 
 %\bibliography{Refs-proyecto}    % Fichero con las referencias.
 %Información bibliográfica citada en el texto del trabajo. Otras lecturas recomendadas o consultadas, de figurar, aparecerán en anexos.
@@ -461,6 +449,9 @@ En el marco de ejecución de este proyecto, se ha llevado a cabo un riguroso cum
 
 %%%% ANEXOS %%%%
 \renewcommand{\appendixname}{Anexo}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {Anexo \thechapter}{0pt}{\Huge}
 \appendix
 
 \chapter{Control de versiones}
@@ -481,6 +472,15 @@ En el marco del desarrollo de este Trabajo de Fin de Máster (TFM), se ha emplea
 \section{Planificación final}
 %Si el trabajo ha consistido en la elaboración de una aplicación se incluirá el manual de usuario de la misma.
 
+\chapter{Herramienta Web}
+\section{Manual de usuario}
 
 
 \end{document}
+
+
+
+% Antes de experimentación, añadir un section{metodología} con los 4 pipelines para cada metodología.
+% el punto 4.3.3 si hacemos lo anterior lo quitamos.
+% En experimentación hablar de las métricas
+% sección nueva de la herramienta web después de resultados. El punto C 
