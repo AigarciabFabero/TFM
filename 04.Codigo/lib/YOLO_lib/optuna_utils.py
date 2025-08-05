@@ -22,16 +22,17 @@ def optuna_objective(trial, model, selected_model):
         'weight_decay': trial.suggest_float('weight_decay', 0.0001, 0.001, log=True), # YOLO solo tiene regulación L2
         'optimizer': trial.suggest_categorical('optimizer', ['SGD', 'Adam', 'AdamW']),
 
-        'warmup_epochs': 5,
-        'warmup_momentum': 0.75,
+        'warmup_epochs': trial.suggest_categorical('warmup_epochs', [5]),
+        'warmup_momentum': trial.suggest_categorical('warmup_momentum', [0.75]),
 
         # 📐 AUGMENTACIÓN GEOMÉTRICA
-        'degrees': 45,
-        'translate': 0.1,
-        'flipud': 0.5,
-        'fliplr': 0.5,
-        'mosaic': 0,
-        'close_mosaic': 0,
+        'degrees': trial.suggest_categorical('degrees', [45]),        
+        'translate': trial.suggest_categorical('translate', [0.1]),   
+        'scale': trial.suggest_categorical('scale', [0.06]), 
+        'flipud': trial.suggest_categorical('flipud', [0.5]),        
+        'fliplr': trial.suggest_categorical('fliplr', [0.5]),        
+        'mosaic': trial.suggest_categorical('mosaic', [0]),          
+        'close_mosaic': trial.suggest_categorical('close_mosaic', [0]),
         # Interesantes: 'label_smoothing', 'mixup', 'cutmix'
 
         # ⚖️ PÉRDIDAS
