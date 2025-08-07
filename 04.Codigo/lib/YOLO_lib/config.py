@@ -1,7 +1,7 @@
 SEED = 42
-N_TRIALS = 7
+N_TRIALS = 6
 EPOCH_OPTUNA = 25
-EPOCH_TRAIN = 60
+EPOCH_TRAIN = 40
 BATCH = 10
 IMGSZ = 704
 K = 5
@@ -9,6 +9,7 @@ K = 5
 models = {
     # YOLOv10
     "yolov10n": "yolo_output/yolo_models/yolov10n.pt",
+    "yolov10s": "yolo_output/yolo_models/yolov10s.pt",
 
     # YOLOv11
     "yolov11n": "yolo_output/yolo_models/yolo11n.pt",
@@ -28,9 +29,9 @@ models = {
 }
 
 results_csv_paths = {
+    'yolov8s': 'runs/detect/final_model_yolov8s/results.csv',
     'yolov9s': 'runs/detect/final_model_yolov9s/results.csv',
-    'yolov10n': 'runs/detect/final_model_yolov10n/results.csv',
-    'yolov11l': 'runs/detect/final_model_yolov11l/results.csv',
-    'yolov11s': 'runs/detect/final_model_optunav11s/results.csv',
-    'yolov12s': 'runs/detect/final_model_optunav12s/results.csv',
+    'yolov10s': 'runs/detect/final_model_yolov10n/results.csv',
+    'yolov11s': 'runs/detect/final_model_yolov11s/results.csv',
+    'yolov12s': 'runs/detect/final_model_yolov12s/results.csv',
 }

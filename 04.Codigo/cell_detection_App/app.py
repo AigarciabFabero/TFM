@@ -1,10 +1,14 @@
 import streamlit as st
 import time
 import numpy as np
+import os
 from PIL import Image
 import torch
 from streamlit_image_zoom import image_zoom
 from utils import utils
+
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -12,9 +16,11 @@ def main():
     with open("assets/styles.css") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-    tab1, tab2 = st.tabs(["🔎 Detección individual", "📁 Carpeta completa"])
+    model, confidence_threshold, enable_zoom, enable_gt = utils.sidebar_config(device)
 
-    with tab1:
+    tab_selected = st.radio("Selecciona vista", ["🔎 Detección individual", "📁 Carpeta completa"])
+
+    if tab_selected == "🔎 Detección individual":
         
         st.markdown('<h1 class="main-header">🔬 Detector de Células</h1>', unsafe_allow_html=True)
 
@@ -25,9 +31,6 @@ def main():
         3. **Ajusta el umbral** de confianza si es necesario
         4. **Visualiza los resultados** con detecciones automáticas
         """)
-
-        # Barra lateral de configuración
-        model, confidence_threshold, enable_zoom, enable_gt = utils.sidebar_config(device)
 
         col_upload1, col_upload2 = st.columns(2)
 
@@ -145,17 +148,22 @@ def main():
                 else:
                     st.error("❌ No se pudo procesar la imagen")
 
-    with tab2:
+    else:
         st.markdown('<h1 class="main-header">🔬 Detector de Células</h1>', unsafe_allow_html=True)
-        col1, col2 = st.columns(2)
+        st.markdown("""
+        ### Instrucciones:
+        1. Sube múltiples imágenes y sus archivos XML correspondientes.
+        2. Asegúrate que los nombres de los archivos XML coincidan con los de las imágenes.
+        3. Haz clic en 'Evaluar lote' para procesar todo el conjunto.
+        """)
 
+        col1, col2 = st.columns(2)
         with col1:
             uploaded_files = st.file_uploader(
                 "Selecciona imágenes (puedes seleccionar varios archivos a la vez)",
                 type=["jpg", "jpeg", "png"],
                 accept_multiple_files=True
             )
-
         with col2:
             uploaded_files_xml = st.file_uploader(
                 "Selecciona archivos XML (puedes seleccionar varios archivos a la vez)",
@@ -163,6 +171,52 @@ def main():
                 accept_multiple_files=True
             )
 
+        if uploaded_files and uploaded_files_xml:
+            # Crear diccionario de XML por nombre base
+            xml_dict = {os.path.splitext(f.name)[0]: f for f in uploaded_files_xml}
+            st.info(f"Imágenes subidas: {len(uploaded_files)} | XML subidos: {len(uploaded_files_xml)}")
+
+            if st.button("Evaluar lote"):
+                gt_list = []
+                pred_list = []
+                mean_ious = []
+                xml_dict = {os.path.splitext(f.name)[0]: f for f in uploaded_files_xml}
+
+                for img_file in uploaded_files:
+                    image = Image.open(img_file)
+                    base_name = os.path.splitext(img_file.name)[0]
+                    xml_file = xml_dict.get(base_name, None)
+                    gt_boxes = utils.read_voc_xml(xml_file) if xml_file else []
+                    results = utils.process_image_YOLO(image, model, confidence_threshold)
+                    detections = results[0]["detection_info"] if results[0]["detection_info"] else []
+                    pred_boxes = [det["bbox"] for det in detections]
+                    gt_list.append(gt_boxes)
+                    pred_list.append(pred_boxes)
+                    _, _, _, mean_iou = utils.match_boxes(gt_boxes, pred_boxes, iou_threshold=confidence_threshold)
+                    mean_ious.append(mean_iou)
+
+                cm = utils.compute_confusion_matrix(gt_list, pred_list, iou_threshold=confidence_threshold)
+                TP = cm[0,0]
+                FN = cm[0,1]
+                FP = cm[1,0]
+
+                precision = TP / (TP + FP) if (TP + FP) > 0 else 0
+                recall = TP / (TP + FN) if (TP + FN) > 0 else 0
+                iou_promedio = np.mean(mean_ious) if mean_ious else 0
+
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    st.markdown(f"**Precisión:** {precision:.3f}")
+                with col2:
+                    st.markdown(f"**Recall:** {recall:.3f}")
+                with col3:
+                    st.markdown(f"**IoU promedio:** {iou_promedio:.3f}")
+
+                plt.figure(figsize=(4,4))
+                sns.heatmap(cm, annot=True, fmt="d", cmap="YlGnBu", xticklabels=["Detección", "No detección"], yticklabels=["GT célula", "GT fondo"], linecolor='r', linewidths=0.5)
+                plt.xlabel("Predicción")
+                plt.ylabel("Ground Truth")
+                st.pyplot(plt)
 
 if __name__ == "__main__":
     main()

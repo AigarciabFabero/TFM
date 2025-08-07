@@ -5,6 +5,7 @@ import os
 import numpy as np
 from ultralytics import YOLO
 import xml.etree.ElementTree as ET
+from sklearn.metrics import confusion_matrix
 
 
 st.set_page_config(
@@ -171,6 +172,79 @@ def save_pascal_voc_xml_to_buffer(image_filename, image_size, detections, folder
     tree.write(xml_buffer, encoding="utf-8", xml_declaration=True)
     return xml_buffer.getvalue()
 
+
+def match_boxes(gt_boxes, pred_boxes, iou_threshold=0.5):
+    def iou(boxA, boxB):
+        xA = max(boxA[0], boxB[0])
+        yA = max(boxA[1], boxB[1])
+        xB = min(boxA[2], boxB[2])
+        yB = min(boxA[3], boxB[3])
+        interArea = max(0, xB - xA) * max(0, yB - yA)
+        boxAArea = (boxA[2] - boxA[0]) * (boxA[3] - boxA[1])
+        boxBArea = (boxB[2] - boxB[0]) * (boxB[3] - boxB[1])
+        iou = interArea / float(boxAArea + boxBArea - interArea) if (boxAArea + boxBArea - interArea) > 0 else 0
+        return iou
+
+    gt_matched = set()
+    pred_matched = set()
+    ious = []
+
+    for i, gt in enumerate(gt_boxes):
+        best_iou = 0
+        best_j = -1
+        for j, pred in enumerate(pred_boxes):
+            if j in pred_matched:
+                continue
+            iou_val = iou(gt, pred)
+            if iou_val > best_iou:
+                best_iou = iou_val
+                best_j = j
+        if best_iou >= iou_threshold:
+            gt_matched.add(i)
+            pred_matched.add(best_j)
+            ious.append(best_iou)
+
+    TP = len(gt_matched)
+    FP = len(pred_boxes) - len(pred_matched)
+    FN = len(gt_boxes) - len(gt_matched)
+    mean_iou = np.mean(ious) if ious else 0
+    return TP, FP, FN, mean_iou
+
+
+def compute_iou(boxA, boxB):
+    xA = max(boxA[0], boxB[0])
+    yA = max(boxA[1], boxB[1])
+    xB = min(boxA[2], boxB[2])
+    yB = min(boxA[3], boxB[3])
+    interArea = max(0, xB - xA) * max(0, yB - yA)
+    boxAArea = (boxA[2] - boxA[0]) * (boxA[3] - boxA[1])
+    boxBArea = (boxB[2] - boxB[0]) * (boxB[3] - boxB[1])
+    iou = interArea / float(boxAArea + boxBArea - interArea) if (boxAArea + boxBArea - interArea) > 0 else 0
+    return iou
+
+
+def compute_confusion_matrix(gt_list, pred_list, iou_threshold=0.5):
+    y_true = []
+    y_pred = []
+    for gt_boxes, pred_boxes in zip(gt_list, pred_list):
+        matched_gt = set()
+        matched_pred = set()
+        for i, pred in enumerate(pred_boxes):
+            for j, gt in enumerate(gt_boxes):
+                iou = compute_iou(pred, gt)
+                if iou >= iou_threshold and j not in matched_gt and i not in matched_pred:
+                    matched_gt.add(j)
+                    matched_pred.add(i)
+        # GT: 1 = célula, 0 = fondo
+        for j in range(len(gt_boxes)):
+            y_true.append(1)
+            y_pred.append(1 if j in matched_gt else 0)
+        for i in range(len(pred_boxes)):
+            if i not in matched_pred:
+                y_true.append(0)
+                y_pred.append(1)
+    cm = confusion_matrix(y_true, y_pred, labels=[1,0])
+    return cm
 
 # from torchvision.models.detection import fasterrcnn_resnet50_fpn_v2, FastRCNNPredictor
 # from torchvision.transforms import functional as F
