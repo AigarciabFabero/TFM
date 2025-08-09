@@ -4,6 +4,6 @@
 02.Articulos_revisados/
 servidor.txt
 05.MemoriaFinalTrabajo/
-yolo_output/evaluations/
-yolo_output/yolo_models/
-optuna/
+04.Codigo/yolo_output/evaluations/
+04.Codigo/yolo_output/yolo_models/
+04.Codigo/optuna/
