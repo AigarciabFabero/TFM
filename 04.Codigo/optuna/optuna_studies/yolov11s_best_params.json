@@ -1,0 +1,16 @@
+{
+  "lr0": 0.00019010245319870352,
+  "lrf": 0.001959497205867916,
+  "momentum": 0.8549542764940538,
+  "weight_decay": 0.0002858051065806936,
+  "optimizer": "SGD",
+  "warmup_epochs": 5,
+  "warmup_momentum": 0.75,
+  "degrees": 45,
+  "translate": 0.1,
+  "scale": 0.06,
+  "flipud": 0.5,
+  "fliplr": 0.5,
+  "mosaic": 0,
+  "close_mosaic": 0
+}

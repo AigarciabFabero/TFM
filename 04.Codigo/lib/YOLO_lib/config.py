@@ -2,7 +2,7 @@ SEED = 42
 N_TRIALS = 6
 EPOCH_OPTUNA = 25
 EPOCH_TRAIN = 40
-BATCH = 10
+BATCH = 7
 IMGSZ = 704
 K = 5
 
@@ -26,12 +26,13 @@ models = {
     "yolov12m": "yolo_output/yolo_models/yolo12m.pt",
     "yolov12l": "yolo_output/yolo_models/yolo12l.pt",
     "yolov12x": "yolo_output/yolo_models/yolo12x.pt",
+    "yolov12sy": "yolo_output/yolo_models/yolo12s.yaml",
 }
 
 results_csv_paths = {
     'yolov8s': 'runs/detect/final_model_yolov8s/results.csv',
     'yolov9s': 'runs/detect/final_model_yolov9s/results.csv',
-    'yolov10s': 'runs/detect/final_model_yolov10n/results.csv',
+    'yolov10s': 'runs/detect/final_model_yolov10s/results.csv',
     'yolov11s': 'runs/detect/final_model_yolov11s/results.csv',
     'yolov12s': 'runs/detect/final_model_yolov12s/results.csv',
 }

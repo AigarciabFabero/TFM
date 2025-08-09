@@ -18,10 +18,11 @@ st.set_page_config(
 def load_model(model_name):
     """Carga el modelo YOLO seleccionado"""
     model_paths = {
-        "YOLOv12s": "models/final_model_optunav12s/weights/best.pt",
-        "YOLOv11s": "models/final_model_optunav11s/weights/best.pt",
-        "YOLOv10n": "models/final_model_yolov10n/weights/best.pt",
+        "YOLOv12s": "models/final_model_yolov12s/weights/best.pt",
+        "YOLOv11s": "models/final_model_yolov11s/weights/best.pt",
+        "YOLOv10s": "models/final_model_yolov10s/weights/best.pt",
         "YOLOv9s": "models/final_model_yolov9s/weights/best.pt",
+        "YOLOv8s": "models/final_model_yolov8s/weights/best.pt",
     }
     model_path = model_paths[model_name]
     if not os.path.exists(model_path):
