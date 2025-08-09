@@ -25,6 +25,10 @@ YOLO_TRAIN_IMAGES = YOLO_BASE / "train" / "images"
 YOLO_TRAIN_LABELS = YOLO_BASE / "train" / "labels"
 YOLO_TEST_IMAGES = YOLO_BASE / "test" / "images"  
 YOLO_TEST_LABELS = YOLO_BASE / "test" / "labels"
+YOLO_TEST2_IMAGES = YOLO_BASE / "test2" / "images"
+YOLO_TEST2_LABELS = YOLO_BASE / "test2" / "labels"
+YOLO_TEST3_IMAGES = YOLO_BASE / "test3" / "images"
+YOLO_TEST3_LABELS = YOLO_BASE / "test3" / "labels"
 YOLO_SPLIT_OUTPUT = YOLO_BASE / "split"
 
 # Rutas de salida COCO

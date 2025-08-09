@@ -114,7 +114,7 @@ def draw_gt_boxes(image_array, gt_boxes, color=(255, 0, 0)):
 def sidebar_config(device):
     st.sidebar.header("⚙️ Configuración")
 
-    model_options = ["YOLOv12s", "YOLOv11s", "YOLOv10n", "YOLOv9s"]
+    model_options = ["YOLOv12s", "YOLOv11s", "YOLOv10s", "YOLOv9s", "YOLOv8s"]
     selected_model = st.sidebar.selectbox(
         "Selecciona el modelo", model_options, index=0
     )

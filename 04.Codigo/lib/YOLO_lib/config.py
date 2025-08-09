@@ -2,31 +2,31 @@ SEED = 42
 N_TRIALS = 6
 EPOCH_OPTUNA = 25
 EPOCH_TRAIN = 40
-BATCH = 7
+BATCH = 10
 IMGSZ = 704
 K = 5
 
 models = {
     # YOLOv10
-    "yolov10n": "yolo_output/yolo_models/yolov10n.pt",
-    "yolov10s": "yolo_output/yolo_models/yolov10s.pt",
+    "yolov10n": "yolo/yolo_models/yolov10n.pt",
+    "yolov10s": "yolo/yolo_models/yolov10s.pt",
 
     # YOLOv11
-    "yolov11n": "yolo_output/yolo_models/yolo11n.pt",
-    "yolov11s": "yolo_output/yolo_models/yolo11s.pt",
-    "yolov11m": "yolo_output/yolo_models/yolo11m.pt",
-    "yolov11l": "yolo_output/yolo_models/yolo11l.pt",
-    "yolov11x": "yolo_output/yolo_models/yolo11x.pt",
-    "yolov11ny": "yolo_output/yolo_models/yolo11n.yaml",
-    "yolo11s": "yolo_output/yolo_models/yolo11s.yaml",
+    "yolov11n": "yolo/yolo_models/yolo11n.pt",
+    "yolov11s": "yolo/yolo_models/yolo11s.pt",
+    "yolov11m": "yolo/yolo_models/yolo11m.pt",
+    "yolov11l": "yolo/yolo_models/yolo11l.pt",
+    "yolov11x": "yolo/yolo_models/yolo11x.pt",
+    "yolov11ny": "yolo/yolo_models/yolo11n.yaml",
+    "yolo11s": "yolo/yolo_models/yolo11s.yaml",
 
     #YOLOv12
-    "yolov12n": "yolo_output/yolo_models/yolo12n.pt",
-    "yolov12s": "yolo_output/yolo_models/yolo12s.pt",
-    "yolov12m": "yolo_output/yolo_models/yolo12m.pt",
-    "yolov12l": "yolo_output/yolo_models/yolo12l.pt",
-    "yolov12x": "yolo_output/yolo_models/yolo12x.pt",
-    "yolov12sy": "yolo_output/yolo_models/yolo12s.yaml",
+    "yolov12n": "yolo/yolo_models/yolo12n.pt",
+    "yolov12s": "yolo/yolo_models/yolo12s.pt",
+    "yolov12m": "yolo/yolo_models/yolo12m.pt",
+    "yolov12l": "yolo/yolo_models/yolo12l.pt",
+    "yolov12x": "yolo/yolo_models/yolo12x.pt",
+    "yolov12sy": "yolo/yolo_models/yolo12s.yaml",
 }
 
 results_csv_paths = {
@@ -35,6 +35,14 @@ results_csv_paths = {
     'yolov10s': 'runs/detect/final_model_yolov10s/results.csv',
     'yolov11s': 'runs/detect/final_model_yolov11s/results.csv',
     'yolov12s': 'runs/detect/final_model_yolov12s/results.csv',
+}
+
+final_model_path = {
+    "yolov8s": "runs/detect/final_model_yolov8s/weights/best.pt",
+    "yolov9s": "runs/detect/final_model_yolov9s/weights/best.pt",
+    "yolov10s": "runs/detect/final_model_yolov10s/weights/best.pt",
+    "yolov11s": "runs/detect/final_model_yolov11s/weights/best.pt",
+    "yolov12s": "runs/detect/final_model_yolov12s/weights/best.pt",
 }
 
 # v8

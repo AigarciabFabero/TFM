@@ -77,7 +77,7 @@ class CPreprocessing_YOLO:
         return yolo_annotations
     
     
-    def process_images(self, image_dir, xml_dir, yolo_dir):
+    def pascalVOC_to_YOLO(self, image_dir, xml_dir, yolo_dir):
         """
         Procesa las imágenes y sus anotaciones XML para generar archivos YOLO
         
