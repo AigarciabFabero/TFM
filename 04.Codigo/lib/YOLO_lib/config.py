@@ -1,5 +1,5 @@
 SEED = 42
-N_TRIALS = 6
+N_TRIALS = 4
 EPOCH_OPTUNA = 25
 EPOCH_TRAIN = 40
 BATCH = 10
@@ -83,10 +83,10 @@ best_params_yolov9s = {
 
 #v10
 best_params_yolov10s = {
-    "lr0": 0.0005611516415334506,
-    "lrf": 0.00892718030435363,
-    "momentum": 0.9097990912717108,
-    "weight_decay": 0.00039687933304443713,
+    "lr0": 0.005399484409787433,
+    "lrf": 0.003991305878561679,
+    "momentum": 0.9062108866694067,
+    "weight_decay": 0.00010485387725194633,
     "optimizer": "SGD",
     "warmup_epochs": 5,
     "warmup_momentum": 0.75,
