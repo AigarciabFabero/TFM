@@ -1,8 +1,10 @@
 import matplotlib.pyplot as plt
-import collections
+import collections 
 import cv2 
 import os
 import xml.etree.ElementTree as ET
+
+
 
 def plot_distribution(values, labels, title, xlabel, ylabel, colors = None, figsize=(10,6)):
     """
@@ -106,3 +108,16 @@ def contar_instancias_xml(carpeta_xml):
             root = tree.getroot()
             total += len(root.findall('object'))
     return total
+
+def contar_resoluciones(directorio, extensiones=('.jpg', '.png', '.jpeg')):
+    resoluciones = []
+    for archivo in os.listdir(directorio):
+        if archivo.lower().endswith(extensiones):
+            ruta = os.path.join(directorio, archivo)
+            img = cv2.imread(ruta)
+            if img is not None:
+                h, w = img.shape[:2]
+                resoluciones.append((w, h))
+    conteo = collections.Counter(resoluciones)
+    for res, num in conteo.items():
+        print(f"Resolución {res[0]}x{res[1]}: {num} imágenes")
