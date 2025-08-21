@@ -1,0 +1,32 @@
+name: tfm_env
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - pandas
+  - matplotlib
+  - scikit-learn
+  - scipy
+  - pillow
+  - lxml
+  - jupyter
+  - ipykernel
+  - setuptools
+  - pip:
+    # install remaining packages via pip from the (cleaned) requirements file
+    - -r requirements.txt
+    # if you prefer to point to the original file (may contain file:// links that fail):
+    # - -r requirements.txt
+  - pytorch=2.6.0
+  - cudatoolkit=12.6
+  - torchvision=0.21.0
+  - torchaudio=2.6.0
+
+#  from repo root
+# conda env create -f environment.yml
+#  activate
+# conda activate tfm_env

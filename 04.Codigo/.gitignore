@@ -1,5 +1,8 @@
 /runs/
-/cell_detection_App/models/
+/cell_detection_App/models/final_model_yolov11s
+/cell_detection_App/models/final_model_yolov10s
+/cell_detection_App/models/final_model_yolov9s
+/cell_detection_App/models/final_model_yolov8s
 /__pycache__/
 /labelImg/
 /Fast_RCNN_models

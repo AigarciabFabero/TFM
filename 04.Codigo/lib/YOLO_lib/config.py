@@ -2,7 +2,7 @@ SEED = 42
 N_TRIALS = 4
 EPOCH_OPTUNA = 25
 EPOCH_TRAIN = 40
-BATCH = 10
+BATCH = 15
 IMGSZ = 704
 K = 5
 
@@ -27,6 +27,7 @@ models = {
     "yolov12l": "yolo/yolo_models/yolo12l.pt",
     "yolov12x": "yolo/yolo_models/yolo12x.pt",
     "yolov12sy": "yolo/yolo_models/yolo12s.yaml",
+    "custom_yolo12s": "yolo/yolo_models/custom_yolo12s.yaml",
 }
 
 results_csv_paths = {
