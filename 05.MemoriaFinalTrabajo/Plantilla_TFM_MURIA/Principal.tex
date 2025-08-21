@@ -1,0 +1,844 @@
+%%% Documento tipo para trabajos en LaTeX.
+%%% Copyleft: Jesús Balsa, Juan F. García.
+
+% Tipo de documento:
+\documentclass[12pt,a4paper,onecolumn,oneside]{report}
+\newcommand{\mychapter}[2]{
+	\setcounter{chapter}{#1}
+	\setcounter{section}{0}
+	\chapter*{#2}
+	\addcontentsline{toc}{chapter}{#2}
+}
+
+% Opcional: Tamaño personalizado para los márgenes:
+\usepackage[a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
+\usepackage{pifont}
+\usepackage{float}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{lscape}
+\usepackage{longtable}
+\newcommand{\tabtitle}[1]{\cellcolor{CSGreen}\color{white}\textbf{#1}\rule{0pt}{20pt}}
+\newcommand{\ltt}[1]{\cellcolor{CSGreen}\color{white}\textbf{#1}\rule{0pt}{8pt}}
+\newcommand{\rtabtitle}[1]{\cellcolor{CSRed}\color{white}\textbf{#1}\rule{0pt}{20pt}}
+\usepackage{multirow}
+\usepackage[utf8]{inputenc} % Codificación UTF-8.
+\usepackage[T1]{fontenc}    % Para usar caracteres con tilde.
+\usepackage[spanish,es-tabla]{babel} % Escritura en castellano.
+\usepackage{eurosym}  % Para el símbolo del EURO (€).
+\usepackage{graphicx} % Paquete de imágenes, para introducir figuras.
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage[usenames,dvipsnames]{color} % Texto en colores.
+\usepackage[table, RGB, usenames,dvipsnames]{xcolor}   % Extra colors.
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{lesslightblue}{rgb}{0.7,0.7,1.0}
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstdefinelanguage{shell}
+{
+  backgroundcolor=\color{black},
+  rulecolor=\color{codegray},
+  basicstyle=\footnotesize\ttfamily\color{white},
+  morecomment=[l]{\#},
+  commentstyle=\footnotesize\ttfamily\color{lesslightblue}
+}
+
+\lstset{style=mystyle}
+
+\renewcommand{\lstlistingname}{Script}
+\usepackage{url}      % Para escritura de URLs.
+\usepackage[breaklinks]{hyperref} % Hiperreferencias.
+\usepackage{amsmath,amssymb} % Para los símbolos matemáticos.
+\usepackage{cite}     % Para las citas de referencias (crea el superíndice).
+\usepackage{listings} % Para coloreado de código fuente.
+\usepackage{verbatim} % Para textos tipo consola y otros formatos.
+\usepackage{fancyvrb} % Más opciones de verbatim.
+\usepackage{parskip}  % OPCIONAL: Separa los párrafos con una línea en blanco.
+\setlength{\parindent}{15pt} % Sangría de párrafos estándar (15 puntos). Necesario incluirla si se usa el paquete 'parskip'.
+\usepackage[export]{adjustbox}
+\usepackage{caption}  % Para personalizar los pies de foto.
+
+% Opciones del paquete caption para los pies de imágenes y tablas:
+\captionsetup{figurename=Figura, tablename=Tabla, labelsep=colon, labelfont=bf, font=small, justification=centering}
+
+% Para el control de líneas viudas y huérfanas (líneas sueltas en páginas nuevas):
+\usepackage[all]{nowidow}
+
+\usepackage[nottoc]{tocbibind}    % Incluye el apartado "Referencias" en el índice.
+%\def\spanishrefname{Bibliografía} % Para que ponga "Bibliografía" en lugar de "Referencias". SÓLO se aplica a formato "article". En "report" ya pone "Bibliografía".
+
+\usepackage{fancyhdr}
+
+\setlength{\unitlength}{1 cm} % Unidad de trabajo de medidas.
+
+\renewcommand*{\baselinestretch}{1.25} % Altura del INTERLINEADO.
+\renewcommand{\shorthandsspanish}{}    % Para que corte las palabras según el castellano.
+\usepackage{makecell}
+
+\usepackage[table, RGB, usenames,dvipsnames]{xcolor}   % Extra colors.
+\usepackage{booktabs} % tablas con mejor estilo (toprule/midrule/bottomrule)
+\usepackage{siunitx}  % formato numérico en tablas
+\sisetup{group-separator = {,}, detect-all, round-mode=places, round-precision=2}
+
+% Propiedades para el PDF generado (METADATOS):
+\newcommand{\authorNames}{Aitor García Blanco}
+\newcommand{\pdftitle}{Detección de células defectuosas en imágenes médicas}
+\hypersetup{
+  pdftitle={\pdftitle},% Título
+  pdfauthor={\authorNames},% Autor
+  pdfsubject={\pdftitle \ - \authorNames},% Asunto
+% pdfkeywords={Opcional: algunas palabras clave}%
+}
+
+% Para la representación de código fuente:
+% Para BASH:
+\lstset{
+	language=bash,
+	basicstyle=\scriptsize,
+	frame=single,
+	numbers=left,
+	numberstyle=\scriptsize,
+	stepnumber=1,
+	numbersep=9pt,
+	backgroundcolor=\color{White},
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=4,
+	captionpos=b,
+	breaklines=true,
+	keywordstyle=\color{blue}\bfseries,
+	%identifierstyle=\color{green}\bfseries,
+	stringstyle=\color{orange}\bfseries,
+	commentstyle=\color{gray}\bfseries
+}
+% Para C++:
+%\lstset{
+%	language=C++,
+%	frame=single,
+%	keywordstyle=\color{Green}\bfseries,
+%	identifierstyle=\color{BlueViolet},
+%	stringstyle=\color{Red},
+%	commentstyle=\color{MidnightBlue}
+%}
+
+\usepackage{fancyhdr} % Para el tamaño y estilo de los encabezados.
+
+\fancypagestyle{headings}{% Redefine el estilo "headings".
+	\fancyhf{} % Clear all header and footer fields.
+	\lhead{\small \it Máster Universitario en Robótica e Inteligencia Artificial} 
+	\rhead{\small \it Página \thepage}      % Nº de página a la derecha. Tamaño "small".
+	\renewcommand{\headrulewidth}{1pt}
+}
+
+% Ajustes para división manual de palabras:
+\hyphenation{Python} % Impide que la palabra Python sea dividida al acabar una línea.
+
+\usepackage{titlesec}
+\titleformat{\chapter}[hang]
+  {\normalfont\huge\bfseries}
+  {\thechapter.}{1em}{}
+
+\titlespacing*{\chapter}{0pt}{0pt}{1em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO DEL DOCUMENTO: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\chaptername}{}
+\begin{document}
+
+\input{Plantillas/Plantilla_Portada}
+
+% Página de FIRMAS:
+\newpage
+
+\thispagestyle{empty} % para que no se numere esta página.
+
+\input{Plantillas/Plantilla_Firmas}
+
+\newpage
+\pagestyle{plain}
+
+\renewcommand{\thepage}{\roman{page}}
+\setcounter{page}{1} % Esta página es la 1.
+
+% Página con el ÍNDICE GENERAL
+\renewcommand{\contentsname}{Índice}
+\tableofcontents
+
+% Página con el ÍNDICE DE FIGURAS
+\listoffigures
+
+% Página con el ÍNDICE DE TABLAS
+\listoftables
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%                                            Glosario de Términos                                             %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Página con el GLOSARIO:
+\mychapter{0}{Glosario de términos}
+\label{chap:glosario}
+% A partir de aquí ya se incluye el encabezado en las páginas:
+\pagestyle{headings}
+
+% Al ser un capítulo sin número, hay que indicarle qué título añadir al encabezado de la página:
+\markboth{GLOSARIO}{} 
+
+\begin{description}
+  \item[\textit{Bounding Box}]: Rectangulo que delimita la posición y tamaño de un objeto en una imagen.
+  \item[\textit{Dataset}]: Conjunto de datos estructurados, utilizado para entrenar, validar o evaluar modelos de Inteligencia Artificial.
+  \item[IoU \textit{(Intersection over Union})]: Área de unión entre dos \textit{bounding boxes} (anotación y prediccion).
+  \item[Métricas]: Indicadores cuantitativos para la evaluación de los modelos de Inteligencia Artificial.
+  \item[Experto]: Persona con conocimientos especializados en un dominio específico (como biólogos, biotecnólogos, patólogos, etc)
+  \item[Detección de Objetos]: Tarea de localizar y clasificar instancias de objetos en imágenes mediante \textit{bounding boxes} y etiquetas.
+  \item[NMS (\textit{Non-Maximum Suppression)}]: Algoritmo para eliminar las detecciones redundantes, manteniendo la caja con mayor confianza entre las solapadas
+  \item[Aprendizaje profundo o \textit{deep learning}]: Área del aprendizaje automático que emplea redes neuronales profundas para aprender representaciones y resolver tareas complejas.
+  \item[\textit{Transfer Learning}]: Reutilizar un modelo preentrenado y adaptarlo para entrenar un nuevo modelo con el conocimiento ya adquirido previamente con un dataset generalmente mayor.
+  \item[\textit{Ensemble}]: Técnica para la unificación de predicciones de diferentes modelos.
+  \item[\textit{Cross Validatio}]: Técnica estadística para la evaluación de modelos, que se fundamenta en dividir el dataset en multiples pliegues (\textit{folds}) para entrenar y validar el modelo de forma iteractiva.
+  \item[\textit{Data augmentation}]: Conjunto de transformaciones sobre los datos como rotaciones, traslaciones, adición de ruido, entro otros, con el objetivo de aumentar la diversidad del dattaset y mejorar la generalización del modelo.
+  \item[Optuna]: Biblioteca de Python para la optimización de hiperparámetros, permitiendo encontrar las mejores configuraciones de estos. 
+  \item[Streamlit]: Framework de Python para crear applicaciones web interactivas orientadas a la ciencia de datos y \textit{Machine Learning}.
+  \item[Monolítica]: Arquitectura de software en la que la aplicación se despliega y ejecuta en un mismo proceso.     
+  \item[LabelImg]: Herramienta gráfica de código abierto para la anotación de imágenes con \textit{bounding boxes}.
+  \item[\textit{Widget}]: Elemento de una interface interactiva que permite al usuario controlar el comportamiento de una aplicación.
+  \item[\textit{Ground truth}]: Hace alusión a las anotaciones correctas que describen las \textit{bounding boxes} de las imágenes.
+  \item[\textit{Checkbox}]: Es un \textit{widget} que permite al usuario activar o desactivar una opción (boleano).  
+\end{description} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%                                           Inicio de los CAPÍTULOS                                           %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\renewcommand{\thepage}{\arabic{page}}
+\setcounter{page}{1} % Esta página es la 1.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introducción y objetivos}
+\section{Introducción}
+\section{Objetivos}
+
+En este Trabajo de Fin de Máster, se plantean una serie de objetivos interconectados que tienen como finalidad principal:
+
+\fbox{\begin{minipage}{14cm}
+Objetivo principal
+\end{minipage}}
+
+De este modo, se pretenden abordar los siguientes objetivos: 
+
+\begin{itemize}
+ 
+
+    \item[$O_1$]
+
+    \item[$O_2$] 
+    
+    \item[$O_3$] 
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Antecedentes}
+\section{Contexto y motivación}
+\section{Estado del arte e hipótesis}
+\section{Definición del problema}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Gestión de proyecto software}
+\label{Gestión de proyecto software}
+
+
+
+\section{Alcance del proyecto}
+\label{Alcance del proyecto}
+
+\subsection{Definición del proyecto}
+
+
+
+\subsection{Estimación de tareas y recursos}
+
+
+
+\subsection{Presupuesto}
+
+\subsubsection{Coste de personal}
+
+\subsubsection{Coste del hardware}
+
+\subsubsection{Costes indirectos}
+
+\subsubsection{Coste total}
+
+\section{Plan de trabajo}
+\label{Plan de trabajo}
+
+
+\subsection{Identificación de tareas}
+\label{Identificación de tareas}
+
+
+
+\subsection{Estimación de tareas}
+\label{Estimación de tareas}
+
+\subsection{Planificación de tareas}
+\label{Planificación de tareas}
+
+
+
+\section{Gestión de recursos}
+\label{Gestión de recursos}
+
+\subsection{Especificación de recursos}
+\label{Especificación de recursos}
+
+\subsection{Asignación de recursos}
+\label{asignacion de recursos}
+
+
+
+\section{Gestión de riesgos}
+\subsection{Identificación de riesgos}
+\subsection{Análisis de riesgos}
+
+\clearpage
+\section{Legislación y normativa}
+
+En el marco de ejecución de este proyecto, se ha llevado a cabo un riguroso cumplimiento de la legislación y normativa vigente. A continuación, 
+se detalla cómo el proyecto se ajusta y adhiere a las leyes pertinentes:
+
+\begin{itemize}
+    \item \textbf{Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales}\cite{LOPD2018}
+    
+    Este proyecto respeta plenamente la Ley Orgánica 3/2018, la cual reconoce el derecho fundamental a la protección de datos personales. 
+    La creación y tratamiento del dataset de imágenes médicas se ha realizado conforme a las disposiciones de la ley, asegurando la legalidad en el tratamiento de datos biomédicos. 
+    Se han obtenido los permisos explícitos necesarios para el uso de las imágenes, garantizando la privacidad y anonimización de los datos de los pacientes. 
+    
+    \item \textbf{Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos (RGPD)}\cite{RGPD2016}
+
+    La creación y tratamiento del dataset de imágenes médicas en este proyecto, se ha realizado conforme a los principios del RGPD, garantizando la legalidad, transparencia en el 
+    tratamiento de datos biomédicos. Todas las imágenes han sido previamente anonimizadas y se han implementado medidas técnicas y organizativas 
+    para asegurar la seguridad y privacidad de los datos, cumpliendo así con las exigencias del RGPD para datos de salud considerados de categoría 
+    especial.
+    
+    \item \textbf{Reglamento (UE) 2024/1689 del Parlamento Europeo y del Consejo sobre Inteligencia Artificial}\cite{ReglamentoIA2024}
+
+    Este reglamento establece normas armonizadas para garantizar la seguridad, ética y transparencia en el desarrollo y aplicación de sistemas de IA en la Unión Europea.  
+    En el contexto de este TFM, el sistema desarrollado se considera una herramienta de investigación y apoyo a la evaluación biomédica —no está concebido ni validado para toma de decisiones clínicas autónomas— por lo que su uso actual no se presenta como IA de alto riesgo. No obstante, para alinearse con los requisitos del AI Act se han incorporado las siguientes medidas:
+
+    \begin{itemize}
+      \item Documentación técnica completa: descripción del dataset (origen, anonimización), preprocesado, arquitecturas, versiones de modelos y parámetros de entrenamiento, así como resultados de pruebas y validación.
+      \item Evaluación de riesgos y validación: análisis de riesgos potenciales (falsos negativos/positivos), pruebas experimentales y métricas reproducibles que soportan las conclusiones presentadas.
+      \item Supervisión humana: la salida del sistema está diseñada para ser interpretada y validada por personal experto; no se recomienda uso clínico sin supervisión experta.
+      \item Transparencia y comunicación de limitaciones: en la memoria y la interfaz se documentan el ámbito de aplicación, las limitaciones conocidas y los intervalos de confianza relevantes.
+      \item Trazabilidad y registro: control de versiones de datos y modelos, y registro de ejecuciones y resultados para facilitar auditoría y reproducibilidad.
+      \item Plan de monitorización: recomendaciones para monitorizar rendimiento y sesgos en caso de desplegarse en entornos reales.
+    \end{itemize}
+    
+     \item \textbf{Real Decreto Legislativo 1/1996 sobre Propiedad Intelectual}\cite{RDL1996}
+    
+    En conformidad con el Real Decreto Legislativo 1/1996, el proyecto respeta la normativa sobre propiedad intelectual. Se ha optado por utilizar 
+    únicamente código y herramientas de software libre y de código abierto para garantizar el cumplimiento de la normativa en materia de propiedad 
+    intelectual.
+
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Metodología}
+\label{sec:metodologia}
+
+En esta sección se describen de forma reproducible los cuatro pipelines experimentales implementados: 
+(1) Preprocesado del \textit{dataset}, 
+(2) Entrenamiento YOLO, 
+(3) Entrenamiento Fast‑RCNN 
+(4) Ensamblado (Ensemble). 
+
+\section{Preprocesado del \textit{dataset}}
+\section{Entrenamiento YOLO}
+\section{Entrenamiento Fast‑RCNN}
+\section{Ensamblado (Ensemble)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Experimentación}
+\label{Experimentación}
+
+\section{Dataset}
+
+El dataset inicial proporcionado por la empresa MICROPTIC está constituido por un conjunto de \textit{train} y \textit{test} en formato PascalVOC.
+
+\begin{table}[htbp]
+\centering
+\begingroup
+\setlength{\tabcolsep}{8pt}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l c c c c c}
+\toprule
+Partición & Resoluciones (px) & Nº imágenes (resolución) & Nº imágenes & Sin instancias & Escala grises\\
+\midrule
+\textit{Train} & \makecell[l]{1280\,×\,1024 \\ 768\,×\,616} & \makecell[r]{356 \\ 17} & 373 & 23 & 3 canales\\ 
+\textit{Test}  & \makecell[l]{1280\,×\,1024 \\ 768\,×\,616} & \makecell[r]{87 \\ 7}   & 94  & 6  & 3 canales\\ 
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\endgroup
+\caption{Distribución del dataset original}
+\label{tab:dataset_original}
+\end{table}
+
+Durante el preprocesamiento del dataset, las imágenes vacias (sin instancias anotadas) no se utilizan por lo que el conjunto de entrenamiento presenta finalmente 350 imágenes y 88 para \textit{test}. 
+El conjunto de entrenamiento se divide reservando el $80\%$ (280 imágenes) para entrenamiento y el $20\%$ (70 imágenes) para validación.
+
+Adicionalmente, la empresa proporciona un conjunto de datos del \textit{test} reevaluado por expertos del dominio. Este conjunto se reetiqueta utilizando la herramienta \textit{LabelImg} \cite{labelimg_github} en formato PascalVOC. 
+Las correcciones afectan a 60 imágenes, incrementando el número de instancias de 1273 a 1412.
+
+Asimismo, se incluyeron dos conjuntos adicionales denominados \textit{test2} y \textit{test3}, inicialmente sin anotaciones pero que contenían \textit{bounding boxes} generados por modelos YOLO preentrenados 
+por el grupo GVIS de la Universidad de León. Estas predicciones fueron posteriormente corregidas y validadas por expertos, proporcionando dos conjuntos adicionales para evaluación. 
+La composición final del dataset se presenta en la Tabla~\ref{tab:dataset_final}.
+
+\clearpage
+\begin{table}[htbp]
+\centering
+\rowcolors{2}{gray!12}{white}
+\begin{tabular}{l c c c c c}
+\toprule
+Partición & Imágenes & Instancias & 1280$\times$1024 & 768$\times$616 & Escala grises\\
+\midrule
+\textit{Train}       & 280 & 3966 & 271 & 9 & 3 canales\\
+\textit{Validation}  &  70 &  846 & 66 & 4 & 3 canales\\
+\textit{Test}        &  88 & 1412 & 82 & 6 & 3 canales\\
+\textit{Test2}       &  10 &  144 & 0 & 10 & 1 canal\\
+\textit{Test3}       &  59 & 1135 & 56 & 3 & 1 canal\\
+\bottomrule
+\end{tabular}
+\caption{Resumen del dataset de actuación}
+\label{tab:dataset_final}
+\end{table}
+
+El conjunto de \textit{train}, \textit{validation} y \textit{test} están constituidos por imágenes RGB de 3 canales, mientras que las imágenes 
+de los conjuntos de \textit{test2} y \textit{test3} están compuestos por imágenes en escala de grises de un único canal. 
+
+Para el entrenamiento de diferentes arquitecturas de detección de objetos, se convierten los formatos de PascaVOC a YOLO y YOLO a COCO. 
+Para más deralle, la información relativa al preprocesamiento del dataset se encuentra en el documento \texttt{preprocesamiento.ipynb} del repositorio \cite{repoTFM}.
+
+\section{Entorno de desarrollo}
+
+Se utilizan dos entornos de desarrrollo complementarios, garantizando la reproducibilidad y escalabilidad de los resultados obtenidos.
+
+\subsection{\textit{Hardware}}
+\subsubsection{Hardware Local}
+El entorno principal de desarrollo es un equipo \textit{Lenovo IdeaPad Gaming 3} con las siguientes especificaciones técnicas:
+
+\begin{itemize}
+    \item \textbf{Procesador}: AMD Ryzen 5 5600H with Radeon Graphics
+    \begin{itemize}
+        \item Velocidad base: 3,30 GHz
+        \item Núcleos físicos: 6
+        \item Procesadores lógicos: 12
+        \item Caché L1: 384 kB
+        \item Caché L2: 3,0 MB  
+        \item Caché L3: 16,0 MB
+        \item Virtualización: Habilitada
+    \end{itemize}
+    
+    \item \textbf{GPU}: NVIDIA GeForce RTX 3050 Laptop GPU
+    \begin{itemize}
+        \item Memoria dedicada: 4,0 GB GDDR6
+        \item Arquitectura: Ampere
+        \item Soporte CUDA: 12.9
+        \item Driver version: 576.02
+    \end{itemize}
+    
+    \item \textbf{Memoria RAM}: 16 GB DDR4 SODIMM
+    \begin{itemize}
+        \item Velocidad: 3200 MHz
+        \item Configuración: 2 módulos de 8 GB
+    \end{itemize}
+    
+    \item \textbf{Almacenamiento}: SSD NVMe PCIe Gen3 x4
+    \begin{itemize}
+        \item Capacidad: 512 GB
+        \item Modelo: Micron MTFDHBA512QFD
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Servidor privado}
+Como entorno complementario se ha empleado un servidor remoto proporcionado por del grupo GVIS de la Universidad de León.
+
+\begin{itemize}
+    \item \textbf{GPU}: Tesla T4 con 15 GB de memoria
+    \item \textbf{RAM del sistema}: 12,7 GB
+    \item \textbf{Almacenamiento temporal}: 78,2 GB SSD
+\end{itemize}
+
+\subsection{\textit{Software y Frameworks}}
+
+El desarrollo se realizó empleando el siguiente \textit{stack} tecnológico:
+
+\begin{itemize}
+    \item \textbf{Sistema Operativo}: Windows 11
+    \item \textbf{Entorno Python}: Miniconda3 (entorno \texttt{TFM})
+    \item \textbf{IDE}: Microsoft Visual Studio Code
+    \item \textbf{CUDA Toolkit}: Versión 12.9
+    \item \textbf{Frameworks principales}:
+    \begin{itemize}
+        \item PyTorch 2.6.0 con soporte CUDA 12.6
+        \item Ultralytics 8.3.177
+        \item OpenCV para procesamiento de imágenes
+        \item Optuna para optimización de hiperparámetros
+        \item Streamlit para desarrollo de interfaces
+        \item Pandas para análisis y manipulación de datos
+        \item Matplotlib para visualización de datos 
+        \item Scikit-learn para métricasy otras utilidades de \textit{machine learning}
+        \item Jupyter Notebook para desarrollo y análisis interactivo
+    \end{itemize}
+\end{itemize}
+
+Para el despliegue del proyecto se recomienda tener todas las dependencias del \texttt{requirements.txt} \cite{repoTFM}, el cual 
+recoge todas las librerías y versiones necesarias para la correcta ejecución del entorno.
+
+\section{Configuraciones}
+\subsection{Entrenamiento}
+\subsection{Validación cruzada}
+
+\section{Métricas}
+Para evaluar los modelos, se emplean un conjunto de tres métricas fundamentales para estudiar su rendimiento y eficacia. 
+
+\begin{description}
+  \item[\textit{Precision}] Mide la proporción de detecciones correctas entre todas las detecciones realizadas:
+  \[
+    \mathrm{Precision} = \frac{TP}{TP + FP}
+  \]
+  donde TP son los verdaderos positivos y FP los falsos positivos. Alta precision indica pocas detecciones erróneas.
+
+  \item[\textit{Recall}] Mide la proporción de instancias reales que han sido detectadas:
+  \[
+    \mathrm{Recall} = \frac{TP}{TP + FN}
+  \]
+  donde FN son los falsos negativos. Un recall alto indica que el modelo encuentra la mayoría de las instancias reales.
+
+  \item[\textit{mean Average Precision (mAP)}] Para detección de objetos se calcula la curva precision–recall para cada clase y su área bajo la curva (AP). El \textit{mean Average Precision} es la media de las AP sobre todas las clases:
+  \[
+    \mathrm{mAP} = \frac{1}{C}\sum_{c=1}^{C} \mathrm{AP}_c
+  \]
+  donde $C$ es el número de clases. En detección se considera una predicción como verdadero positivo si el \textit{Intersection over Union} (IoU) entre la caja predicha y la caja ground truth supera un umbral (por ejemplo IoU $\geq 0.5$). Se especifica el umbral de IoU usado (p. ej. mAP@0.5) al reportar los resultados.
+
+  \medskip
+
+  \noindent\textbf{mAP@0.5 (mAP50).} Es la mAP calculada usando un único umbral de IoU igual a 0.5. Formalmente:
+  \[
+    \mathrm{mAP@0.5} \;=\; \frac{1}{C}\sum_{c=1}^{C} \mathrm{AP}_c(\mathrm{IoU}=0.5)
+  \]
+  Es una medida menos exigente que acepta solapamientos moderados entre predicción y ground truth.
+
+  \medskip
+
+  \noindent\textbf{mAP@[0.5:0.95] (mAP50:95).} Es la mAP estándar del benchmark COCO que promedia la AP de cada clase sobre múltiples umbrales de IoU desde 0.50 hasta 0.95 con paso 0.05 (10 umbrales: 0.50, 0.55, …, 0.95). Nota: COCO calcula cada AP integrando la curva precision–recall muestreada en 101 puntos, y después se promedian las AP en los 10 umbrales para obtener mAP@[0.5:0.95].
+  \[
+    \mathrm{mAP}_{[0.5:0.95]} \;=\; \frac{1}{C}\frac{1}{T}\sum_{c=1}^{C}\sum_{t\in\{0.50,0.55,\dots,0.95\}} \mathrm{AP}_c(\mathrm{IoU}=t)
+  \]
+  donde $T=10$. Esta métrica es más exigente porque penaliza detecciones con IoU bajos y refleja mejor la precisión espacial del modelo.
+\end{description}
+\arrayrulecolor[HTML]{B9DAE1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Resultados}
+\label{Resultados}
+
+\section{Resultados de los modelos}
+\subsection{YOLO}
+
+% Tabla en el documento
+\begin{table}[ht]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Imagen & Test & yolov8s 0.5 & yolov8s 0.7 & yolov9s 0.5 & yolov9s 0.7 & yolov10s 0.5 & yolov10s 0.7 & yolov11s 0.5 & yolov11s 0.7 & yolov12s 0.5 & yolov12s 0.7 \\
+\hline
+59 imagen         & 1 & \ding{55} & \ding{51} & \ding{55} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+61 imagen         & 1 & \ding{55} & \ding{51} & \ding{55} & \ding{55} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} \\
+219 imagen        & 1 & \ding{55} & \ding{51} & \ding{55} & \ding{55} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} \\
+369 imagen        & 1 & \ding{51} & \ding{51} & \ding{55} & \ding{55} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} \\
+already tested-00 & 3 & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+already tested-15 & 3 & \ding{51} & \ding{51} & \ding{55} & \ding{55} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} \\
+already tested-16 & 3 & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+already tested-17 & 3 & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+already tested-22 & 3 & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+\hline
+\end{tabular}
+}
+\caption{Evaluación de modelos YOLO sobre imágenes con artefactos}
+\end{table}
+
+\subsection{Fast-RCNN}
+\subsection{Ensemble}
+\subsection{Modelo personalizado}
+
+\section{Discursión de resultados}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Herramienta Web}
+Con el propósito de definir una herramienta de análisis automatizado, se desarrolla una interfaz intuitiva e interactiva para la detección 
+de células redondas sobre una muetra individual o colectiva. La información relativa a la aplicación,
+se puede encontrar en el manual de usuario (\ref{Manual de usuario}).
+\section{Objetivos de la herramienta}
+
+La herramienta web para la detección de células redondas tiene como principales objetivos:
+
+\begin{itemize}
+  \item{\textbf{Detección atomática de células en imágenes microscópicas en el contexto médico abordado con anterioridad:} Permitir identificar
+  y localizar células redondas dotando al usuario de diferentes arquitecturas de modelos.}
+  \item{\textbf{Comparación de rendimiento entre modelos:} Facilitar la evaluación comparativa entre diferentes modelos
+  , permitiendo al usuario seleccionar el mejor modelo y el intervalo de actuación para el IoU.}
+  \item{\textbf{Visualización de resultados:} Proporcionar una interface de visualización clara e intuitiva que permita al usuario 
+  visualizar las predicciones del modelo y las \textit{bounding boxes} si se dispone de las mismas.}
+  \item{\textbf{Análisis cuantitativo:} Permitir obtener métricas y estadísticas como: \textit{precision, accuracy}, conteo o IoU promedio}
+  \item{\textbf{Soporte a la investigación biomédica:} Facilitar la identificación temprana de diferentes grados de patología.} 
+\end{itemize}
+
+\section{Arquitectura}
+La arquitectura de la aplicación sigue un diseño modular y escalable basada en \textit{Streamlit}. Esto permite tener una aplicación monolítica que encapsula toda la funcionalidad en un único ejecutable y mantiene 
+una clara separación entre la lógica de procesamiento y de presentación.
+
+\subsection{Organización del proyecto}
+La estructura principal es:
+\begin{itemize}
+  \item \texttt{app.py}: orquestación de la interfaz (widgets Streamlit), gestión de sesión y del flujo de inferencia.
+  \item \texttt{utils/utils.py}: servicios de \textit{backend} lógico (carga de modelos, preprocesado, inferencia, postprocesado, visualización).
+  \item \texttt{assets/styles.css}: estilo e integración visual mediante \texttt{st.markdown}.
+  \item \texttt{models/\{final\_model\_yolovXs\}/}: modelos entrenados para la casuística.
+  \item \texttt{runs/detect/}: salidas temporales de inferencia (imágenes anotadas, JSON/CSV).
+\end{itemize}
+
+Para más información, revisar la documentación \texttt{04.Code/cell\_detection\_App} en el repositorio del proyecto \cite{repoTFM}.
+
+\subsection{Capas funcionales en Streamlit}
+\begin{enumerate}
+  \item \textbf{Interfaz y orquestación (UI)}: componentes como \texttt{st.file\_uploader}, \texttt{st.selectbox}, \texttt{st.slider}, \texttt{st.sidebar} y \texttt{st.image} permiten la interacción con el usuario de una forma intuitiva.
+  \item \textbf{Servicios de modelo e inferencia}: Funciones en \texttt{utils/utils.py} para cargar pesos YOLO, seleccionar dispositivo (CPU/GPU), normalizar entradas y ejecutar el modelo sobre las entradas preprocesadas.
+  \item \textbf{Pipeline de datos}: Preprocesado (lectura, redimensionado, normalización), postprocesado (NMS, filtrado por confianza, conversión a anotaciones PascalVOC), y renderizado de \textit{bounding boxes}. 
+  Además, incluye la exportación de las prediciones en formato PascVOC. 
+  \item \textbf{Estado y caché}: \texttt{st.session\_state} para parámetros y resultados interactivos; \texttt{@st.cache\_resource} evita recargar 
+  pesos al cambiar sólo parámetros de inferencia; \texttt{@st.cache\_data} para memoizar resultados derivado (tablas/figuras).
+  \item \textbf{Estilos y experiencia de usuario}: \texttt{assets/styles.css} para mejorar el aspecto visual que por defecto ofrece streamlit y uso de layout 
+  responsivo (columnas, botones, tooltips) para mejorar la usabilidad.
+  \item \textbf{Manejo de errores}: \texttt{st.info} para informar de estados (dispositivo, imágener y xml subidos), \texttt{st.warning} para advertir de un error en la lectura del xml, 
+  \texttt{st.error} implide continuar con la ejecución si no encuentra modelo o al no ser capaz de procesar una imagen.
+\end{enumerate}
+
+\subsection{Flujo de ejecución}
+\begin{enumerate}
+  \item Inicio: se inicializa la sesión y se aplica el estilo personalizado CSS.
+  \item El usuario selecciona modelo e IoU: Yolov12s y 0,5.
+  \item Carga de modelo (una sola vez) vía \texttt{@st.cache\_resource}.
+  \item Carga de imagen (individual o lote) con \texttt{st.file\_uploader}. Opcional: cargar el xml con las anotaciones en formato PascVOC.
+  \item Preprocesado de la imagen y envío al dispositivo (CPU/GPU).
+  \item Inferencia YOLO y postprocesado (NMS, métricas básicas).
+  \item Visualización: imagen anotada, conteo, tablas y métricas, \textit{bounding boxes}.
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Conclusión}
+\section{Conclusión general}
+\section{Limitaciones del estudio}
+\section{Lineas de trabajo futuro}
+
+\subsection*{Aportaciones realizadas}
+
+
+
+\subsection*{Problemas encontrados}
+
+
+\section*{Opiniones personales}
+
+
+\subsection*{Trabajos futuros}
+
+
+\subsection*{Agradecimientos}
+
+
+
+%%%% BIBLIOGRAFÍA %%%%
+\renewcommand\bibname{Bibliografía}
+
+\bibliographystyle{plain} % Fichero con el formato de la bibliografía.
+\nocite{*}
+\bibliography{referencias}
+%\bibliographystyle{unsrt} %plain %apalike
+
+%%%% ANEXOS %%%%
+\renewcommand{\appendixname}{Anexo}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {Anexo \thechapter}{0pt}{\Huge}
+\appendix
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Control de versiones}
+\label{Control de versiones}
+
+En el marco de desarrollo del Trabajo de Fin de Máster (TFM), se ha empleado GitHub como servicio de control de versiones para 
+gestionar eficientemente el código fuente y la documentación del proyecto; facilitando el seguimiento, la trazabilidad y la colaboración.
+
+Esta herramienta permite un seguimiento del proyecto por parte del responsable o tutor. Además, de ser necesario, GitHub presenta
+una funcionalidad para desarrolladores que permite editar el proyecto desde un navegador web. Facilitando la implementación de mejoras y la 
+corrección de errores desde cualquier dispositivo con acceso a internet.
+
+Casi la totalidad del desarrollo de este proyecto final lo podemos encontrar en el repositorio personal \cite{repoTFM}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Seguimiento de proyecto fin de máster}
+\label{Seguimiento de proyecto fin de máster}
+
+%Obligatorio. Seguimiento del trabajo real.
+
+\section{Forma de seguimiento}
+
+\section{Planificación inicial}
+
+\section{Planificación final}
+%Si el trabajo ha consistido en la elaboración de una aplicación se incluirá el manual de usuario de la misma.
+
+\chapter{Herramienta Web}
+\section{Manual de usuario}
+\label{Manual de usuario}
+Para facilitar la interacción del usuario con la herramienta web vista con anterioridad, se define la siguiente guía de usuario.
+
+Desde el entorno con la dependencia \textit{Streamlit}, se ejecuta el comando \texttt{streamlit run app.py}  se lanza la aplicación en el navegador predeterminado
+como se muestra en la siguiente imagen.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\textwidth]{figuras/app/cell_app.png}
+  \caption{Interfaz de la aplicación web.}
+  \label{fig:cell_app}
+\end{figure}
+
+En este punto, el usuario puede tomar la decisión de procesar una imagen individual o un conjunto de imágenes. Para esto, 
+tenemos el \textit{widget} que permite la selección entre "Detección individual" o "Carpeta completa". En ambos casos,
+la aplicación nos muestra una guia básica de funcionamiento como se puede apreciar en el apartado "Introducciones" de la imagen anterior.
+De manera totalmente opcional, el usuario puede cargar junto a la imagen a estudio, el correspondiente conjunto de anotaciones.
+
+El \textit{widget} de Configuración permite la seleccion manual del modelo a través de un desplazable, el umbral de confianza de IoU, 
+la representación \textit{ground truth} (siempre que exista el xml asociado a la imagen) mediante un \textit{checkbox} (Figura \ref{fig:cell_app_gt}) y realizar un análisis exploratorio
+sobre la imagen con un zoom (Figura \ref{fig:cell_app_zoom}). Asimismo, muestra el dispositivo (CPU,GPU) con el que se van a procesar las imágenes.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\textwidth]{figuras/app/prueba_imagen.png}
+  \caption{Herramienta web: \textit{checkbox ground truth}.}
+  \label{fig:cell_app_gt}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\textwidth]{figuras/app/zoom_imagen.png}
+  \caption{Herramienta web: \textit{checkbox zoom}.}
+  \label{fig:cell_app_zoom}
+\end{figure}
+
+Cabe destacar el \textit{widget} "Descargar XML" que permite al usuario descargar las prediciones del modelo realizadas sobre la imagen de entrada en un formato
+PascalVOC. Además, 
+
+Por el contrario, si el usuario prefiere evaluar un conjunto de imágenes con sus respectivas anotaciones, se debe seleccionar la elección de "carpeta completa" como se muestra en la Figura \ref{fig:cell_app_directory}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\textwidth]{figuras/app/cell_app_directorio.png}
+  \caption{Herramienta web para procesar un conjunto de imágenes.}
+  \label{fig:cell_app_directory}
+\end{figure}
+
+Este es un modo de evaluación, no está permitido el uso de los \textit{widgets}: \textit{ground truth} y \textit{zoom}. Sín embargo, 
+el procesamiento del modelo seleccionado junto con su correspondiente umbral de procesamiento de IoU, está acompañado de un pequeño conjunto de métricas:
+\textit{precision}, \textit{recall} y \textit{mAP}. Para una mejor evaluación, la herramienta muestra una matriz de confusión (Figura \ref{fig:cell_app_metrics}).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\textwidth]{figuras/app/matriz_confusión.png}
+  \caption{Herramienta web: métricas y matriz de confusión.}
+  \label{fig:cell_app_metrics}
+\end{figure}
+
+\section{Recomendaciones de uso}
+
+A continuación, se recogen pautas prácticas para el uso correcto funcionamiento de la herramienta web.
+
+\begin{itemize}
+  \item \textbf{Entorno recomendado:} se recomienda usar un entorno conda para tener aisladas las dependencias del proyecto y evitar así conflictos entre dependencias. 
+  Desde el directorio \texttt{04.Code} se proponen dos alternativas:
+    \begin{itemize}
+      \item Instalación del entorno completo con conda (Recomendado):
+        \begin{itemize}
+          \item \texttt{conda env create -f environment.yml}
+          \item \texttt{conda activate tfm\_env}
+        \end{itemize}
+      \item Instalación de un subconjunto de dependencias con conda:
+        \begin{itemize}
+          \item \texttt{conda create -n tfm\_env python=3.11 -y}
+          \item \texttt{conda activate tfm\_env}
+          \item \texttt{pip install -r 04.Codigo/requirements.txt}
+        \end{itemize}
+    \end{itemize}
+  \item \textbf{Ejecución de la aplicación:} en la carpeta \texttt{04.Codigo/cell\_detection\_App} ejecutar:
+    \begin{itemize}
+      \item \texttt{streamlit run app.py}
+      \item Automáticamente se abre en el navegador por defecto la URL que Streamlit indique (por defecto \texttt{http://localhost:8501}).
+    \end{itemize}
+\end{itemize}
+
+\section{Resolución de problemas}
+
+Posibles problemas que pueden tener lugar durante la instalación:
+
+\begin{itemize}
+  \item \textbf{La app no arranca / Streamlit muestra error:}
+    \begin{itemize}
+      \item Verificar dependencias: \texttt{pip install -r 04.Codigo/requirements.txt}
+      \item Comprobar la salida en el terminal donde se ejecuta \texttt{streamlit run app.py} y revisar trazas de error.
+      \item Borrar caché de Streamlit: \texttt{streamlit cache clear}.
+    \end{itemize}
+  \item \textbf{Modelo no encontrado o error de carga de pesos:}
+    \begin{itemize}
+      \item Confirmar que el fichero de pesos existe en \texttt{models/} y que la ruta es correcta (\path{04.Codigo/cell_detection_App/models/}).
+    \end{itemize}
+  \item \textbf{Problemas con GPU / CUDA:}
+    \begin{itemize}
+      \item Comprobar estado de la GPU: ejecutar \texttt{nvidia-smi} en terminal.
+      \item Verificar que PyTorch detecta la GPU: 
+        \begin{itemize}
+          \item \texttt{python -c "import torch; print(torch.cuda.is\_available())"}
+        \end{itemize}
+      \item Si falla, forzar ejecución en CPU desde la UI o variable de entorno: \texttt{CUDA\_VISIBLE\_DEVICES=""}.
+    \end{itemize}
+  \item \textbf{Errores al procesar imágenes / XML mal formados:}
+    \begin{itemize}
+      \item Validar que las imágenes están en formatos soportados (\texttt{.jpg, .jpeg, .png}) y que los XML cumplen con el formato PascalVOC.
+      \item Revisar el log de parsing en \texttt{04.Codigo/cell\_detection\_App/utils/} y corregir los ficheros señalados.
+    \end{itemize}
+\end{itemize}
+
+\end{document}
