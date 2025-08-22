@@ -230,40 +230,69 @@
 \renewcommand{\thepage}{\arabic{page}}
 \setcounter{page}{1} % Esta página es la 1.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Introducción y objetivos}
+\chapter{Introducción y objetivos} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{Introducción y objetivos}
 \section{Introducción}
+\label{sec:Introducción}
+
+El presente Trabajo de Fin de Máster, desarrollado en colaboración con la empresa Microptic S.L. y enmarcado en el contexto de un proyecto europeo 
+DIGIS3, aborda el desarrollo de una Prueba de Concepto (\textit{Proof of Concept}) para la detección de células redondas en imágenes médicas 
+mediante Inteligencia Artificial. Este trabajo incluye, además, la creación de una interfaz digital que permite la interacción de expertos 
+con los resultados del modelo.
+
+El objetivo de esta solución es la identificación automatizada de células redondas en imágenes de muestras de semen. Esta capacidad es de 
+gran interés para Microptic, ya que optimiza los tiempos de análisis de los expertos y enriquece el estudio de las muestras espermáticas, 
+mejorando la caracterización de parámetros clave tanto en el ámbito de la reproducción asistida humana como en la investigación y producción animal. 
+
+La metodología se ha centrado, en primer lugar, en la consolidación de un conjunto de datos de alta calidad. Para ello, se procesó y validó el feedback 
+proporcionado por los expertos de Microptic, refinando el etiquetado de las imágenes que constituyen la base para el 
+entrenamiento y la evaluación de los modelos.
+
+Posteriormente, aplicando técnicas de Aprendizaje Profundo (\textit{Deep Learning}) y Visión por Computador, se adaptaron y reentrenaron varias versiones 
+del modelo de detección de objetos en tiempo real YOLO. El propósito fue especializar su capacidad, pasando de la detección de objetos 
+cotidianos a la identificación precisa de las células redondas para interés de la empresa. Finalmente, el modelo fue entrenado y evaluado 
+para validar su rendimiento, eficacia y viabilidad.
+
+De este modo, el proyecto trasciende la investigación académica para materializar la misión de DIGIS3: "impulsar la digitalización de las empresas a través 
+de soluciones tecnológicas avanzadas". La herramienta web desarrollada actúa como un catalizador de la transformación digital para Microptic, traduciendo 
+un complejo modelo de Inteligencia Artificial en una solución práctica que potencia sus capacidades de análisis y establece un precedente para futuras innovaciones.
+
 \section{Objetivos}
+\label{sec:Objetivos}
 
-En este Trabajo de Fin de Máster, se plantean una serie de objetivos interconectados que tienen como finalidad principal:
+Este Trabajo de Fin de Máster tiene como objetivo principal aplicar y consolidar los conocimientos adquiridos durante la maestría mediante el desarrollo de un sistema de detección automatizada de células redondas en imágenes biomédicas; 
+demostrando la integración de competencias técnicas en inteligencia artificial, procesamiento de imágenes y desarrollo de software.
 
-\fbox{\begin{minipage}{14cm}
-Objetivo principal
-\end{minipage}}
-
-De este modo, se pretenden abordar los siguientes objetivos: 
+Para dar forma a este proceso, se definen los siguientes pasos: 
 
 \begin{itemize}
- 
-
-    \item[$O_1$]
-
-    \item[$O_2$] 
-    
-    \item[$O_3$] 
+  \item Investigar y estudiar casuísticas análogas en la detección de células en conjuntos de imágenes médicas.
+  \item Rrealizar un preprocesamiento y anotación de los conjuntos de imágenes médicas.
+  \item Implementar, entrenar y validar diferentes modelos u arquitecturas de modelos, comparar su rendimiento y optimizar hiperparámetros.
+  \item Evaluar cuantitativamente los modelos mediante métricas estandar.
+  \item Desarrollar una herramienta web interactiva para visualización, inferencia y exportación de resultados que facilite la validación por parte de expertos biomédicos.
+  \item Garantizar la reproducibilidad y cumplimiento ético/legislativo.
+  \item Documentar exhaustivamente el proyecto.
 \end{itemize}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Antecedentes}
+
+\chapter{Antecedentes} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{Antecedentes}
 \section{Contexto y motivación}
+
+Contexto del Proyecto
+[Tu institución/grupo de investigación] ha desarrollado una solución innovadora para abordar el problema de [descripción específica de tu problemática] utilizando técnicas de Inteligencia Artificial y Visión por Computador.
+Motivación y Justificación
+La necesidad de desarrollar esta solución surge de [razones que motivaron el proyecto], lo cual representa una oportunidad significativa para [impacto esperado]. La automatización e inteligencia artificial aplicada a este dominio específico puede proporcionar [ventajas concretas]
+\label{sec:Contexto y motivación}
 \section{Estado del arte e hipótesis}
+\label{sec:Estado del arte e hipótesis}
 \section{Definición del problema}
+\label{sec:Definición del problema}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Gestión de proyecto software}
+
+\chapter{Gestión de proyecto software} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Gestión de proyecto software}
-
-
 
 \section{Alcance del proyecto}
 \label{Alcance del proyecto}
@@ -283,6 +312,7 @@ De este modo, se pretenden abordar los siguientes objetivos:
 \section{Plan de trabajo}
 \label{Plan de trabajo}
 
+Aquí habla de la metodología de Scrum de Indice a lidia.
 
 \subsection{Identificación de tareas}
 \label{Identificación de tareas}
@@ -347,7 +377,7 @@ se detalla cómo el proyecto se ajusta y adhiere a las leyes pertinentes:
 \end{itemize}
 
 
-\chapter{Metodología}
+\chapter{Metodología} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{metodologia}
 
 En esta sección se describen de forma reproducible los cuatro pipelines experimentales implementados: 
@@ -364,9 +394,9 @@ En esta sección se describen de forma reproducible los cuatro pipelines experim
 \label{sec:Entrenamiento Fast‑RCNN}
 \section{Ensamblado (Ensemble)}
 \label{sec:Ensamblado}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Experimentación}
+
+\chapter{Experimentación} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Experimentación}
 
 \section{Dataset}
@@ -550,8 +580,8 @@ Para la evaluación los modelos, se emplea un conjunto de tres métricas fundame
 \end{description}
 \arrayrulecolor[HTML]{B9DAE1}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Resultados}
+
+\chapter{Resultados} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Resultados}
 
 \section{Resultados de los modelos}
@@ -587,8 +617,9 @@ already tested-22 & 3 & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{55
 
 \section{Discursión de resultados}
 \label{sec:Discursión de resultados}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Herramienta Web}
+
+
+\chapter{Herramienta Web} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Con el propósito de definir una herramienta de análisis automatizado, se desarrolla una interfaz intuitiva e interactiva para la detección 
 de células redondas sobre una muetra individual o colectiva. La información relativa a la aplicación,
 se puede encontrar en el manual de usuario (\ref{Manual de usuario}).
@@ -651,8 +682,7 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
 \end{enumerate}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Conclusión}
+\chapter{Conclusión} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusión general}
 \label{sec:Conclusión general}
 \section{Limitaciones del estudio}
@@ -662,20 +692,13 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
 
 \subsection*{Aportaciones realizadas}
 
-
-
 \subsection*{Problemas encontrados}
-
 
 \section*{Opiniones personales}
 \label{sec:Opiniones personales}
 
-
 \subsection*{Trabajos futuros}
-
-
 \subsection*{Agradecimientos}
-
 
 
 %%%% BIBLIOGRAFÍA %%%%
@@ -693,9 +716,8 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
   {Anexo \thechapter}{0pt}{\Huge}
 \appendix
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Control de versiones}
+\chapter{Control de versiones} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Control de versiones}
 
 En el marco de desarrollo del Trabajo de Fin de Máster (TFM), se ha empleado GitHub como servicio de control de versiones para 
@@ -708,8 +730,7 @@ corrección de errores desde cualquier dispositivo con acceso a internet.
 Casi la totalidad del desarrollo de este proyecto final lo podemos encontrar en el repositorio personal \cite{repoTFM}.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Seguimiento de proyecto fin de máster}
+\chapter{Seguimiento de proyecto fin de máster} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Seguimiento de proyecto fin de máster}
 
 %Obligatorio. Seguimiento del trabajo real.
@@ -724,7 +745,9 @@ Casi la totalidad del desarrollo de este proyecto final lo podemos encontrar en 
 \label{sec:Planificación final}
 %Si el trabajo ha consistido en la elaboración de una aplicación se incluirá el manual de usuario de la misma.
 
-\chapter{Herramienta Web}
+\chapter{Herramienta Web} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{Herramienta Web anexo}
+
 \section{Manual de usuario}
 \label{Manual de usuario}
 Para facilitar la interacción del usuario con la herramienta web vista con anterioridad, se define la siguiente guía de usuario.
@@ -810,6 +833,7 @@ A continuación, se recogen pautas prácticas para el uso correcto funcionamient
       \item \texttt{streamlit run app.py}
       \item Automáticamente se abre en el navegador por defecto la URL que Streamlit indique (por defecto \texttt{http://localhost:8501}).
     \end{itemize}
+  \item \textbf{Compatibilidad con modelos:} funciona únicamente con modelos de YOLO. 
 \end{itemize}
 
 \section{Resolución de problemas}
