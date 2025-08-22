@@ -287,32 +287,25 @@ De este modo, se pretenden abordar los siguientes objetivos:
 \subsection{Identificación de tareas}
 \label{Identificación de tareas}
 
-
-
 \subsection{Estimación de tareas}
 \label{Estimación de tareas}
 
 \subsection{Planificación de tareas}
 \label{Planificación de tareas}
 
-
-
 \section{Gestión de recursos}
 \label{Gestión de recursos}
 
-\subsection{Especificación de recursos}
-\label{Especificación de recursos}
-
-\subsection{Asignación de recursos}
-\label{asignacion de recursos}
-
-
+\subsection{Especificación y asignación de recursos}
+\label{Especificación y asignación de recursos}
 
 \section{Gestión de riesgos}
+\label{sec:Gestión de riesgos}
 \subsection{Identificación y análisis de riesgos}
 
 \clearpage
 \section{Legislación y normativa}
+\label{Legislación y normativa}
 
 En el marco de ejecución de este proyecto, se ha llevado a cabo un riguroso cumplimiento de la legislación y normativa vigente. A continuación, 
 se detalla cómo el proyecto se ajusta y adhiere a las leyes pertinentes:
@@ -353,9 +346,9 @@ se detalla cómo el proyecto se ajusta y adhiere a las leyes pertinentes:
 
 \end{itemize}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \chapter{Metodología}
-\label{sec:metodologia}
+\label{metodologia}
 
 En esta sección se describen de forma reproducible los cuatro pipelines experimentales implementados: 
 (1) Preprocesado del \textit{dataset}, 
@@ -364,16 +357,20 @@ En esta sección se describen de forma reproducible los cuatro pipelines experim
 (4) Ensamblado (Ensemble). 
 
 \section{Preprocesado del \textit{dataset}}
+\label{sec:Preprocesado del dataset}
 \section{Entrenamiento YOLO}
+\label{sec:Entrenamiento YOLO}
 \section{Entrenamiento Fast‑RCNN}
+\label{sec:Entrenamiento Fast‑RCNN}
 \section{Ensamblado (Ensemble)}
+\label{sec:Ensamblado}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Experimentación}
 \label{Experimentación}
 
 \section{Dataset}
-
+\label{sec:Dataset}
 El dataset inicial proporcionado por la empresa MICROPTIC está constituido por un conjunto de \textit{train} y \textit{test} en formato PascalVOC.
 
 \begin{table}[htbp]
@@ -432,7 +429,7 @@ Para el entrenamiento de diferentes arquitecturas de detección de objetos, se c
 Para más deralle, la información relativa al preprocesamiento del dataset se encuentra en el documento \texttt{preprocesamiento.ipynb} del repositorio \cite{repoTFM}.
 
 \section{Entorno de desarrollo}
-
+\label{sec:Entorno de desarrollo}
 Se utilizan dos entornos de desarrrollo complementarios, garantizando la reproducibilidad y escalabilidad de los resultados obtenidos.
 
 \subsection{\textit{Hardware}}
@@ -508,10 +505,12 @@ Para el despliegue del proyecto se recomienda tener todas las dependencias del \
 recoge todas las librerías y versiones necesarias para la correcta ejecución del entorno.
 
 \section{Configuraciones}
+\label{sec:Configuraciones}
 \subsection{Entrenamiento}
 \subsection{Validación cruzada}
 
 \section{Métricas}
+\label{sec:Métricas}
 Para la evaluación los modelos, se emplea un conjunto de tres métricas fundamentales que se exponen a continuación.
 
 \begin{description}
@@ -556,6 +555,7 @@ Para la evaluación los modelos, se emplea un conjunto de tres métricas fundame
 \label{Resultados}
 
 \section{Resultados de los modelos}
+\label{sec:Resultados de los modelos}
 \subsection{YOLO}
 
 % Tabla en el documento
@@ -586,13 +586,14 @@ already tested-22 & 3 & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{55
 \subsection{Modelo personalizado}
 
 \section{Discursión de resultados}
-
+\label{sec:Discursión de resultados}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Herramienta Web}
 Con el propósito de definir una herramienta de análisis automatizado, se desarrolla una interfaz intuitiva e interactiva para la detección 
 de células redondas sobre una muetra individual o colectiva. La información relativa a la aplicación,
 se puede encontrar en el manual de usuario (\ref{Manual de usuario}).
 \section{Objetivos de la herramienta}
+\label{sec:Objetivos de la herramienta}
 
 La herramienta web para la detección de células redondas tiene como principales objetivos:
 
@@ -608,6 +609,7 @@ La herramienta web para la detección de células redondas tiene como principale
 \end{itemize}
 
 \section{Arquitectura}
+\label{sec:Arquitectura}
 La arquitectura de la aplicación sigue un diseño modular y escalable basada en \textit{Streamlit}. Esto permite tener una aplicación monolítica que encapsula toda la funcionalidad en un único ejecutable y mantiene 
 una clara separación entre la lógica de procesamiento y de presentación.
 
@@ -652,8 +654,11 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusión}
 \section{Conclusión general}
+\label{sec:Conclusión general}
 \section{Limitaciones del estudio}
+\label{sec:Limitaciones del estudio}
 \section{Lineas de trabajo futuro}
+\label{sec:Lineas de trabajo futuro}
 
 \subsection*{Aportaciones realizadas}
 
@@ -663,6 +668,7 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
 
 
 \section*{Opiniones personales}
+\label{sec:Opiniones personales}
 
 
 \subsection*{Trabajos futuros}
@@ -709,10 +715,13 @@ Casi la totalidad del desarrollo de este proyecto final lo podemos encontrar en 
 %Obligatorio. Seguimiento del trabajo real.
 
 \section{Forma de seguimiento}
+\label{sec:Forma de seguimiento}
 
 \section{Planificación inicial}
+\label{sec:Planificación inicial}
 
 \section{Planificación final}
+\label{sec:Planificación final}
 %Si el trabajo ha consistido en la elaboración de una aplicación se incluirá el manual de usuario de la misma.
 
 \chapter{Herramienta Web}
@@ -777,7 +786,7 @@ el procesamiento del modelo seleccionado junto con su correspondiente umbral de 
 \end{figure}
 
 \section{Recomendaciones de uso}
-
+\label{sec:Recomendaciones de uso}
 A continuación, se recogen pautas prácticas para el uso correcto funcionamiento de la herramienta web.
 
 \begin{itemize}
@@ -804,7 +813,7 @@ A continuación, se recogen pautas prácticas para el uso correcto funcionamient
 \end{itemize}
 
 \section{Resolución de problemas}
-
+\label{sec:Resolución de problemas}
 Posibles problemas que pueden tener lugar durante la instalación:
 
 \begin{itemize}
