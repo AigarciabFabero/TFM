@@ -270,12 +270,6 @@ De este modo, se pretenden abordar los siguientes objetivos:
 
 \subsection{Definición del proyecto}
 
-
-
-\subsection{Estimación de tareas y recursos}
-
-
-
 \subsection{Presupuesto}
 
 \subsubsection{Coste de personal}
@@ -315,8 +309,7 @@ De este modo, se pretenden abordar los siguientes objetivos:
 
 
 \section{Gestión de riesgos}
-\subsection{Identificación de riesgos}
-\subsection{Análisis de riesgos}
+\subsection{Identificación y análisis de riesgos}
 
 \clearpage
 \section{Legislación y normativa}
@@ -519,7 +512,7 @@ recoge todas las librerías y versiones necesarias para la correcta ejecución d
 \subsection{Validación cruzada}
 
 \section{Métricas}
-Para evaluar los modelos, se emplean un conjunto de tres métricas fundamentales para estudiar su rendimiento y eficacia. 
+Para la evaluación los modelos, se emplea un conjunto de tres métricas fundamentales que se exponen a continuación.
 
 \begin{description}
   \item[\textit{Precision}] Mide la proporción de detecciones correctas entre todas las detecciones realizadas:
@@ -528,7 +521,7 @@ Para evaluar los modelos, se emplean un conjunto de tres métricas fundamentales
   \]
   donde TP son los verdaderos positivos y FP los falsos positivos. Alta precision indica pocas detecciones erróneas.
 
-  \item[\textit{Recall}] Mide la proporción de instancias reales que han sido detectadas:
+  \item[\textit{Recall}]: Mide la proporción de instancias reales que han sido detectadas:
   \[
     \mathrm{Recall} = \frac{TP}{TP + FN}
   \]
@@ -538,7 +531,7 @@ Para evaluar los modelos, se emplean un conjunto de tres métricas fundamentales
   \[
     \mathrm{mAP} = \frac{1}{C}\sum_{c=1}^{C} \mathrm{AP}_c
   \]
-  donde $C$ es el número de clases. En detección se considera una predicción como verdadero positivo si el \textit{Intersection over Union} (IoU) entre la caja predicha y la caja ground truth supera un umbral (por ejemplo IoU $\geq 0.5$). Se especifica el umbral de IoU usado (p. ej. mAP@0.5) al reportar los resultados.
+  donde $C$ es el número de clases. En detección se considera una predicción como verdadero positivo si el \textit{Intersection over Union} (IoU) entre la caja predicha y la caja ground truth supera un umbral (por ejemplo IoU $\geq 0.5$). 
 
   \medskip
 
@@ -546,7 +539,7 @@ Para evaluar los modelos, se emplean un conjunto de tres métricas fundamentales
   \[
     \mathrm{mAP@0.5} \;=\; \frac{1}{C}\sum_{c=1}^{C} \mathrm{AP}_c(\mathrm{IoU}=0.5)
   \]
-  Es una medida menos exigente que acepta solapamientos moderados entre predicción y ground truth.
+  Es una medida menos exigente, que acepta solapamientos moderados entre predicción y \textit{ground truth}.
 
   \medskip
 
