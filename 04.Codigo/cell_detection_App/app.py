@@ -207,16 +207,19 @@ def main():
                 col1, col2, col3 = st.columns(3)
                 with col1:
                     st.markdown(f"**Precisión:** {precision:.3f}")
+                    with st.expander("Matriz de confusión"):
+                            fig, ax = plt.subplots(figsize=(2, 2))  # Tamaño pequeño
+                            sns.heatmap(cm, annot=True, fmt="d", cmap="YlGnBu",
+                                        xticklabels=["Detección", "No detección"],
+                                        yticklabels=["GT célula", "GT fondo"],
+                                        linecolor='r', linewidths=0.5, ax=ax)
+                            ax.set_xlabel("Predicción")
+                            ax.set_ylabel("Ground Truth")
+                            st.pyplot(fig)
                 with col2:
                     st.markdown(f"**Recall:** {recall:.3f}")
                 with col3:
                     st.markdown(f"**IoU promedio:** {iou_promedio:.3f}")
-
-                plt.figure(figsize=(4,4))
-                sns.heatmap(cm, annot=True, fmt="d", cmap="YlGnBu", xticklabels=["Detección", "No detección"], yticklabels=["GT célula", "GT fondo"], linecolor='r', linewidths=0.5)
-                plt.xlabel("Predicción")
-                plt.ylabel("Ground Truth")
-                st.pyplot(plt)
 
 if __name__ == "__main__":
     main()
