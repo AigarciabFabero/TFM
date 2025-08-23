@@ -235,17 +235,17 @@
 \section{Introducción}
 \label{sec:Introducción}
 
-El presente Trabajo de Fin de Máster, desarrollado en colaboración con la empresa Microptic S.L. y enmarcado en el contexto de un proyecto europeo 
-DIGIS3, aborda el desarrollo de una Prueba de Concepto (\textit{Proof of Concept}) para la detección de células redondas en imágenes médicas 
+El presente Trabajo de Fin de Máster, desarrollado en colaboración con la empresa Microptic S.L \cite{microptic}. y enmarcado en el contexto de un proyecto europeo 
+DIGIS3 \cite{digis3}, aborda el desarrollo de una Prueba de Concepto (\textit{Proof of Concept}) para la detección de células redondas en imágenes médicas 
 mediante Inteligencia Artificial. Este trabajo incluye, además, la creación de una interfaz digital que permite la interacción de expertos 
 con los resultados del modelo.
 
 El objetivo de esta solución es la identificación automatizada de células redondas en imágenes de muestras de semen. Esta capacidad es de 
-gran interés para Microptic, ya que optimiza los tiempos de análisis de los expertos y enriquece el estudio de las muestras espermáticas, 
+gran interés para Microptic \cite{microptic}, ya que optimiza los tiempos de análisis de los expertos y enriquece el estudio de las muestras espermáticas, 
 mejorando la caracterización de parámetros clave tanto en el ámbito de la reproducción asistida humana como en la investigación y producción animal. 
 
 La metodología se ha centrado, en primer lugar, en la consolidación de un conjunto de datos de alta calidad. Para ello, se procesó y validó el feedback 
-proporcionado por los expertos de Microptic, refinando el etiquetado de las imágenes que constituyen la base para el 
+proporcionado por los expertos de Microptic \cite{microptic}, refinando el etiquetado de las imágenes que constituyen la base para el 
 entrenamiento y la evaluación de los modelos.
 
 Posteriormente, aplicando técnicas de Aprendizaje Profundo (\textit{Deep Learning}) y Visión por Computador, se adaptaron y reentrenaron varias versiones 
@@ -253,8 +253,8 @@ del modelo de detección de objetos en tiempo real YOLO. El propósito fue espec
 cotidianos a la identificación precisa de las células redondas para interés de la empresa. Finalmente, el modelo fue entrenado y evaluado 
 para validar su rendimiento, eficacia y viabilidad.
 
-De este modo, el proyecto trasciende la investigación académica para materializar la misión de DIGIS3: "impulsar la digitalización de las empresas a través 
-de soluciones tecnológicas avanzadas". La herramienta web desarrollada actúa como un catalizador de la transformación digital para Microptic, traduciendo 
+De este modo, el proyecto trasciende la investigación académica para materializar la misión de DIGIS3 \cite{digis3}: "impulsar la digitalización de las empresas a través 
+de soluciones tecnológicas avanzadas". La herramienta web desarrollada actúa como un catalizador de la transformación digital para Microptic \cite{microptic}, traduciendo 
 un complejo modelo de Inteligencia Artificial en una solución práctica que potencia sus capacidades de análisis y establece un precedente para futuras innovaciones.
 
 \section{Objetivos}
@@ -279,14 +279,16 @@ Para dar forma a este proceso, se definen los siguientes pasos:
 \chapter{Antecedentes} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Antecedentes}
 \section{Contexto y motivación}
-
-Contexto del Proyecto
-[Tu institución/grupo de investigación] ha desarrollado una solución innovadora para abordar el problema de [descripción específica de tu problemática] utilizando técnicas de Inteligencia Artificial y Visión por Computador.
-Motivación y Justificación
-La necesidad de desarrollar esta solución surge de [razones que motivaron el proyecto], lo cual representa una oportunidad significativa para [impacto esperado]. La automatización e inteligencia artificial aplicada a este dominio específico puede proporcionar [ventajas concretas]
 \label{sec:Contexto y motivación}
+
+Añadir en introducción, las referencias bibliográficas a digis3, microptic y del grupo GVIS.
+Aquí queiro habalr del contexto de la IA, dela visión por computador, detección de objetos y las motivaciones
+
 \section{Estado del arte e hipótesis}
 \label{sec:Estado del arte e hipótesis}
+
+Aqui hablamos de los papers, del proyecto de GVIS de la ule y las hipótesis.
+
 \section{Definición del problema}
 \label{sec:Definición del problema}
 
@@ -523,10 +525,10 @@ El desarrollo se realizó empleando el siguiente \textit{stack} tecnológico:
         \item Ultralytics 8.3.177
         \item OpenCV para procesamiento de imágenes
         \item Optuna para optimización de hiperparámetros
-        \item Streamlit para desarrollo de interfaces
+        \item Streamlit para desarrollo de interfaces web
         \item Pandas para análisis y manipulación de datos
         \item Matplotlib para visualización de datos 
-        \item Scikit-learn para métricasy otras utilidades de \textit{machine learning}
+        \item Scikit-learn para métricas y otras utilidades de \textit{machine learning}
         \item Jupyter Notebook para desarrollo y análisis interactivo
     \end{itemize}
 \end{itemize}
