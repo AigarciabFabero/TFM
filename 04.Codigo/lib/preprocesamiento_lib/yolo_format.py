@@ -90,7 +90,6 @@ class CPreprocessing_YOLO:
         yolo_dir : str
             Directorio donde guardar las etiquetas YOLO
         """
-        empty_xml_images = []
         contador_img_OK = 0
         contador_img_no_OK = 0
         
@@ -104,28 +103,29 @@ class CPreprocessing_YOLO:
                 
                 if os.path.exists(xml_path):
                     annotations = self.read_annotations(xml_path)
+                    yolo_file = os.path.splitext(image_file)[0] + '.txt'
+                    yolo_path = os.path.join(yolo_dir, yolo_file)
                     if not annotations.empty:
                         yolo_annotations = self.convert_to_yolo_format(image.shape, annotations)
-                        yolo_file = os.path.splitext(image_file)[0] + '.txt'
-                        yolo_path = os.path.join(yolo_dir, yolo_file)
                         with open(yolo_path, 'w') as f:
                             for annotation in yolo_annotations:
                                 f.write(f"0 {annotation[0]} {annotation[1]} {annotation[2]} {annotation[3]}\n")
                         contador_img_OK += 1
                     else:
+                        # Crear .txt vacío si no hay anotaciones
+                        with open(yolo_path, 'w') as f:
+                            pass
                         # print(f'El archivo XML está vacío para la imagen: {image_file}')
                         contador_img_no_OK += 1
-                        empty_xml_images.append(image_file)
                 else:
                     print(f'No se encontró el archivo XML para la imagen: {image_file}')
                     contador_img_no_OK += 1
-                    empty_xml_images.append(image_file)
                     
         print(f"Tenemos {contador_img_OK} imágenes con etiquetas y {contador_img_no_OK} que no estan etiquetadas")
-        return empty_xml_images
+        return 
     
     
-    def copy_images(self, src_dir, dst_dir, empty_xml_images):
+    def copy_images(self, src_dir, dst_dir):
         """
         Copia las imágenes que tienen anotaciones válidas
         
@@ -140,7 +140,7 @@ class CPreprocessing_YOLO:
         """
         os.makedirs(dst_dir, exist_ok=True)
         for file_name in os.listdir(src_dir):
-            if file_name.endswith('.jpg') and file_name not in empty_xml_images:
+            if file_name.endswith('.jpg') and file_name:
                 src_path = os.path.join(src_dir, file_name)
                 dst_path = os.path.join(dst_dir, file_name)
                 shutil.copyfile(src_path, dst_path)

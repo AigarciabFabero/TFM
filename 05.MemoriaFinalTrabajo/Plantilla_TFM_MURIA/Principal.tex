@@ -388,6 +388,8 @@ En esta sección se describen de forma reproducible los cuatro pipelines experim
 (3) Entrenamiento Fast‑RCNN 
 (4) Ensamblado (Ensemble). 
 
+Aquí tengo que hablar de la arquitectura del código.
+
 \section{Preprocesado del \textit{dataset}}
 \label{sec:Preprocesado del dataset}
 \section{Entrenamiento YOLO}
@@ -425,11 +427,12 @@ Partición & Resoluciones (px) & Nº imágenes (resolución) & Nº imágenes & S
 \label{tab:dataset_original}
 \end{table}
 
-Durante el preprocesamiento del dataset, las imágenes vacias (sin instancias anotadas) no se utilizan por lo que el conjunto de entrenamiento presenta finalmente 350 imágenes y 88 para \textit{test}. 
-El conjunto de entrenamiento se divide reservando el $80\%$ (280 imágenes) para entrenamiento y el $20\%$ (70 imágenes) para validación.
+El conjunto de datos inicial que nos proporciona Microptic \cite{microptic} está compuesto por 373 imágenes para \textit{train} y 94 para \textit{test}; de las cuales no presentan anotaciones: 23 imágenes de \textit{train} y 6 de \textit{test}.
+El conjunto de entrenamiento se divide utilizando la función \texttt{train\_test\_split} de \textit{scikit-learn}, reservando el $80\%$ (298 imágenes) para entrenamiento y el $20\%$ (75 imágenes) para validación. 
+Esta división se realiza de forma aleatoria pero reproducible, fijando la semilla (\texttt{random\_state = 42}) para garantizar la consistencia de los resultados.
 
 Adicionalmente, la empresa proporciona un conjunto de datos del \textit{test} reevaluado por expertos del dominio. Este conjunto se reetiqueta utilizando la herramienta \textit{LabelImg} \cite{labelimg_github} en formato PascalVOC. 
-Las correcciones afectan a 60 imágenes, incrementando el número de instancias de 1273 a 1412.
+Las correcciones afectan a un total de 60 imágenes, incrementando el número de instancias de 1273 a 1412.
 
 Asimismo, se incluyeron dos conjuntos adicionales denominados \textit{test2} y \textit{test3}, inicialmente sin anotaciones pero que contenían \textit{bounding boxes} generados por modelos YOLO preentrenados 
 por el grupo GVIS de la Universidad de León. Estas predicciones fueron posteriormente corregidas y validadas por expertos, proporcionando dos conjuntos adicionales para evaluación. 
@@ -443,11 +446,12 @@ La composición final del dataset se presenta en la Tabla~\ref{tab:dataset_final
 \toprule
 Partición & Imágenes & Instancias & 1280$\times$1024 & 768$\times$616 & Escala grises\\
 \midrule
-\textit{Train}       & 280 & 3966 & 271 & 9 & 3 canales\\
-\textit{Validation}  &  70 &  846 & 66 & 4 & 3 canales\\
-\textit{Test}        &  88 & 1412 & 82 & 6 & 3 canales\\
-\textit{Test2}       &  10 &  144 & 0 & 10 & 1 canal\\
-\textit{Test3}       &  59 & 1135 & 56 & 3 & 1 canal\\
+\textit{Train}          & 298 & 3934 & 282 & 16 & 3 canales\\
+\textit{Validation}     &  75 &  878 & 74  & 1  & 3 canales\\
+\textit{Original\_test} &  94 & 1273 & 87  & 7  & 3 canales\\
+\textit{Test}           &  94 & 1412 & 87  & 7  & 3 canales\\
+\textit{Test2}          &  10 &  144 & 0   & 10 & 1 canal\\
+\textit{Test3}          &  59 & 1135 & 56  & 3  & 1 canal\\
 \bottomrule
 \end{tabular}
 \caption{Resumen del dataset de actuación}
@@ -579,7 +583,6 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
     \mathrm{mAP}_{[0.5:0.95]} \;=\; \frac{1}{C}\frac{1}{T}\sum_{c=1}^{C}\sum_{t\in\{0.50,0.55,\dots,0.95\}} \mathrm{AP}_c(\mathrm{IoU}=t)
   \]
   donde $T=10$. Esta métrica es más exigente porque penaliza detecciones con IoU bajos y refleja mejor la precisión espacial del modelo.
-  \item[\textit{Time} (s)] Es el tiempo total (en segundos) que tarda el modelo en procesar un conjunto de test. 
   \item[Inferencia (ms)] Tiempo medio (en milisegundos) que tarda un modelo en procesar una única imagen (inferencia). Métrica relevante para proyectos en tiempo real.
 \end{description}
 \arrayrulecolor[HTML]{B9DAE1}
@@ -592,6 +595,42 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
 \label{sec:Resultados de los modelos}
 \subsection{YOLO}
 
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{lccccc}
+        \hline
+        \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{Recall (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
+        \hline
+        YOLOv7      & 0.87  & 0.889 & 0.935 & 0.722 & 20.0   \\
+        YOLOv7-W6   & 0.847 & 0.883 & 0.925 & 0.694 & 16.0   \\
+        YOLOv7-E6E  & 0.906 & 0.857 & 0.934 & 0.721 & 127.5  \\
+        \hline
+    \end{tabular}
+    }
+    \caption{Resultados de los modelos YOLOv7 sobre el conjunto de test original.}
+    \label{tab:yolov7_results}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{lccccc}
+        \hline
+        \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{Recall (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
+        \hline
+        yolov8s    & 0.843 & 0.844 & 0.920 & 0.722 & 11.006 \\
+        yolov9s    & 0.838 & 0.852 & 0.921 & 0.721 & 13.485 \\
+        yolov10s   & 0.821 & 0.867 & 0.918 & 0.717 & 11.221 \\
+        yolov11s   & 0.861 & 0.824 & 0.921 & 0.732 & 11.248 \\
+        yolov12s   & 0.856 & 0.863 & 0.936 & 0.761 & 14.615 \\
+        \hline
+    \end{tabular}
+    }
+    \caption{Resultados de los modelos YOLO sobre el conjunto de test original.}
+    \label{tab:yolov8_12_results}
+\end{table}
+
 % Tabla para los resultados sobre los conjuntos de Test
 \definecolor{turquoise}{RGB}{64,224,208}
 \begin{table}[ht]
@@ -601,34 +640,34 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
 \setlength{\arrayrulewidth}{1.2pt}
 \resizebox{\textwidth}{!}{
 \arrayrulecolor{gray}
-\begin{tabular}{!{\vrule width 1.2pt}l|c|c|c|c|c|c|c!{\vrule width 1.2pt}}
+\begin{tabular}{!{\vrule width 1.2pt}l|c|c|c|c|c|c!{\vrule width 1.2pt}}
 \arrayrulecolor{black}
 \specialrule{1.5pt}{0pt}{0pt}
 \rowcolor{gray!30}
-\textbf{Modelo} & \textbf{Test} & \textbf{Precisión} & \textbf{Recall} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Time (s)} & \textbf{Inferencia (ms)} \\
+\textbf{Modelo} & \textbf{Test} & \textbf{Precisión} & \textbf{Recall} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
-yolov8s & test & 0.857 & 0.839 & 0.926 & 0.705 & 24.528 & \cellcolor{turquoise!30}12.071 \\ \hline
-yolov9s & test & 0.850 & \cellcolor{turquoise!30}0.878 & 0.933 & 0.707 & 22.988 & 14.584 \\ \hline
-yolov10s & test & 0.854 & 0.862 & 0.928 & 0.702 & \cellcolor{turquoise!30}22.573 & \cellcolor{turquoise!30}11.420 \\ \hline
-yolov11s & test & 0.848 & 0.866 & 0.931 & 0.717 & 23.231 & 12.801 \\ \hline
-yolov12s & test & \cellcolor{turquoise!30}0.863 & 0.848 & \cellcolor{turquoise!30}0.937 & \cellcolor{turquoise!30}0.741 & 23.239 & 14.244 \\
+yolov8s   & test & 0.855 & 0.838 & 0.926 & 0.704 & 11.067 \\ \hline
+yolov9s   & test & 0.851 & \cellcolor{turquoise!30}0.876 & 0.933 & 0.706 & 12.904 \\ \hline
+yolov10s  & test & 0.853 & 0.861 & 0.927 & 0.701 & 11.041 \\ \hline
+yolov11s  & test & 0.846 & 0.866 & 0.930 & 0.716 & \cellcolor{turquoise!30}10.644 \\ \hline
+yolov12s  & test & \cellcolor{turquoise!30}0.861 & 0.848 & \cellcolor{turquoise!30}0.936 & \cellcolor{turquoise!30}0.740 & 15.066 \\
 \arrayrulecolor{black}
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
-yolov8s & test2 & 0.924 & \cellcolor{turquoise!30}0.938 & 0.969 & 0.553 & \cellcolor{turquoise!30}6.399 & 37.858 \\ \hline
-yolov9s & test2 & 0.917 & 0.927 & 0.961 & 0.542 & 7.280 & 35.944 \\ \hline
-yolov10s & test2 & 0.956 & 0.898 & 0.962 & \cellcolor{turquoise!30}0.589 & 6.973 & \cellcolor{turquoise!30}12.358 \\ \hline
-yolov11s & test2 & 0.929 & 0.917 & 0.964 & 0.534 & 6.894 & 14.967 \\ \hline
-yolov12s & test2 & \cellcolor{turquoise!30}0.965 & 0.917 & \cellcolor{turquoise!30}0.975 & 0.556 & 6.940 & 20.254 \\
+yolov8s & test2 & 0.924 & \cellcolor{turquoise!30}0.938 & 0.969 & 0.553 & 37.858 \\ \hline
+yolov9s & test2 & 0.917 & 0.927 & 0.961 & 0.542 & 35.944 \\ \hline
+yolov10s & test2 & 0.956 & 0.898 & 0.962 & \cellcolor{turquoise!30}0.589 & \cellcolor{turquoise!30}12.358 \\ \hline
+yolov11s & test2 & 0.929 & 0.917 & 0.964 & 0.534 & 14.967 \\ \hline
+yolov12s & test2 & \cellcolor{turquoise!30}0.965 & 0.917 & \cellcolor{turquoise!30}0.975 & 0.556 & 20.254 \\
 \arrayrulecolor{black}
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
-yolov8s & test3 & 0.842 & 0.862 & \cellcolor{turquoise!30}0.937 & 0.700 & 8.550 & 11.314 \\ \hline
-yolov9s & test3 & 0.843 & 0.870 & 0.935 & 0.681 & 8.957 & 13.291 \\ \hline
-yolov10s & test3 & \cellcolor{turquoise!30}0.873 & 0.826 & 0.926 & 0.667 & \cellcolor{turquoise!30}8.311 & \cellcolor{turquoise!30}11.109 \\ \hline
-yolov11s & test3 & 0.855 & \cellcolor{turquoise!30}0.874 & 0.935 & 0.698 & 8.541 & 12.561 \\ \hline
-yolov12s & test3 & 0.836 & 0.821 & 0.922 & \cellcolor{turquoise!30}0.723 & 8.716 & 15.442 \\
+yolov8s & test3 & 0.842 & 0.862 & \cellcolor{turquoise!30}0.937 & 0.700 & 11.314 \\ \hline
+yolov9s & test3 & 0.843 & 0.870 & 0.935 & 0.681 & 13.291 \\ \hline
+yolov10s & test3 & \cellcolor{turquoise!30}0.873 & 0.826 & 0.926 & 0.667 & \cellcolor{turquoise!30}11.109 \\ \hline
+yolov11s & test3 & 0.855 & \cellcolor{turquoise!30}0.874 & 0.935 & 0.698 & 12.561 \\ \hline
+yolov12s & test3 & 0.836 & 0.821 & 0.922 & \cellcolor{turquoise!30}0.723 & 15.442 \\
 \arrayrulecolor{black}
 \specialrule{1.5pt}{0pt}{0pt}
 \end{tabular}
@@ -644,7 +683,7 @@ yolov12s & test3 & 0.836 & 0.821 & 0.922 & \cellcolor{turquoise!30}0.723 & 8.716
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-Imagen & Test & yolov8s 0.5 & yolov8s 0.7 & yolov9s 0.5 & yolov9s 0.7 & yolov10s 0.5 & yolov10s 0.7 & yolov11s 0.5 & yolov11s 0.7 & yolov12s 0.5 & yolov12s 0.7 \\
+\textbf{Imagen} & \textbf{Test} & \textbf{yolov8s 0.5} & \textbf{yolov8s 0.7} & \textbf{yolov9s 0.5} & \textbf{yolov9s 0.7} & \textbf{yolov10s 0.5} & \textbf{yolov10s 0.7} & \textbf{yolov11s 0.5} & \textbf{yolov11s 0.7} & \textbf{yolov12s 0.5} & \textbf{yolov12s 0.7} \\
 \hline
 59 imagen         & 1 & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \hline
@@ -669,10 +708,10 @@ already tested-22 & 3 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}
 \caption{Evaluación de modelos YOLO sobre imágenes con artefactos}
 \end{table}
 
+\newpage
 \subsection{Fast-RCNN}
 \subsection{Ensemble}
 \subsection{Modelo personalizado}
-
 \section{Discursión de resultados}
 \label{sec:Discursión de resultados}
 
@@ -788,20 +827,11 @@ corrección de errores desde cualquier dispositivo con acceso a internet.
 Casi la totalidad del desarrollo de este proyecto final lo podemos encontrar en el repositorio personal \cite{repoTFM}.
 
 
-\chapter{Seguimiento de proyecto fin de máster} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{Seguimiento de proyecto fin de máster}
+\chapter{Seguimiento del proyecto} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{Seguimiento de proyecto}
 
 %Obligatorio. Seguimiento del trabajo real.
 
-\section{Forma de seguimiento}
-\label{sec:Forma de seguimiento}
-
-\section{Planificación inicial}
-\label{sec:Planificación inicial}
-
-\section{Planificación final}
-\label{sec:Planificación final}
-%Si el trabajo ha consistido en la elaboración de una aplicación se incluirá el manual de usuario de la misma.
 
 \chapter{Herramienta Web} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Herramienta Web anexo}
