@@ -543,7 +543,7 @@ recoge todas las librerías y versiones necesarias para la correcta ejecución d
 
 \section{Métricas}
 \label{sec:Métricas}
-Para la evaluación los modelos, se emplea un conjunto de tres métricas fundamentales que se exponen a continuación.
+Para la evaluación de los modelos, se emplea un conjunto de métricas fundamentales que se exponen a continuación.
 
 \begin{description}
   \item[\textit{Precision}] Mide la proporción de detecciones correctas entre todas las detecciones realizadas:
@@ -579,6 +579,8 @@ Para la evaluación los modelos, se emplea un conjunto de tres métricas fundame
     \mathrm{mAP}_{[0.5:0.95]} \;=\; \frac{1}{C}\frac{1}{T}\sum_{c=1}^{C}\sum_{t\in\{0.50,0.55,\dots,0.95\}} \mathrm{AP}_c(\mathrm{IoU}=t)
   \]
   donde $T=10$. Esta métrica es más exigente porque penaliza detecciones con IoU bajos y refleja mejor la precisión espacial del modelo.
+  \item[\textit{Time} (s)] Es el tiempo total (en segundos) que tarda el modelo en procesar un conjunto de test. 
+  \item[Inferencia (ms)] Tiempo medio (en milisegundos) que tarda un modelo en procesar una única imagen (inferencia). Métrica relevante para proyectos en tiempo real.
 \end{description}
 \arrayrulecolor[HTML]{B9DAE1}
 
@@ -590,23 +592,77 @@ Para la evaluación los modelos, se emplea un conjunto de tres métricas fundame
 \label{sec:Resultados de los modelos}
 \subsection{YOLO}
 
-% Tabla en el documento
+% Tabla para los resultados sobre los conjuntos de Test
+\definecolor{turquoise}{RGB}{64,224,208}
 \begin{table}[ht]
 \centering
+\rowcolors{2}{gray!15}{white}
+\renewcommand{\arraystretch}{1.3}
+\setlength{\arrayrulewidth}{1.2pt}
+\resizebox{\textwidth}{!}{
+\arrayrulecolor{gray}
+\begin{tabular}{!{\vrule width 1.2pt}l|c|c|c|c|c|c|c!{\vrule width 1.2pt}}
+\arrayrulecolor{black}
+\specialrule{1.5pt}{0pt}{0pt}
+\rowcolor{gray!30}
+\textbf{Modelo} & \textbf{Test} & \textbf{Precisión} & \textbf{Recall} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Time (s)} & \textbf{Inferencia (ms)} \\
+\specialrule{1.2pt}{0pt}{0pt}
+\arrayrulecolor{gray}
+yolov8s & test & 0.857 & 0.839 & 0.926 & 0.705 & 24.528 & \cellcolor{turquoise!30}12.071 \\ \hline
+yolov9s & test & 0.850 & \cellcolor{turquoise!30}0.878 & 0.933 & 0.707 & 22.988 & 14.584 \\ \hline
+yolov10s & test & 0.854 & 0.862 & 0.928 & 0.702 & \cellcolor{turquoise!30}22.573 & \cellcolor{turquoise!30}11.420 \\ \hline
+yolov11s & test & 0.848 & 0.866 & 0.931 & 0.717 & 23.231 & 12.801 \\ \hline
+yolov12s & test & \cellcolor{turquoise!30}0.863 & 0.848 & \cellcolor{turquoise!30}0.937 & \cellcolor{turquoise!30}0.741 & 23.239 & 14.244 \\
+\arrayrulecolor{black}
+\specialrule{1.2pt}{0pt}{0pt}
+\arrayrulecolor{gray}
+yolov8s & test2 & 0.924 & \cellcolor{turquoise!30}0.938 & 0.969 & 0.553 & \cellcolor{turquoise!30}6.399 & 37.858 \\ \hline
+yolov9s & test2 & 0.917 & 0.927 & 0.961 & 0.542 & 7.280 & 35.944 \\ \hline
+yolov10s & test2 & 0.956 & 0.898 & 0.962 & \cellcolor{turquoise!30}0.589 & 6.973 & \cellcolor{turquoise!30}12.358 \\ \hline
+yolov11s & test2 & 0.929 & 0.917 & 0.964 & 0.534 & 6.894 & 14.967 \\ \hline
+yolov12s & test2 & \cellcolor{turquoise!30}0.965 & 0.917 & \cellcolor{turquoise!30}0.975 & 0.556 & 6.940 & 20.254 \\
+\arrayrulecolor{black}
+\specialrule{1.2pt}{0pt}{0pt}
+\arrayrulecolor{gray}
+yolov8s & test3 & 0.842 & 0.862 & \cellcolor{turquoise!30}0.937 & 0.700 & 8.550 & 11.314 \\ \hline
+yolov9s & test3 & 0.843 & 0.870 & 0.935 & 0.681 & 8.957 & 13.291 \\ \hline
+yolov10s & test3 & \cellcolor{turquoise!30}0.873 & 0.826 & 0.926 & 0.667 & \cellcolor{turquoise!30}8.311 & \cellcolor{turquoise!30}11.109 \\ \hline
+yolov11s & test3 & 0.855 & \cellcolor{turquoise!30}0.874 & 0.935 & 0.698 & 8.541 & 12.561 \\ \hline
+yolov12s & test3 & 0.836 & 0.821 & 0.922 & \cellcolor{turquoise!30}0.723 & 8.716 & 15.442 \\
+\arrayrulecolor{black}
+\specialrule{1.5pt}{0pt}{0pt}
+\end{tabular}
+}
+\caption{Evaluación de modelos YOLO sobre los diferentes conjuntos de prueba}
+\end{table}
+
+% Tabla para los artefactos
+\definecolor{mygreen}{RGB}{0,180,0}
+\definecolor{myred}{RGB}{220,0,0}
+\begin{table}[ht]
+\centering 
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
 Imagen & Test & yolov8s 0.5 & yolov8s 0.7 & yolov9s 0.5 & yolov9s 0.7 & yolov10s 0.5 & yolov10s 0.7 & yolov11s 0.5 & yolov11s 0.7 & yolov12s 0.5 & yolov12s 0.7 \\
 \hline
-59 imagen         & 1 & \ding{55} & \ding{51} & \ding{55} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-61 imagen         & 1 & \ding{55} & \ding{51} & \ding{55} & \ding{55} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} \\
-219 imagen        & 1 & \ding{55} & \ding{51} & \ding{55} & \ding{55} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} \\
-369 imagen        & 1 & \ding{51} & \ding{51} & \ding{55} & \ding{55} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} \\
-already tested-00 & 3 & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-already tested-15 & 3 & \ding{51} & \ding{51} & \ding{55} & \ding{55} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} \\
-already tested-16 & 3 & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-already tested-17 & 3 & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-already tested-22 & 3 & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+59 imagen         & 1 & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\hline
+61 imagen         & 1 & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\hline
+219 imagen        & 1 & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\hline
+369 imagen        & 1 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\hline
+already tested-00 & 3 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\hline
+already tested-15 & 3 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\hline
+already tested-16 & 3 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\hline
+already tested-17 & 3 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\hline
+already tested-22 & 3 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \hline
 \end{tabular}
 }
