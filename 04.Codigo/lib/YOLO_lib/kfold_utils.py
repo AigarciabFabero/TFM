@@ -76,6 +76,7 @@ def train(model, best_params, model_output_kfold):
             batch=config.BATCH,
             name=f"{model_output_kfold}/fold_{fold+1}",
             save=True,
+            seed=config.SEED,   
             **best_params
         )
 

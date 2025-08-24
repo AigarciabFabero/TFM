@@ -1,6 +1,6 @@
 SEED = 42
-N_TRIALS = 4
-EPOCH_OPTUNA = 25
+N_TRIALS = 10
+EPOCH_OPTUNA = 35
 EPOCH_TRAIN = 40
 BATCH = 15
 IMGSZ = 704
@@ -27,7 +27,7 @@ models = {
     "yolov12l": "yolo/yolo_models/yolo12l.pt",
     "yolov12x": "yolo/yolo_models/yolo12x.pt",
     "yolov12sy": "yolo/yolo_models/yolo12s.yaml",
-    "custom_yolo12s": "yolo/yolo_models/custom_yolo12s.yaml",
+    "custom": "yolo/yolo_models/custom.yaml",
 }
 
 results_csv_paths = {
@@ -36,6 +36,7 @@ results_csv_paths = {
     'yolov10s': 'runs/detect/final_model_yolov10s/results.csv',
     'yolov11s': 'runs/detect/final_model_yolov11s/results.csv',
     'yolov12s': 'runs/detect/final_model_yolov12s/results.csv',
+    "custom": "runs/detect/final_model_custom/results.csv",
 }
 
 final_model_path = {
@@ -44,6 +45,7 @@ final_model_path = {
     "yolov10s": "runs/detect/final_model_yolov10s/weights/best.pt",
     "yolov11s": "runs/detect/final_model_yolov11s/weights/best.pt",
     "yolov12s": "runs/detect/final_model_yolov12s/weights/best.pt",
+    "custom": "runs/detect/final_model_custom/weights/best.pt",
 }
 
 # v8
@@ -125,6 +127,24 @@ best_params_yolov12s = {
     "lrf": 0.009323621351781481,
     "momentum": 0.9162699235041671,
     "weight_decay": 0.0008699593128513321,
+    "optimizer": "AdamW",
+    "warmup_epochs": 5,
+    "warmup_momentum": 0.75,
+    "degrees": 45,
+    "translate": 0.1,
+    "scale": 0.06,
+    "flipud": 0.5,
+    "fliplr": 0.5,
+    "mosaic": 0,
+    "close_mosaic": 0,
+}
+
+#custom
+best_params_custom = {
+    "lr0": 0.0015304852121831463,
+    "lrf": 0.001112885317490573,
+    "momentum": 0.8911317277852158,
+    "weight_decay": 0.00014808945119975197,
     "optimizer": "AdamW",
     "warmup_epochs": 5,
     "warmup_momentum": 0.75,

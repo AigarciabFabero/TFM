@@ -52,6 +52,7 @@ def optuna_objective(trial, model, selected_model):
             name=trial_name,
             save=False,
             verbose=False,
+            seed=config.SEED,   
             **params
         )
         metrics = results.results_dict
