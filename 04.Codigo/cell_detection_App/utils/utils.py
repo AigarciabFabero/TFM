@@ -23,6 +23,7 @@ def load_model(model_name):
         "YOLOv10s": "models/final_model_yolov10s/weights/best.pt",
         "YOLOv9s": "models/final_model_yolov9s/weights/best.pt",
         "YOLOv8s": "models/final_model_yolov8s/weights/best.pt",
+        "Custom": "models/final_model_custom/weights/best.pt",
     }
     model_path = model_paths[model_name]
     if not os.path.exists(model_path):
@@ -114,7 +115,7 @@ def draw_gt_boxes(image_array, gt_boxes, color=(255, 0, 0)):
 def sidebar_config(device):
     st.sidebar.header("⚙️ Configuración")
 
-    model_options = ["YOLOv12s", "YOLOv11s", "YOLOv10s", "YOLOv9s", "YOLOv8s"]
+    model_options = ["YOLOv12s", "YOLOv11s", "YOLOv10s", "YOLOv9s", "YOLOv8s", "Custom"]
     selected_model = st.sidebar.selectbox(
         "Selecciona el modelo", model_options, index=0
     )
