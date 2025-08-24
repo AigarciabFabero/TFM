@@ -315,7 +315,8 @@ Aqui hablamos de los papers, del proyecto de GVIS de la ule y las hipótesis.
 \section{Plan de trabajo}
 \label{Plan de trabajo}
 
-Aquí habla de la metodología de Scrum de Indice a lidia.
+\subsection{Metodología}
+\label{Metodología}
 
 \subsection{Identificación de tareas}
 \label{Identificación de tareas}
@@ -545,6 +546,102 @@ recoge todas las librerías y versiones necesarias para la correcta ejecución d
 \section{Configuraciones}
 \label{sec:Configuraciones}
 \subsection{Entrenamiento}
+
+Aquí tengo que poner una tabla con las configuraciones de entrenamiento para ser recreado y cumplir con las normas éticas.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Modelo} & \textbf{Nº Trials} & \textbf{Epoch Optuna} & \textbf{Epoch Train} & \textbf{Batch} & \textbf{Image Size} \\
+\hline
+yolov8s   & 6  & 25 & 40 & 12 & 704 \\
+yolov9s   & 6  & 25 & 40 & 10 & 704 \\
+yolov10s  & 6  & 25 & 40 & 10 & 704 \\
+yolov11s  & 6  & 25 & 40 & 10 & 704 \\
+yolov12s  & 6  & 25 & 40 & 7 & 704 \\
+yolov12x  & 5  & 25 & 40 & 7 & 704 \\
+custom    & 10 & 25 & 40 & 12 & 704 \\
+\hline
+\end{tabular}
+\caption{Hiperparámetros principales de entrenamiento para cada modelo.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Modelo} & \textbf{lr0} & \textbf{lrf} & \textbf{momentum} & \textbf{weight\_decay} & \textbf{optimizer} \\
+\hline
+yolov8s   & 0.00540 & 0.00399 & 0.90621 & 0.00010 & SGD \\ \hline
+yolov9s   & 0.00023 & 0.00153 & 0.84564 & 0.00033 & AdamW \\
+yolov10s  & 0.00540 & 0.00399 & 0.90621 & 0.00010 & SGD \\
+yolov11s  & 0.00023 & 0.00153 & 0.84564 & 0.00033 & AdamW \\
+yolov12s  & 0.00023 & 0.00932 & 0.91627 & 0.00087 & AdamW \\
+custom    & 0.00153 & 0.00111 & 0.89113 & 0.00015 & AdamW \\
+\hline
+\end{tabular}
+\caption{Principales hiperparámetros óptimos seleccionados para cada modelo.}
+\end{table}
+
+Hiperparámetros del data augmentation:
+
+\begin{description}
+  \item[\textbf{warmup\_epochs}:] 5
+  \item[\textbf{warmup\_momentum}:] 0.75
+  \item[\textbf{degrees}:] 45
+  \item[\textbf{translate}:] 0.1
+  \item[\textbf{scale}:] 0.06
+  \item[\textbf{flipud}:] 0.5
+  \item[\textbf{fliplr}:] 0.5
+  \item[\textbf{mosaic}:] 0
+  \item[\textbf{close\_mosaic}:] 0
+\end{description}
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/map50-95.png}
+  \caption{Interfaz de la aplicación web.}
+  \label{fig:yolo_train_map95}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/map50.png}
+  \caption{Interfaz de la aplicación web.}
+  \label{fig:yolo_train_map50}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/precision.png}
+  \caption{Interfaz de la aplicación web.}
+  \label{fig:yolo_train_precision}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/recall.png}
+  \caption{Interfaz de la aplicación web.}
+  \label{fig:yolo_train_recall}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/box_loss.png}
+  \caption{Interfaz de la aplicación web.}
+  \label{fig:yolo_train_box_loss}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/cls_loss.png}
+  \caption{Interfaz de la aplicación web.}
+  \label{fig:yolo_train_cls_loss}
+\end{figure}
+
 \subsection{Validación cruzada}
 
 \section{Métricas}

@@ -100,12 +100,26 @@ def train(model, best_params, model_output_kfold):
 def save_results(metrics_df, model_output_kfold):
     print("\nResultados por fold:")
     print(metrics_df)
+    
+    metrics_for_stats = metrics_df.drop(columns=['fold'])
+    
     print("\nPromedio de métricas:")
-    print(metrics_df.mean(numeric_only=True))
-
+    mean_metrics = metrics_for_stats.mean()
+    print(mean_metrics)
+    
+    print("\nDesviación estándar de métricas:")
+    std_metrics = metrics_for_stats.std()
+    print(std_metrics)
+    
     os.makedirs(f"runs/detect/{model_output_kfold}", exist_ok=True)
     metrics_df.to_csv(f"runs/detect/{model_output_kfold}/kfold_metrics.csv", index=False)
-
+    
+    summary = pd.DataFrame({
+        'mean': mean_metrics,
+        'std': std_metrics
+    })
+    summary.to_csv(f"runs/detect/{model_output_kfold}/kfold_stats.csv")
+    
     shutil.rmtree("kfold", ignore_errors=True)
     print("\nDirectorios temporales eliminados.")
 
@@ -121,4 +135,12 @@ def plot_kfold_metrics(metrics_df, model_output_kfold):
     plt.grid(True)
     plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(1))
     plt.tight_layout()
+    
+    # Guardar la figura en el directorio especificado
+    save_dir = f"runs/detect/{model_output_kfold}"
+    os.makedirs(save_dir, exist_ok=True)
+    save_path = os.path.join(save_dir, "kfold_metrics.png")
+    plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    print(f"Gráfico guardado en: {save_path}")
+    
     plt.show()

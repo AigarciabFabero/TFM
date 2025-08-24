@@ -1,10 +1,10 @@
 SEED = 42
 N_TRIALS = 10
-EPOCH_OPTUNA = 35
+EPOCH_OPTUNA = 25
 EPOCH_TRAIN = 40
-BATCH = 10
+BATCH = 12
 IMGSZ = 704
-K = 5
+K = 4
 
 models = {
     # YOLOv10
@@ -141,10 +141,10 @@ best_params_yolov12s = {
 
 #custom
 best_params_custom = {
-    "lr0": 0.0015304852121831463,
-    "lrf": 0.001112885317490573,
-    "momentum": 0.8911317277852158,
-    "weight_decay": 0.00014808945119975197,
+    "lr0": 0.0005170191786366995,
+    "lrf": 0.0019095652801045377,
+    "momentum": 0.8814044124737372,
+    "weight_decay": 0.00013833249975219982,
     "optimizer": "AdamW",
     "warmup_epochs": 5,
     "warmup_momentum": 0.75,
