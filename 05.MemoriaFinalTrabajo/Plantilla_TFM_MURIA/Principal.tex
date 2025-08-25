@@ -222,7 +222,7 @@
   \item[\textit{Ground truth}]: Hace alusión a las anotaciones correctas que describen las \textit{bounding boxes} de las imágenes.
   \item[\textit{Checkbox}]: Es un \textit{widget} que permite al usuario activar o desactivar una opción (boleano).  
   \item[\textit{linter}]:  Herramienta que analiza automáticamente el código fuente para detectar errores de sintaxis u otros posibles fallos antes de ejecutar el programa. 
-  \item[Células redondas]: Según la OMS, toda célula no espermática que se encuentra en el eyaculado. Agrupa principalmente dos típos: células germinales inmaduras y leucocitos.
+  \item[Células redondas]: Según la OMS \cite{OMS}, toda célula no espermática que se encuentra en el eyaculado. Agrupa principalmente dos típos: células germinales inmaduras y leucocitos.
   \item[Células germinales inmaduras]: Células precursoras de los espermatozoides que no han completado su desarrollo.
   \item[Leucocitos]: Glóbulos blancos, principalmente netrófilos.  
   \item[Espermograma]: Consiste en analizar los espermatozoides de un hombre o un animal para evaluar la fertilidad y detectar posibles anomalías. 
@@ -256,7 +256,7 @@ proporcionado por los expertos de Microptic \cite{microptic}, refinando el etiqu
 entrenamiento y la evaluación de los modelos.
 
 Posteriormente, aplicando técnicas de Aprendizaje Profundo (\textit{Deep Learning}) y Visión por Computador, se adaptaron y reentrenaron varias versiones 
-del modelo de detección de objetos en tiempo real YOLO. El propósito fue especializar su capacidad, pasando de la detección de objetos 
+del modelo de detección de objetos en tiempo real YOLO \cite{ultralytics_models}. El propósito fue especializar su capacidad, pasando de la detección de objetos 
 cotidianos a la identificación precisa de células redondas para facilitar el espermograma. Finalmente, el modelo fue entrenado y evaluado 
 para validar su rendimiento, eficacia y viabilidad.
 
@@ -285,6 +285,10 @@ Para dar forma a este proceso, se definen los siguientes pasos:
 
 \chapter{Antecedentes} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Antecedentes}
+
+En este capítulo se expone el problema abordado en este trabajo, sus antecedentes e hipótesis y motivaciones. 
+Asimismo, se revisa la literatura existente para situar el estado del arte y justificar la necesidad de la investigación realizada.
+
 \section{Contexto y motivación}
 \label{sec:Contexto y motivación}
 
@@ -302,7 +306,7 @@ de desarrollar alternativas mediante herramientas automatizadas que permitan obt
 
 El auge de la Inteligencia Artificial, y en particular las técnicas de Visión por Computador basadas en Aprendizaje Profundo, están protagonizando una revolución dentro del mundo de la medicina.
 La capacidad de las redes neuronales en la detección de patrones complejos han demostrado ser una herramienta de apoyo en diversas especialidades como son: análisis de imágenes radiológicas o análisis de lesiones cutáneas en dermatología, entre otras.
-En \textit{computer vision}, modelos de detección de objetos como YOLO (You Only Look Once) han demostrado un equilibrio entre precisión y velocidad de inferencia. Estos algoritmos son capaces de procesar imágenes y localizar multiples objetos de interes en milisegundos.
+En \textit{computer vision}, modelos de detección de objetos como YOLO (You Only Look Once) \cite{ultralytics_models} han demostrado un equilibrio entre precisión y velocidad de inferencia. Estos algoritmos son capaces de procesar imágenes y localizar multiples objetos de interes en milisegundos.
 Siendo idóneo en este tipo de trabajos clínicos.
 
 Atendiendo a estas necesidades y casuísticas, por parte de una empresa lider en el análisis espermático, surge la necesidad de integrar estos sistemas inteligentes para la detección de células redondas al que dió solución el grupo GVIS de la 
@@ -311,7 +315,7 @@ Universidad de León mediante una prueba de concepto \cite{HamiltonThorneRoundCe
 Aprovechando este hito, surge la motivación de definir una nueva prueba de concepto integrada en un entorno digital, que permita igualar o superar con menos recursos, la anterior prueba de concepto. Esto se aborda a través de diferentes vías:
 
 \begin{itemize}
-  \item Explorar diferentes arquitecturas de YOLO, desde modelos oficiales hasta prototipos más recientes que emplean capas de atención. 
+  \item Explorar diferentes arquitecturas de YOLO \cite{ultralytics_models}, desde modelos oficiales hasta prototipos más recientes que emplean capas de atención. 
   \item Diseñar un modelo peronalizado para competir con los modelos existentes.
   \item Optimización y mejora de la detección: buscar la configuración optima que maximice diferentes métricas y abordar la detección de artefactos visuales que fueron identificados como una limitación en la PoC previa. 
   \item Desarrollar de una herramienta web interactiva que no solo sirva para evalauar imágenes sino que además, de soporte a expertos.
@@ -320,7 +324,69 @@ Aprovechando este hito, surge la motivación de definir una nueva prueba de conc
 \section{Estado del arte e hipótesis}
 \label{sec:Estado del arte e hipótesis}
 
-Aqui hablamos de los papers, del proyecto de GVIS de la ule y las hipótesis.
+En esta sección se analiza el panorama tecnológico que sirve como fundamento para este proyecto. Se parte de las tecnologías de Inteligencia artificial que tienen relevancia en el campo de la medicina como es la 
+visión por computador, se abordan los modelos de detección de objetos utilizados y se revisan las diferentes técnicas de optimización. Finalmente, se realiza un breve y conciso estudio sobre la literatura actual 
+en este campo y se define la hipótesis de trabajo.
+
+\subsection{Visión por computador y modelos de detección de objetos}
+
+La Inteligencia Artificial está en auge y algunos de los campos en los que está tomando protagonismo son el Apendizaje Profundo y la Visión por Computador; campos en los que se fundamenta esta prueba de concepto.
+La Visión por Computador está revolucionando el análisis de imágenes dadas las capacidades de estos sistemas de interpretar datos visuales en tareas como la clasificación, segmentación semántica o la detección de objetos en la que se fundamenta este proyecto.
+Que fundamentadas en Aprendizaje Profundo, mediante el uso de Redes Neuronales, los algoritmos pueden identificar patrones complejos en las imágenes con una precisión igual o superior a la del hojo humano. 
+
+Dentro de este campo, la detección de objetos tiene como objeto localizar espacialmente (mediante \textit{bounding boxes}) y clasificar cada úna de las múltiples instancias de un objeto de interés dentro de una misma imágen.
+Esta tarea es crucial para este proyecto, pues va a permitir detectar y contar las células redondas en una imagen de esperma humano.
+
+La familia de modelos de YOLO (You Only Look Once) \cite{ultralytics_models} se ha consolidado como un referente para tareas de detección, permitiendo un equilibrio entre precisión y velocidad.
+Dentro de las 12 arquitecturas de YOLO \cite{ultralytics_models}, se emplean las siguientes \cite{defyolos}:
+
+\begin{itemize}
+  \item \textbf{Yolov8:} Adopta un diseño eficiente y sin anclajes (anchor-free). Su arquitectura utiliza una versión refinada de módulos basados en CSP y una cabeza desacoplada que separa las tareas de clasificación y regresión, logrando un buen equilibrio entre velocidad y precisión \cite{defyolos}.
+  \item \textbf{Yolov9:} Introduce la Información de Gradiente Programable (PGI) y la Red de Agregación de Capas Generalizada y Eficiente (GELAN). Estas innovaciones ayudan a mantener gradientes robustos a través de la red, mejorando la convergencia y la capacidad para detectar objetos pequeños al evitar la pérdida de información \cite{defyolos}.
+  \item \textbf{Yolov10:} Elimina la necesidad de la supresión no máxima (NMS), un paso de postprocesamiento que consume tiempo, mediante una novedosa estrategia de asignación dual. Esto reduce significativamente la latencia de inferencia y lo hace más eficiente para la detección en tiempo real \cite{defyolos}.
+\end{itemize}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figuras/arquitecture YOLO/v8_v9_v10.png}
+  \caption{Diagramas de arquitectura de Yolov8, Yolov9 y Yolov10}
+  \label{fig:Yolov8_v9_v10_arquitectures}
+  (a) Yolov8 presenta una una estructura principal basada en CSP, un cabezal desacoplado y libre de anclajes (anchor-free), y una red de pirámide de características (FPN) optimizada para una extracción eficiente de características a múltiples escalas. 
+  (b) Yolov9 integra la Información de Gradiente Programable con GELAN para una agregación robusta de características.
+  (c) Yolov10 presenta una estrategia de asignación dual, cabezales ligeros y un submuestreo desacoplado de canal espacial para mejorar la precisión y velocidad de la inferencia.
+\end{figure}
+
+\begin{itemize}
+  \item \textbf{Yolov11:} Se enfoca en mejorar la extracción de características mediante el bloque C3k2, el módulo Spatial Pyramid Pooling-Fast (SPPF) y la atención espacial paralela (C2PSA). Estas mejoras le permiten un rendimiento más preciso, especialmente en escenarios con objetos ocluidos \cite{defyolos}.
+  \item \textbf{Yolov12:} Su principal innovación es el módulo de Atención de Área (A²), que ajusta dinámicamente el campo receptivo para capturar señales contextuales globales y locales con un costo computacional mínimo. Esto, junto con la red R-ELAN, optimiza la fusión de características y aumenta drásticamente la velocidad de inferencia \cite{defyolos}.
+\end{itemize}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figuras/arquitecture YOLO/v11_v12.png}
+  \caption{Diagramas de arquitectura de Yolov11 y Yolov12}
+  \label{fig:Yolov11_v12_arquitectures}
+  (a) YOLOv11 utiliza una arquitectura mejorada que incluye bloques C3k2, SPPF y C2PSA. Estos componentes optimizan la extracción de características en diversas escalas y mejoran la atención espacial, lo que se traduce en una mayor precisión de detección.
+  (b) YOLOv12 avanza sobre este diseño con una arquitectura centrada en la atención. Al integrar módulos de Area Attention y bloques R-ELAN, optimiza la combinación de características, logrando un aumento drástico en la velocidad de inferencia para una detección de objetos en tiempo real de vanguardia.
+\end{figure}
+
+\subsection{Técnicas de optimización y validación de modelos}
+\subsection{Literatura de la investigación}
+
+Esto se puede apreciar en aplicaciones como la medicina, donde podemos destacar ejemplos relevantes como: 
+
+\begin{itemize}
+  \item \textbf{Oncología:} Se han desarrollado modelos de Aprendizaje Profundo capaces de detectar cancer de mama en mamografías, detección de nódulos pulmonares en tomografías computarizadas y la identificaciónde cander de piel a través de imágenes de lesiones cutáneas.
+  \item \textbf{Neurología y Radiología:} Arquitecturas como U-Net son capaces de delinear con precisión tumores cerebrales en resonancias magnéticas.
+  \item \textbf{Oftalmología:} Análisis de imagenes del fondo de ojo para detectar retinopatía diabética.
+\end{itemize}
+
+\subsection{Hipótesis de trabajo}
+
+Considerando el potencial de las arquitecturas YOLO y las diferentes técnicas de optimización, se considera que mediante la exploración de las arquitecturas YOLO que van desde la versión 8 a la 12, 
+junto con el diseño personalizado y la optima optimización de hiperparámetros, se consiga igualar o mejorar los modelos de la anterior prueba de concepto del grupo GVIS, en las méticas mAP y velocidad de inferencia. Adicionalmente, 
+se espera que gracias a la arquitectura en desarrollo de Yolov12 basada en módulos de atención, el algoritmo no identifique como células redondas a los Anillos de Newton. la integración de estos modelos con la herramienta web interactiva
+validará su viabilidad como una solución en un marco de análisis real.
 
 \section{Definición del problema}
 \label{sec:Definición del problema}
@@ -339,20 +405,24 @@ en la imagen \ref{fig:Anillos_Newton} anotada por un experto, presenta la proble
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/rounds_cells/Anillos de Newton.png}
-  \caption{Ilustración con Anillos de Newton}
+  \caption{Ilustración con Anillos de Newton.}
   \label{fig:Anillos_Newton}
+  Las \textit{bounging boxes} corresponden con las células redondas y los círculos rojos con los Anillos de Newton.
 \end{figure}
 
-Asimismo, en la imagen \ref{fig:feedback_experto} se evidencian las constantes dudas a cerca de las deteciones decélulas, no solo por el personal que define el proyecto sino por los propios expertos. Cuyo feedback 
-"La mayoría de células marcadas con los rectángulos verdes son ciertas células redondas. Los círculos rosas también serían células (probablemente germinales, pero se necesitaría hacer una evaluación morfológica específica para saberlo). 
-Los círculos azules, marcan correctamente algunas células redondas pero también indican espermatozoides que retienen la mayor parte del citoplasma (esferas grises con un área blanca bien contrastada). 
-En cuanto a los círculos naranjas, muchos son cabezas de espermatozoides sin cola y las eferas más pequeñas desconocemos que son". Esto nos demuestra,
-una vez más, el alto grado de complejidad que supone anotar este tipo de imágenes médicas.
+Asimismo, en la imagen \ref{fig:feedback_experto} se evidencian las constantes dudas a cerca de las anotaciones de células redondas, no solo por el personal que define el proyecto sino por los propios expertos de Microptic \cite{microptic}. 
+Cuyo \textit{feedback} fue:
+
+\begin{quote}
+“La mayoría de células marcadas con los rectángulos verdes son ciertas células redondas. Los círculos rosas también serían células (probablemente germinales, pero se necesitaría hacer una evaluación morfológica específica para saberlo). Los círculos azules marcan correctamente algunas células redondas pero también indican espermatozoides que retienen la mayor parte del citoplasma (esferas grises con un área blanca bien contrastada). En cuanto a los círculos naranjas, muchos son cabezas de espermatozoides sin cola y las esferas más pequeñas desconocemos qué son.”
+\end{quote}
+
+Esto evidencia, una vez más, el alto grado de complejidad que supone anotar este tipo de imágenes médicas, incluso bajo el marco de recomendadiones de la OMS \cite{OMS} \cite{BJBS}.
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/rounds_cells/feedback_experto.png}
-  \caption{Ilustración de annotaciones para \textit{feedback} con experto}
+  \caption{Ilustración de annotaciones para \textit{feedback} con experto.}
   \label{fig:feedback_experto}
 \end{figure}
 
@@ -441,20 +511,20 @@ se detalla cómo el proyecto se ajusta y adhiere a las leyes pertinentes:
 
 En esta sección se describen de forma reproducible los cuatro pipelines experimentales implementados: 
 (1) Preprocesado del \textit{dataset}, 
-(2) YOLO
+(2) Entrenamiento, optimización, validación de modelos YOLO
 (3) Ensamblado (Ensemble). 
 (4) Modelo personalizado.
 
 Aquí tengo que hablar de la arquitectura del código.
 
-\section{Preprocesado del \textit{dataset}}
-\label{sec:Preprocesado del dataset}
-\section{YOLO}
-\label{sec:YOLO}
-\section{Ensamblado (Ensemble)}
-\label{sec:Ensamblado}
-\section{Modelo personalizado}
-\label{sec:Modelo personalizado}
+% \section{Preprocesado del \textit{dataset}}
+% \label{sec:Preprocesado del dataset}
+% \section{Entrenamiento, optimización, validación de modelos YOLO}
+% \label{sec:YOLO}
+% \section{Ensamblado de modelos}
+% \label{sec:Ensamblado}
+% \section{Modelo personalizado}
+% \label{sec:Modelo personalizado}
 
 
 \chapter{Experimentación} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -462,7 +532,7 @@ Aquí tengo que hablar de la arquitectura del código.
 
 \section{Dataset}
 \label{sec:Dataset}
-El dataset inicial proporcionado por la empresa MICROPTIC está constituido por un conjunto de \textit{train} y \textit{test} en formato PascalVOC.
+El dataset inicial proporcionado por la empresa MICROPTIC \cite{microptic} está constituido por un conjunto de \textit{train} y \textit{test} en formato PascalVOC.
 
 \begin{table}[htbp]
 \centering
@@ -491,7 +561,7 @@ Esta división se realiza de forma aleatoria pero reproducible, fijando la semil
 Adicionalmente, la empresa proporciona un conjunto de datos del \textit{test} reevaluado por expertos del dominio. Este conjunto se reetiqueta utilizando la herramienta \textit{LabelImg} \cite{labelimg_github} en formato PascalVOC. 
 Las correcciones afectan a un total de 60 imágenes, incrementando el número de instancias de 1273 a 1412.
 
-Asimismo, se incluyeron dos conjuntos adicionales denominados \textit{test2} y \textit{test3}, inicialmente sin anotaciones pero que contenían \textit{bounding boxes} generados por modelos YOLO preentrenados 
+Asimismo, se incluyeron dos conjuntos adicionales denominados \textit{test2} y \textit{test3}, inicialmente sin anotaciones pero que contenían \textit{bounding boxes} generados por modelos YOLO \cite{ultralytics_models} preentrenados 
 por el grupo GVIS de la Universidad de León. Estas predicciones fueron posteriormente corregidas y validadas por expertos, proporcionando dos conjuntos adicionales para evaluación. 
 La composición final del dataset se presenta en la Tabla~\ref{tab:dataset_final}.
 
@@ -585,7 +655,7 @@ El desarrollo se realizó empleando el siguiente \textit{stack} tecnológico:
         \item PyTorch 2.6.0 con soporte CUDA 12.6
         \item Ultralytics 8.3.177
         \item OpenCV para procesamiento de imágenes
-        \item Optuna para optimización de hiperparámetros
+        \item Optuna para optimización de hiperparámetros 
         \item Streamlit para desarrollo de interfaces web
         \item Pandas para análisis y manipulación de datos
         \item Matplotlib para visualización de datos 
@@ -600,6 +670,7 @@ recoge todas las librerías y versiones necesarias para la correcta ejecución d
 
 \section{Configuraciones}
 \label{sec:Configuraciones}
+
 \subsection{Entrenamiento}
 
 Aquí tengo que poner una tabla con las configuraciones de entrenamiento para ser recreado y cumplir con las normas éticas.
@@ -658,46 +729,48 @@ Hiperparámetros del data augmentation:
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/map50-95.png}
-  \caption{Interfaz de la aplicación web.}
+  \caption{mAP@0.5:0.95 durante el proceso de entrenamiento.}
   \label{fig:yolo_train_map95}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/map50.png}
-  \caption{Interfaz de la aplicación web.}
+  \caption{mAP@0.5 durante el proceso de entrenamiento.}
   \label{fig:yolo_train_map50}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/precision.png}
-  \caption{Interfaz de la aplicación web.}
+  \caption{\textit{Precision} del modelo sobre el conjunto de validación.}
   \label{fig:yolo_train_precision}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/recall.png}
-  \caption{Interfaz de la aplicación web.}
+  \caption{\textit{Recall} del modelo sobre el conjunto de validación.}
   \label{fig:yolo_train_recall}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/box_loss.png}
-  \caption{Interfaz de la aplicación web.}
+  \caption{\textit{Box Loss} sobre el conjunto de entrenamiento y validación.}
   \label{fig:yolo_train_box_loss}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/cls_loss.png}
-  \caption{Interfaz de la aplicación web.}
+  \caption{\textit{Clasification Loss} sobre el conjunto de entrenamiento y validación.}
   \label{fig:yolo_train_cls_loss}
 \end{figure}
 
 \subsection{Validación cruzada}
+\subsection{Ensamblado de modelos}
+\subsection{Modelo personalizado}
 
 \section{Métricas}
 \label{sec:Métricas}
@@ -756,9 +829,9 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
         \hline
         \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{Recall (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
         \hline
-        YOLOv7      & 0.87  & 0.889 & 0.935 & 0.722 & 20.0   \\
-        YOLOv7-W6   & 0.847 & 0.883 & 0.925 & 0.694 & 16.0   \\
-        YOLOv7-E6E  & 0.906 & 0.857 & 0.934 & 0.721 & 127.5  \\
+        YOLOv7      & 0.87  & \textbf{0.889} & \textbf{0.935} & \textbf{0.722} & 20.0   \\
+        YOLOv7-W6   & 0.847 & 0.883 & 0.925 & 0.694 & \textbf{16.0}   \\
+        YOLOv7-E6E  & \textbf{0.906} & 0.857 & 0.934 & 0.721 & 127.5  \\
         \hline
     \end{tabular}
     }
@@ -773,11 +846,11 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
         \hline
         \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{Recall (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
         \hline
-        yolov8s    & 0.843 & 0.844 & 0.920 & 0.722 & 11.006 \\
+        yolov8s    & 0.843 & 0.844 & 0.920 & 0.722 & \textbf{11.006} \\
         yolov9s    & 0.838 & 0.852 & 0.921 & 0.721 & 13.485 \\
-        yolov10s   & 0.821 & 0.867 & 0.918 & 0.717 & 11.221 \\
-        yolov11s   & 0.861 & 0.824 & 0.921 & 0.732 & 11.248 \\
-        yolov12s   & 0.856 & 0.863 & 0.936 & 0.761 & 14.615 \\
+        yolov10s   & 0.821 & \textbf{0.867} & 0.918 & 0.717 & 11.221 \\
+        yolov11s   & \textbf{0.861} & 0.824 & 0.921 & 0.732 & 11.248 \\
+        yolov12s   & 0.856 & 0.863 & \textbf{0.936} & \textbf{0.76} & 14.615 \\
         \hline
     \end{tabular}
     }
@@ -802,26 +875,26 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
 yolov8s   & test & 0.855 & 0.838 & 0.926 & 0.704 & 11.067 \\ \hline
-yolov9s   & test & 0.851 & \cellcolor{turquoise!30}0.876 & 0.933 & 0.706 & 12.904 \\ \hline
+yolov9s   & test & 0.851 & \cellcolor{turquoise!30}\textbf{0.876} & 0.933 & 0.706 & 12.904 \\ \hline
 yolov10s  & test & 0.853 & 0.861 & 0.927 & 0.701 & 11.041 \\ \hline
-yolov11s  & test & 0.846 & 0.866 & 0.930 & 0.716 & \cellcolor{turquoise!30}10.644 \\ \hline
-yolov12s  & test & \cellcolor{turquoise!30}0.861 & 0.848 & \cellcolor{turquoise!30}0.936 & \cellcolor{turquoise!30}0.740 & 15.066 \\
+yolov11s  & test & 0.846 & 0.866 & 0.930 & 0.716 & \cellcolor{turquoise!30}\textbf{10.644} \\ \hline
+yolov12s  & test & \cellcolor{turquoise!30}\textbf{0.861} & 0.848 & \cellcolor{turquoise!30}\textbf{0.936} & \cellcolor{turquoise!30}\textbf{0.740} & 15.066 \\
 \arrayrulecolor{black}
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
-yolov8s & test2 & 0.924 & \cellcolor{turquoise!30}0.938 & 0.969 & 0.553 & 37.858 \\ \hline
+yolov8s & test2 & 0.924 & \cellcolor{turquoise!30}\textbf{0.938} & 0.969 & 0.553 & 37.858 \\ \hline
 yolov9s & test2 & 0.917 & 0.927 & 0.961 & 0.542 & 35.944 \\ \hline
-yolov10s & test2 & 0.956 & 0.898 & 0.962 & \cellcolor{turquoise!30}0.589 & \cellcolor{turquoise!30}12.358 \\ \hline
+yolov10s & test2 & 0.956 & 0.898 & 0.962 & \cellcolor{turquoise!30}\textbf{0.589} & \cellcolor{turquoise!30}\textbf{12.358} \\ \hline
 yolov11s & test2 & 0.929 & 0.917 & 0.964 & 0.534 & 14.967 \\ \hline
-yolov12s & test2 & \cellcolor{turquoise!30}0.965 & 0.917 & \cellcolor{turquoise!30}0.975 & 0.556 & 20.254 \\
+yolov12s & test2 & \cellcolor{turquoise!30}\textbf{0.965} & 0.917 & \cellcolor{turquoise!30}\textbf{0.975} & 0.556 & 20.254 \\
 \arrayrulecolor{black}
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
-yolov8s & test3 & 0.842 & 0.862 & \cellcolor{turquoise!30}0.937 & 0.700 & 11.314 \\ \hline
+yolov8s & test3 & 0.842 & 0.862 & \cellcolor{turquoise!30}\textbf{0.937} & 0.700 & 11.314 \\ \hline
 yolov9s & test3 & 0.843 & 0.870 & 0.935 & 0.681 & 13.291 \\ \hline
-yolov10s & test3 & \cellcolor{turquoise!30}0.873 & 0.826 & 0.926 & 0.667 & \cellcolor{turquoise!30}11.109 \\ \hline
-yolov11s & test3 & 0.855 & \cellcolor{turquoise!30}0.874 & 0.935 & 0.698 & 12.561 \\ \hline
-yolov12s & test3 & 0.836 & 0.821 & 0.922 & \cellcolor{turquoise!30}0.723 & 15.442 \\
+yolov10s & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.826 & 0.926 & 0.667 & \cellcolor{turquoise!30}\textbf{11.109} \\ \hline
+yolov11s & test3 & 0.855 & \cellcolor{turquoise!30}\textbf{0.874} & 0.935 & 0.698 & 12.561 \\ \hline
+yolov12s & test3 & 0.836 & 0.821 & 0.922 & \cellcolor{turquoise!30}\textbf{0.723} & 15.442 \\
 \arrayrulecolor{black}
 \specialrule{1.5pt}{0pt}{0pt}
 \end{tabular}
@@ -1078,7 +1151,7 @@ A continuación, se recogen pautas prácticas para el uso correcto funcionamient
       \item \texttt{streamlit run app.py}
       \item Automáticamente se abre en el navegador por defecto la URL que Streamlit indique (por defecto \texttt{http://localhost:8501}).
     \end{itemize}
-  \item \textbf{Compatibilidad con modelos:} funciona únicamente con modelos de YOLO. 
+  \item \textbf{Compatibilidad con modelos:} funciona únicamente con modelos de YOLO \cite{ultralytics_models}. 
 \end{itemize}
 
 \section{Resolución de problemas}
