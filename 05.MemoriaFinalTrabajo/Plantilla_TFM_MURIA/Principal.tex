@@ -211,10 +211,11 @@
   \item[NMS (\textit{Non-Maximum Suppression)}]: Algoritmo para eliminar las detecciones redundantes, manteniendo la caja con mayor confianza entre las solapadas
   \item[Aprendizaje profundo o \textit{deep learning}]: Área del aprendizaje automático que emplea redes neuronales profundas para aprender representaciones y resolver tareas complejas.
   \item[\textit{Transfer Learning}]: Reutilizar un modelo preentrenado y adaptarlo para entrenar un nuevo modelo con el conocimiento ya adquirido previamente con un dataset generalmente mayor.
-  \item[\textit{Ensemble}]: Técnica para la unificación de predicciones de diferentes modelos.
-  \item[\textit{Cross Validatio}]: Técnica estadística para la evaluación de modelos, que se fundamenta en dividir el dataset en multiples pliegues (\textit{folds}) para entrenar y validar el modelo de forma iteractiva.
-  \item[\textit{Data augmentation}]: Conjunto de transformaciones sobre los datos como rotaciones, traslaciones, adición de ruido, entro otros, con el objetivo de aumentar la diversidad del dattaset y mejorar la generalización del modelo.
-  \item[Optuna]: Biblioteca de Python para la optimización de hiperparámetros, permitiendo encontrar las mejores configuraciones de estos. 
+  \item[\textit{framework}]: Conjunto estructurado de herramientas, librerías y convenciones que facilita y agiliza el desarrollo de aplicaciones o sistemas.
+  % \item[\textit{Ensemble}]: Técnica para la unificación de predicciones de diferentes modelos.
+  % \item[\textit{Cross Validatio}]: Técnica estadística para la evaluación de modelos, que se fundamenta en dividir el dataset en multiples pliegues (\textit{folds}) para entrenar y validar el modelo de forma iteractiva.
+  % \item[\textit{Data augmentation}]: Conjunto de transformaciones sobre los datos como rotaciones, traslaciones, adición de ruido, entro otros, con el objetivo de aumentar la diversidad del dattaset y mejorar la generalización del modelo.
+  % \item[Optuna]: Biblioteca de Python para la optimización de hiperparámetros, permitiendo encontrar las mejores configuraciones de estos. 
   \item[Streamlit]: Framework de Python para crear applicaciones web interactivas orientadas a la ciencia de datos y \textit{Machine Learning}.
   \item[Monolítica]: Arquitectura de software en la que la aplicación se despliega y ejecuta en un mismo proceso.     
   \item[LabelImg]: Herramienta gráfica de código abierto para la anotación de imágenes con \textit{bounding boxes}.
@@ -371,6 +372,16 @@ Dentro de las 12 arquitecturas de YOLO \cite{ultralytics_models}, se emplean las
 \end{figure}
 
 \subsection{Técnicas de optimización y validación de modelos}
+
+Es bien sabido de la existencia de diferentes tecnologías para asegurar la robustez y maximizar el rendimiento de los modelos. Algunas de estas tecnologías, son las siguientes:
+
+\begin{itemize}
+  \item \textbf{Optimización de hiperparámetros (Optuna):} El \textit{framework} Optuna, de optimización automática de hiperparámetros (tales como la tasa de aprendizaje, el \textit{momentum} o regulación) explora de manera inteligente y eficiente el espacio de búsqueda y, al final, devuelve la mejor combinación de hiperparámetros encontrada. Se fundamenta en algoritmos de muestreo bayesiano y mecanismos de poda (\textit{pruning}) que descartan de manera anticipada los ensayos poco prometedores.
+  \item \textbf{Aumento de datos (\textit{data augmentation}):} Para mejorar la capacidad de generalización de un modelo y reducir el riesgo de sobreajuste (\textit{overfitting}) en conjuntos de datos limitados se recurre a esta técnica. esta técnica permite generar nuevas muestras de entrenamiento aplicando transformaciones geométricas (rotaciones, traslaciones, escalado, etc) y fotométricas (cambios de brillo, contraste, etc) sobre las imágenes originales, incrementando así la diversidad del conjunto de datos.
+  \item \textbf{Valización cruzada (\textit{cross validation}):} Dentro de sus múltiples variantes, la más común consiste en dividir el conjunto de datos en "k" subconjuntos o pliegues. El modelo se entrena K veces, utilizando en cada iteración un pliegue diferente para la validación y los K-1 restantes para el entrenamiento. El rendimiento final se calcula como la media de los resultados de las K iteraciones, proporcionando una medida de la capacidad de generalización del modelo menos dependiente de una única división de datos. Esta técnica permite conocer si un modelo es fiable y robusto.
+  \item \textbf{Ensamblado de modelos (\textit{ensemble}):} Esta técnica avanzada busca mejorar la precisión y la robustez de las predicciones combinando las salidas de múltiples modelos entrenados de forma independiente. La hipótesis subyacente es que los errores de un modelo pueden ser compensados por los aciertos de otros (al promediar o dar pesos sobre las predicciones individuales), especialmente si los modelos son diversos.
+\end{itemize}
+
 \subsection{Literatura de la investigación}
 
 Esto se puede apreciar en aplicaciones como la medicina, donde podemos destacar ejemplos relevantes como: 
@@ -407,7 +418,7 @@ en la imagen \ref{fig:Anillos_Newton} anotada por un experto, presenta la proble
   \includegraphics[width=1.0\textwidth]{figuras/rounds_cells/Anillos de Newton.png}
   \caption{Ilustración con Anillos de Newton.}
   \label{fig:Anillos_Newton}
-  Las \textit{bounging boxes} corresponden con las células redondas y los círculos rojos con los Anillos de Newton.
+  Las \textit{bounding boxes} corresponden con las células redondas y los círculos rojos con los Anillos de Newton.
 \end{figure}
 
 Asimismo, en la imagen \ref{fig:feedback_experto} se evidencian las constantes dudas a cerca de las anotaciones de células redondas, no solo por el personal que define el proyecto sino por los propios expertos de Microptic \cite{microptic}. 
@@ -899,7 +910,7 @@ yolov12s & test3 & 0.836 & 0.821 & 0.922 & \cellcolor{turquoise!30}\textbf{0.723
 \specialrule{1.5pt}{0pt}{0pt}
 \end{tabular}
 }
-\caption{Evaluación de modelos YOLO sobre los diferentes conjuntos de prueba}
+\caption{Evaluación de modelos YOLO sobre los nuevos conjuntos de \textit{test}}
 \end{table}
 
 Es importante que hablemos de esta problemática y como evitamos un reetiquetado de imágenes que pueden dar más confusión al confundir clases, y continuar la tendencia monoclase.
@@ -1189,6 +1200,6 @@ Posibles problemas que pueden tener lugar durante la instalación:
 
 
 % ¿Eliminar el bloque de validación de configuración y dejarlo solo pra el optuna, entrenamiento, validación cruzada, data augmentaion?
-% En Resultados, quitar Fast-RCNN y a parte añadir aquí los resultados para yolo y custom de validacion cruzada.
-% Si finalmente voy mejor, añado lo de Fast-RCNN
 % ¿Que comento en metodología, un poco el procedimiento de cada pipeline?
+% Cambio de nombre del TFM
+% Si pongo en antecedentes: optuna, data augmentation, cross validation, los quito del glosario de términos?
