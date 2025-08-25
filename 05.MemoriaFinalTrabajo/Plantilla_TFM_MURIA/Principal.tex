@@ -222,6 +222,12 @@
   \item[\textit{Ground truth}]: Hace alusión a las anotaciones correctas que describen las \textit{bounding boxes} de las imágenes.
   \item[\textit{Checkbox}]: Es un \textit{widget} que permite al usuario activar o desactivar una opción (boleano).  
   \item[\textit{linter}]:  Herramienta que analiza automáticamente el código fuente para detectar errores de sintaxis u otros posibles fallos antes de ejecutar el programa. 
+  \item[Células redondas]: Según la OMS, toda célula no espermática que se encuentra en el eyaculado. Agrupa principalmente dos típos: células germinales inmaduras y leucocitos.
+  \item[Células germinales inmaduras]: Células precursoras de los espermatozoides que no han completado su desarrollo.
+  \item[Leucocitos]: Glóbulos blancos, principalmente netrófilos.  
+  \item[Espermograma]: Consiste en analizar los espermatozoides de un hombre o un animal para evaluar la fertilidad y detectar posibles anomalías. 
+  \item[Espermatogénesis]: Proceso biológico de formación y producción de espermatozoides. 
+  \item[Anillos de Newton]: Interferencia de la luz cuyo resultado es un patrón de anillos muy característico.
 \end{description} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -236,7 +242,7 @@
 \section{Introducción}
 \label{sec:Introducción}
 
-El presente Trabajo de Fin de Máster, desarrollado en colaboración con la empresa Microptic S.L \cite{microptic}. y enmarcado en el contexto de un proyecto europeo 
+El presente Trabajo de Fin de Máster, desarrollado en colaboración con la empresa Microptic S.L \cite{microptic} compañía de Hamilton Thorne \cite{HamiltonThorneWeb} y, enmarcado en el contexto de un proyecto europeo 
 DIGIS3 \cite{digis3}, aborda el desarrollo de una Prueba de Concepto (\textit{Proof of Concept}) para la detección de células redondas en imágenes médicas 
 mediante Inteligencia Artificial. Este trabajo incluye, además, la creación de una interfaz digital que permite la interacción de expertos 
 con los resultados del modelo.
@@ -251,7 +257,7 @@ entrenamiento y la evaluación de los modelos.
 
 Posteriormente, aplicando técnicas de Aprendizaje Profundo (\textit{Deep Learning}) y Visión por Computador, se adaptaron y reentrenaron varias versiones 
 del modelo de detección de objetos en tiempo real YOLO. El propósito fue especializar su capacidad, pasando de la detección de objetos 
-cotidianos a la identificación precisa de las células redondas para interés de la empresa. Finalmente, el modelo fue entrenado y evaluado 
+cotidianos a la identificación precisa de células redondas para facilitar el espermograma. Finalmente, el modelo fue entrenado y evaluado 
 para validar su rendimiento, eficacia y viabilidad.
 
 De este modo, el proyecto trasciende la investigación académica para materializar la misión de DIGIS3 \cite{digis3}: "impulsar la digitalización de las empresas a través 
@@ -282,8 +288,34 @@ Para dar forma a este proceso, se definen los siguientes pasos:
 \section{Contexto y motivación}
 \label{sec:Contexto y motivación}
 
-Añadir en introducción, las referencias bibliográficas a digis3, microptic y del grupo GVIS.
-Aquí queiro habalr del contexto de la IA, dela visión por computador, detección de objetos y las motivaciones
+El análisis de muestras de semen es un pilar fundamental en el campo de la medicina reproductiva. Su relevancia abarca desde el diagnóstico 
+de la infertilidad en parejas y técnicas de reproducción asistida en humanos, hasta la investigación y producción en el sector ganadero. Tradicionalmente,
+este análisis se ha centrado en la motilidad, concentración y morfologia de los espermatozoides.
+
+Sin embargo, un análisis seminal requiere la evaluación de otros componentes celulares, entre los que destacan las células redondas. 
+Estas constituyen un indicador diagnóstico crucial, ya que abarca linfocitos, células plasmáticas, macrófagos, mastocitos y células tumorales redondas; cuya presencia puede ser signo de infecciones o inflamaciones 
+del tracto genital, como células germinales inmaduras, que pueden indicar una alteración en el proceso de espermatogénesis \cite{HamiltonThorneRoundCells}.
+
+El método estandar para la identificación y conteo de células redondas depende de la agudeza visual de un experto a través de un microscopio; lo que convierte al proceso de
+espermatogenia es un proceso subjetivo (depende del observador), lento, laborioso y cansado para el observador. Estas limitaciones motivan la necesidad 
+de desarrollar alternativas mediante herramientas automatizadas que permitan obtener resultados más rápidos, objetivos y reproducibles, optimizando el espermograma.
+
+El auge de la Inteligencia Artificial, y en particular las técnicas de Visión por Computador basadas en Aprendizaje Profundo, están protagonizando una revolución dentro del mundo de la medicina.
+La capacidad de las redes neuronales en la detección de patrones complejos han demostrado ser una herramienta de apoyo en diversas especialidades como son: análisis de imágenes radiológicas o análisis de lesiones cutáneas en dermatología, entre otras.
+En \textit{computer vision}, modelos de detección de objetos como YOLO (You Only Look Once) han demostrado un equilibrio entre precisión y velocidad de inferencia. Estos algoritmos son capaces de procesar imágenes y localizar multiples objetos de interes en milisegundos.
+Siendo idóneo en este tipo de trabajos clínicos.
+
+Atendiendo a estas necesidades y casuísticas, por parte de una empresa lider en el análisis espermático, surge la necesidad de integrar estos sistemas inteligentes para la detección de células redondas al que dió solución el grupo GVIS de la 
+Universidad de León mediante una prueba de concepto \cite{HamiltonThorneRoundCells}. Demostrando así, la capacidad de estas tecnologías en este tipo de tareas complejas.
+
+Aprovechando este hito, surge la motivación de definir una nueva prueba de concepto integrada en un entorno digital, que permita igualar o superar con menos recursos, la anterior prueba de concepto. Esto se aborda a través de diferentes vías:
+
+\begin{itemize}
+  \item Explorar diferentes arquitecturas de YOLO, desde modelos oficiales hasta prototipos más recientes que emplean capas de atención. 
+  \item Diseñar un modelo peronalizado para competir con los modelos existentes.
+  \item Optimización y mejora de la detección: buscar la configuración optima que maximice diferentes métricas y abordar la detección de artefactos visuales que fueron identificados como una limitación en la PoC previa. 
+  \item Desarrollar de una herramienta web interactiva que no solo sirva para evalauar imágenes sino que además, de soporte a expertos.
+\end{itemize}
 
 \section{Estado del arte e hipótesis}
 \label{sec:Estado del arte e hipótesis}
@@ -293,6 +325,36 @@ Aqui hablamos de los papers, del proyecto de GVIS de la ule y las hipótesis.
 \section{Definición del problema}
 \label{sec:Definición del problema}
 
+La problemática que da origen a este proyecto no es otra que la ardua y extenuante tarea que le supone a un expero la revisión manual de imágenes médicas de muestras de semen.
+
+Por esta razón, el problema central que aborda este proyecto es diseñar, desarrollar y evaluar un sistema inteligente capaz de automatizar la detección de células 
+redondas sobre un conjunto de imágenes médicas de muestras de semen, utilizando para ello, tecnicas de Visión por Computador (\textit{Computer Vision}) y Aprendizaje Profundo (\textit{Deep Learning}).
+
+Este sistema inteligente debe ser capaz de pocesar imágenes microscópicas donde las células objetivo cohexisten con una densa población de espermatozoides, diversos artefactos visuales (Anillos de Newton)
+y restos residuales ajenos al análisis. Asimismo, la dificultad que supone la distinción de células redondas de otros elementos morfológicamente similares (espermatozoides sin cola), esferas de las que se desconoce que son, etc.
+
+Para más inri, la asignación de anotaciones sobre el conjunto de imágenes es un problema que va a dar dolores de cabeza durante todo el proyecto. Por ejmplo,
+en la imagen \ref{fig:Anillos_Newton} anotada por un experto, presenta la problemática de los Anillos de Newton. Se verá posteriormente como afectan estos objetos a la correcta identificación de células redondas.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\textwidth]{figuras/rounds_cells/Anillos de Newton.png}
+  \caption{Ilustración con Anillos de Newton}
+  \label{fig:Anillos_Newton}
+\end{figure}
+
+Asimismo, en la imagen \ref{fig:feedback_experto} se evidencian las constantes dudas a cerca de las deteciones decélulas, no solo por el personal que define el proyecto sino por los propios expertos. Cuyo feedback 
+"La mayoría de células marcadas con los rectángulos verdes son ciertas células redondas. Los círculos rosas también serían células (probablemente germinales, pero se necesitaría hacer una evaluación morfológica específica para saberlo). 
+Los círculos azules, marcan correctamente algunas células redondas pero también indican espermatozoides que retienen la mayor parte del citoplasma (esferas grises con un área blanca bien contrastada). 
+En cuanto a los círculos naranjas, muchos son cabezas de espermatozoides sin cola y las eferas más pequeñas desconocemos que son". Esto nos demuestra,
+una vez más, el alto grado de complejidad que supone anotar este tipo de imágenes médicas.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\textwidth]{figuras/rounds_cells/feedback_experto.png}
+  \caption{Ilustración de annotaciones para \textit{feedback} con experto}
+  \label{fig:feedback_experto}
+\end{figure}
 
 \chapter{Gestión de proyecto software} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Gestión de proyecto software}
@@ -361,18 +423,11 @@ se detalla cómo el proyecto se ajusta y adhiere a las leyes pertinentes:
     \item \textbf{Reglamento (UE) 2024/1689 del Parlamento Europeo y del Consejo sobre Inteligencia Artificial}\cite{ReglamentoIA2024}
 
     Este reglamento establece normas armonizadas para garantizar la seguridad, ética y transparencia en el desarrollo y aplicación de sistemas de IA en la Unión Europea.  
-    En el contexto de este TFM, el sistema desarrollado se considera una herramienta de investigación y apoyo a la evaluación biomédica —no está concebido ni validado para toma de decisiones clínicas autónomas— por lo que su uso actual no se presenta como IA de alto riesgo. No obstante, para alinearse con los requisitos del AI Act se han incorporado las siguientes medidas:
-
-    \begin{itemize}
-      \item Documentación técnica completa: descripción del dataset (origen, anonimización), preprocesado, arquitecturas, versiones de modelos y parámetros de entrenamiento, así como resultados de pruebas y validación.
-      \item Evaluación de riesgos y validación: análisis de riesgos potenciales (falsos negativos/positivos), pruebas experimentales y métricas reproducibles que soportan las conclusiones presentadas.
-      \item Supervisión humana: la salida del sistema está diseñada para ser interpretada y validada por personal experto; no se recomienda uso clínico sin supervisión experta.
-      \item Transparencia y comunicación de limitaciones: en la memoria y la interfaz se documentan el ámbito de aplicación, las limitaciones conocidas y los intervalos de confianza relevantes.
-      \item Trazabilidad y registro: control de versiones de datos y modelos, y registro de ejecuciones y resultados para facilitar auditoría y reproducibilidad.
-      \item Plan de monitorización: recomendaciones para monitorizar rendimiento y sesgos en caso de desplegarse en entornos reales.
-    \end{itemize}
+    En el contexto de este TFM, el sistema desarrollado se considera una herramienta de investigación y apoyo a la evaluación biomédica —no está concebido ni validado para toma de decisiones clínicas autónomas— 
+    por lo que su uso actual no se presenta como IA de alto riesgo. No obstante, para alinearse con los requisitos se incorporan las siguientes medidas: documentación completa, evaluación de riesgos y validación, 
+    trazabilidad y registro para una posterior reproducibilidad.
     
-     \item \textbf{Real Decreto Legislativo 1/1996 sobre Propiedad Intelectual}\cite{RDL1996}
+    \item \textbf{Real Decreto Legislativo 1/1996 sobre Propiedad Intelectual}\cite{RDL1996}
     
     En conformidad con el Real Decreto Legislativo 1/1996, el proyecto respeta la normativa sobre propiedad intelectual. Se ha optado por utilizar 
     únicamente código y herramientas de software libre y de código abierto para garantizar el cumplimiento de la normativa en materia de propiedad 
@@ -386,20 +441,20 @@ se detalla cómo el proyecto se ajusta y adhiere a las leyes pertinentes:
 
 En esta sección se describen de forma reproducible los cuatro pipelines experimentales implementados: 
 (1) Preprocesado del \textit{dataset}, 
-(2) Entrenamiento YOLO, 
-(3) Entrenamiento Fast‑RCNN 
-(4) Ensamblado (Ensemble). 
+(2) YOLO
+(3) Ensamblado (Ensemble). 
+(4) Modelo personalizado.
 
 Aquí tengo que hablar de la arquitectura del código.
 
 \section{Preprocesado del \textit{dataset}}
 \label{sec:Preprocesado del dataset}
-\section{Entrenamiento YOLO}
-\label{sec:Entrenamiento YOLO}
-\section{Entrenamiento Fast‑RCNN}
-\label{sec:Entrenamiento Fast‑RCNN}
+\section{YOLO}
+\label{sec:YOLO}
 \section{Ensamblado (Ensemble)}
 \label{sec:Ensamblado}
+\section{Modelo personalizado}
+\label{sec:Modelo personalizado}
 
 
 \chapter{Experimentación} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -774,6 +829,8 @@ yolov12s & test3 & 0.836 & 0.821 & 0.922 & \cellcolor{turquoise!30}0.723 & 15.44
 \caption{Evaluación de modelos YOLO sobre los diferentes conjuntos de prueba}
 \end{table}
 
+Es importante que hablemos de esta problemática y como evitamos un reetiquetado de imágenes que pueden dar más confusión al confundir clases, y continuar la tendencia monoclase.
+
 % Tabla para los artefactos
 \definecolor{mygreen}{RGB}{0,180,0}
 \definecolor{myred}{RGB}{220,0,0}
@@ -808,7 +865,6 @@ already tested-22 & 3 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}
 \end{table}
 
 \newpage
-\subsection{Fast-RCNN}
 \subsection{Ensemble}
 \subsection{Modelo personalizado}
 \section{Discursión de resultados}
@@ -879,6 +935,8 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
 
 
 \chapter{Conclusión} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+hacer una evaluación de riesgos.
+Por lo tanto, este Trabajo de Fin de Máster no es un ejercicio puramente académico, sino que se constituye como una Prueba de Concepto (PoC) con un objetivo industrial definido y un respaldo institucional estratégico.
 \section{Conclusión general}
 \label{sec:Conclusión general}
 \section{Limitaciones del estudio}
@@ -900,7 +958,7 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
 %%%% BIBLIOGRAFÍA %%%%
 \renewcommand\bibname{Bibliografía}
 
-\bibliographystyle{plain} % Fichero con el formato de la bibliografía.
+\bibliographystyle{unsrt} % Fichero con el formato de la bibliografía.
 \nocite{*}
 \bibliography{referencias}
 %\bibliographystyle{unsrt} %plain %apalike
@@ -1055,3 +1113,9 @@ Posibles problemas que pueden tener lugar durante la instalación:
 \end{itemize}
 
 \end{document}
+
+
+% ¿Eliminar el bloque de validación de configuración y dejarlo solo pra el optuna, entrenamiento, validación cruzada, data augmentaion?
+% En Resultados, quitar Fast-RCNN y a parte añadir aquí los resultados para yolo y custom de validacion cruzada.
+% Si finalmente voy mejor, añado lo de Fast-RCNN
+% ¿Que comento en metodología, un poco el procedimiento de cada pipeline?
