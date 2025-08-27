@@ -243,35 +243,35 @@
 \section{Introducción}
 \label{sec:Introducción}
 
-El presente Trabajo de Fin de Máster, desarrollado en colaboración con la empresa Microptic S.L \cite{microptic} compañía de Hamilton Thorne \cite{HamiltonThorneWeb} y, enmarcado en el contexto de un proyecto europeo 
-DIGIS3 \cite{digis3}, aborda el desarrollo de una Prueba de Concepto (\textit{Proof of Concept}) para la detección de células redondas en imágenes médicas 
+El presente Trabajo de Fin de Máster, desarrollado en colaboración con la empresa Microptic S.L \cite{microptic} compañía de Hamilton Thorne \cite{HamiltonThorneWeb}, 
+parte del desarrollo de una Prueba de Concepto (\textit{Proof of Concept}) desarrollada en el marco europeo DIGIS3 \cite{digis3}, para la detección de células redondas en imágenes médicas 
 mediante Inteligencia Artificial. Este trabajo incluye, además, la creación de una interfaz digital que permite la interacción de expertos 
 con los resultados del modelo.
 
-El objetivo de esta solución es la identificación automatizada de células redondas en imágenes de muestras de semen. Esta capacidad es de 
+El objetivo de esta solución es la identificación automatizada de células redondas en imágenes de muestras de semen humano. Esta capacidad es de 
 gran interés para Microptic \cite{microptic}, ya que optimiza los tiempos de análisis de los expertos y enriquece el estudio de las muestras espermáticas, 
 mejorando la caracterización de parámetros clave tanto en el ámbito de la reproducción asistida humana como en la investigación y producción animal. 
 
 La metodología se ha centrado, en primer lugar, en la consolidación de un conjunto de datos de alta calidad. Para ello, se procesó y validó el feedback 
-proporcionado por los expertos de Microptic \cite{microptic}, refinando el etiquetado de las imágenes que constituyen la base para el 
-entrenamiento y la evaluación de los modelos.
+proporcionado por los expertos de Microptic \cite{microptic}, refinando el etiquetado de las imágenes que constituyen la base para la evaluación de los modelos.
 
 Posteriormente, aplicando técnicas de Aprendizaje Profundo (\textit{Deep Learning}) y Visión por Computador, se adaptaron y reentrenaron varias versiones 
 del modelo de detección de objetos en tiempo real YOLO \cite{ultralytics_models}. El propósito fue especializar su capacidad, pasando de la detección de objetos 
 cotidianos a la identificación precisa de células redondas para facilitar el espermograma. Finalmente, el modelo fue entrenado y evaluado 
 para validar su rendimiento, eficacia y viabilidad.
 
-De este modo, el proyecto trasciende la investigación académica para materializar la misión de DIGIS3 \cite{digis3}: "impulsar la digitalización de las empresas a través 
+De este modo, el proyecto trasciende la investigación académica para dar continuidad la misión de DIGIS3 \cite{digis3}: "impulsar la digitalización de las empresas a través 
 de soluciones tecnológicas avanzadas". La herramienta web desarrollada actúa como un catalizador de la transformación digital para Microptic \cite{microptic}, traduciendo 
 un complejo modelo de Inteligencia Artificial en una solución práctica que potencia sus capacidades de análisis y establece un precedente para futuras innovaciones.
 
 \section{Objetivos}
 \label{sec:Objetivos}
 
-Este Trabajo de Fin de Máster tiene como objetivo principal aplicar y consolidar los conocimientos adquiridos durante la maestría mediante el desarrollo de un sistema de detección automatizada de células redondas en imágenes biomédicas; 
-demostrando la integración de competencias técnicas en inteligencia artificial, procesamiento de imágenes y desarrollo de software.
+Este Trabajo de Fin de Máster tiene como objetivo principal el diseño, desarrollo y validación de un sistema inteligente para la detección automatizada de células redondas en imágenes médicas de muestras de semen humano;
+mediante el empleo de técnicas de visión por computador y aprendizaje profundo. 
+Demostrando así, la integración de competencias técnicas avanzadas en inteligencia artificial, procesamiento de imágenes y desarrollo de software, entre otras habilidades transversales. 
 
-Para dar forma a este proceso, se definen los siguientes pasos: 
+Con este proyecto, se pretende abordar los siguientes objetivos específicos: 
 
 \begin{itemize}
   \item Investigar y estudiar casuísticas análogas en la detección de células en conjuntos de imágenes médicas.
@@ -415,7 +415,7 @@ en la imagen \ref{fig:Anillos_Newton} anotada por un experto, presenta la proble
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=1.0\textwidth]{figuras/rounds_cells/Anillos de Newton.png}
+  \includegraphics[width=0.8\textwidth]{figuras/rounds_cells/Anillos de Newton.png}
   \caption{Ilustración con Anillos de Newton.}
   \label{fig:Anillos_Newton}
   Las \textit{bounding boxes} corresponden con las células redondas y los círculos rojos con los Anillos de Newton.
@@ -432,7 +432,7 @@ Esto evidencia, una vez más, el alto grado de complejidad que supone anotar est
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=1.0\textwidth]{figuras/rounds_cells/feedback_experto.png}
+  \includegraphics[width=0.8\textwidth]{figuras/rounds_cells/feedback_experto.png}
   \caption{Ilustración de annotaciones para \textit{feedback} con experto.}
   \label{fig:feedback_experto}
 \end{figure}
@@ -522,7 +522,7 @@ se detalla cómo el proyecto se ajusta y adhiere a las leyes pertinentes:
 
 En esta sección se describen de forma reproducible los cuatro pipelines experimentales implementados: 
 (1) Preprocesado del \textit{dataset}, 
-(2) Entrenamiento, optimización, validación de modelos YOLO
+(2) YOLO 
 (3) Ensamblado (Ensemble). 
 (4) Modelo personalizado.
 
@@ -967,17 +967,17 @@ La herramienta web para la detección de células redondas tiene como principale
 \begin{itemize}
   \item{\textbf{Detección atomática de células en imágenes microscópicas en el contexto médico abordado con anterioridad:} Permitir identificar
   y localizar células redondas dotando al usuario de diferentes arquitecturas de modelos.}
-  \item{\textbf{Comparación de rendimiento entre modelos:} Facilitar la evaluación comparativa entre diferentes modelos
-  , permitiendo al usuario seleccionar el mejor modelo y el intervalo de actuación para el IoU.}
+  \item{\textbf{Comparación de rendimiento entre modelos:} Facilitar la evaluación comparativa entre diferentes modelos,
+  permitiendo al usuario seleccionar el mejor modelo y el intervalo de actuación para el IoU.}
   \item{\textbf{Visualización de resultados:} Proporcionar una interface de visualización clara e intuitiva que permita al usuario 
-  visualizar las predicciones del modelo y las \textit{bounding boxes} si se dispone de las mismas.}
-  \item{\textbf{Análisis cuantitativo:} Permitir obtener métricas y estadísticas como: \textit{precision, accuracy}, conteo o IoU promedio}
+  visualizar las predicciones del modelo y las \textit{bounding boxes} del \textit{ground truth}si se dispone de las mismas.}
+  \item{\textbf{Análisis cuantitativo:} Permitir obtener métricas y estadísticas como: \textit{precision, accuracy}, conteo o IoU promedio}.
   \item{\textbf{Soporte a la investigación biomédica:} Facilitar la identificación temprana de diferentes grados de patología.} 
 \end{itemize}
 
 \section{Arquitectura}
 \label{sec:Arquitectura}
-La arquitectura de la aplicación sigue un diseño modular y escalable basada en \textit{Streamlit}. Esto permite tener una aplicación monolítica que encapsula toda la funcionalidad en un único ejecutable y mantiene 
+La arquitectura de la aplicación sigue un diseño modular y escalable, basada en \textit{Streamlit}. Esto permite tener una aplicación monolítica que encapsula toda la funcionalidad en un único ejecutable y mantiene 
 una clara separación entre la lógica de procesamiento y de presentación.
 
 \subsection{Organización del proyecto}
@@ -1014,7 +1014,7 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
   \item Carga de imagen (individual o lote) con \texttt{st.file\_uploader}. Opcional: cargar el xml con las anotaciones en formato PascVOC.
   \item Preprocesado de la imagen y envío al dispositivo (CPU/GPU).
   \item Inferencia YOLO y postprocesado (NMS, métricas básicas).
-  \item Visualización: imagen anotada, conteo, tablas y métricas, \textit{bounding boxes}.
+  \item Visualización: imagen anotada, conteo, tablas, métricas y \textit{bounding boxes}.
 \end{enumerate}
 
 
@@ -1065,7 +1065,7 @@ Esta herramienta permite un seguimiento del proyecto por parte del responsable o
 una funcionalidad para desarrolladores que permite editar el proyecto desde un navegador web. Facilitando la implementación de mejoras y la 
 corrección de errores desde cualquier dispositivo con acceso a internet.
 
-Casi la totalidad del desarrollo de este proyecto final lo podemos encontrar en el repositorio personal \cite{repoTFM}.
+Casi la totalidad del desarrollo de este proyecto final lo podemos encontrar en el repositorio personal \cite{repoTFM}, cumpliendo en todo momento, con la normativa y legislación bajo las que se enmarca el proyecto.
 
 
 \chapter{Seguimiento del proyecto} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1093,12 +1093,12 @@ como se muestra en la siguiente imagen.
 
 En este punto, el usuario puede tomar la decisión de procesar una imagen individual o un conjunto de imágenes. Para esto, 
 tenemos el \textit{widget} que permite la selección entre "Detección individual" o "Carpeta completa". En ambos casos,
-la aplicación nos muestra una guia básica de funcionamiento como se puede apreciar en el apartado "Introducciones" de la imagen anterior.
+la aplicación nos muestra una guia básica de funcionamiento como se puede apreciar en el apartado "Introducciones" en la Figura \ref{fig:cell_app}.
 De manera totalmente opcional, el usuario puede cargar junto a la imagen a estudio, el correspondiente conjunto de anotaciones.
 
 El \textit{widget} de Configuración permite la seleccion manual del modelo a través de un desplazable, el umbral de confianza de IoU, 
 la representación \textit{ground truth} (siempre que exista el xml asociado a la imagen) mediante un \textit{checkbox} (Figura \ref{fig:cell_app_gt}) y realizar un análisis exploratorio
-sobre la imagen con un zoom (Figura \ref{fig:cell_app_zoom}). Asimismo, muestra el dispositivo (CPU,GPU) con el que se van a procesar las imágenes.
+sobre la imagen con un zoom (Figura \ref{fig:cell_app_zoom}). Asimismo, muestra el dispositivo (CPU,GPU) con el que se procesan las imágenes.
 
 \begin{figure}[htbp]
   \centering
@@ -1115,9 +1115,9 @@ sobre la imagen con un zoom (Figura \ref{fig:cell_app_zoom}). Asimismo, muestra 
 \end{figure}
 
 Cabe destacar el \textit{widget} "Descargar XML" que permite al usuario descargar las prediciones del modelo realizadas sobre la imagen de entrada en un formato
-PascalVOC. Además, 
+PascalVOC. 
 
-Por el contrario, si el usuario prefiere evaluar un conjunto de imágenes con sus respectivas anotaciones, se debe seleccionar la elección de "carpeta completa" como se muestra en la Figura \ref{fig:cell_app_directory}.
+Si el usuario prefiere evaluar un conjunto de imágenes con sus respectivas anotaciones, se debe seleccionar la elección de "carpeta completa" como se muestra en la Figura \ref{fig:cell_app_directory}.
 
 \begin{figure}[htbp]
   \centering
@@ -1126,7 +1126,7 @@ Por el contrario, si el usuario prefiere evaluar un conjunto de imágenes con su
   \label{fig:cell_app_directory}
 \end{figure}
 
-Este es un modo de evaluación, no está permitido el uso de los \textit{widgets}: \textit{ground truth} y \textit{zoom}. Sín embargo, 
+En este modo de evaluación, no está permitido el uso de los \textit{widgets}: \textit{ground truth} y \textit{zoom}. Sin embargo, 
 el procesamiento del modelo seleccionado junto con su correspondiente umbral de procesamiento de IoU, está acompañado de un pequeño conjunto de métricas:
 \textit{precision}, \textit{recall} y \textit{mAP}. Para una mejor evaluación, la herramienta muestra una matriz de confusión (Figura \ref{fig:cell_app_metrics}).
 
@@ -1142,7 +1142,7 @@ el procesamiento del modelo seleccionado junto con su correspondiente umbral de 
 A continuación, se recogen pautas prácticas para el uso correcto funcionamiento de la herramienta web.
 
 \begin{itemize}
-  \item \textbf{Entorno recomendado:} se recomienda usar un entorno conda para tener aisladas las dependencias del proyecto y evitar así conflictos entre dependencias. 
+  \item \textbf{Entorno recomendado:} se recomienda usar un entorno conda para tener aisladas las dependencias del proyecto y evitar así, conflictos entre dependencias. 
   Desde el directorio \texttt{04.Code} se proponen dos alternativas:
     \begin{itemize}
       \item Instalación del entorno completo con conda (Recomendado):
@@ -1162,7 +1162,7 @@ A continuación, se recogen pautas prácticas para el uso correcto funcionamient
       \item \texttt{streamlit run app.py}
       \item Automáticamente se abre en el navegador por defecto la URL que Streamlit indique (por defecto \texttt{http://localhost:8501}).
     \end{itemize}
-  \item \textbf{Compatibilidad con modelos:} funciona únicamente con modelos de YOLO \cite{ultralytics_models}. 
+  \item \textbf{Compatibilidad con modelos:} limitada a modelos de YOLO \cite{ultralytics_models}. 
 \end{itemize}
 
 \section{Resolución de problemas}
@@ -1199,7 +1199,7 @@ Posibles problemas que pueden tener lugar durante la instalación:
 \end{document}
 
 
-% ¿Eliminar el bloque de validación de configuración y dejarlo solo pra el optuna, entrenamiento, validación cruzada, data augmentaion?
-% ¿Que comento en metodología, un poco el procedimiento de cada pipeline?
-% Cambio de nombre del TFM
-% Si pongo en antecedentes: optuna, data augmentation, cross validation, los quito del glosario de términos?
+% % ¿Eliminar el bloque de validación de configuración y dejarlo solo pra el optuna, entrenamiento, validación cruzada, data augmentaion?
+% % ¿Que comento en metodología, un poco el procedimiento de cada pipeline?
+% % Cambio de nombre del TFM
+% ¿Usamos las mismas imágenes que evalua Eduardo y las comparamos con estos modelos también? En anexo o en resultados? 
