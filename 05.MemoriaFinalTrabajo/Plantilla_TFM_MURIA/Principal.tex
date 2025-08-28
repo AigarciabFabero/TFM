@@ -530,16 +530,16 @@ En esta sección se describen de forma reproducible, las tres etapas clave exper
 \section{Gestión y preprocesado del \textit{dataset}}
 \label{Gestión y preprocesado del dataset}
 
-La base de cualquier sistema de aprendizaje de Inteligencia Artificial, reside en la calidad de los datos. Esta primera fase se centra en el estudio y procesamiento del conjunto de datos, que servirá como
+La base de cualquier sistema de aprendizaje de Inteligencia Artificial, reside en la calidad de los datos. Esta primera fase, se centra en el estudio y procesamiento del conjunto de datos, que servirá como
 fuente de verdad (\textit{ground truth}) en las etapas posteriores.
 
 \begin{itemize}
-  \item \textbf{Adquisición y consolidación:} El punto de partida es el conjunto de imágenes médicas proporcionado por Microptic S.L \cite{microptic}. 
-  Se realiza un análisis para comprender su estructura, el formato original (PascalVOC) y la calidad de las annotaciones. Un conjunto de datos para entrenamiento y tres para \textit{test}.
-  \item \textbf{Validación por expertos:} Atendiendo a la revisión de feedback proporcionada por expertos sobre los conjuntos de \textit{test}, se proceede con el reetiquetado (mediante LabelImage \cite{labelimg_github}) para asegurar una mejor precisión de las anotaciones. 
+  \item \textbf{Adquisición y consolidación:} El punto de partida es el conjunto de imágenes médicas proporcionado por Microptic S.L. \cite{microptic} 
+  Se realiza un análisis para comprender su estructura, el formato original (PascVOC) y la calidad de las anotaciones. Un conjunto de datos para entrenamiento y tres para \textit{test}.
+  \item \textbf{Validación por expertos:} Atendiendo a la revisión de feedback proporcionada por expertos sobre los conjuntos de \textit{test}, se procede con el reetiquetado (mediante LabelImage \cite{labelimg_github}) para asegurar una mejor precisión de las anotaciones. 
   Como no se tiene feedback respecto al conjunto de entrenamiento y, además, como se quiere comparar con la prueba de concepto inicial, no se modifica ni se pide una nueva valoración de expertos sobre el conjunto de datos de entrenamiento.
-  \item \textbf{Estructuración del dataset:} Para entrenar las diferentes arquitecturas de YOLO, el conjunto de datos de entrenamiento original, se divide el conjunto de datos en entrenamiento (80\%) y validación (20\%). Empleando para esto, una semilla determinada para garantizar que los experimientos sean reproducibles. 
-  \item \textbf{Nuevo formato de datos:} Una vez se ha organizado la estructura de carpetas, las anotaciones en formato PascVOC se convierten a formato YOLO, que es requerído para la metodología actual. Adicionalmente, se generó una versión en formato COCO para garantizar la interoperabilidad y facilitar futuras aplicaciones con otros marcos de trabajo.
+  \item \textbf{Estructuración del dataset:} Para entrenar las diferentes arquitecturas de YOLO, el conjunto de datos de entrenamiento original, se divide el conjunto de datos en entrenamiento (80\%) y validación (20\%). Empleando para esto, una semilla determinada para garantizar que los experimentos sean reproducibles. 
+  \item \textbf{Nuevo formato de datos:} Una vez se ha organizado la estructura de carpetas, las anotaciones en formato PascVOC se convierten a formato YOLO, que es requerido para la metodología actual. Adicionalmente, se generó una versión en formato COCO para garantizar la interoperabilidad y facilitar futuras aplicaciones con otros marcos de trabajo.
 \end{itemize}
 
 \section{Diseño experimental, entrenamiento y evaluación de modelos.}
@@ -548,6 +548,14 @@ fuente de verdad (\textit{ground truth}) en las etapas posteriores.
 \section{Desarrollo y despliegue de la herramienta web}
 \label{Despliegue de la herramienta web}
 
+La tercera y última fase del proyecto, es dar una solución tangible y accesible para los usuarios finales (expertos) \autoref{Herramienta web}.
+
+\begin{itemize}
+  \item \textbf{Desarrollo de la interfaz:} Se define una aplicación interactiva empleando el framework de Streamlit, con el fin de que los expertos médicos puedan interactuar de forma intuitiva con el sistema de detección de células redondas.
+  \item \textbf{Funcionalidades:} La prueba de concepto se integra con una serie de funcionalidades como la carga de imágenes y anotaciones asociadas (opcional), selección de modelo de inferencia e intervalo de confianza de las predicciones, 
+  visualización de las detecciones, comparativa de resultados con el \textit{ground truth}, exportación de predicciones y métricas sobre un conjunto de imágenes. 
+  \item \textbf{Arquitectura de software:} La aplicación se diseña con un enfoque modular, que separa la lógica de procesado de la interfaz de usuario, garantizando la escalabilidad y la facilidad de mantenimiento.
+\end{itemize}
 
 \chapter{Experimentación} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Experimentación}
@@ -567,6 +575,7 @@ El dataset inicial proporcionado por la empresa MICROPTIC \cite{microptic} está
 Partición & Resoluciones (px) & Nº imágenes (resolución) & Nº imágenes & Sin instancias & Escala grises\\
 \midrule
 \textit{Train} & \makecell[l]{1280\,×\,1024 \\ 768\,×\,616} & \makecell[r]{356 \\ 17} & 373 & 23 & 3 canales\\ 
+\arrayrulecolor{gray!30}\specialrule{0.6pt}{0pt}{0pt}\arrayrulecolor{black}
 \textit{Test}  & \makecell[l]{1280\,×\,1024 \\ 768\,×\,616} & \makecell[r]{87 \\ 7}   & 94  & 6  & 3 canales\\ 
 \bottomrule
 \end{tabular}
@@ -967,6 +976,7 @@ already tested-22 & 3 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}
 
 
 \chapter{Herramienta Web} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{Herramienta web}
 Con el propósito de definir una herramienta de análisis automatizado, se desarrolla una interfaz intuitiva e interactiva para la detección 
 de células redondas sobre una muetra individual o colectiva. La información relativa a la aplicación,
 se puede encontrar en el manual de usuario (\ref{Manual de usuario}).
