@@ -6,6 +6,8 @@ BATCH = 7
 IMGSZ = 704
 K = 4
 
+results_dir = "../08.Resultados Experimentacion"
+
 models = {
     # YOLOv10
     "yolov10n": "yolo/yolo_models/yolov10n.pt",
@@ -25,7 +27,6 @@ models = {
     "yolov12s": "yolo/yolo_models/yolo12s.pt",
     "yolov12m": "yolo/yolo_models/yolo12m.pt",
     "yolov12l": "yolo/yolo_models/yolo12l.pt",
-    "yolov12x": "yolo/yolo_models/yolo12x.pt",
     "yolov12sy": "yolo/yolo_models/yolo12s.yaml",
 
     #Custom
@@ -38,7 +39,6 @@ results_csv_paths = {
     'yolov10s': 'runs/detect/final_model_yolov10s/results.csv',
     'yolov11s': 'runs/detect/final_model_yolov11s/results.csv',
     'yolov12s': 'runs/detect/final_model_yolov12s/results.csv',
-    'yolov12x': 'runs/detect/final_model_yolov12x/results.csv',
     "custom": "runs/detect/final_model_custom/results.csv",
 }
 
@@ -48,7 +48,6 @@ final_model_path = {
     "yolov10s": "runs/detect/final_model_yolov10s/weights/best.pt",
     "yolov11s": "runs/detect/final_model_yolov11s/weights/best.pt",
     "yolov12s": "runs/detect/final_model_yolov12s/weights/best.pt",
-    "yolov12x": "runs/detect/final_model_yolov12x/weights/best.pt",
     "custom": "runs/detect/final_model_custom/weights/best.pt",
 }
 

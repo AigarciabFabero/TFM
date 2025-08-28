@@ -243,8 +243,8 @@
 \section{Introducción}
 \label{sec:Introducción}
 
-El presente Trabajo de Fin de Máster, desarrollado en colaboración con la empresa Microptic S.L \cite{microptic} compañía de Hamilton Thorne \cite{HamiltonThorneWeb}, 
-parte del desarrollo de una Prueba de Concepto (\textit{Proof of Concept}) desarrollada en el marco europeo DIGIS3 \cite{digis3}, para la detección de células redondas en imágenes médicas 
+El presente Trabajo de Fin de Máster, desarrollado en colaboración con la empresa Microptic S.L \cite{microptic}, compañía de Hamilton Thorne \cite{HamiltonThorneWeb}, 
+parte del desarrollo de una Prueba de Concepto (\textit{Proof of Concept}) desarrollada en el marco europeo DIGIS3 \cite{digis3} para la detección de células redondas en imágenes médicas 
 mediante Inteligencia Artificial. Este trabajo incluye, además, la creación de una interfaz digital que permite la interacción de expertos 
 con los resultados del modelo.
 
@@ -520,22 +520,33 @@ se detalla cómo el proyecto se ajusta y adhiere a las leyes pertinentes:
 \chapter{Metodología} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{metodologia}
 
-En esta sección se describen de forma reproducible los cuatro pipelines experimentales implementados: 
-(1) Preprocesado del \textit{dataset}, 
-(2) YOLO 
-(3) Ensamblado (Ensemble). 
-(4) Modelo personalizado.
+En esta sección se describen de forma reproducible, las tres etapas clave experimentales implementadas de forma secuencial: 
+\begin{itemize}
+  \item \textbf{Fase 1:} Gestión y preprocesado del \textit{dataset}.
+  \item \textbf{Fase 2:} Diseño experimental, entrenamiento y evaluación de modelos.
+  \item \textbf{Fase 3:} Despliegue de la herramienta web.
+\end{itemize}
 
-Aquí tengo que hablar de la arquitectura del código.
+\section{Gestión y preprocesado del \textit{dataset}}
+\label{Gestión y preprocesado del dataset}
 
-% \section{Preprocesado del \textit{dataset}}
-% \label{sec:Preprocesado del dataset}
-% \section{Entrenamiento, optimización, validación de modelos YOLO}
-% \label{sec:YOLO}
-% \section{Ensamblado de modelos}
-% \label{sec:Ensamblado}
-% \section{Modelo personalizado}
-% \label{sec:Modelo personalizado}
+La base de cualquier sistema de aprendizaje de Inteligencia Artificial, reside en la calidad de los datos. Esta primera fase se centra en el estudio y procesamiento del conjunto de datos, que servirá como
+fuente de verdad (\textit{ground truth}) en las etapas posteriores.
+
+\begin{itemize}
+  \item \textbf{Adquisición y consolidación:} El punto de partida es el conjunto de imágenes médicas proporcionado por Microptic S.L \cite{microptic}. 
+  Se realiza un análisis para comprender su estructura, el formato original (PascalVOC) y la calidad de las annotaciones. Un conjunto de datos para entrenamiento y tres para \textit{test}.
+  \item \textbf{Validación por expertos:} Atendiendo a la revisión de feedback proporcionada por expertos sobre los conjuntos de \textit{test}, se proceede con el reetiquetado (mediante LabelImage \cite{labelimg_github}) para asegurar una mejor precisión de las anotaciones. 
+  Como no se tiene feedback respecto al conjunto de entrenamiento y, además, como se quiere comparar con la prueba de concepto inicial, no se modifica ni se pide una nueva valoración de expertos sobre el conjunto de datos de entrenamiento.
+  \item \textbf{Estructuración del dataset:} Para entrenar las diferentes arquitecturas de YOLO, el conjunto de datos de entrenamiento original, se divide el conjunto de datos en entrenamiento (80\%) y validación (20\%). Empleando para esto, una semilla determinada para garantizar que los experimientos sean reproducibles. 
+  \item \textbf{Nuevo formato de datos:} Una vez se ha organizado la estructura de carpetas, las anotaciones en formato PascVOC se convierten a formato YOLO, que es requerído para la metodología actual. Adicionalmente, se generó una versión en formato COCO para garantizar la interoperabilidad y facilitar futuras aplicaciones con otros marcos de trabajo.
+\end{itemize}
+
+\section{Diseño experimental, entrenamiento y evaluación de modelos.}
+\label{Entrenamiento, validación y evaluación de modelos YOLO}
+
+\section{Desarrollo y despliegue de la herramienta web}
+\label{Despliegue de la herramienta web}
 
 
 \chapter{Experimentación} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
