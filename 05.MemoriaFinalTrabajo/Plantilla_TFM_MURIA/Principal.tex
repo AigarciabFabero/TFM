@@ -530,7 +530,7 @@ En esta sección se describen de forma reproducible, las tres etapas clave exper
 \section{Gestión y preprocesado del \textit{dataset}}
 \label{Gestión y preprocesado del dataset}
 
-La base de cualquier sistema de aprendizaje de Inteligencia Artificial, reside en la calidad de los datos. Esta primera fase, se centra en el estudio y procesamiento del conjunto de datos, que servirá como
+La base de cualquier sistema de aprendizaje de Inteligencia Artificial reside en la calidad de los datos. Esta primera fase, se centra en el estudio y procesamiento del conjunto de datos (\autoref{sec:Dataset}), que servirá como
 fuente de verdad (\textit{ground truth}) en las etapas posteriores.
 
 \begin{itemize}
@@ -545,10 +545,31 @@ fuente de verdad (\textit{ground truth}) en las etapas posteriores.
 \section{Diseño experimental, entrenamiento y evaluación de modelos.}
 \label{Entrenamiento, validación y evaluación de modelos YOLO}
 
+Esta fase constituye el núcleo de la investigación, donde se exploran diferentes arquitecturas y configuraciones para obtener el modelo óptimo.
+El detalle completo previo y durante la etapa de entrenamiento de los diferentes modelos se recoge en la \autoref{sec:Configuraciones}.
+
+\begin{itemize}
+  \item \textbf{Arquitectura:} El código de esta fase se estructura de forma altamente modular, facilitando el mantenimiento y escalabilidad. La lógica completa se encapsula en clases y librerías reutilizables, manteniendo los cuadernos de Jupyter 
+  (Jupyter Notebooks) limpios y con un hilo argumental claro; dando lugar a una estructura limpia y clara.
+  \item \textbf{Optimización de modelos:} Se realiza una búsqueda sistemática mediante el framework Optuna \cite{optuna_github} para la optimización automática de hiperparámetros.
+  \item \textbf{Entrenamiento y validación:} Para obtener modelos que generalicen lo mejor posible, se emplean las técnicas:
+  \begin{itemize}
+    \item \textbf{Aumento de datos (\textit{data augmentation}):} Durante el proceso de entrenamiento, se aplican transformaciones para enriquecer la diversidad de los datos y reducir el \textit{overfitting}.
+    \item \textbf{Validación cruzada (\textit{k-fold cross-validation}):} Se emplea para evaluar de forma robusta la capacidad de generalización de los modelos y la configuración de los hiperparámetros.
+  \end{itemize} 
+  \item \textbf{Exploración de enfoques avanzados:} Adicionalmente, se aborda el problema desde otras perspectivas:
+  \begin{itemize}
+    \item \textbf{Ensamblado de modelos:} Se combinan las predicciones de diferentes modelos individuales para crear un nuevo sistema de detección de células redondas. 
+    \item \textbf{Modelo personalizado:} Se diseña una arquitectura de red neuronal propia.
+  \end{itemize}
+  \item \textbf{Evaluación cuantitativa:} Se estudia el rendimiento individual de los modelos sobre los diferentes conjuntos de \textit{test}. Para esto, se emplean las métricas: 
+  \textit{precision}, \textit{recall}, mAP@0.5, mAP@0.5:0.95 y el tiempo de inferencia. Asimismo, se evalúan en un entorno problemático, como son las imágenes con Anillos de Newton (Ver \autoref{Resultados}).
+\end{itemize}
+
 \section{Desarrollo y despliegue de la herramienta web}
 \label{Despliegue de la herramienta web}
 
-La tercera y última fase del proyecto, es dar una solución tangible y accesible para los usuarios finales (expertos) \autoref{Herramienta web}.
+La tercera y última fase del proyecto, es dar una solución tangible y accesible para los usuarios finales (expertos) (\autoref{Herramienta web}).
 
 \begin{itemize}
   \item \textbf{Desarrollo de la interfaz:} Se define una aplicación interactiva empleando el framework de Streamlit, con el fin de que los expertos médicos puedan interactuar de forma intuitiva con el sistema de detección de células redondas.
@@ -589,7 +610,7 @@ El conjunto de datos inicial que nos proporciona Microptic \cite{microptic} est�
 El conjunto de entrenamiento se divide utilizando la función \texttt{train\_test\_split} de \textit{scikit-learn}, reservando el $80\%$ (298 imágenes) para entrenamiento y el $20\%$ (75 imágenes) para validación. 
 Esta división se realiza de forma aleatoria pero reproducible, fijando la semilla (\texttt{random\_state = 42}) para garantizar la consistencia de los resultados.
 
-Adicionalmente, la empresa proporciona un conjunto de datos del \textit{test} reevaluado por expertos del dominio. Este conjunto se reetiqueta utilizando la herramienta \textit{LabelImg} \cite{labelimg_github} en formato PascalVOC. 
+Adicionalmente, la empresa proporciona un conjunto de datos del \textit{test} reevaluado por expertos del dominio. Este conjunto se reetiqueta utilizando la herramienta \textit{LabelImg} \cite{labelimg_github} en formato PascVOC. 
 Las correcciones afectan a un total de 60 imágenes, incrementando el número de instancias de 1273 a 1412.
 
 Asimismo, se incluyeron dos conjuntos adicionales denominados \textit{test2} y \textit{test3}, inicialmente sin anotaciones pero que contenían \textit{bounding boxes} generados por modelos YOLO \cite{ultralytics_models} preentrenados 
@@ -619,7 +640,7 @@ Partición & Imágenes & Instancias & 1280$\times$1024 & 768$\times$616 & Escala
 El conjunto de \textit{train}, \textit{validation} y \textit{test} están constituidos por imágenes RGB de 3 canales, mientras que las imágenes 
 de los conjuntos de \textit{test2} y \textit{test3} están compuestos por imágenes en escala de grises de un único canal. 
 
-Para el entrenamiento de diferentes arquitecturas de detección de objetos, se convierten los formatos de PascaVOC a YOLO y YOLO a COCO. 
+Para el entrenamiento de diferentes arquitecturas de detección de objetos, se convierten los formatos de PascVOC a YOLO y YOLO a COCO. 
 Para más deralle, la información relativa al preprocesamiento del dataset se encuentra en el documento \texttt{preprocesamiento.ipynb} del repositorio \cite{repoTFM}.
 
 \section{Entorno de desarrollo}
