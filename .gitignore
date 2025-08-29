@@ -4,6 +4,10 @@
 02.Articulos_revisados/
 servidor.txt
 04.Codigo/yolo/evaluations/
+04.Codigo/Fast-RCNN.ipynb
 04.Codigo/yolo/yolo_models/
 04.Codigo/optuna/
 08.Resultados Experimentacion/
+04.Codigo/lib/YOLO_lib/__pycache__/
+04.Codigo/lib/preprocesamiento_lib/__pycache__/
+04.Codigo/lib/__pycache__/
