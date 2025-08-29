@@ -587,6 +587,7 @@ La tercera y última fase del proyecto, es dar una solución tangible y accesibl
 El dataset inicial proporcionado por la empresa MICROPTIC \cite{microptic} está constituido por un conjunto de \textit{train} y \textit{test} en formato PascalVOC.
 
 \begin{table}[htbp]
+\caption{Distribución del dataset original}
 \centering
 \begingroup
 \setlength{\tabcolsep}{8pt}
@@ -603,7 +604,6 @@ Partición & Resoluciones (px) & Nº imágenes (resolución) & Nº imágenes & S
 \end{tabular}
 \end{adjustbox}
 \endgroup
-\caption{Distribución del dataset original}
 \label{tab:dataset_original}
 \end{table}
 
@@ -620,6 +620,7 @@ La composición final del dataset se presenta en la Tabla~\ref{tab:dataset_final
 
 \clearpage
 \begin{table}[htbp]
+\caption{Resumen del dataset de actuación}
 \centering
 \rowcolors{2}{gray!12}{white}
 \begin{tabular}{l c c c c c}
@@ -634,7 +635,6 @@ Partición & Imágenes & Instancias & 1280$\times$1024 & 768$\times$616 & Escala
 \textit{Test3}          &  59 & 1135 & 56  & 3  & 1 canal\\
 \bottomrule
 \end{tabular}
-\caption{Resumen del dataset de actuación}
 \label{tab:dataset_final}
 \end{table}
 
@@ -729,6 +729,7 @@ recoge todas las librerías y versiones necesarias para la correcta ejecución d
 Aquí tengo que poner una tabla con las configuraciones de entrenamiento para ser recreado y cumplir con las normas éticas.
 
 \begin{table}[H]
+\caption{Hiperparámetros principales de entrenamiento para cada modelo}
 \centering
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
@@ -743,11 +744,11 @@ yolov12x  & 5  & 25 & 40 & 7 & 704 \\
 custom    & 10 & 25 & 40 & 12 & 704 \\
 \hline
 \end{tabular}
-\caption{Hiperparámetros principales de entrenamiento para cada modelo.}
 \end{table}
 
 
 \begin{table}[H]
+\caption{Principales hiperparámetros óptimos seleccionados para cada modelo.}
 \centering
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
@@ -761,7 +762,6 @@ yolov12s  & 0.00023 & 0.00932 & 0.91627 & 0.00087 & AdamW \\
 custom    & 0.00153 & 0.00111 & 0.89113 & 0.00015 & AdamW \\
 \hline
 \end{tabular}
-\caption{Principales hiperparámetros óptimos seleccionados para cada modelo.}
 \end{table}
 
 Hiperparámetros del data augmentation:
@@ -842,6 +842,12 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
   \]
   donde FN son los falsos negativos. Un recall alto indica que el modelo encuentra la mayoría de las instancias reales.
 
+  \item[\textit{F1-score}] Es la media armónica entre la precisión y el recall, proporcionando una medida única que equilibra ambos aspectos. Se calcula como:
+  \[
+    \mathrm{F1} = 2 \cdot \frac{\mathrm{Precision} \cdot \mathrm{Recall}}{\mathrm{Precision} + \mathrm{Recall}}
+  \]
+  El F1-score es especialmente útil cuando es importante considerar tanto los falsos positivos como los falsos negativos. En este trabajo se utiliza como métrica principal en las curvas F1-confianza y en la herramienta web.
+
   \item[\textit{mean Average Precision (mAP)}] Para detección de objetos se calcula la curva precision–recall para cada clase y su área bajo la curva (AP). El \textit{mean Average Precision} es la media de las AP sobre todas las clases:
   \[
     \mathrm{mAP} = \frac{1}{C}\sum_{c=1}^{C} \mathrm{AP}_c
@@ -863,7 +869,9 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
     \mathrm{mAP}_{[0.5:0.95]} \;=\; \frac{1}{C}\frac{1}{T}\sum_{c=1}^{C}\sum_{t\in\{0.50,0.55,\dots,0.95\}} \mathrm{AP}_c(\mathrm{IoU}=t)
   \]
   donde $T=10$. Esta métrica es más exigente porque penaliza detecciones con IoU bajos y refleja mejor la precisión espacial del modelo.
+
   \item[Inferencia (ms)] Tiempo medio (en milisegundos) que tarda un modelo en procesar una única imagen (inferencia). Métrica relevante para proyectos en tiempo real.
+
 \end{description}
 \arrayrulecolor[HTML]{B9DAE1}
 
@@ -873,47 +881,50 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
 
 \section{Resultados de los modelos}
 \label{sec:Resultados de los modelos}
-\subsection{YOLO}
 
 \begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{
-    \begin{tabular}{lccccc}
-        \hline
-        \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{Recall (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
-        \hline
-        YOLOv7      & 0.87  & \textbf{0.889} & \textbf{0.935} & \textbf{0.722} & 20.0   \\
-        YOLOv7-W6   & 0.847 & 0.883 & 0.925 & 0.694 & \textbf{16.0}   \\
-        YOLOv7-E6E  & \textbf{0.906} & 0.857 & 0.934 & 0.721 & 127.5  \\
-        \hline
-    \end{tabular}
-    }
-    \caption{Resultados de los modelos YOLOv7 sobre el conjunto de test original.}
-    \label{tab:yolov7_results}
+  \caption{Resultados de los modelos en la prueba de concepto inicial}
+  \centering
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{lccccc}
+      \hline
+      \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{Recall (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
+      \hline
+      YOLOv7      & 0.87  & \textbf{0.889} & \textbf{0.935} & \textbf{0.722} & 20.0   \\
+      YOLOv7-W6   & 0.847 & 0.883 & 0.925 & 0.694 & \textbf{16.0}   \\
+      YOLOv7-E6E  & \textbf{0.906} & 0.857 & 0.934 & 0.721 & 127.5  \\
+      \hline
+  \end{tabular}
+  }
+  \label{tab:yolov7_results}
 \end{table}
 
 \begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{
-    \begin{tabular}{lccccc}
-        \hline
-        \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{Recall (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
-        \hline
-        yolov8s    & 0.843 & 0.844 & 0.920 & 0.722 & \textbf{11.006} \\
-        yolov9s    & 0.838 & 0.852 & 0.921 & 0.721 & 13.485 \\
-        yolov10s   & 0.821 & \textbf{0.867} & 0.918 & 0.717 & 11.221 \\
-        yolov11s   & \textbf{0.861} & 0.824 & 0.921 & 0.732 & 11.248 \\
-        yolov12s   & 0.856 & 0.863 & \textbf{0.936} & \textbf{0.76} & 14.615 \\
-        \hline
-    \end{tabular}
-    }
-    \caption{Resultados de los modelos YOLO sobre el conjunto de test original.}
-    \label{tab:yolov8_12_results}
+  \caption{Resultados de los modelos sobre el conjunto de \textit{test} original}
+  \centering
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{lccccc}
+      \hline
+      \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{Recall (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
+      \hline
+      yolov8s    & 0.843 & 0.844 & 0.920 & 0.722 & \textbf{11.006} \\
+      yolov9s    & 0.838 & 0.852 & 0.921 & 0.721 & 13.485 \\
+      yolov10s   & 0.821 & \textbf{0.867} & 0.918 & 0.717 & 11.221 \\
+      yolov11s   & \textbf{0.861} & 0.824 & 0.921 & 0.732 & 11.248 \\
+      yolov12s   & 0.856 & 0.863 & \textbf{0.936} & \textbf{0.76} & 14.615 \\
+      yolov12l   & 0.856 & 0.836 & 0.921 & 0.729 & 48.146 \\
+      custom     & 0.835 & 0.838 & 0.909 & 0.695 & 13.058 \\
+      ensemble   & 0.815 & 0.895 & 0.864 & 0.697 & 75.073 \\
+      \hline
+  \end{tabular}
+  }
+  \label{tab:yolov8_12_results}
 \end{table}
 
 % Tabla para los resultados sobre los conjuntos de Test
 \definecolor{turquoise}{RGB}{64,224,208}
 \begin{table}[ht]
+\caption{Evaluación de modelos sobre los nuevos conjuntos de \textit{test}}
 \centering
 \rowcolors{2}{gray!15}{white}
 \renewcommand{\arraystretch}{1.3}
@@ -927,32 +938,40 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
 \textbf{Modelo} & \textbf{Test} & \textbf{Precisión} & \textbf{Recall} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
-yolov8s   & test & 0.855 & 0.838 & 0.926 & 0.704 & 11.067 \\ \hline
-yolov9s   & test & 0.851 & \cellcolor{turquoise!30}\textbf{0.876} & 0.933 & 0.706 & 12.904 \\ \hline
-yolov10s  & test & 0.853 & 0.861 & 0.927 & 0.701 & 11.041 \\ \hline
-yolov11s  & test & 0.846 & 0.866 & 0.930 & 0.716 & \cellcolor{turquoise!30}\textbf{10.644} \\ \hline
-yolov12s  & test & \cellcolor{turquoise!30}\textbf{0.861} & 0.848 & \cellcolor{turquoise!30}\textbf{0.936} & \cellcolor{turquoise!30}\textbf{0.740} & 15.066 \\
+yolov8s   & test  & 0.855 & 0.838 & 0.926 & 0.704 & 11.844 \\ \hline
+yolov9s   & test  & 0.851 & 0.876 & 0.933 & 0.706 & 13.492 \\ \hline
+yolov10s  & test  & 0.851 & 0.862 & 0.927 & 0.701 & 11.120 \\ \hline
+yolov11s  & test  & 0.846 & 0.866 & 0.930 & 0.716 & 12.143 \\ \hline
+yolov12s  & test  & 0.862 & 0.848 & \cellcolor{turquoise!30}\textbf{0.936} & \cellcolor{turquoise!30}\textbf{0.740} & 14.519 \\ \hline
+yolov12l  & test  & 0.846 & \cellcolor{turquoise!30}\textbf{0.889} & 0.934 & 0.714 & 45.214 \\ \hline
+custom    & test  & 0.845 & 0.853 & 0.919 & 0.678 & 12.913 \\ \hline
+ensemble & test & \cellcolor{turquoise!30}\textbf{0.869} & 0.860 & 0.842 & 0.664 & 69.572 \\
 \arrayrulecolor{black}
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
-yolov8s & test2 & 0.924 & \cellcolor{turquoise!30}\textbf{0.938} & 0.969 & 0.553 & 37.858 \\ \hline
-yolov9s & test2 & 0.917 & 0.927 & 0.961 & 0.542 & 35.944 \\ \hline
-yolov10s & test2 & 0.956 & 0.898 & 0.962 & \cellcolor{turquoise!30}\textbf{0.589} & \cellcolor{turquoise!30}\textbf{12.358} \\ \hline
-yolov11s & test2 & 0.929 & 0.917 & 0.964 & 0.534 & 14.967 \\ \hline
-yolov12s & test2 & \cellcolor{turquoise!30}\textbf{0.965} & 0.917 & \cellcolor{turquoise!30}\textbf{0.975} & 0.556 & 20.254 \\
+yolov8s   & test2 & 0.924 & 0.938 & 0.969 & 0.553 & 30.901 \\ \hline
+yolov9s   & test2 & 0.917 & 0.927 & 0.961 & 0.542 & 46.502 \\ \hline
+yolov10s  & test2 & 0.956 & 0.898 & 0.962 & \cellcolor{turquoise!30}\textbf{0.589} & 34.355 \\ \hline
+yolov11s  & test2 & 0.929 & 0.917 & 0.964 & 0.534 & 33.114 \\ \hline
+yolov12s  & test2 & \cellcolor{turquoise!30}\textbf{0.965} & 0.917 & \cellcolor{turquoise!30}\textbf{0.975} & 0.556 & 51.508 \\ \hline
+yolov12l  & test2 & 0.957 & 0.926 & \cellcolor{turquoise!30}\textbf{0.975} & 0.562 & 75.871 \\ \hline
+custom    & test2 & 0.945 & 0.903 & 0.957 & 0.539 & 35.626 \\ \hline
+ensemble & test2 & 0.919 & \cellcolor{turquoise!30}\textbf{0.944} & 0.935 & 0.509 & 54.958 \\
 \arrayrulecolor{black}
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
-yolov8s & test3 & 0.842 & 0.862 & \cellcolor{turquoise!30}\textbf{0.937} & 0.700 & 11.314 \\ \hline
-yolov9s & test3 & 0.843 & 0.870 & 0.935 & 0.681 & 13.291 \\ \hline
-yolov10s & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.826 & 0.926 & 0.667 & \cellcolor{turquoise!30}\textbf{11.109} \\ \hline
-yolov11s & test3 & 0.855 & \cellcolor{turquoise!30}\textbf{0.874} & 0.935 & 0.698 & 12.561 \\ \hline
-yolov12s & test3 & 0.836 & 0.821 & 0.922 & \cellcolor{turquoise!30}\textbf{0.723} & 15.442 \\
+yolov8s   & test3 & 0.842 & 0.862 & 0.937 & 0.700 & 12.815 \\ \hline
+yolov9s   & test3 & 0.843 & 0.870 & 0.935 & 0.680 & 14.772 \\ \hline
+yolov10s  & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.826 & 0.926 & 0.668 & 11.230 \\ \hline
+yolov11s  & test3 & 0.855 & 0.874 & 0.935 & 0.698 & 10.875 \\ \hline
+yolov12s  & test3 & 0.836 & 0.821 & 0.922 & \cellcolor{turquoise!30}\textbf{0.723} & 15.439 \\ \hline
+yolov12l  & test3 & 0.849 & \cellcolor{turquoise!30}\textbf{0.894} & \cellcolor{turquoise!30}\textbf{0.942} & 0.701 & 47.256 \\ \hline
+custom    & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.843 & 0.928 & 0.660 & 11.373 \\ \hline
+ensemble & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.857 & 0.837 & 0.663 & 63.758 \\
 \arrayrulecolor{black}
 \specialrule{1.5pt}{0pt}{0pt}
 \end{tabular}
 }
-\caption{Evaluación de modelos YOLO sobre los nuevos conjuntos de \textit{test}}
 \end{table}
 
 Es importante que hablemos de esta problemática y como evitamos un reetiquetado de imágenes que pueden dar más confusión al confundir clases, y continuar la tendencia monoclase.
@@ -960,39 +979,54 @@ Es importante que hablemos de esta problemática y como evitamos un reetiquetado
 % Tabla para los artefactos
 \definecolor{mygreen}{RGB}{0,180,0}
 \definecolor{myred}{RGB}{220,0,0}
+\definecolor{mygray}{gray}{0.7}
+\setlength{\arrayrulewidth}{1.2pt} % Grosor general de líneas (verticales y horizontales negras)
 \begin{table}[ht]
+\caption{Evaluación de modelos sobre imágenes con artefactos}
 \centering 
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline
-\textbf{Imagen} & \textbf{Test} & \textbf{yolov8s 0.5} & \textbf{yolov8s 0.7} & \textbf{yolov9s 0.5} & \textbf{yolov9s 0.7} & \textbf{yolov10s 0.5} & \textbf{yolov10s 0.7} & \textbf{yolov11s 0.5} & \textbf{yolov11s 0.7} & \textbf{yolov12s 0.5} & \textbf{yolov12s 0.7} \\
-\hline
-59 imagen         & 1 & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
-\hline
-61 imagen         & 1 & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
-\hline
-219 imagen        & 1 & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
-\hline
-369 imagen        & 1 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
-\hline
-already tested-00 & 3 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
-\hline
-already tested-15 & 3 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
-\hline
-already tested-16 & 3 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
-\hline
-already tested-17 & 3 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
-\hline
-already tested-22 & 3 & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
-\hline
+\begin{tabular}{!{\vrule width 1.2pt}c|c|c|c|c|c|c|c|c|c!{\vrule width 1.2pt}}
+\arrayrulecolor{black}\hline
+\textbf{Modelo/Umbral} & \textbf{59 imagen} & \textbf{61 imagen} & \textbf{219 imagen} & \textbf{369 imagen} & \textbf{already tested-00} & \textbf{already tested-15} & \textbf{already tested-16} & \textbf{already tested-17} & \textbf{already tested-22} \\
+\arrayrulecolor{black}\hline
+Test              & 1 & 1 & 1 & 1 & 3 & 3 & 3 & 3 & 3 \\
+\arrayrulecolor{black}\hline
+yolov8s 0.5       & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\arrayrulecolor{mygray}\hline
+yolov8s 0.7       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\arrayrulecolor{black}\hline
+yolov9s 0.5       & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\arrayrulecolor{mygray}\hline
+yolov9s 0.7       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\arrayrulecolor{black}\hline
+yolov10s 0.5      & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
+\arrayrulecolor{mygray}\hline
+yolov10s 0.7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\arrayrulecolor{black}\hline
+yolov11s 0.5      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\arrayrulecolor{mygray}\hline
+yolov11s 0.7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\arrayrulecolor{black}\hline
+yolov12s 0.5      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\arrayrulecolor{mygray}\hline
+yolov12s 0.7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\arrayrulecolor{black}\hline
+yolov12l 0.5      &  &  &  &  &  &  &  &  &  \\
+\arrayrulecolor{mygray}\hline
+yolov12l 0.7      &  &  &  &  &  &  &  &  &  \\
+\arrayrulecolor{black}\hline
+custom 0.5        &  &  &  &  &  &  &  &  &  \\
+\arrayrulecolor{mygray}\hline
+custom 0.7        &  &  &  &  &  &  &  &  &  \\
+\arrayrulecolor{black}\hline
+ensemble 0.5      &  &  &  &  &  &  &  &  &  \\
+\arrayrulecolor{mygray}\hline
+ensemble 0.7      &  &  &  &  &  &  &  &  &  \\
+\arrayrulecolor{black}\hline
 \end{tabular}
 }
-\caption{Evaluación de modelos YOLO sobre imágenes con artefactos}
 \end{table}
 
-\newpage
-\subsection{Ensemble}
-\subsection{Modelo personalizado}
 \section{Discursión de resultados}
 \label{sec:Discursión de resultados}
 
@@ -1238,6 +1272,24 @@ Posibles problemas que pueden tener lugar durante la instalación:
       \item Revisar el log de parsing en \texttt{04.Codigo/cell\_detection\_App/utils/} y corregir los ficheros señalados.
     \end{itemize}
 \end{itemize}
+
+
+\chapter{Experimentación} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{Experimentación anexo}
+
+\section{Historial de optimización de hiperparámetros}
+\label{sec:Historial de optimización de hiperparámetros}
+
+\section{Hiperparámetros de entrenamiento}
+\label{sec:Hiperparámetros de entrenamiento}
+
+\chapter{Evaluación comparativa de arquitecturas}
+\label{Evaluación comparativa de arquitecturas}
+\section{Matrices de confusión}
+\label{sec:Matrice de confusión}
+\section{Curvas F1-confianza}
+\label{sec:Curvas F1-confianza}
+
 
 \end{document}
 

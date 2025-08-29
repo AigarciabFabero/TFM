@@ -39,6 +39,7 @@ results_csv_paths = {
     'yolov10s': 'runs/detect/final_model_yolov10s/results.csv',
     'yolov11s': 'runs/detect/final_model_yolov11s/results.csv',
     'yolov12s': 'runs/detect/final_model_yolov12s/results.csv',
+    'yolov12l': 'runs/detect/final_model_yolov12l/results.csv',
     "custom": "runs/detect/final_model_custom/results.csv",
 }
 
@@ -48,6 +49,7 @@ final_model_path = {
     "yolov10s": "runs/detect/final_model_yolov10s/weights/best.pt",
     "yolov11s": "runs/detect/final_model_yolov11s/weights/best.pt",
     "yolov12s": "runs/detect/final_model_yolov12s/weights/best.pt",
+    "yolov12l": "runs/detect/final_model_yolov12l/weights/best.pt",
     "custom": "runs/detect/final_model_custom/weights/best.pt",
 }
 
@@ -149,6 +151,23 @@ best_params_custom = {
     "momentum": 0.8814044124737372,
     "weight_decay": 0.00013833249975219982,
     "optimizer": "AdamW",
+    "warmup_epochs": 5,
+    "warmup_momentum": 0.75,
+    "degrees": 45,
+    "translate": 0.1,
+    "scale": 0.06,
+    "flipud": 0.5,
+    "fliplr": 0.5,
+    "mosaic": 0,
+    "close_mosaic": 0,
+}
+
+best_params_yolov12l = {
+    "lr0": 0.00019010245319870352,
+    "lrf": 0.001959497205867916,
+    "momentum": 0.8549542764940538,
+    "weight_decay": 0.0002858051065806936,
+    "optimizer": "SGD",
     "warmup_epochs": 5,
     "warmup_momentum": 0.75,
     "degrees": 45,
