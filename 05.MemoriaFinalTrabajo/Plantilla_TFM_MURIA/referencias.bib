@@ -31,14 +31,15 @@
   note = {Disponible en: \url{https://www.boe.es/buscar/act.php?id=BOE-A-1996-8930}}
 }
 
-@article{BJBS,
-  author = {S. Long and S. Kenworthy},
-  title = {{Round Cells in Diagnostic Semen Analysis: A Guide for Laboratories and Clinicians}},
-  journal = {British Journal of Biomedical Science},
-  year = {2022},
-  volume = {79},
-  number = {10129},
-  doi = {10.3389/bjbs.2021.10129}
+@ARTICLE{BJBS,
+  AUTHOR={Long, S.  and Kenworthy, S. },      
+  TITLE={Round Cells in Diagnostic Semen Analysis: A Guide for Laboratories and Clinicians},     
+  JOURNAL={British Journal of Biomedical Science},     
+  VOLUME={Volume 79 - 2021},
+  YEAR={2022},
+  URL={https://www.frontierspartnerships.org/journals/british-journal-of-biomedical-science/articles/10.3389/bjbs.2021.10129},
+  DOI={10.3389/bjbs.2021.10129},
+  ISSN={2474-0896},
 }
 
 @misc{OMS,
@@ -67,15 +68,55 @@
   howpublished = {\url{https://github.com/AigarciabFabero/TFM}},
 }
 
-@inproceedings{akiba2019optuna,
-  title={Optuna: A next-generation hyperparameter optimization framework},
-  author={Akiba, Takuya and Sano, Shotaro and Yanase, Toshihiko and Ohta, Tetsuro and Koyama, Masanori},
-  booktitle={Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery \& Data Mining},
-  pages={2623--2631},
-  year={2019},
-  organization={ACM},
-  doi={10.1145/3292500.3330701}
+@inproceedings{Optuna,
+author = {Akiba, Takuya and Sano, Shotaro and Yanase, Toshihiko and Ohta, Takeru and Koyama, Masanori},
+title = {Optuna: A Next-generation Hyperparameter Optimization Framework},
+year = {2019},
+isbn = {9781450362016},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3292500.3330701},
+doi = {10.1145/3292500.3330701},
+abstract = {The purpose of this study is to introduce new design-criteria for next-generation hyperparameter optimization software. The criteria we propose include (1) define-by-run API that allows users to construct the parameter search space dynamically, (2) efficient implementation of both searching and pruning strategies, and (3) easy-to-setup, versatile architecture that can be deployed for various purposes, ranging from scalable distributed computing to light-weight experiment conducted via interactive interface. In order to prove our point, we will introduce Optuna, an optimization software which is a culmination of our effort in the development of a next generation optimization software. As an optimization software designed with define-by-run principle, Optuna is particularly the first of its kind. We will present the design-techniques that became necessary in the development of the software that meets the above criteria, and demonstrate the power of our new design through experimental results and real world applications. Our software is available under the MIT license (https://github.com/pfnet/optuna/).},
+booktitle = {Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery \& Data Mining},
+pages = {2623–2631},
+numpages = {9},
+keywords = {Bayesian optimization, black-box optimization, hyperparameter optimization, machine learning system},
+location = {Anchorage, AK, USA},
+series = {KDD '19}
 }
+
+@article{roundsCellsSpermatid,
+title = {Development and validation of a deep learning model based on cascade mask regional convolutional neural network to noninvasively and accurately identify human round spermatids},
+journal = {Journal of Advanced Research},
+year = {2025},
+issn = {2090-1232},
+doi = {https://doi.org/10.1016/j.jare.2025.03.059},
+url = {https://www.sciencedirect.com/science/article/pii/S209012322500219X},
+author = {Yujiao Sun and Shihao Shao and Jiangwei Huang and Hao Shi and Liying Yan and Yongjie Lu and Ping Liu and Yuqiang Jiang and Jie Qiao and Li Zhang},
+keywords = {Human round spermatids, Human round spermatid injection, Deep learning, Artificial intelligence, Mask region-based convolutional neural network},
+abstract = {Introduction
+The difficulty of identifying human round spermatids (hRSs) has impeded applications of the human round spermatid injection (ROSI) technique. RSs can be accurately screened through flow cytometric analysis utilizing the Hoechst fluorescence profile reflecting DNA, but this method is not suitable for isolating hRSs due to the toxicity associated with Hoechst staining.
+Objective
+To evaluate the capacity of a deep learning model grounded in a cascade mask region-based convolutional neural network (R-CNN) for the noninvasive and accurate identification of hRSs.
+Methods
+In this study, we presented the development and validation of a deep learning model for identifying hRSs through the analysis of 3457 optical light microscope images of sorted hRSs obtained via flow cytometric analysis. The model’s accuracy and specificity were evaluated by calculating the mean average precision (mAP). Furthermore, a double-blind experiment was conducted to access the reliability of the proposed model in accurately identifying hRSs. It detected the expression of protamine (PRM1) and/or peanut lectin (PNA), which are established markers for RSs.
+Results
+Our deep learning-based model demonstrated a high precision, achieving a mAP of over 0.80 for isolating hRSs in test datasets. The expression of PRM1 and/or PNA was observed in all cells noninvasively selected by our AI model during an independent double-blind test. This phenomenon confirmed the accuracy and effectiveness of the proposed model. The model’s capability for noninvasive and accurate isolation of hRSs among spermatogenic cells highlighted its robustness and generalizability for clinical applications.
+Conclusion
+The deep learning AI model based on a cascade R-CNN has the ability to accurately identify hRSs among spermatogenic cells. The application of this noninvasive method, which requires no additional procedures in clinical practice, is able to facilitate the widespread implementation of ROSI technique. Therefore, it can provide patients with spermatogenic arrest the opportunity to become biological fathers.}
+}
+
+@INPROCEEDINGS{chen2024,
+  author={Chen, Ao and Fan, Feng-Lei and Zhang, Jinghua and Rahaman, Md Mamunur and Li, Rui and Tao, Jiang and Zeng, Tieyong and Grzegorzek, Marcin and Li, Chen},
+  booktitle={2024 IEEE International Conference on Bioinformatics and Biomedicine (BIBM)}, 
+  title={ACTIVE: A Deep Network for Sperm and Impurity Detection in Microscopic Videos}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={5247-5256},
+  keywords={Deep learning;Visualization;Impurities;Microscopy;Semantics;Morphology;Object detection;Manuals;Feature extraction;Data mining;Deep learning;Object detection;Semen analysis;Sperm microscopy videos},
+  doi={10.1109/BIBM62325.2024.10822549}}
 
 @misc{optuna_github,
   title = {Optuna: AutoML and Hyperparameter Optimization Framework},
@@ -130,4 +171,49 @@
   journal = {arXiv preprint arXiv:2407.12040v7},
   year = {2025},
   url = {https://arxiv.org/pdf/2407.12040v7}
+}
+
+@article{Johanisson2000,
+    author = {Johanisson, E. and Campana, A. and Luthi, R. and de Agostini, A.},
+    title = {Evaluation of `round cells' in semen analysis: a comparative study},
+    journal = {Human Reproduction Update},
+    volume = {6},
+    number = {4},
+    pages = {404-412},
+    year = {2000},
+    month = {07},
+    abstract = {The aims of this review are to evaluate the morphological differences between `round cells' of spermatogenic and non-spermatogenic origin in semen. The latter group includes inflammatory cells like neutrophils, lymphocytes, and macrophages, and epithelial cells. A comparison was made between non-spermatogenic cells in semen samples and inflammatory cells in blood smears, using various staining procedures commonly used in routine andrology laboratories. The result presented in this review confirmed previously published data. In blood smears as well as in semen samples, only neutrophil leukocytes (both eosinophilic and basophilic) showed a positive reaction when exposed to the peroxidase stain. Lymphocytes, macrophages and other `round cells' such as epithelial cells and spermatogenesis cells remained negative. It could be concluded that the neutrophil polymorphonuclear leukocytes were the only `round cells' showing a positive reaction in the semen samples. The presence of specifically stained neutrophils in semen was considered to be compatible with an infection and/or a subsequent inflammatory reaction in the male genital tract. The potential influence of inflammatory cells in the sperm samples on infertility/subfertility is discussed. However, the question of determining if morphologically abnormal, degenerated spermatids are still capable of fertilizing an oocyte in vitro is not addressed in this review.},
+    issn = {1355-4786},
+    doi = {10.1093/humupd/6.4.404},
+    url = {https://doi.org/10.1093/humupd/6.4.404},
+    eprint = {https://academic.oup.com/humupd/article-pdf/6/4/404/2306471/060404.pdf},
+}
+
+@article{Maalej2025,
+  author    = {Maalej, Rania and Abdelkefi, Olfa and Daoud, Salima},
+  title     = {Advancements in automated sperm morphology analysis: a deep learning approach with comprehensive classification and model evaluation},
+  journal   = {Multimedia Tools and Applications},
+  year      = {2025},
+  volume    = {84},
+  number    = {23},
+  pages     = {27345--27378},
+  doi       = {10.1007/s11042-024-20188-w},
+  url       = {https://doi.org/10.1007/s11042-024-20188-w},
+  issn      = {1573-7721},
+  abstract  = {Automated sperm morphology analysis is crucial in reproductive medicine for assessing male fertility, but existing methods often lack robustness in handling diverse morphological abnormalities across different regions of sperm. This study proposes a deep learning-based approach utilizing the ResNet50 architecture trained on a new SMD/MSS benchmarked dataset, which includes comprehensive annotations of 12 morphological defects across head, midpiece, and tail regions of sperm. Our approach achieved promising results with an accuracy of 95%, demonstrating effective classification across various sperm morphology classes. However, certain classes exhibited lower precision and recall rates, highlighting challenges in model performance for specific abnormalities. The findings underscore the potential of our proposed system in enhancing sperm morphology assessment. In fact, it is the first to comprehensively diagnose a spermatozoon by examining each part, including the head, intermediate piece, and tail, by identifying the type of anomaly in each part according to David's classification, which includes 12 different anomalies, to perform multi-label classification for a more precise diagnosis. It is unlike SOTA works which either study only the head or simply indicate whether each part of the sperm is normal or abnormal.}
+}
+
+@Article{PannerSelvam,
+AUTHOR = {Panner Selvam, Manesh Kumar and Moharana, Ajaya Kumar and Baskaran, Saradha and Finelli, Renata and Hudnall, Matthew C. and Sikka, Suresh C.},
+TITLE = {Current Updates on Involvement of Artificial Intelligence and Machine Learning in Semen Analysis},
+JOURNAL = {Medicina},
+VOLUME = {60},
+YEAR = {2024},
+NUMBER = {2},
+ARTICLE-NUMBER = {279},
+URL = {https://www.mdpi.com/1648-9144/60/2/279},
+PubMedID = {38399566},
+ISSN = {1648-9144},
+ABSTRACT = {Background and Objectives: Infertility rates and the number of couples undergoing reproductive care have both increased substantially during the last few decades. Semen analysis is a crucial step in both the diagnosis and the treatment of male infertility. The accuracy of semen analysis results remains quite poor despite years of practice and advancements. Artificial intelligence (AI) algorithms, which can analyze and synthesize large amounts of data, can address the unique challenges involved in semen analysis due to the high objectivity of current methodologies. This review addresses recent AI advancements in semen analysis. Materials and Methods: A systematic literature search was performed in the PubMed database. Non-English articles and studies not related to humans were excluded. We extracted data related to AI algorithms or models used to evaluate semen parameters from the original studies, excluding abstracts, case reports, and meeting reports. Results: Of the 306 articles identified, 225 articles were rejected in the preliminary screening. The evaluation of the full texts of the remaining 81 publications resulted in the exclusion of another 48 articles, with a final inclusion of 33 original articles in this review. Conclusions: AI and machine learning are becoming increasingly popular in biomedical applications. The examination and selection of sperm by andrologists and embryologists may benefit greatly from using these algorithms. Furthermore, when bigger and more reliable datasets become accessible for training, these algorithms may improve over time.},
+DOI = {10.3390/medicina60020279}
 }

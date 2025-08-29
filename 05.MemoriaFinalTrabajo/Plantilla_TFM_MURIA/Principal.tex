@@ -227,7 +227,8 @@
   \item[Células germinales inmaduras]: Células precursoras de los espermatozoides que no han completado su desarrollo.
   \item[Leucocitos]: Glóbulos blancos, principalmente netrófilos.  
   \item[Espermograma]: Consiste en analizar los espermatozoides de un hombre o un animal para evaluar la fertilidad y detectar posibles anomalías. 
-  \item[Espermatogénesis]: Proceso biológico de formación y producción de espermatozoides. 
+  \item[Espermatogénesis]: Proceso biológico de formación y producción de espermatozoides.
+  \item[Andrología]: Área de la medicina que se centra en el estudio e investigación de cualquier aspecto relacionado con la función sexual y reproducción masculina (Por ejmplo: infertilidad masculina).  
   \item[Anillos de Newton]: Interferencia de la luz cuyo resultado es un patrón de anillos muy característico.
   \item[\textit{overfitting}] Proceso en el que un modelo de aprendizaje automático aprende demasiado bien los datos de entrenamiento, perdiendo capacidad de generalización y obteniendo peores resultados en las pruebas de evaluación.
 \end{description} 
@@ -311,7 +312,7 @@ La capacidad de las redes neuronales en la detección de patrones complejos han 
 En \textit{computer vision}, modelos de detección de objetos como YOLO (You Only Look Once) \cite{ultralytics_models} han demostrado un equilibrio entre precisión y velocidad de inferencia. Estos algoritmos son capaces de procesar imágenes y localizar multiples objetos de interes en milisegundos.
 Siendo idóneo en este tipo de trabajos clínicos.
 
-Atendiendo a estas necesidades y casuísticas, por parte de una empresa lider en el análisis espermático, surge la necesidad de integrar estos sistemas inteligentes para la detección de células redondas al que dió solución el grupo GVIS de la 
+Atendiendo a estas necesidades y casuísticas, por parte de una empresa lider en el análisis espermático, surge de la necesidad de integrar estos sistemas inteligentes para la detección de células redondas al que dió solución el grupo GVIS de la 
 Universidad de León mediante una prueba de concepto \cite{HamiltonThorneRoundCells}. Demostrando así, la capacidad de estas tecnologías en este tipo de tareas complejas.
 
 Aprovechando este hito, surge la motivación de definir una nueva prueba de concepto integrada en un entorno digital, que permita igualar o superar con menos recursos, la anterior prueba de concepto. Esto se aborda a través de diferentes vías:
@@ -377,7 +378,7 @@ Dentro de las 12 arquitecturas de YOLO \cite{ultralytics_models}, se emplean las
 Es bien sabido de la existencia de diferentes tecnologías para asegurar la robustez y maximizar el rendimiento de los modelos. Algunas de estas tecnologías, son las siguientes:
 
 \begin{itemize}
-  \item \textbf{Optimización de hiperparámetros (Optuna):} El \textit{framework} Optuna, de optimización automática de hiperparámetros (tales como la tasa de aprendizaje, el \textit{momentum} o regulación) explora de manera inteligente y eficiente el espacio de búsqueda y, al final, devuelve la mejor combinación de hiperparámetros encontrada. Se fundamenta en algoritmos de muestreo bayesiano y mecanismos de poda (\textit{pruning}) que descartan de manera anticipada los ensayos poco prometedores.
+  \item \textbf{Optimización de hiperparámetros (Optuna):} El \textit{framework} Optuna \cite{optuna_github}, de optimización automática de hiperparámetros (tales como la tasa de aprendizaje, el \textit{momentum} o regulación) explora de manera inteligente y eficiente el espacio de búsqueda y, al final, devuelve la mejor combinación de hiperparámetros encontrada. Se fundamenta en algoritmos de muestreo bayesiano y mecanismos de poda (\textit{pruning}) que descartan de manera anticipada los ensayos poco prometedores.
   \item \textbf{Aumento de datos (\textit{data augmentation}):} Para mejorar la capacidad de generalización de un modelo y reducir el riesgo de sobreajuste (\textit{overfitting}) en conjuntos de datos limitados se recurre a esta técnica. esta técnica permite generar nuevas muestras de entrenamiento aplicando transformaciones geométricas (rotaciones, traslaciones, escalado, etc) y fotométricas (cambios de brillo, contraste, etc) sobre las imágenes originales, incrementando así la diversidad del conjunto de datos.
   \item \textbf{Valización cruzada (\textit{cross validation}):} Dentro de sus múltiples variantes, la más común consiste en dividir el conjunto de datos en "k" subconjuntos o pliegues. El modelo se entrena K veces, utilizando en cada iteración un pliegue diferente para la validación y los K-1 restantes para el entrenamiento. El rendimiento final se calcula como la media de los resultados de las K iteraciones, proporcionando una medida de la capacidad de generalización del modelo menos dependiente de una única división de datos. Esta técnica permite conocer si un modelo es fiable y robusto.
   \item \textbf{Ensamblado de modelos (\textit{ensemble}):} Esta técnica avanzada busca mejorar la precisión y la robustez de las predicciones combinando las salidas de múltiples modelos entrenados de forma independiente. La hipótesis subyacente es que los errores de un modelo pueden ser compensados por los aciertos de otros (al promediar o dar pesos sobre las predicciones individuales), especialmente si los modelos son diversos.
@@ -385,20 +386,37 @@ Es bien sabido de la existencia de diferentes tecnologías para asegurar la robu
 
 \subsection{Literatura de la investigación}
 
-Esto se puede apreciar en aplicaciones como la medicina, donde podemos destacar ejemplos relevantes como: 
+La Inteligencia Artificial (IA), y en particular el Aprendizaje Profundo (\textit{Deep Learning}), están transformando el campo de análisis de imágenes médicas en especialidades como la oncología, la neurología y la oftalmología.
 
-\begin{itemize}
-  \item \textbf{Oncología:} Se han desarrollado modelos de Aprendizaje Profundo capaces de detectar cancer de mama en mamografías, detección de nódulos pulmonares en tomografías computarizadas y la identificaciónde cander de piel a través de imágenes de lesiones cutáneas.
-  \item \textbf{Neurología y Radiología:} Arquitecturas como U-Net son capaces de delinear con precisión tumores cerebrales en resonancias magnéticas.
-  \item \textbf{Oftalmología:} Análisis de imagenes del fondo de ojo para detectar retinopatía diabética.
-\end{itemize}
+En el ámbito de la andrología, la Inteligencia Artificial está comenzando a tomar especial relevancia en tareas como la concentración y recuento de espermatozoides, motilidad espermática, morfología espermática, integridad del ADN espermático, entre otras \cite{PannerSelvam}. En el contexto del análisis seminal, la mayor parte de las investigaciones se centran
+en la automatización del análisis morfológico de los espermatozoides, desarrollando modelos capaces de identificar con alta precisión diferentes partes de la estructura celilar (como cabeza, parte intermedia y cola) \cite{Maalej2025}.
+
+Sin embargo, este proyecto presenta un desafío diferente y menos explorado, que a diferencia del análisis morfológico el cual se centra en un único tipo de célula,
+la detección de células redondas, como ya hemso visto anteriormente, implicaidentificar un grupo heterogéneo de células (principalmente leucocitos y células germinales inmaduras) en un entornocomplejo y "ruidoso" \cite{OMS}\cite{BJBS}.
+La dificultad de identificar estas células redondas, incluso para experos, y la subjetividad de los metodos manuales tradicionales \cite{Johanisson2000} justifican la necesidad de desarrollar herramientas automatizadas.
+
+Este Trabajo de Fin de Máster se fundamenta en una innovadora prueba de concepto previa, desarrollada por el grupo de investigación GVIS de la Universidad de León en colaboración con la empresa Microptic S.L. \cite{microptic}, en el marco del proyecto europeo DIGIS3 \cite{digis3}. 
+Dicha prueba de concepto, tuvo como objetivo validar la viabilidad de utilizar modelos de Deep Learning para la identificación de células redondas en imágenes de semen humano. En ese trabajo inicial, se reentrenaron tres variantes del modelo YOLOv7 utilizando un conjunto de 
+alrededor de 400 imágenes, logrando resultados prometedores en diferentes métricas. Este hito demostró que los detectores de objetos en tiempo real podían ser adaptados con éxito a esta tarea específica a pesar de las dificultades que esto supone.
+
+Este hito sirve de precedente para explorar nuevas y mejoradas arquitecturas para superar las métricas obtenidas. Investigaciones de vanguardia han desarrollado modelos de alta precisión para identificar específicamente espermátidas redondas humanas, 
+aunque utilizando muestras purificadas mediante citometría de flujo, lo que simplifica el problema al eliminar el "ruido" de fondo \cite{roundsCellsSpermatid}.
+
+Por otro lado, trabajos como el modelo ACTIVE abordan un escenario más similar al de este proyecto, al detectar espermatozoides e "impurezas" en videos microscópicos sin procesar \cite{chen2024}. Los resultados para al detección de espermatozoides son realmente buenos, sin embargo, no se puede decir lo mismo
+para las impurezas (todos los objetos presentes en la muestra que no son espermatozoides). Los propios autores admiten que, en algunos casos, incluso para expertos es dificil distinguir si un objeto
+es una impureza o un espermatozoide. Esto introduce ambigüedad en los datos de entrenamiento perjudicando el aprendizaje del modelo, especialmente para la clase más dificil de definir ("impurezas") \cite{chen2024}.
+
+En síntesis, este proyecto da continuidad al desarrollo tecnológico a partir de la prueba de concepto inicial a demás de integrar y buscar superar los desafios identificados en la literatura científica más reciente. La prueba de concepto sirve como precedente para dar continuidad y actualizar las 
+arquitecturas para el problema de la detección de células redondas en muestras de semen humano, mientras que la literatura reciente pone de manifiesto los desafios y dificultades en la detección de células heterogeneas. 
+
 
 \subsection{Hipótesis de trabajo}
 
 Considerando el potencial de las arquitecturas YOLO y las diferentes técnicas de optimización, se considera que mediante la exploración de las arquitecturas YOLO que van desde la versión 8 a la 12, 
-junto con el diseño personalizado y la optima optimización de hiperparámetros, se consiga igualar o mejorar los modelos de la anterior prueba de concepto del grupo GVIS, en las méticas mAP y velocidad de inferencia. Adicionalmente, 
-se espera que gracias a la arquitectura en desarrollo de Yolov12 basada en módulos de atención, el algoritmo no identifique como células redondas a los Anillos de Newton. la integración de estos modelos con la herramienta web interactiva
-validará su viabilidad como una solución en un marco de análisis real.
+junto con el diseño personalizado y la optima optimización de hiperparámetros, se consiga igualar o mejorar los modelos de la anterior prueba de concepto del grupo GVIS, 
+en las méticas mAP y velocidad de inferencia. Adicionalmente, se espera que gracias a la arquitectura en desarrollo de Yolov12 que incorpora mecanismos de atención, el algoritmo no identifique 
+como células redondas a los Anillos de Newton. La integración de estos modelos con la herramienta web sirvan no solo como metodo de validación final, sino que también demuestre la viabilidad del sistema 
+para ser utilizado en un marco clínico de análisis real por personal experto.
 
 \section{Definición del problema}
 \label{sec:Definición del problema}
@@ -408,13 +426,20 @@ La problemática que da origen a este proyecto no es otra que la ardua y extenua
 Por esta razón, el problema central que aborda este proyecto es diseñar, desarrollar y evaluar un sistema inteligente capaz de automatizar la detección de células 
 redondas sobre un conjunto de imágenes médicas de muestras de semen, utilizando para ello, tecnicas de Visión por Computador (\textit{Computer Vision}) y Aprendizaje Profundo (\textit{Deep Learning}).
 
-Este sistema inteligente debe ser capaz de pocesar imágenes microscópicas donde las células objetivo cohexisten con una densa población de espermatozoides, diversos artefactos visuales (Anillos de Newton)
+Este sistema inteligente debe ser capaz de pocesar imágenes microscópicas como las de la \autoref{fig:Muestra de semen humano sin anotaciones}, donde las células objetivo cohexisten con una densa población de espermatozoides, diversos artefactos visuales (Anillos de Newton)
 y restos residuales ajenos al análisis. Asimismo, la dificultad que supone la distinción de células redondas de otros elementos morfológicamente similares (espermatozoides sin cola), esferas de las que se desconoce que son, etc.
 
-Para más inri, la asignación de anotaciones sobre el conjunto de imágenes es un problema que va a dar dolores de cabeza durante todo el proyecto. Por ejmplo,
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figuras/rounds_cells/61.jpg}
+  \caption{Muestra de semen humano sin anotaciones}
+  \label{fig:Muestra de semen humano sin anotaciones}
+\end{figure}
+
+Para más inri, la asignación de anotaciones sobre el conjunto de imágenes es un problema que va a generar complicaciones durante todo el proyecto. Por ejemplo,
 en la imagen \ref{fig:Anillos_Newton} anotada por un experto, presenta la problemática de los Anillos de Newton. Se verá posteriormente como afectan estos objetos a la correcta identificación de células redondas.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{figuras/rounds_cells/Anillos de Newton.png}
   \caption{Ilustración con Anillos de Newton.}
@@ -551,8 +576,8 @@ El detalle completo previo y durante la etapa de entrenamiento de los diferentes
 
 \begin{itemize}
   \item \textbf{Arquitectura:} El código de esta fase se estructura de forma altamente modular, facilitando el mantenimiento y escalabilidad. La lógica completa se encapsula en clases y librerías reutilizables, manteniendo los cuadernos de Jupyter 
-  (Jupyter Notebooks) limpios y con un hilo argumental claro; dando lugar a una estructura limpia y clara.
-  \item \textbf{Optimización de modelos:} Se realiza una búsqueda sistemática mediante el framework Optuna \cite{optuna_github} para la optimización automática de hiperparámetros.
+  (Jupyter Notebooks) limpios y con un hilo argumental claro; dando lugar a una estructura limpia y clara \cite{repoTFM}.
+  \item \textbf{Optimización de modelos:} Se realiza una búsqueda sistemática mediante el framework Optuna \cite{Optuna} para la optimización automática de hiperparámetros.
   \item \textbf{Entrenamiento y validación:} Para obtener modelos que generalicen lo mejor posible, se emplean las técnicas:
   \begin{itemize}
     \item \textbf{Aumento de datos (\textit{data augmentation}):} Durante el proceso de entrenamiento, se aplican transformaciones para enriquecer la diversidad de los datos y reducir el \textit{overfitting}.
@@ -561,10 +586,14 @@ El detalle completo previo y durante la etapa de entrenamiento de los diferentes
   \item \textbf{Exploración de enfoques avanzados:} Adicionalmente, se aborda el problema desde otras perspectivas:
   \begin{itemize}
     \item \textbf{Ensamblado de modelos:} Se combinan las predicciones de diferentes modelos individuales para crear un nuevo sistema de detección de células redondas. 
-    \item \textbf{Modelo personalizado:} Se diseña una arquitectura de red neuronal propia.
+    \item \textbf{Modelo personalizado:} Se diseña una arquitectura de red neuronal propia. 
   \end{itemize}
-  \item \textbf{Evaluación cuantitativa:} Se estudia el rendimiento individual de los modelos sobre los diferentes conjuntos de \textit{test}. Para esto, se emplean las métricas: 
-  \textit{precision}, \textit{recall}, mAP@0.5, mAP@0.5:0.95 y el tiempo de inferencia. Asimismo, se evalúan en un entorno problemático, como son las imágenes con Anillos de Newton (Ver \autoref{Resultados}).
+  \item \textbf{Evaluación:} Se realiza una evaluación cuantitativa y cualitativa de los resultados (Ver \autoref{Resultados}).
+  \begin{itemize}
+    \item \textbf{Evaluación cuantitativa:} Se estudia el rendimiento individual de los modelos sobre los diferentes conjuntos de \textit{test}. Para esto, se emplean las métricas: 
+    \textit{precision}, \textit{recall}, mAP@0.5, mAP@0.5:0.95, el tiempo de inferencia y el F1-confianza (\autoref{sec:Métricas}). 
+    \item \textbf{Evaluación cualitativa:} Se evalúan los modelos en un entorno problemático, como son las imágenes con Anillos de Newton (\autoref{sec:Definición del problema}). Asimismo, se realiza una comparativa de resultados respecto algunas imágenes de resultados obtenidos en la prueba de concepto inicial. 
+  \end{itemize}
 \end{itemize}
 
 \section{Desarrollo y despliegue de la herramienta web}
@@ -576,7 +605,7 @@ La tercera y última fase del proyecto, es dar una solución tangible y accesibl
   \item \textbf{Desarrollo de la interfaz:} Se define una aplicación interactiva empleando el framework de Streamlit, con el fin de que los expertos médicos puedan interactuar de forma intuitiva con el sistema de detección de células redondas.
   \item \textbf{Funcionalidades:} La prueba de concepto se integra con una serie de funcionalidades como la carga de imágenes y anotaciones asociadas (opcional), selección de modelo de inferencia e intervalo de confianza de las predicciones, 
   visualización de las detecciones, comparativa de resultados con el \textit{ground truth}, exportación de predicciones y métricas sobre un conjunto de imágenes. 
-  \item \textbf{Arquitectura de software:} La aplicación se diseña con un enfoque modular, que separa la lógica de procesado de la interfaz de usuario, garantizando la escalabilidad y la facilidad de mantenimiento.
+  \item \textbf{Arquitectura de software:} La aplicación se diseña con un enfoque modular, que separa la lógica de procesado de la interfaz de usuario, garantizando la escalabilidad y la facilidad de mantenimiento \cite{repoTFM}.
 \end{itemize}
 
 \chapter{Experimentación} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -879,8 +908,8 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
 \chapter{Resultados} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Resultados}
 
-\section{Resultados de los modelos}
-\label{sec:Resultados de los modelos}
+\section{Resultados cuantitativos}
+\label{sec:Resultados cuantitativos}
 
 \begin{table}[H]
   \caption{Resultados de los modelos en la prueba de concepto inicial}
@@ -976,6 +1005,11 @@ ensemble & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.857 & 0.837 & 0.66
 
 Es importante que hablemos de esta problemática y como evitamos un reetiquetado de imágenes que pueden dar más confusión al confundir clases, y continuar la tendencia monoclase.
 
+\clearpage
+\section{Resultados cualitativos}
+\label{Resultados cualitativos}
+
+
 % Tabla para los artefactos
 \definecolor{mygreen}{RGB}{0,180,0}
 \definecolor{myred}{RGB}{220,0,0}
@@ -1026,10 +1060,6 @@ ensemble 0.7      &  &  &  &  &  &  &  &  &  \\
 \end{tabular}
 }
 \end{table}
-
-\section{Discursión de resultados}
-\label{sec:Discursión de resultados}
-
 
 \chapter{Herramienta Web} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Herramienta web}
@@ -1131,6 +1161,7 @@ Por lo tanto, este Trabajo de Fin de Máster no es un ejercicio puramente acadé
   {Anexo \thechapter}{0pt}{\Huge}
 \appendix
 
+Los propios autores admiten que, en algunos casos, incluso para un experto es difícil distinguir si un objeto es una impureza o un espermatozoide. Esto introduce ambigüedad en los datos de entrenamiento, lo que perjudica el aprendizaje del modelo, especialmente para la clase más difícil ("impurezas") [Chen2024].
 
 \chapter{Control de versiones} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Control de versiones}
@@ -1274,27 +1305,20 @@ Posibles problemas que pueden tener lugar durante la instalación:
 \end{itemize}
 
 
-\chapter{Experimentación} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{Experimentación anexo}
-
-\section{Historial de optimización de hiperparámetros}
-\label{sec:Historial de optimización de hiperparámetros}
-
-\section{Hiperparámetros de entrenamiento}
-\label{sec:Hiperparámetros de entrenamiento}
-
-\chapter{Evaluación comparativa de arquitecturas}
+\chapter{Evaluación comparativa de arquitecturas} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Evaluación comparativa de arquitecturas}
 \section{Matrices de confusión}
 \label{sec:Matrice de confusión}
 \section{Curvas F1-confianza}
 \label{sec:Curvas F1-confianza}
+\section{Resultados cualitativos}
+\label{sec:Resultados cualitativos anexo}
 
 
 \end{document}
 
 
-% % ¿Eliminar el bloque de validación de configuración y dejarlo solo pra el optuna, entrenamiento, validación cruzada, data augmentaion?
-% % ¿Que comento en metodología, un poco el procedimiento de cada pipeline?
 % % Cambio de nombre del TFM
 % ¿Usamos las mismas imágenes que evalua Eduardo y las comparamos con estos modelos también? En anexo o en resultados? 
+% Anexo, añado las matrices de confusión de cada modelo para cada test? con un IoU de 0.5? 
+% Anexo añado Optuna
