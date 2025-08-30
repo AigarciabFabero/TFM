@@ -918,10 +918,31 @@ De este modo, la elección de un único "mejor" modelo es difícil, ya que son t
   \label{fig:yolo_k-fold}
 \end{figure}
 
-
 \subsection{Ensamblado de modelos}
 
+Para mejorar la capacidad de generalización y el rendimiento de la detección de células redondas, se implementa una estrategia de ensamblado de modelos mediante la técnica de \textit{Weighted Boxes Fusion (WBF)} \cite{repoTFM}. 
 
+Tras analizar los primeros resultados cuantitativos y cualitativos, se seleccionan dos modelos individuales con diferentes pesos, para la construcción del ensamble. Yolov12 con sus capacidades 
+para capturar información contextual se pondera con un peso de $0.6$ mientras que yolov10s, que destaca por su eficiencia y precisión en la localización, se pondera con un peso de $0.4$.
+
+Asimismo, el proceso de ensamblado se realiza siguiendo los siguientes pasos:
+
+\begin{itemize}
+  \item Para cada imagen, se obtienen las predicciones de los modelos individualmente.
+  \item Se normalizan las coordenadas de las cajas para garantizar compatibilidad.
+  \item Se aplica el algoritmo de (WBF) que agrupa \textit{bounding boxes} similares de diferentes modelos y las fusiona mediante un promedio ponderado según: el peso asignado a cada modelo y la confianza de cada predicción individual.
+  \item Se aplica un umbral de confianza para eliminar aquellas predicciones con baja probabilidad.
+\end{itemize}
+
+Cabe destacar, cuando las predicciones de yolov12 y yolov10 no coinciden (sin solapamiento significativo de las \textit{bounding boxes}), el algoritmo mantiene las detecciones como predicciones independientes,
+aplica el umbral de omisión de cajas a cada predicción individual y si supera dicho umbral, estas predicciones se incluyen en el resultado final.
+
+De este modo, se aprovechan las fortalezas de cada modelo y se reducen los falsos negativos al mantener detecciones únicas de cada modelo (mejora el Recall).
+
+Para obtener la configuración óptima de hiperparámetros, se exploran diferentes valores en un grid. Para el umbral de IoU (cuando dos \textit{bounding boxes} se consideran superposiciones de la misma detección) se exploran los valores 
+de 0.3, 0.4 y 0.5 y para el umbral de omisión de cajas (determina la confianza mínima para considerar una predicción) se exploran los valores de 0.25, 0.3 y 0.35.
+
+La configuración óptima resultante fue un umbral de IoU de 0.5 y un umbral de omisión de cajas de 0.35.
 
 \subsection{Modelo personalizado}
 
@@ -1295,7 +1316,7 @@ sobre la imagen con un zoom (Figura \ref{fig:cell_app_zoom}). Asimismo, muestra 
   \label{fig:cell_app_zoom}
 \end{figure}
 
-Cabe destacar el \textit{widget} "Descargar XML" que permite al usuario descargar las prediciones del modelo realizadas sobre la imagen de entrada en un formato
+Cabe destacar el \textit{widget} "Descargar XML" que permite al usuario descargar las predicciones del modelo realizadas sobre la imagen de entrada en un formato
 PascalVOC. 
 
 Si el usuario prefiere evaluar un conjunto de imágenes con sus respectivas anotaciones, se debe seleccionar la elección de "carpeta completa" como se muestra en la Figura \ref{fig:cell_app_directory}.
