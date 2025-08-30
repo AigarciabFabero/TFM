@@ -761,6 +761,7 @@ Aquí tengo que poner una tabla con las configuraciones de entrenamiento para se
 
 \begin{table}[H]
 \caption{Parámetros principales de entrenamiento para cada modelo}
+\label{tab:Parámetros principales de entrenamiento para cada modelo}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \setlength{\arrayrulewidth}{0.8pt}
@@ -794,7 +795,8 @@ custom    & 10 & 25 & 40 & 12 & 704 \\
 \end{table}
 
 \begin{table}[H]
-\caption{Principales hiperparámetros óptimos seleccionados para cada modelo.}
+\caption{Principales hiperparámetros óptimos seleccionados para cada modelo}
+\label{tab:Principales hiperparámetros óptimos seleccionados para cada modelo}
 \centering
 \begin{tabular}{lccccc}
 \toprule
@@ -816,6 +818,7 @@ Hiperparámetros del data augmentation:
 
 \begin{table}[H]
 \caption{Hiperparámetros de data augmentation}
+\label{tab:Hiperparámetros de data augmentation}
 \centering
 \begin{tabular}{lc|lc}
 \toprule
@@ -875,8 +878,13 @@ scale & 0.06 & & \\
 
 \subsection{Validación cruzada}
 
-\begin{table}[htb]
-\caption{Resultados de validación cruzada (k-fold) para todos los modelos.}
+Para demostrar la capacidad de generalización y fiabilidad de los diferentes modelos de detección de células redondas, se emplea la metodología
+de validación cruzada (\textit{k-fold cross validation}). Para esto, se ha dividido el conjunto de entrenamiento original constituido por 373 imágenes (\autoref{tab:dataset_original}) en $k=4$ pliegues o \textit{folds} de tamaño similar.
+De este modo, el proceso de entrenamiento tiene lugar con las 4 combinaciones (sin repetición) posibles, en las que un fold se reserva para validar y tres para entrenar. Los resultados obtenidos para cada modelo se recogen en la \autoref{tab:kfold_resultados}.
+
+\begin{table}[htbp]
+\caption{Resultados de la validación cruzada (k-fold) para todos los modelos}
+\label{tab:kfold_resultados}
 \centering
 \begin{tabular}{lcccc}
 \toprule
@@ -885,16 +893,39 @@ scale & 0.06 & & \\
 yolov8s  & 0.836 $\pm$ 0.008 & 0.868 $\pm$ 0.015 & 0.914 $\pm$ 0.011 & 0.723 $\pm$ 0.024 \\
 yolov9s  & 0.852 $\pm$ 0.015 & 0.866 $\pm$ 0.013 & 0.919 $\pm$ 0.009 & 0.729 $\pm$ 0.026 \\
 yolov10s & 0.854 $\pm$ 0.014 & 0.855 $\pm$ 0.011 & 0.918 $\pm$ 0.009 & 0.739 $\pm$ 0.029 \\
-yolov11s & 0.845 $\pm$ 0.025 & 0.869 $\pm$ 0.013 & 0.922 $\pm$ 0.012 & 0.742 $\pm$ 0.025 \\
-yolov12s & 0.853 $\pm$ 0.011 & 0.861 $\pm$ 0.016 & 0.918 $\pm$ 0.008 & 0.730 $\pm$ 0.018 \\
+yolov11s & 0.845 $\pm$ 0.025 & \textbf{0.869 $\pm$ 0.013} & \textbf{0.922 $\pm$ 0.012} & \textbf{0.742 $\pm$ 0.025} \\
+yolov12s & \textbf{0.853 $\pm$ 0.011} & 0.861 $\pm$ 0.016 & 0.918 $\pm$ 0.008 & 0.730 $\pm$ 0.018 \\
 yolov12l & 0.841 $\pm$ 0.002 & 0.867 $\pm$ 0.013 & 0.912 $\pm$ 0.011 & 0.724 $\pm$ 0.013 \\
 custom    & 0.836 $\pm$ 0.014 & 0.865 $\pm$ 0.014 & 0.905 $\pm$ 0.011 & 0.707 $\pm$ 0.015 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
+Los datos de la \autoref{tab:kfold_resultados} se representan en la \autoref{fig:yolo_k-fold}.
+En esta figura, cada punto central indica el valor medio de rendimiento para una métrica específica (Precisión, Recall, mAP50 y mAP50-95), 
+mientras que las barras horizontales que lo rodean representan la desviación estándar obtenida a lo largo de los 4 pliegues de la validación cruzada.
+
+Analizando la \autoref{fig:yolo_k-fold}, se puede observar que, pese a las pequeñas diferencias en los promedios, los intervalos de incertidumbre se solapan entre todos los modelos
+para todas las métricas específicas a evaluar. Es un laro indicador de que los modelos ofrecen un rendimiento similar y robusto, que les permite generalizar de forma adecuada, pese al despunte del modelo yolov11s. 
+Asimismo, las barras de incertidumbre más pequeñas reflejan qué modelos son más estables, siendo los más estables los modelos yolov12s, yolov12l y \textit{custom}.
+
+De este modo, la elección de un único "mejor" modelo es difícil, ya que son todos ellos opciones excelentes y estadísticamente equivalentes para esta tarea de detección de objetos. 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{figuras/k-fold/Yolo_k-fold.png}
+  \caption{Representación de la validación cruzada (k-fold) para todos los modelos.}
+  \label{fig:yolo_k-fold}
+\end{figure}
+
+
 \subsection{Ensamblado de modelos}
+
+
+
 \subsection{Modelo personalizado}
+
+Hablar de modelo personalizado o custom
 
 \section{Métricas}
 \label{sec:Métricas}
