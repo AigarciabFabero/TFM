@@ -753,59 +753,82 @@ recoge todas las librerías y versiones necesarias para la correcta ejecución d
 \section{Configuraciones}
 \label{sec:Configuraciones}
 
+En esta sección se abordan los aspectos más relevantes del entrenamiento, validación y dearrollo de metodologías avanzadas para la detección de células redondas.
+
 \subsection{Entrenamiento}
 
 Aquí tengo que poner una tabla con las configuraciones de entrenamiento para ser recreado y cumplir con las normas éticas.
 
 \begin{table}[H]
-\caption{Hiperparámetros principales de entrenamiento para cada modelo}
+\caption{Parámetros principales de entrenamiento para cada modelo}
 \centering
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Modelo} & \textbf{Nº Trials} & \textbf{Epoch Optuna} & \textbf{Epoch Train} & \textbf{Batch} & \textbf{Image Size} \\
-\hline
-yolov8s   & 6  & 25 & 40 & 12 & 704 \\
-yolov9s   & 6  & 25 & 40 & 10 & 704 \\
-yolov10s  & 6  & 25 & 40 & 10 & 704 \\
-yolov11s  & 6  & 25 & 40 & 10 & 704 \\
-yolov12s  & 6  & 25 & 40 & 7 & 704 \\
-yolov12x  & 5  & 25 & 40 & 7 & 704 \\
+\renewcommand{\arraystretch}{1.3}
+\setlength{\arrayrulewidth}{0.8pt}
+\begin{tabular}{>{\centering\arraybackslash}m{1.8cm}
+                >{\centering\arraybackslash}p{1.3cm}
+                >{\centering\arraybackslash}p{1.8cm}
+                >{\centering\arraybackslash}p{1.8cm}
+                >{\centering\arraybackslash}p{1cm}
+                >{\centering\arraybackslash}p{1.5cm}}
+\arrayrulecolor{gray!50}
+\specialrule{.8pt}{0pt}{0pt}
+\rowcolor{black!10}
+\textbf{Model} & \textbf{Nº Trials} & \textbf{Epoch Optuna} & \textbf{Epoch Train} & \textbf{Batch Size} & \textbf{Image Size} \\
+\specialrule{.8pt}{0pt}{0pt}
+yolov8s   & 10 & 25 & 40 & 12 & 704 \\
+\arrayrulecolor{gray!30}\hline
+yolov9s   & 7  & 25 & 40 & 10 & 704 \\
+\arrayrulecolor{gray!30}\hline
+yolov10s  & 7  & 25 & 40 & 10 & 704 \\
+\arrayrulecolor{gray!30}\hline
+yolov11s  & 7  & 25 & 40 & 10 & 704 \\
+\arrayrulecolor{gray!30}\hline
+yolov12s  & 9  & 25 & 40 & 7  & 704 \\
+\arrayrulecolor{gray!30}\hline
+yolov12l  & 6  & 25 & 40 & 7  & 704 \\
+\arrayrulecolor{gray!30}\hline
 custom    & 10 & 25 & 40 & 12 & 704 \\
-\hline
+\arrayrulecolor{gray!50}
+\specialrule{.8pt}{0pt}{0pt}
 \end{tabular}
 \end{table}
-
 
 \begin{table}[H]
 \caption{Principales hiperparámetros óptimos seleccionados para cada modelo.}
 \centering
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
+\begin{tabular}{lccccc}
+\toprule
 \textbf{Modelo} & \textbf{lr0} & \textbf{lrf} & \textbf{momentum} & \textbf{weight\_decay} & \textbf{optimizer} \\
-\hline
-yolov8s   & 0.00540 & 0.00399 & 0.90621 & 0.00010 & SGD \\ \hline
+\midrule
+yolov8s   & 0.00540 & 0.00399 & 0.90621 & 0.00010 & SGD \\
 yolov9s   & 0.00023 & 0.00153 & 0.84564 & 0.00033 & AdamW \\
 yolov10s  & 0.00540 & 0.00399 & 0.90621 & 0.00010 & SGD \\
 yolov11s  & 0.00023 & 0.00153 & 0.84564 & 0.00033 & AdamW \\
 yolov12s  & 0.00023 & 0.00932 & 0.91627 & 0.00087 & AdamW \\
+yolov12l  & 0.00019 & 0.00196 & 0.85495 & 0.00029 & SGD \\
 custom    & 0.00153 & 0.00111 & 0.89113 & 0.00015 & AdamW \\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
 
+
 Hiperparámetros del data augmentation:
 
-\begin{description}
-  \item[\textbf{warmup\_epochs}:] 5
-  \item[\textbf{warmup\_momentum}:] 0.75
-  \item[\textbf{degrees}:] 45
-  \item[\textbf{translate}:] 0.1
-  \item[\textbf{scale}:] 0.06
-  \item[\textbf{flipud}:] 0.5
-  \item[\textbf{fliplr}:] 0.5
-  \item[\textbf{mosaic}:] 0
-  \item[\textbf{close\_mosaic}:] 0
-\end{description}
+\begin{table}[H]
+\caption{Hiperparámetros de data augmentation}
+\centering
+\begin{tabular}{lc|lc}
+\toprule
+\textbf{Parámetro} & \textbf{Valor} & \textbf{Parámetro} & \textbf{Valor} \\
+\midrule
+warmup\_epochs & 5 & flipud & 0.5 \\
+warmup\_momentum & 0.75 & fliplr & 0.5 \\
+degrees & 45 & mosaic & 0 \\
+translate & 0.1 & close\_mosaic & 0 \\
+scale & 0.06 & & \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 
 \begin{figure}[htbp]
@@ -851,6 +874,25 @@ Hiperparámetros del data augmentation:
 \end{figure}
 
 \subsection{Validación cruzada}
+
+\begin{table}[htb]
+\caption{Resultados de validación cruzada (k-fold) para todos los modelos.}
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Modelo} & \textbf{Precisión} & \textbf{Recall} & \textbf{mAP50} & \textbf{mAP50-95} \\
+\midrule
+yolov8s  & 0.836 $\pm$ 0.008 & 0.868 $\pm$ 0.015 & 0.914 $\pm$ 0.011 & 0.723 $\pm$ 0.024 \\
+yolov9s  & 0.852 $\pm$ 0.015 & 0.866 $\pm$ 0.013 & 0.919 $\pm$ 0.009 & 0.729 $\pm$ 0.026 \\
+yolov10s & 0.854 $\pm$ 0.014 & 0.855 $\pm$ 0.011 & 0.918 $\pm$ 0.009 & 0.739 $\pm$ 0.029 \\
+yolov11s & 0.845 $\pm$ 0.025 & 0.869 $\pm$ 0.013 & 0.922 $\pm$ 0.012 & 0.742 $\pm$ 0.025 \\
+yolov12s & 0.853 $\pm$ 0.011 & 0.861 $\pm$ 0.016 & 0.918 $\pm$ 0.008 & 0.730 $\pm$ 0.018 \\
+yolov12l & 0.841 $\pm$ 0.002 & 0.867 $\pm$ 0.013 & 0.912 $\pm$ 0.011 & 0.724 $\pm$ 0.013 \\
+custom    & 0.836 $\pm$ 0.014 & 0.865 $\pm$ 0.014 & 0.905 $\pm$ 0.011 & 0.707 $\pm$ 0.015 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsection{Ensamblado de modelos}
 \subsection{Modelo personalizado}
 

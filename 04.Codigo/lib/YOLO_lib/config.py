@@ -162,6 +162,7 @@ best_params_custom = {
     "close_mosaic": 0,
 }
 
+#v12l
 best_params_yolov12l = {
     "lr0": 0.00019010245319870352,
     "lrf": 0.001959497205867916,
