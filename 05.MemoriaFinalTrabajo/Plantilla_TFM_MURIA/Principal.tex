@@ -679,6 +679,7 @@ Se utilizan dos entornos de desarrrollo complementarios, garantizando la reprodu
 
 \subsection{\textit{Hardware}}
 \subsubsection{Hardware Local}
+\label{sec:hardware_local}
 El entorno principal de desarrollo es un equipo \textit{Lenovo IdeaPad Gaming 3} con las siguientes especificaciones técnicas:
 
 \begin{itemize}
@@ -715,6 +716,7 @@ El entorno principal de desarrollo es un equipo \textit{Lenovo IdeaPad Gaming 3}
 \end{itemize}
 
 \subsubsection{Servidor privado}
+\label{sec:servidor_privado}
 Como entorno complementario se ha empleado un servidor remoto proporcionado por del grupo GVIS de la Universidad de León.
 
 \begin{itemize}
@@ -757,7 +759,11 @@ En esta sección se abordan los aspectos más relevantes del entrenamiento, vali
 
 \subsection{Entrenamiento}
 
-Aquí tengo que poner una tabla con las configuraciones de entrenamiento para ser recreado y cumplir con las normas éticas.
+Para abordar el proceso de entrenamiento de forma óptima, previamentes se emplea el \textit{framework} Optuna \cite{Optuna} con las configuraciones de parámetros adjuntas en la \autoref{tab:Parámetros principales de entrenamiento para cada modelo} y,
+maximizando la métrica mAP@0.5:0.95. Cabe destacar que durante todo el procedimiento se garantiza la reproducibilidad y cumplimiento con las normas éticas y legales.
+
+Toda la información relativa a esta etapa, se encuentra en el documento de configuraciones (config.py) del repositorio
+del proyecto \cite{repoTFM}. Recordar que al tener como objeto la detección de células redondas, el número de clases es uno.
 
 \begin{table}[H]
 \caption{Parámetros principales de entrenamiento para cada modelo}
@@ -794,6 +800,8 @@ custom    & 10 & 25 & 40 & 12 & 704 \\
 \end{tabular}
 \end{table}
 
+Como resultado de aplicar Optuna patra cada arquitectura, se obtienen las mejores configuraciones de hiperparámetros que se recogen en \autoref{tab:Principales hiperparámetros óptimos seleccionados para cada modelo}.
+
 \begin{table}[H]
 \caption{Principales hiperparámetros óptimos seleccionados para cada modelo}
 \label{tab:Principales hiperparámetros óptimos seleccionados para cada modelo}
@@ -813,8 +821,9 @@ custom    & 0.00153 & 0.00111 & 0.89113 & 0.00015 & AdamW \\
 \end{tabular}
 \end{table}
 
-
-Hiperparámetros del data augmentation:
+Una vez finaliza el proceso de optimización,, se procede con el entrenamiento de cada modelo de forma individual con los parámetros
+de la \autoref{tab:Parámetros principales de entrenamiento para cada modelo}, los hiperparámetros de la \autoref{tab:Principales hiperparámetros óptimos seleccionados para cada modelo} y los del
+\textit{data augmentation} (\autoref{tab:Hiperparámetros de data augmentation}) 
 
 \begin{table}[H]
 \caption{Hiperparámetros de data augmentation}
@@ -833,48 +842,62 @@ scale & 0.06 & & \\
 \end{tabular}
 \end{table}
 
+Todos los modelos han sido entrenados y evaluados con el limitado hardware personal (\autoref{sec:hardware_local}), exceptuando el modelo yolov12 que demanda el uso de un servidor privado 
+proporcionado por la Universidad de Leon (\autoref{sec:servidor_privado}).
 
-\begin{figure}[htbp]
+A continuación, se exponen e interpretan los resultados obtenidos durante los entrenamientos:
+
+\begin{figure}[H]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/map50-95.png}
   \caption{mAP@0.5:0.95 durante el proceso de entrenamiento.}
   \label{fig:yolo_train_map95}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/map50.png}
   \caption{mAP@0.5 durante el proceso de entrenamiento.}
   \label{fig:yolo_train_map50}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/precision.png}
   \caption{\textit{Precision} del modelo sobre el conjunto de validación.}
   \label{fig:yolo_train_precision}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/recall.png}
   \caption{\textit{Recall} del modelo sobre el conjunto de validación.}
   \label{fig:yolo_train_recall}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/box_loss.png}
   \caption{\textit{Box Loss} sobre el conjunto de entrenamiento y validación.}
   \label{fig:yolo_train_box_loss}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/cls_loss.png}
   \caption{\textit{Clasification Loss} sobre el conjunto de entrenamiento y validación.}
   \label{fig:yolo_train_cls_loss}
 \end{figure}
+
+En general, todos los modelos muestran un buen desempeño durante el entrenamiento, con métricas que mejoran y se estabilizan a lo largo de las 40 épocas (\textit{epoch}). Además, 
+no hay evidencia de un sobreajuste (\textit{overfitting}).
+
+Aparentemente el modelo yolov12s arroja mejores resultados; principalmente, en la métrica más exigente, la mAP@0.5:0.95 (\autoref{fig:yolo_train_map95}). En base a esta métrica, el peor modelo se puede considerar el custom.
+Sorprendentemente, el modelo yolov12l (el más grande y preciso) es el peor modelo en cuanto a las métricas mAP@0.5 (\autoref{fig:yolo_train_map50}) y \textit{precision} sobre el conjunto de validación (\autoref{fig:yolo_train_precision}). 
+
+A pesar de los buenos rendimientos del modelo yolov10s en las métricas de \textit{precisión, recall y mAP}, se aprecia como la función de pérdida (\textit{loss}), tanto en la clasificación como en las \textit{bounding boxes},
+el modelo se distancia respecto al resto con una pérdida superior a la de los demás. A pesar de que no es una perdida muy significativa, es importante tenerla en cuenta, por ser la métrica a minimizar durante el entrenamiento.
+Se puede ver como en las primeras epocas al modelo le cuesta mucho aprender a localizar y clasificar los objetos correctamente aunque finalmente consigue estabilizarse como era de esperar.
 
 \subsection{Validación cruzada}
 
@@ -946,7 +969,65 @@ La configuración óptima resultante fue un umbral de IoU de 0.5 y un umbral de 
 
 \subsection{Modelo personalizado}
 
-Hablar de modelo personalizado o custom
+Este modelo personalizado o \textit{custom} representa una arquitectura híbrida al combinar elementos específicos de tres generaciones de YOLO v8, v9 y v10 \cite{repoTFM}. 
+
+La arquitectura sigue el patrón típico de los modelos YOLO con una profundidad (controla el número de capas repetidas en la arquitectura) de 0.33 y un factor de anchura 
+(controla el número de canales (filtros) en cada capa convolucional de la red) de 0.50, dando lugar a un equilibrio entre rendimiento y velocidad.
+
+La arquitectura del modelo se segmenta en dos componentes clave:
+
+\subsubsection{\textit{Backbone}}
+
+Responsable de la extracción de características, integra las siguientes capas:
+
+\begin{table}[H]
+\caption{Estructura del \textit{backbone} del modelo personalizado}
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{clccl}
+\toprule
+\textbf{Índice} & \textbf{Tipo} & \textbf{Canales} & \textbf{Stride} & \textbf{Función} \\
+\midrule
+0-1 & Conv & 64/128 & 2/2 & Extracción inicial de características \\
+2 & C2f (YOLOv8) & 128 & 1 & Agregación eficiente de características a baja escala \\
+3-4 & Conv + C2f & 256 & 2 & Captura de patrones a escala media \\
+5-6 & SCDown (YOLOv10) + C2f & 512 & 2 & Preservación de información espacial \\
+7 & SCDown (YOLOv10) & 1024 & 2 & Reducción contextual avanzada \\
+8 & RepNCSPELAN4 (YOLOv9) & [1024,512,256,1] & 1 & Reparametrización para patrones complejos \\
+9 & PSA & 1024 & 1 & Atención espacial píxel a píxel \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsubsection{\textit{Head}}
+Responsable de interpretar las características y realizar la detección. Estructura FPN+PAN (Feature Pyramid Network + Path Aggregation Network):
+
+\begin{table}[H]
+\caption{Estructura del \textit{head} del modelo personalizado}
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{clcl}
+\toprule
+\textbf{Índice} & \textbf{Tipo} & \textbf{Canales} & \textbf{Función} \\
+\midrule
+10-12 & Upsample + Concat + C2f & 512 & Ampliación y fusión con características P4 \\
+13-15 & Upsample + Concat + C2f & 256 & Salida P3 para objetos pequeños \\
+16-18 & Conv + Concat + C2f & 512 & Salida P4 para objetos medianos \\
+19-21 & Conv + Concat + C2f & 1024 & Salida P5 para objetos grandes \\
+22 & Detect & [nc] & Detección final a múltiples escalas \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+Las características de este modelo son:
+\begin{itemize}
+  \item Uso de SCDown de YOLOv10 que preserva mejor la información espacial durante la reducción dimensional.
+  \item Integración del módulo RepNCSPELAN4 de YOLOv9 para mejorar la capacidad de representación.
+  \item Incorporación de atención espacial (PSA) para enfocarse en regiones relevantes.
+  \item Estructura FPN+PAN optimizada para la detección a múltiltiples escalas.
+\end{itemize}
 
 \section{Métricas}
 \label{sec:Métricas}
@@ -1228,17 +1309,6 @@ Por lo tanto, este Trabajo de Fin de Máster no es un ejercicio puramente acadé
 \label{sec:Limitaciones del estudio}
 \section{Lineas de trabajo futuro}
 \label{sec:Lineas de trabajo futuro}
-
-\subsection*{Aportaciones realizadas}
-
-\subsection*{Problemas encontrados}
-
-\section*{Opiniones personales}
-\label{sec:Opiniones personales}
-
-\subsection*{Trabajos futuros}
-\subsection*{Agradecimientos}
-
 
 %%%% BIBLIOGRAFÍA %%%%
 \renewcommand\bibname{Bibliografía}
