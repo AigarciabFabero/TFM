@@ -49,25 +49,48 @@ def process_image_YOLO(image, model, confidence_threshold=0.5):
 
         processed_results = []
         for r in results:
-            im_array = r.plot(labels=False, conf=True)
-
-            im_array = cv2.cvtColor(im_array, cv2.COLOR_BGR2RGB)
-
+            # Crear una copia de la imagen original en lugar de usar r.plot()
+            im_array = img_array.copy()
+            
             num_detections = len(r.boxes) if r.boxes is not None else 0
-
             detection_info = []
+            
+            # Color azul turquesa en formato BGR
+            turquoise_color = (209, 156, 0)  # Esto es turquesa en BGR
+            
             if r.boxes is not None:
                 for i, box in enumerate(r.boxes):
                     conf = float(box.conf[0])
                     x1, y1, x2, y2 = box.xyxy[0].tolist()
+                    x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
+                    
+                    # Dibujar el rectángulo con color turquesa
+                    cv2.rectangle(im_array, (x1, y1), (x2, y2), turquoise_color, 2)
+                    
+                    # Añadir el texto con la probabilidad
+                    label = f"{conf:.2f}"
+                    text_y = max(y1 - 0, 0)
+                    
+                    # Fondo para el texto con el mismo color turquesa
+                    (text_width, text_height) = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.5, 2)[0]
+                    cv2.rectangle(im_array, (x1, text_y - text_height), 
+                                 (x1 + text_width, text_y), turquoise_color, -1)
+                    
+                    # Texto en negro sobre fondo turquesa
+                    cv2.putText(im_array, label, (x1, text_y), 
+                               cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
+                    
                     detection_info.append(
                         {
                             "id": i + 1,
                             "confidence": conf,
-                            "bbox": [int(x1), int(y1), int(x2), int(y2)],
+                            "bbox": [x1, y1, x2, y2],
                             "area": int((x2 - x1) * (y2 - y1)),
                         }
                     )
+
+            # Convertir de BGR a RGB para mostrar en Streamlit
+            im_array = cv2.cvtColor(im_array, cv2.COLOR_BGR2RGB)
 
             processed_results.append(
                 {

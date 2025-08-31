@@ -203,23 +203,29 @@ def main():
                 precision = TP / (TP + FP) if (TP + FP) > 0 else 0
                 recall = TP / (TP + FN) if (TP + FN) > 0 else 0
                 iou_promedio = np.mean(mean_ious) if mean_ious else 0
+                f1_score = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
 
-                col1, col2, col3 = st.columns(3)
+                col1, col2, col3, col4 = st.columns(4)
                 with col1:
                     st.markdown(f"**Precisión:** {precision:.3f}")
-                    with st.expander("Matriz de confusión"):
-                            fig, ax = plt.subplots(figsize=(2, 2))  # Tamaño pequeño
-                            sns.heatmap(cm, annot=True, fmt="d", cmap="YlGnBu",
-                                        xticklabels=["Detección", "No detección"],
-                                        yticklabels=["GT célula", "GT fondo"],
-                                        linecolor='r', linewidths=0.5, ax=ax)
-                            ax.set_xlabel("Predicción")
-                            ax.set_ylabel("Ground Truth")
-                            st.pyplot(fig)
                 with col2:
                     st.markdown(f"**Recall:** {recall:.3f}")
                 with col3:
+                    st.markdown(f"**F1-Score:** {f1_score:.3f}")
+                with col4:
                     st.markdown(f"**IoU promedio:** {iou_promedio:.3f}")
+
+                conf_col1, conf_col2 = st.columns(2)
+                with conf_col1:
+                    with st.expander("Matriz de confusión"):
+                        fig, ax = plt.subplots(figsize=(4, 4))  # Tamaño más grande
+                        sns.heatmap(cm, annot=True, fmt="d", cmap="YlGnBu",
+                                    xticklabels=["Detección", "No detección"],
+                                    yticklabels=["GT célula", "GT fondo"],
+                                    linecolor='r', linewidths=0.5, ax=ax)
+                        ax.set_xlabel("Predicción")
+                        ax.set_ylabel("Ground Truth")
+                        st.pyplot(fig)
 
 if __name__ == "__main__":
     main()
