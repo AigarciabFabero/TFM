@@ -764,6 +764,7 @@ recoge todas las librerías y versiones necesarias para la correcta ejecución d
 En esta sección se abordan los aspectos más relevantes del entrenamiento, validación y dearrollo de metodologías avanzadas para la detección de células redondas.
 
 \subsection{Entrenamiento}
+\label{sec:Entrenamiento}
 
 Para abordar el proceso de entrenamiento de forma óptima, previamentes se emplea el \textit{framework} Optuna \cite{Optuna} con las configuraciones de parámetros adjuntas en la \autoref{tab:Parámetros principales de entrenamiento para cada modelo} y,
 maximizando la métrica mAP@0.5:0.95. Cabe destacar que durante todo el procedimiento se garantiza la reproducibilidad y cumplimiento con las normas éticas y legales.
@@ -906,6 +907,7 @@ el modelo se distancia respecto al resto con una pérdida superior a la de los d
 Se puede ver como en las primeras epocas al modelo le cuesta mucho aprender a localizar y clasificar los objetos correctamente aunque finalmente consigue estabilizarse como era de esperar.
 
 \subsection{Validación cruzada}
+\label{sec:Validación cruzada}
 
 Para demostrar la capacidad de generalización y fiabilidad de los diferentes modelos de detección de células redondas, se emplea la metodología
 de validación cruzada (\textit{k-fold cross validation}). Para esto, se ha dividido el conjunto de entrenamiento original constituido por 373 imágenes (\autoref{tab:dataset_original}) en $k=4$ pliegues o \textit{folds} de tamaño similar.
@@ -948,6 +950,7 @@ De este modo, la elección de un único "mejor" modelo es difícil, ya que son t
 \end{figure}
 
 \subsection{Ensamblado de modelos}
+\label{sec:Ensamblado de modelos}
 
 Para mejorar la capacidad de generalización y el rendimiento de la detección de células redondas, se implementa una estrategia de ensamblado de modelos mediante la técnica de \textit{Weighted Boxes Fusion (WBF)} \cite{repoTFM}. 
 
@@ -974,7 +977,7 @@ de 0.3, 0.4 y 0.5 y para el umbral de omisión de cajas (determina la confianza 
 La configuración óptima resultante fue un umbral de IoU de 0.5, un umbral de omisión de cajas de 0.35 y un umbral de IoU para cada modelo de 0.25.
 
 \subsection{Modelo personalizado}
-
+\label{sec:Modelo personalizado}
 Este modelo personalizado o \textit{custom} representa una arquitectura híbrida al combinar elementos específicos de tres generaciones de YOLO v8, v9 y v10 \cite{repoTFM}. 
 
 La arquitectura sigue el patrón típico de los modelos YOLO con una profundidad (controla el número de capas repetidas en la arquitectura) de 0.33 y un factor de anchura 
@@ -1089,8 +1092,17 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
 \chapter{Resultados} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Resultados}
 
+En este capítulo se abordan los resultados obtenidos para los modelos sobre los diferentes conjuntos de \textit{test}. Para esto, se analizan 
+los resultados atendiendo a dos enfoques complementarios: 
+por un lado, se presentan los resultados cuantitativos, basados en métricas objetivas de evaluación; y por otro, se realiza un análisis cualitativo, 
+centrado en la interpretación visual y contextual de las predicciones realizadas por los modelos.
+
 \section{Resultados cuantitativos}
 \label{sec:Resultados cuantitativos}
+
+En esta primera parte, se evaluan los resultados sobre el el conjunto de \textit{test} original, para el cual tenemos resultados asociados
+a la prueba de concepto previa (\autoref{tab:yolov7_results}). Bajo la premisa de que todos los modelos arrojan los similares resultados, por los tiempos de inferencia y 
+el valor más alto en la métrica mAP@0.5:0.95, el mejor modelo es el YOLOv7.
 
 \begin{table}[H]
   \caption{Resultados de los modelos en la prueba de concepto inicial}
@@ -1119,17 +1131,33 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
       \hline
       yolov8s    & 0.843 & 0.844 & 0.920 & 0.722 & \textbf{11.006} \\
       yolov9s    & 0.838 & 0.852 & 0.921 & 0.721 & 13.485 \\
-      yolov10s   & 0.821 & \textbf{0.867} & 0.918 & 0.717 & 11.221 \\
+      yolov10s   & 0.821 & 0.867 & 0.918 & 0.717 & 11.221 \\
       yolov11s   & \textbf{0.861} & 0.824 & 0.921 & 0.732 & 11.248 \\
       yolov12s   & 0.856 & 0.863 & \textbf{0.936} & \textbf{0.76} & 14.615 \\
       yolov12l   & 0.856 & 0.836 & 0.921 & 0.729 & 48.146 \\
       custom     & 0.835 & 0.838 & 0.909 & 0.695 & 13.058 \\
-      ensemble   & 0.815 & 0.895 & 0.864 & 0.697 & 75.073 \\
+      ensemble   & 0.815 & \textbf{0.895} & 0.864 & 0.697 & 75.073 \\
       \hline
   \end{tabular}
   }
   \label{tab:yolov8_12_results}
 \end{table}
+
+Comparando estos resultados con los obtenidos en este proyecto (\autoref{tab:yolov8_12_results}), el modelo YOLOv12s destaca por mejorar las métricas mAP@0.5 y mAP@0.5:0.95 (un 5.26\% más que YOLOv7) y 
+reducir la latencia respecto a versiones anteriores, por lo que se considera el mejor modelo en esta prueba. Aunque los modelos más pesados como YOLOv12l y el ensamblado 
+presentan mayores tiempos de inferencia, todos los modelos mantienen una latencia inferior a 100 ms. El ensemble logra el mayor recall ($0.895$), pero con peores valores de mAP, 
+precisión y latencia. YOLOv8s es el más rápido ($11.006$ ms) y YOLOv11s obtiene la mayor precisión.
+
+Analizando los nuevos conjuntos de \textit{test} (\autoref{tab:yolos_nuevos_tests}), los resultados siguen siendo similares entre modelos. Según la métrica mAP@0.5:0.95, YOLOv12s vuelve a ser el mejor (0.673), seguido de YOLOv12l (0.659). 
+El ensemble mejora precisión y recall, pero empeora mAP y latencia. El modelo custom destaca por su baja latencia y buenos resultados, especialmente en test3, 
+donde iguala la precisión del ensemble ($0.873$). Las diferencias entre el resto de modelos son mínimas.
+
+El conjunto test2 muestra latencias más altas ($31$–$76$ ms) y un descenso general de mAP@0.5:0.95, lo que indica condiciones diferentes que afectan al rendimiento.
+
+En resumen, YOLOv12s es el modelo más destacado entre las arquitecturas evaluadas. El ensamblado de modelos mejora recall y precisión al reducir falsos negativos, aunque aumenta los falsos positivos, como muestran las matrices de confusión 
+(\autoref{sec:Matrice de confusión}). En test2, las diferencias son mínimas debido al tamaño reducido del conjunto. El análisis de las curvas F1-confianza 
+(\autoref{sec:Curvas F1-confianza}) indica que el F1-score óptimo se alcanza con umbrales de confianza entre 0.25 y 0.5, por lo que se estudia YOLOv12s con un umbral de 0.35 
+para imágenes de alta resolución.
 
 % Tabla para los resultados sobre los conjuntos de Test
 \definecolor{turquoise}{RGB}{64,224,208}
@@ -1182,13 +1210,16 @@ ensemble & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.857 & 0.837 & 0.66
 \specialrule{1.5pt}{0pt}{0pt}
 \end{tabular}
 }
+\label{tab:yolos_nuevos_tests}
 \end{table}
-
-Es importante que hablemos de esta problemática y como evitamos un reetiquetado de imágenes que pueden dar más confusión al confundir clases, y continuar la tendencia monoclase.
 
 \clearpage
 \section{Resultados cualitativos}
 \label{Resultados cualitativos}
+
+Uno de los problemas más comunes en la adquisición de imágenes microscópicas es la presencia de artefactos (Anillos de Newton), que pueden interferir con la detección precisa de células redondas. Por esta razón, se evaluan 
+los diferentes modelos sobre un conjunto de imágenes que contienen estos artefactos. Para pasar la evaluación, se establece que el modelo no debe detectar ningun Anillo de Newton como célula redonda, por esta razón, 
+se establece un umbral de confianza alto (0.5 y 0.7) para minimizar las detecciones erróneas. Los resultados obtenidos se muestran en la \autoref{tab:resultados_artefactos}.
 
 % Tabla para los artefactos
 \definecolor{mygreen}{RGB}{0,180,0}
@@ -1237,10 +1268,20 @@ ensemble       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{5
 \arrayrulecolor{black}\hline
 \end{tabular}
 }
+\label{tab:resultados_artefactos}
 \end{table}
 
+Tres modelos destacan considerablemente frente al resto: YOLOv10s, YOLOv12s y el \textit{ensemble}; los dos primeros motivaron la construcción del ensamblado descrito en 
+\autoref{sec:Ensamblado de modelos}, ofreciendo un equilibrio competitivo. Destaca la robustez de YOLOv12s, que no detecta ningún artefacto como célula redonda, incluso con un umbral de confianza bajo (0.5).
 
-Muchas imágenes están compuestas por + de 1 anillo de newton, con que detecte mal uno es suficiente para marcar la imagen como no procesado correctamente.
+Para ampliar la comparativa visual, se seleccionan imágenes representativas del conjunto de test y se muestran las predicciones de YOLOv12s y el ensamblado junto con el
+\textit{ground truth} de los expertos y la salida del modelo de la prueba de concepto (YOLOv7). 
+
+Con el fin de garantizar una comparación justa con la prueba de concepto inicial, que operaba a probabilidad 0.25, se fijó el mismo umbral (0.25) para YOLOv12s; 
+en las imágenes de la \autoref{sec:Resultados cualitativos anexo}, tanto YOLOv12s como el ensamble se aproximan al ground truth pero presentan muchos falsos negativos. Por el contrario, YOLOv7 presenta menos falsos negativos y más falsos positivos.
+
+En conjunto, YOLOv12s se perfila como el modelo más adecuado para la detección de células redondas en este dataset y, junto con la herramienta web, constituye una solución operativa para análisis automatizado; además, el ajuste interactivo del umbral 
+de confianza permite adaptar sensibilidad y especificidad a las necesidades de cada caso.
 
 \chapter{Herramienta Web} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Herramienta web}
