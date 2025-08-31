@@ -65,6 +65,7 @@
 
 \renewcommand{\lstlistingname}{Script}
 \usepackage{url}      % Para escritura de URLs.
+\usepackage{subcaption} % Para montar grid de imágenes
 \usepackage[breaklinks]{hyperref} % Hiperreferencias.
 \usepackage{amsmath,amssymb} % Para los símbolos matemáticos.
 \usepackage{cite}     % Para las citas de referencias (crea el superíndice).
@@ -231,6 +232,10 @@
   \item[Andrología]: Área de la medicina que se centra en el estudio e investigación de cualquier aspecto relacionado con la función sexual y reproducción masculina (Por ejmplo: infertilidad masculina).  
   \item[Anillos de Newton]: Interferencia de la luz cuyo resultado es un patrón de anillos muy característico.
   \item[\textit{overfitting}] Proceso en el que un modelo de aprendizaje automático aprende demasiado bien los datos de entrenamiento, perdiendo capacidad de generalización y obteniendo peores resultados en las pruebas de evaluación.
+  \item[TP (Verdaderos Positivos)] Células redondas correctamente detectadas por el modelo. El algoritmo identifica correctamente una célula redonda que efectivamente existe en la muestra de semen.
+  \item[FP (Falsos Positivos)] Detecciones incorrectas. Donde el modelo identifica una célula redonda que en realidad no existe o corresponde a otro elemento (como un espermatozoide sin cola o un artefacto visual).
+  \item[TN (Verdaderos Negativos)] Regiones de la imagen correctamente no marcadas como células redondas. Representan áreas donde el modelo correctamente no detecta ninguna célula.
+  \item[FN (Falsos Negativos)] Células redondas presentes en la muestra que el modelo no detecta. 
 \end{description} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -965,7 +970,7 @@ De este modo, se aprovechan las fortalezas de cada modelo y se reducen los falso
 Para obtener la configuración óptima de hiperparámetros, se exploran diferentes valores en un grid. Para el umbral de IoU (cuando dos \textit{bounding boxes} se consideran superposiciones de la misma detección) se exploran los valores 
 de 0.3, 0.4 y 0.5 y para el umbral de omisión de cajas (determina la confianza mínima para considerar una predicción) se exploran los valores de 0.25, 0.3 y 0.35.
 
-La configuración óptima resultante fue un umbral de IoU de 0.5 y un umbral de omisión de cajas de 0.35.
+La configuración óptima resultante fue un umbral de IoU de 0.5, un umbral de omisión de cajas de 0.35 y un umbral de IoU para cada modelo de 0.25.
 
 \subsection{Modelo personalizado}
 
@@ -1180,10 +1185,8 @@ ensemble & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.857 & 0.837 & 0.66
 
 Es importante que hablemos de esta problemática y como evitamos un reetiquetado de imágenes que pueden dar más confusión al confundir clases, y continuar la tendencia monoclase.
 
-\clearpage
 \section{Resultados cualitativos}
 \label{Resultados cualitativos}
-
 
 % Tabla para los artefactos
 \definecolor{mygreen}{RGB}{0,180,0}
@@ -1220,19 +1223,22 @@ yolov12s 0.5      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\din
 \arrayrulecolor{mygray}\hline
 yolov12s 0.7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
-yolov12l 0.5      &  &  &  &  &  &  &  &  &  \\
+yolov12l 0.5      & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
 \arrayrulecolor{mygray}\hline
-yolov12l 0.7      &  &  &  &  &  &  &  &  &  \\
+yolov12l 0.7      & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
 \arrayrulecolor{black}\hline
-custom 0.5        &  &  &  &  &  &  &  &  &  \\
+custom 0.5        & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
 \arrayrulecolor{mygray}\hline
-custom 0.7        &  &  &  &  &  &  &  &  &  \\
+custom 0.7        & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
-ensemble       &  &  &  &  &  &  &  &  &  \\
+ensemble       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
 \end{tabular}
 }
 \end{table}
+
+
+Muchas imágenes están compuestas por + de 1 anillo de newton, con que detecte mal uno es suficiente para marcar la imagen como no procesado correctamente.
 
 \chapter{Herramienta Web} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Herramienta web}
@@ -1469,12 +1475,966 @@ Posibles problemas que pueden tener lugar durante la instalación:
 
 \chapter{Evaluación comparativa de arquitecturas} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Evaluación comparativa de arquitecturas}
+
+En este aneso se recojen las representaciones gráficas para la evaluación de los modelos sobre los diferentes conjuntos de \textit{test}. 
+
 \section{Matrices de confusión}
 \label{sec:Matrice de confusión}
+
+\begin{figure}[H]
+  \centering
+  \vspace{-0.3cm}
+  % Primera fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov8s/original_test/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv8s}
+    \label{fig:confusion_yolov8s_original_test}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov9s/original_test/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv9s}
+    \label{fig:confusion_yolov9s_original_test}
+  \end{subfigure}
+  
+  \vspace{0.1cm}
+  % Segunda fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov10s/original_test/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv10s}
+    \label{fig:confusion_yolov10s_original_test}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov11s/original_test/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv11s}
+    \label{fig:confusion_yolov11s_original_test}
+  \end{subfigure}
+  
+  \vspace{0.1cm}
+  % Tercera fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov12s/original_test/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv12s}
+    \label{fig:confusion_yolov12s_original_test}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov12l/original_test/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv12l}
+    \label{fig:confusion_yolov12l_original_test}
+  \end{subfigure}
+  
+  \vspace{0.1cm}
+  % Cuarta fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/custom/original_test/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize Custom}
+    \label{fig:confusion_custom_original_test}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/ensemble/confusion_matrices/confusion_matrix_original_test.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize Ensemble}
+    \label{fig:confusion_ensemble_original_test}
+  \end{subfigure}
+  
+  \vspace{-0.2cm}
+  \caption{Matrices de confusión para los modelos evaluados en original\_test}
+  \label{fig:confusion_matrices_original_test}
+\end{figure}
+
+
+% FIGURA PARA TEST
+\begin{figure}[H]
+  \centering
+  \vspace{-0.3cm}
+  % Primera fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov8s/test/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv8s}
+    \label{fig:confusion_yolov8s_test}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov9s/test/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv9s}
+    \label{fig:confusion_yolov9s_test}
+  \end{subfigure}
+  
+  \vspace{0.1cm}
+  % Segunda fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov10s/test/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv10s}
+    \label{fig:confusion_yolov10s_test}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov11s/test/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv11s}
+    \label{fig:confusion_yolov11s_test}
+  \end{subfigure}
+  
+  \vspace{0.1cm}
+  % Tercera fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov12s/test/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv12s}
+    \label{fig:confusion_yolov12s_test}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov12l/test/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv12l}
+    \label{fig:confusion_yolov12l_test}
+  \end{subfigure}
+  
+  \vspace{0.1cm}
+  % Cuarta fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/custom/test/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize Custom}
+    \label{fig:confusion_custom_test}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/ensemble/confusion_matrices/confusion_matrix_test.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize Ensemble}
+    \label{fig:confusion_ensemble_test}
+  \end{subfigure}
+  
+  \vspace{-0.2cm}
+  \caption{Matrices de confusión para los modelos evaluados en test}
+  \label{fig:confusion_matrices_test}
+\end{figure}
+
+
+% FIGURA PARA TEST2
+\begin{figure}[H]
+  \centering
+  \vspace{-0.3cm}
+  % Primera fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov8s/test2/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv8s}
+    \label{fig:confusion_yolov8s_test2}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov9s/test2/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv9s}
+    \label{fig:confusion_yolov9s_test2}
+  \end{subfigure}
+  
+  \vspace{0.1cm}
+  % Segunda fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov10s/test2/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv10s}
+    \label{fig:confusion_yolov10s_test2}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov11s/test2/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv11s}
+    \label{fig:confusion_yolov11s_test2}
+  \end{subfigure}
+  
+  \vspace{0.1cm}
+  % Tercera fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov12s/test2/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv12s}
+    \label{fig:confusion_yolov12s_test2}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov12l/test2/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv12l}
+    \label{fig:confusion_yolov12l_test2}
+  \end{subfigure}
+  
+  \vspace{0.1cm}
+  % Cuarta fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/custom/test2/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize Custom}
+    \label{fig:confusion_custom_test2}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/ensemble/confusion_matrices/confusion_matrix_test2.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize Ensemble}
+    \label{fig:confusion_ensemble_test2}
+  \end{subfigure}
+  
+  \vspace{-0.2cm}
+  \caption{Matrices de confusión para los modelos evaluados en test2}
+  \label{fig:confusion_matrices_test2}
+\end{figure}
+
+
+% FIGURA PARA TEST3
+\begin{figure}[H]
+  \centering
+  \vspace{-0.3cm}
+  % Primera fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov8s/test3/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv8s}
+    \label{fig:confusion_yolov8s_test3}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov9s/test3/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv9s}
+    \label{fig:confusion_yolov9s_test3}
+  \end{subfigure}
+  
+  \vspace{0.1cm}
+  % Segunda fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov10s/test3/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv10s}
+    \label{fig:confusion_yolov10s_test3}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov11s/test3/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv11s}
+    \label{fig:confusion_yolov11s_test3}
+  \end{subfigure}
+  
+  \vspace{0.1cm}
+  % Tercera fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov12s/test3/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv12s}
+    \label{fig:confusion_yolov12s_test3}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/yolov12l/test3/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize YOLOv12l}
+    \label{fig:confusion_yolov12l_test3}
+  \end{subfigure}
+  
+  \vspace{0.1cm}
+  % Cuarta fila
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/custom/test3/confusion_matrix.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize Custom}
+    \label{fig:confusion_custom_test3}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[height=5cm]{figuras/resultados experimentacion/ensemble/confusion_matrices/confusion_matrix_test3.png}
+    \vspace{-0.3cm}
+    \caption{\footnotesize Ensemble}
+    \label{fig:confusion_ensemble_test3}
+  \end{subfigure}
+  
+  \vspace{-0.2cm}
+  \caption{Matrices de confusión para los modelos evaluados en test3}
+  \label{fig:confusion_matrices_test3}
+\end{figure}
+
 \section{Curvas F1-confianza}
 \label{sec:Curvas F1-confianza}
+
+% BLOQUE PARA ORIGINAL_TEST
+\begin{figure}[H]
+  \centering
+  % Primera fila
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov8s/original_test/BoxF1_curve.png}
+    \caption{YOLOv8s}
+    \label{fig:yolov8s_original_test}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov9s/original_test/BoxF1_curve.png}
+    \caption{YOLOv9s}
+    \label{fig:yolov9s_original_test}
+  \end{subfigure}
+  
+  \vspace{0.0cm}
+  % Segunda fila
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov10s/original_test/BoxF1_curve.png}
+    \caption{YOLOv10s}
+    \label{fig:yolov10s_original_test}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov11s/original_test/BoxF1_curve.png}
+    \caption{YOLOv11s}
+    \label{fig:yolov11s_original_test}
+  \end{subfigure}
+  
+  \vspace{0.0cm}
+  % Tercera fila
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov12s/original_test/BoxF1_curve.png}
+    \caption{YOLOv12s}
+    \label{fig:yolov12s_original_test}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov12l/original_test/BoxF1_curve.png}
+    \caption{YOLOv12l}
+    \label{fig:yolov12l_original_test}
+  \end{subfigure}
+  
+  \vspace{0.0cm}
+  % Cuarta fila (solo 1 imagen)
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/custom/original_test/BoxF1_curve.png}
+    \caption{Custom}
+    \label{fig:custom_original_test}
+  \end{subfigure}
+  
+  \caption{Curvas F1-confianza para los modelos evaluados en original\_test}
+  \label{fig:f1_curves_original_test}
+\end{figure}
+
+
+% BLOQUE PARA TEST
+\begin{figure}[H]
+  \centering
+  % Primera fila
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov8s/test/BoxF1_curve.png}
+    \caption{YOLOv8s}
+    \label{fig:yolov8s_test}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov9s/test/BoxF1_curve.png}
+    \caption{YOLOv9s}
+    \label{fig:yolov9s_test}
+  \end{subfigure}
+  
+  \vspace{0.5cm}
+  % Segunda fila
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov10s/test/BoxF1_curve.png}
+    \caption{YOLOv10s}
+    \label{fig:yolov10s_test}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov11s/test/BoxF1_curve.png}
+    \caption{YOLOv11s}
+    \label{fig:yolov11s_test}
+  \end{subfigure}
+  
+  \vspace{0.5cm}
+  % Tercera fila
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov12s/test/BoxF1_curve.png}
+    \caption{YOLOv12s}
+    \label{fig:yolov12s_test}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov12l/test/BoxF1_curve.png}
+    \caption{YOLOv12l}
+    \label{fig:yolov12l_test}
+  \end{subfigure}
+  
+  \vspace{0.5cm}
+  % Cuarta fila (solo 1 imagen)
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/custom/test/BoxF1_curve.png}
+    \caption{Custom}
+    \label{fig:custom_test}
+  \end{subfigure}
+  
+  \caption{Curvas F1-confianza para los modelos evaluados en test}
+  \label{fig:f1_curves_test}
+\end{figure}
+
+
+% BLOQUE PARA TEST2
+\begin{figure}[H]
+  \centering
+  % Primera fila
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov8s/test2/BoxF1_curve.png}
+    \caption{YOLOv8s}
+    \label{fig:yolov8s_test2}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov9s/test2/BoxF1_curve.png}
+    \caption{YOLOv9s}
+    \label{fig:yolov9s_test2}
+  \end{subfigure}
+  
+  \vspace{0.5cm}
+  % Segunda fila
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov10s/test2/BoxF1_curve.png}
+    \caption{YOLOv10s}
+    \label{fig:yolov10s_test2}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov11s/test2/BoxF1_curve.png}
+    \caption{YOLOv11s}
+    \label{fig:yolov11s_test2}
+  \end{subfigure}
+  
+  \vspace{0.5cm}
+  % Tercera fila
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov12s/test2/BoxF1_curve.png}
+    \caption{YOLOv12s}
+    \label{fig:yolov12s_test2}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov12l/test2/BoxF1_curve.png}
+    \caption{YOLOv12l}
+    \label{fig:yolov12l_test2}
+  \end{subfigure}
+  
+  \vspace{0.5cm}
+  % Cuarta fila (solo 1 imagen)
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/custom/test2/BoxF1_curve.png}
+    \caption{Custom}
+    \label{fig:custom_test2}
+  \end{subfigure}
+  
+  \caption{Curvas F1-confianza para los modelos evaluados en test2}
+  \label{fig:f1_curves_test2}
+\end{figure}
+
+
+% BLOQUE PARA TEST3
+\begin{figure}[H]
+  \centering
+  % Primera fila
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov8s/test3/BoxF1_curve.png}
+    \caption{YOLOv8s}
+    \label{fig:yolov8s_test3}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov9s/test3/BoxF1_curve.png}
+    \caption{YOLOv9s}
+    \label{fig:yolov9s_test3}
+  \end{subfigure}
+  
+  \vspace{0.5cm}
+  % Segunda fila
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov10s/test3/BoxF1_curve.png}
+    \caption{YOLOv10s}
+    \label{fig:yolov10s_test3}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov11s/test3/BoxF1_curve.png}
+    \caption{YOLOv11s}
+    \label{fig:yolov11s_test3}
+  \end{subfigure}
+  
+  \vspace{0.5cm}
+  % Tercera fila
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov12s/test3/BoxF1_curve.png}
+    \caption{YOLOv12s}
+    \label{fig:yolov12s_test3}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/yolov12l/test3/BoxF1_curve.png}
+    \caption{YOLOv12l}
+    \label{fig:yolov12l_test3}
+  \end{subfigure}
+  
+  \vspace{0.5cm}
+  % Cuarta fila (solo 1 imagen)
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados experimentacion/custom/test3/BoxF1_curve.png}
+    \caption{Custom}
+    \label{fig:custom_test3}
+  \end{subfigure}
+  
+  \caption{Curvas F1-confianza para los modelos evaluados en test3}
+  \label{fig:f1_curves_test3}
+\end{figure}
+
+
 \section{Resultados cualitativos}
 \label{sec:Resultados cualitativos anexo}
+
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/7/7.jpg}
+    \caption{Imagen evaluada por experto}
+    \label{fig:exp_image_7}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/7/7_v7.jpg}
+    \caption{Prueba de concepto inicial}
+    \label{fig:poc_image_7}
+  \end{subfigure}
+  
+  \vspace{0.3cm} 
+  
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/7/7_v12.jpg}
+    \caption{Modelo YOLOv12s}
+    \label{fig:yolov12s_image_7}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/7/7_ensemble.jpg}
+    \caption{Modelo Ensemble}
+    \label{fig:ensemble_image_7}
+  \end{subfigure}
+  
+  \caption{Resultados comparativos para la Figura 7}
+  \label{fig:7}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/9/9.jpg}
+    \caption{Imagen evaluada por experto}
+    \label{fig:exp_image_9}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/9/9_v7.jpg}
+    \caption{Prueba de concepto inicial}
+    \label{fig:poc_image_9}
+  \end{subfigure}
+  
+  \vspace{0.3cm} 
+  
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/9/9_v12.jpg}
+    \caption{Modelo YOLOv12s}
+    \label{fig:yolov12s_image_9}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/9/9_ensemble.jpg}
+    \caption{Modelo Ensemble}
+    \label{fig:ensemble_image_9}
+  \end{subfigure}
+  
+  \caption{Resultados comparativos para la Figura 9}
+  \label{fig:9}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/38/38.jpg}
+    \caption{Imagen evaluada por experto}
+    \label{fig:exp_image_38}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/38/38_v7.jpg}
+    \caption{Prueba de concepto inicial}
+    \label{fig:poc_image_38}
+  \end{subfigure}
+  
+  \vspace{0.3cm} 
+  
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/38/38_v12.jpg}
+    \caption{Modelo YOLOv12s}
+    \label{fig:yolov12s_image_38}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/38/38_ensemble.jpg}
+    \caption{Modelo Ensemble}
+    \label{fig:ensemble_image_38}
+  \end{subfigure}
+  
+  \caption{Resultados comparativos para la Figura 38}
+  \label{fig:38}
+\end{figure}
+
+
+% Figura 95
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/95/95.jpg}
+    \caption{Imagen evaluada por experto}
+    \label{fig:exp_image_95}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/95/95_v7.jpg}
+    \caption{Prueba de concepto inicial}
+    \label{fig:poc_image_95}
+  \end{subfigure}
+  
+  \vspace{0.3cm} 
+  
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/95/95_v12.jpg}
+    \caption{Modelo YOLOv12s}
+    \label{fig:yolov12s_image_95}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/95/95_ensemble.jpg}
+    \caption{Modelo Ensemble}
+    \label{fig:ensemble_image_95}
+  \end{subfigure}
+  
+  \caption{Resultados comparativos para la Figura 95}
+  \label{fig:95}
+\end{figure}
+
+% Figura 139
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/139/139.jpg}
+    \caption{Imagen evaluada por experto}
+    \label{fig:exp_image_139}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/139/139_v7.jpg}
+    \caption{Prueba de concepto inicial}
+    \label{fig:poc_image_139}
+  \end{subfigure}
+  
+  \vspace{0.3cm} 
+  
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/139/139_v12.jpg}
+    \caption{Modelo YOLOv12s}
+    \label{fig:yolov12s_image_139}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/139/139_ensemble.jpg}
+    \caption{Modelo Ensemble}
+    \label{fig:ensemble_image_139}
+  \end{subfigure}
+  
+  \caption{Resultados comparativos para la Figura 139}
+  \label{fig:139}
+\end{figure}
+
+% Figura 142
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/142/142.jpg}
+    \caption{Imagen evaluada por experto}
+    \label{fig:exp_image_142}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/142/142_v7.jpg}
+    \caption{Prueba de concepto inicial}
+    \label{fig:poc_image_142}
+  \end{subfigure}
+  
+  \vspace{0.3cm} 
+  
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/142/142_v12.jpg}
+    \caption{Modelo YOLOv12s}
+    \label{fig:yolov12s_image_142}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/142/142_ensemble.jpg}
+    \caption{Modelo Ensemble}
+    \label{fig:ensemble_image_142}
+  \end{subfigure}
+  
+  \caption{Resultados comparativos para la Figura 142}
+  \label{fig:142}
+\end{figure}
+
+% Figura 221
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/221/221.jpg}
+    \caption{Imagen evaluada por experto}
+    \label{fig:exp_image_221}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/221/221_v7.jpg}
+    \caption{Prueba de concepto inicial}
+    \label{fig:poc_image_221}
+  \end{subfigure}
+  
+  \vspace{0.3cm} 
+  
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/221/221_v12.jpg}
+    \caption{Modelo YOLOv12s}
+    \label{fig:yolov12s_image_221}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/221/221_ensemble.jpg}
+    \caption{Modelo Ensemble}
+    \label{fig:ensemble_image_221}
+  \end{subfigure}
+  
+  \caption{Resultados comparativos para la Figura 221}
+  \label{fig:221}
+\end{figure}
+
+% Figura 347
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/347/347.jpg}
+    \caption{Imagen evaluada por experto}
+    \label{fig:exp_image_347}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/347/347_v7.jpg}
+    \caption{Prueba de concepto inicial}
+    \label{fig:poc_image_347}
+  \end{subfigure}
+  
+  \vspace{0.3cm} 
+  
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/347/347_v12.jpg}
+    \caption{Modelo YOLOv12s}
+    \label{fig:yolov12s_image_347}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/347/347_ensemble.jpg}
+    \caption{Modelo Ensemble}
+    \label{fig:ensemble_image_347}
+  \end{subfigure}
+  
+  \caption{Resultados comparativos para la Figura 347}
+  \label{fig:347}
+\end{figure}
+
+% Figura 415
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/415/415.jpg}
+    \caption{Imagen evaluada por experto}
+    \label{fig:exp_image_415}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/415/415_v7.jpg}
+    \caption{Prueba de concepto inicial}
+    \label{fig:poc_image_415}
+  \end{subfigure}
+  
+  \vspace{0.3cm} 
+  
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/415/415_v12.jpg}
+    \caption{Modelo YOLOv12s}
+    \label{fig:yolov12s_image_415}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/415/415_ensemble.jpg}
+    \caption{Modelo Ensemble}
+    \label{fig:ensemble_image_415}
+  \end{subfigure}
+  
+  \caption{Resultados comparativos para la Figura 415}
+  \label{fig:415}
+\end{figure}
+
+% Figura 461
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/461/461.jpg}
+    \caption{Imagen evaluada por experto}
+    \label{fig:exp_image_461}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/461/461_v7.jpg}
+    \caption{Prueba de concepto inicial}
+    \label{fig:poc_image_461}
+  \end{subfigure}
+  
+  \vspace{0.3cm} 
+  
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/461/461_v12.jpg}
+    \caption{Modelo YOLOv12s}
+    \label{fig:yolov12s_image_461}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/461/461_ensemble.jpg}
+    \caption{Modelo Ensemble}
+    \label{fig:ensemble_image_461}
+  \end{subfigure}
+  
+  \caption{Resultados comparativos para la Figura 461}
+  \label{fig:461}
+\end{figure}
 
 
 \end{document}
@@ -1484,3 +2444,4 @@ Posibles problemas que pueden tener lugar durante la instalación:
 % ¿Usamos las mismas imágenes que evalua Eduardo y las comparamos con estos modelos también? En anexo o en resultados? 
 % Anexo, añado las matrices de confusión de cada modelo para cada test? con un IoU de 0.5? 
 % Anexo añado Optuna
+% ¿cuando sabemos fecha y tribunal?

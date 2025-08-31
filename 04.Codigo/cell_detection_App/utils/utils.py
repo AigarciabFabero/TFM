@@ -19,6 +19,7 @@ def load_model(model_name):
     """Carga el modelo YOLO seleccionado"""
     model_paths = {
         "YOLOv12s": "models/final_model_yolov12s/weights/best.pt",
+        "YOLOv12l": "models/final_model_yolov12l/weights/best.pt",
         "YOLOv11s": "models/final_model_yolov11s/weights/best.pt",
         "YOLOv10s": "models/final_model_yolov10s/weights/best.pt",
         "YOLOv9s": "models/final_model_yolov9s/weights/best.pt",
@@ -115,7 +116,7 @@ def draw_gt_boxes(image_array, gt_boxes, color=(255, 0, 0)):
 def sidebar_config(device):
     st.sidebar.header("⚙️ Configuración")
 
-    model_options = ["YOLOv12s", "YOLOv11s", "YOLOv10s", "YOLOv9s", "YOLOv8s", "Custom"]
+    model_options = ["YOLOv12s", "YOLOv12l", "YOLOv11s", "YOLOv10s", "YOLOv9s", "YOLOv8s", "Custom"]
     selected_model = st.sidebar.selectbox(
         "Selecciona el modelo", model_options, index=0
     )
