@@ -3,7 +3,7 @@ import yaml
 from ultralytics import YOLO
 from lib.YOLO_lib import config
 
-def evaluate_models(tests, IoU):
+def evaluate_models(tests, confidence_threshold):
     results = []
     
     os.makedirs(config.results_dir, exist_ok=True)
@@ -49,7 +49,7 @@ def evaluate_models(tests, IoU):
                         project=os.path.join(config.results_dir, name, test),
                         name="images",
                         save=True,
-                        conf=IoU,
+                        conf=confidence_threshold,
                         show_labels=False,
                         boxes=True,
                         show_conf=True,
