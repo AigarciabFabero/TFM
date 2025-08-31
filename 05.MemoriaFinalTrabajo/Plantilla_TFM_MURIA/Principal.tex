@@ -350,30 +350,30 @@ La familia de modelos de YOLO (You Only Look Once) \cite{ultralytics_models} se 
 Dentro de las 12 arquitecturas de YOLO \cite{ultralytics_models}, se emplean las siguientes \cite{defyolos}:
 
 \begin{itemize}
-  \item \textbf{Yolov8:} Adopta un diseño eficiente y sin anclajes (anchor-free). Su arquitectura utiliza una versión refinada de módulos basados en CSP y una cabeza desacoplada que separa las tareas de clasificación y regresión, logrando un buen equilibrio entre velocidad y precisión \cite{defyolos}.
-  \item \textbf{Yolov9:} Introduce la Información de Gradiente Programable (PGI) y la Red de Agregación de Capas Generalizada y Eficiente (GELAN). Estas innovaciones ayudan a mantener gradientes robustos a través de la red, mejorando la convergencia y la capacidad para detectar objetos pequeños al evitar la pérdida de información \cite{defyolos}.
-  \item \textbf{Yolov10:} Elimina la necesidad de la supresión no máxima (NMS), un paso de postprocesamiento que consume tiempo, mediante una novedosa estrategia de asignación dual. Esto reduce significativamente la latencia de inferencia y lo hace más eficiente para la detección en tiempo real \cite{defyolos}.
+  \item \textbf{YOLOv8:} Adopta un diseño eficiente y sin anclajes (anchor-free). Su arquitectura utiliza una versión refinada de módulos basados en CSP y una cabeza desacoplada que separa las tareas de clasificación y regresión, logrando un buen equilibrio entre velocidad y precisión \cite{defyolos}.
+  \item \textbf{YOLOv9:} Introduce la Información de Gradiente Programable (PGI) y la Red de Agregación de Capas Generalizada y Eficiente (GELAN). Estas innovaciones ayudan a mantener gradientes robustos a través de la red, mejorando la convergencia y la capacidad para detectar objetos pequeños al evitar la pérdida de información \cite{defyolos}.
+  \item \textbf{YOLOv10:} Elimina la necesidad de la supresión no máxima (NMS), un paso de postprocesamiento que consume tiempo, mediante una novedosa estrategia de asignación dual. Esto reduce significativamente la latencia de inferencia y lo hace más eficiente para la detección en tiempo real \cite{defyolos}.
 \end{itemize}
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\textwidth]{figuras/arquitecture YOLO/v8_v9_v10.png}
-  \caption{Diagramas de arquitectura de Yolov8, Yolov9 y Yolov10}
+  \caption{Diagramas de arquitectura de YOLOv8, YOLOv9 y YOLOv10}
   \label{fig:Yolov8_v9_v10_arquitectures}
-  (a) Yolov8 presenta una una estructura principal basada en CSP, un cabezal desacoplado y libre de anclajes (anchor-free), y una red de pirámide de características (FPN) optimizada para una extracción eficiente de características a múltiples escalas. 
-  (b) Yolov9 integra la Información de Gradiente Programable con GELAN para una agregación robusta de características.
-  (c) Yolov10 presenta una estrategia de asignación dual, cabezales ligeros y un submuestreo desacoplado de canal espacial para mejorar la precisión y velocidad de la inferencia.
+  (a) YOLOv8 presenta una una estructura principal basada en CSP, un cabezal desacoplado y libre de anclajes (anchor-free), y una red de pirámide de características (FPN) optimizada para una extracción eficiente de características a múltiples escalas. 
+  (b) YOLOv9 integra la Información de Gradiente Programable con GELAN para una agregación robusta de características.
+  (c) YOLOv10 presenta una estrategia de asignación dual, cabezales ligeros y un submuestreo desacoplado de canal espacial para mejorar la precisión y velocidad de la inferencia.
 \end{figure}
 
 \begin{itemize}
-  \item \textbf{Yolov11:} Se enfoca en mejorar la extracción de características mediante el bloque C3k2, el módulo Spatial Pyramid Pooling-Fast (SPPF) y la atención espacial paralela (C2PSA). Estas mejoras le permiten un rendimiento más preciso, especialmente en escenarios con objetos ocluidos \cite{defyolos}.
-  \item \textbf{Yolov12:} Su principal innovación es el módulo de Atención de Área (A²), que ajusta dinámicamente el campo receptivo para capturar señales contextuales globales y locales con un costo computacional mínimo. Esto, junto con la red R-ELAN, optimiza la fusión de características y aumenta drásticamente la velocidad de inferencia \cite{defyolos}.
+  \item \textbf{YOLOv11:} Se enfoca en mejorar la extracción de características mediante el bloque C3k2, el módulo Spatial Pyramid Pooling-Fast (SPPF) y la atención espacial paralela (C2PSA). Estas mejoras le permiten un rendimiento más preciso, especialmente en escenarios con objetos ocluidos \cite{defyolos}.
+  \item \textbf{YOLOv12:} Su principal innovación es el módulo de Atención de Área (A²), que ajusta dinámicamente el campo receptivo para capturar señales contextuales globales y locales con un costo computacional mínimo. Esto, junto con la red R-ELAN, optimiza la fusión de características y aumenta drásticamente la velocidad de inferencia \cite{defyolos}.
 \end{itemize}
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.85\textwidth]{figuras/arquitecture YOLO/v11_v12.png}
-  \caption{Diagramas de arquitectura de Yolov11 y Yolov12}
+  \caption{Diagramas de arquitectura de YOLOv11 y YOLOv12}
   \label{fig:Yolov11_v12_arquitectures}
   (a) YOLOv11 utiliza una arquitectura mejorada que incluye bloques C3k2, SPPF y C2PSA. Estos componentes optimizan la extracción de características en diversas escalas y mejoran la atención espacial, lo que se traduce en una mayor precisión de detección.
   (b) YOLOv12 avanza sobre este diseño con una arquitectura centrada en la atención. Al integrar módulos de Area Attention y bloques R-ELAN, optimiza la combinación de características, logrando un aumento drástico en la velocidad de inferencia para una detección de objetos en tiempo real de vanguardia.
@@ -789,17 +789,17 @@ del proyecto \cite{repoTFM}. Recordar que al tener como objeto la detección de 
 \rowcolor{black!10}
 \textbf{Model} & \textbf{Nº Trials} & \textbf{Epoch Optuna} & \textbf{Epoch Train} & \textbf{Batch Size} & \textbf{Image Size} \\
 \specialrule{.8pt}{0pt}{0pt}
-yolov8s   & 10 & 25 & 40 & 12 & 704 \\
+YOLOv8s   & 10 & 25 & 40 & 12 & 704 \\
 \arrayrulecolor{gray!30}\hline
-yolov9s   & 7  & 25 & 40 & 10 & 704 \\
+YOLOv9s   & 7  & 25 & 40 & 10 & 704 \\
 \arrayrulecolor{gray!30}\hline
-yolov10s  & 7  & 25 & 40 & 10 & 704 \\
+YOLOv10s  & 7  & 25 & 40 & 10 & 704 \\
 \arrayrulecolor{gray!30}\hline
-yolov11s  & 7  & 25 & 40 & 10 & 704 \\
+YOLOv11s  & 7  & 25 & 40 & 10 & 704 \\
 \arrayrulecolor{gray!30}\hline
-yolov12s  & 9  & 25 & 40 & 7  & 704 \\
+YOLOv12s  & 9  & 25 & 40 & 7  & 704 \\
 \arrayrulecolor{gray!30}\hline
-yolov12l  & 6  & 25 & 40 & 7  & 704 \\
+YOLOv12l  & 6  & 25 & 40 & 7  & 704 \\
 \arrayrulecolor{gray!30}\hline
 custom    & 10 & 25 & 40 & 12 & 704 \\
 \arrayrulecolor{gray!50}
@@ -817,20 +817,25 @@ Como resultado de aplicar Optuna patra cada arquitectura, se obtienen las mejore
 \toprule
 \textbf{Modelo} & \textbf{lr0} & \textbf{lrf} & \textbf{momentum} & \textbf{weight\_decay} & \textbf{optimizer} \\
 \midrule
-yolov8s   & 0.00540 & 0.00399 & 0.90621 & 0.00010 & SGD \\
-yolov9s   & 0.00023 & 0.00153 & 0.84564 & 0.00033 & AdamW \\
-yolov10s  & 0.00540 & 0.00399 & 0.90621 & 0.00010 & SGD \\
-yolov11s  & 0.00023 & 0.00153 & 0.84564 & 0.00033 & AdamW \\
-yolov12s  & 0.00023 & 0.00932 & 0.91627 & 0.00087 & AdamW \\
-yolov12l  & 0.00019 & 0.00196 & 0.85495 & 0.00029 & SGD \\
+YOLOv8s   & 0.00540 & 0.00399 & 0.90621 & 0.00010 & SGD \\
+YOLOv9s   & 0.00023 & 0.00153 & 0.84564 & 0.00033 & AdamW \\
+YOLOv10s  & 0.00540 & 0.00399 & 0.90621 & 0.00010 & SGD \\
+YOLOv11s  & 0.00023 & 0.00153 & 0.84564 & 0.00033 & AdamW \\
+YOLOv12s  & 0.00023 & 0.00932 & 0.91627 & 0.00087 & AdamW \\
+YOLOv12l  & 0.00019 & 0.00196 & 0.85495 & 0.00029 & SGD \\
 custom    & 0.00153 & 0.00111 & 0.89113 & 0.00015 & AdamW \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Una vez finaliza el proceso de optimización,, se procede con el entrenamiento de cada modelo de forma individual con los parámetros
-de la \autoref{tab:Parámetros principales de entrenamiento para cada modelo}, los hiperparámetros de la \autoref{tab:Principales hiperparámetros óptimos seleccionados para cada modelo} y los del
-\textit{data augmentation} (\autoref{tab:Hiperparámetros de data augmentation}) 
+Para mejorar la capacidad de generalización de los modelos y prevenir el sobreajuste, se aplicaron técnicas de aumento de datos (\textit{data augmentation}) 
+durante el entrenamiento. Los hiperparámetros utilizados se muestran en la Tabla \ref{tab:Hiperparámetros de data augmentation}. Los parámetros de calentamiento 
+(\textit{warmup\_epochs} y \textit{warmup\_momentum}) controlan la fase inicial del entrenamiento, donde el optimizador incrementa gradualmente la tasa de 
+aprendizaje durante 5 épocas, partiendo de un momentum de 0.75. Los parámetros de transformación geométrica incluyen: \textit{degrees}, que permite rotaciones 
+aleatorias de hasta 45 grados; \textit{translate}, que permite desplazamientos de hasta el 10\% de las dimensiones de la imagen; y \textit{scale}, que permite 
+cambios de escala de hasta ±6\%. Las transformaciones de volteo horizontal y vertical (\textit{fliplr} y \textit{flipud}) se aplican con una probabilidad del 50\% 
+cada una. Finalmente, el parámetro \textit{mosaic} (técnica que combina cuatro imágenes en una) se desactivó (valor 0) para evitar distorsionar el contexto 
+espacial de las células redondas, que es crucial para su correcta identificación en imágenes microscópicas.
 
 \begin{table}[H]
 \caption{Hiperparámetros de data augmentation}
@@ -849,21 +854,21 @@ scale & 0.06 & & \\
 \end{tabular}
 \end{table}
 
-Todos los modelos han sido entrenados y evaluados con el limitado hardware personal (\autoref{sec:hardware_local}), exceptuando el modelo yolov12 que demanda el uso de un servidor privado 
+Todos los modelos han sido entrenados y evaluados con el limitado hardware personal (\autoref{sec:hardware_local}), exceptuando el modelo YOLOv12l que demanda el uso de un servidor privado 
 proporcionado por la Universidad de Leon (\autoref{sec:servidor_privado}).
 
 A continuación, se exponen e interpretan los resultados obtenidos durante los entrenamientos:
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/map50-95.png}
+  \includegraphics[width=1.0\textwidth]{figuras/YOLO_plots/map50-95.png}
   \caption{mAP@0.5:0.95 durante el proceso de entrenamiento.}
   \label{fig:yolo_train_map95}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/map50.png}
+  \includegraphics[width=1.0\textwidth]{figuras/YOLO_plots/map50.png}
   \caption{mAP@0.5 durante el proceso de entrenamiento.}
   \label{fig:yolo_train_map50}
 \end{figure}
@@ -900,9 +905,9 @@ En general, todos los modelos muestran un buen desempeño durante el entrenamien
 no hay evidencia de un sobreajuste (\textit{overfitting}).
 
 Aparentemente el modelo yolov12s arroja mejores resultados; principalmente, en la métrica más exigente, la mAP@0.5:0.95 (\autoref{fig:yolo_train_map95}). En base a esta métrica, el peor modelo se puede considerar el custom.
-Sorprendentemente, el modelo yolov12l (el más grande y preciso) es el peor modelo en cuanto a las métricas mAP@0.5 (\autoref{fig:yolo_train_map50}) y \textit{precision} sobre el conjunto de validación (\autoref{fig:yolo_train_precision}). 
+Sorprendentemente, el modelo YOLOv12l (el más grande y preciso) es el peor modelo en cuanto a las métricas mAP@0.5 (\autoref{fig:yolo_train_map50}) y \textit{precision} sobre el conjunto de validación (\autoref{fig:yolo_train_precision}). 
 
-A pesar de los buenos rendimientos del modelo yolov10s en las métricas de \textit{precisión, recall y mAP}, se aprecia como la función de pérdida (\textit{loss}), tanto en la clasificación como en las \textit{bounding boxes},
+A pesar de los buenos rendimientos del modelo YOLOv10s en las métricas de \textit{precisión, recall y mAP}, se aprecia como la función de pérdida (\textit{loss}), tanto en la clasificación como en las \textit{bounding boxes},
 el modelo se distancia respecto al resto con una pérdida superior a la de los demás. A pesar de que no es una perdida muy significativa, es importante tenerla en cuenta, por ser la métrica a minimizar durante el entrenamiento.
 Se puede ver como en las primeras epocas al modelo le cuesta mucho aprender a localizar y clasificar los objetos correctamente aunque finalmente consigue estabilizarse como era de esperar.
 
@@ -921,12 +926,12 @@ De este modo, el proceso de entrenamiento tiene lugar con las 4 combinaciones (s
 \toprule
 \textbf{Modelo} & \textbf{Precisión} & \textbf{Recall} & \textbf{mAP50} & \textbf{mAP50-95} \\
 \midrule
-yolov8s  & 0.836 $\pm$ 0.008 & 0.868 $\pm$ 0.015 & 0.914 $\pm$ 0.011 & 0.723 $\pm$ 0.024 \\
-yolov9s  & 0.852 $\pm$ 0.015 & 0.866 $\pm$ 0.013 & 0.919 $\pm$ 0.009 & 0.729 $\pm$ 0.026 \\
-yolov10s & 0.854 $\pm$ 0.014 & 0.855 $\pm$ 0.011 & 0.918 $\pm$ 0.009 & 0.739 $\pm$ 0.029 \\
-yolov11s & 0.845 $\pm$ 0.025 & \textbf{0.869 $\pm$ 0.013} & \textbf{0.922 $\pm$ 0.012} & \textbf{0.742 $\pm$ 0.025} \\
-yolov12s & \textbf{0.853 $\pm$ 0.011} & 0.861 $\pm$ 0.016 & 0.918 $\pm$ 0.008 & 0.730 $\pm$ 0.018 \\
-yolov12l & 0.841 $\pm$ 0.002 & 0.867 $\pm$ 0.013 & 0.912 $\pm$ 0.011 & 0.724 $\pm$ 0.013 \\
+YOLOv8s  & 0.836 $\pm$ 0.008 & 0.868 $\pm$ 0.015 & 0.914 $\pm$ 0.011 & 0.723 $\pm$ 0.024 \\
+YOLOv9s  & 0.852 $\pm$ 0.015 & 0.866 $\pm$ 0.013 & 0.919 $\pm$ 0.009 & 0.729 $\pm$ 0.026 \\
+YOLOv10s & 0.854 $\pm$ 0.014 & 0.855 $\pm$ 0.011 & 0.918 $\pm$ 0.009 & 0.739 $\pm$ 0.029 \\
+YOLOv11s & 0.845 $\pm$ 0.025 & \textbf{0.869 $\pm$ 0.013} & \textbf{0.922 $\pm$ 0.012} & \textbf{0.742 $\pm$ 0.025} \\
+YOLOv12s & \textbf{0.853 $\pm$ 0.011} & 0.861 $\pm$ 0.016 & 0.918 $\pm$ 0.008 & 0.730 $\pm$ 0.018 \\
+YOLOv12l & 0.841 $\pm$ 0.002 & 0.867 $\pm$ 0.013 & 0.912 $\pm$ 0.011 & 0.724 $\pm$ 0.013 \\
 custom    & 0.836 $\pm$ 0.014 & 0.865 $\pm$ 0.014 & 0.905 $\pm$ 0.011 & 0.707 $\pm$ 0.015 \\
 \bottomrule
 \end{tabular}
@@ -937,8 +942,8 @@ En esta figura, cada punto central indica el valor medio de rendimiento para una
 mientras que las barras horizontales que lo rodean representan la desviación estándar obtenida a lo largo de los 4 pliegues de la validación cruzada.
 
 Analizando la \autoref{fig:yolo_k-fold}, se puede observar que, pese a las pequeñas diferencias en los promedios, los intervalos de incertidumbre se solapan entre todos los modelos
-para todas las métricas específicas a evaluar. Es un laro indicador de que los modelos ofrecen un rendimiento similar y robusto, que les permite generalizar de forma adecuada, pese al despunte del modelo yolov11s. 
-Asimismo, las barras de incertidumbre más pequeñas reflejan qué modelos son más estables, siendo los más estables los modelos yolov12s, yolov12l y \textit{custom}.
+para todas las métricas específicas a evaluar. Es un laro indicador de que los modelos ofrecen un rendimiento similar y robusto, que les permite generalizar de forma adecuada, pese al despunte del modelo YOLOv11s. 
+Asimismo, las barras de incertidumbre más pequeñas reflejan qué modelos son más estables, siendo los más estables los modelos YOLOv12s, YOLOv12l y \textit{custom}.
 
 De este modo, la elección de un único "mejor" modelo es difícil, ya que son todos ellos opciones excelentes y estadísticamente equivalentes para esta tarea de detección de objetos. 
 
@@ -954,8 +959,8 @@ De este modo, la elección de un único "mejor" modelo es difícil, ya que son t
 
 Para mejorar la capacidad de generalización y el rendimiento de la detección de células redondas, se implementa una estrategia de ensamblado de modelos mediante la técnica de \textit{Weighted Boxes Fusion (WBF)} \cite{repoTFM}. 
 
-Tras analizar los primeros resultados cuantitativos y cualitativos, se seleccionan dos modelos individuales con diferentes pesos, para la construcción del ensamble. Yolov12 con sus capacidades 
-para capturar información contextual se pondera con un peso de $0.6$ mientras que yolov10s, que destaca por su eficiencia y precisión en la localización, se pondera con un peso de $0.4$.
+Tras analizar los primeros resultados cuantitativos y cualitativos, se seleccionan dos modelos individuales con diferentes pesos, para la construcción del \textit{ensemble}. YOLOv12 con sus capacidades 
+para capturar información contextual se pondera con un peso de $0.6$ mientras que YOLOv10s, que destaca por su eficiencia y precisión en la localización, se pondera con un peso de $0.4$.
 
 Asimismo, el proceso de ensamblado se realiza siguiendo los siguientes pasos:
 
@@ -966,7 +971,7 @@ Asimismo, el proceso de ensamblado se realiza siguiendo los siguientes pasos:
   \item Se aplica un umbral de confianza para eliminar aquellas predicciones con baja probabilidad.
 \end{itemize}
 
-Cabe destacar, cuando las predicciones de yolov12 y yolov10 no coinciden (sin solapamiento significativo de las \textit{bounding boxes}), el algoritmo mantiene las detecciones como predicciones independientes,
+Cabe destacar, cuando las predicciones de YOLOv12 y YOLOv10 no coinciden (sin solapamiento significativo de las \textit{bounding boxes}), el algoritmo mantiene las detecciones como predicciones independientes,
 aplica el umbral de omisión de cajas a cada predicción individual y si supera dicho umbral, estas predicciones se incluyen en el resultado final.
 
 De este modo, se aprovechan las fortalezas de cada modelo y se reducen los falsos negativos al mantener detecciones únicas de cada modelo (mejora el Recall).
@@ -1100,9 +1105,9 @@ centrado en la interpretación visual y contextual de las predicciones realizada
 \section{Resultados cuantitativos}
 \label{sec:Resultados cuantitativos}
 
-En esta primera parte, se evaluan los resultados sobre el el conjunto de \textit{test} original, para el cual tenemos resultados asociados
-a la prueba de concepto previa (\autoref{tab:yolov7_results}). Bajo la premisa de que todos los modelos arrojan los similares resultados, por los tiempos de inferencia y 
-el valor más alto en la métrica mAP@0.5:0.95, el mejor modelo es el YOLOv7.
+En esta primera parte, se evalúan los resultados sobre el conjunto de \textit{test} original, para el cual tenemos resultados asociados
+a la prueba de concepto previa (\autoref{tab:yolov7_results}). Bajo la premisa de que todos los modelos arrojan resultados similares, por los tiempos de inferencia y 
+el valor más alto en la métrica mAP@0.5:0.95, el mejor modelo es YOLOv7.
 
 \begin{table}[H]
   \caption{Resultados de los modelos en la prueba de concepto inicial}
@@ -1129,12 +1134,12 @@ el valor más alto en la métrica mAP@0.5:0.95, el mejor modelo es el YOLOv7.
       \hline
       \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{Recall (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
       \hline
-      yolov8s    & 0.843 & 0.844 & 0.920 & 0.722 & \textbf{11.006} \\
-      yolov9s    & 0.838 & 0.852 & 0.921 & 0.721 & 13.485 \\
-      yolov10s   & 0.821 & 0.867 & 0.918 & 0.717 & 11.221 \\
-      yolov11s   & \textbf{0.861} & 0.824 & 0.921 & 0.732 & 11.248 \\
-      yolov12s   & 0.856 & 0.863 & \textbf{0.936} & \textbf{0.76} & 14.615 \\
-      yolov12l   & 0.856 & 0.836 & 0.921 & 0.729 & 48.146 \\
+      YOLOv8s    & 0.843 & 0.844 & 0.920 & 0.722 & \textbf{11.006} \\
+      YOLOv9s    & 0.838 & 0.852 & 0.921 & 0.721 & 13.485 \\
+      YOLOv10s   & 0.821 & 0.867 & 0.918 & 0.717 & 11.221 \\
+      YOLOv11s   & \textbf{0.861} & 0.824 & 0.921 & 0.732 & 11.248 \\
+      YOLOv12s   & 0.856 & 0.863 & \textbf{0.936} & \textbf{0.76} & 14.615 \\
+      YOLOv12l   & 0.856 & 0.836 & 0.921 & 0.729 & 48.146 \\
       custom     & 0.835 & 0.838 & 0.909 & 0.695 & 13.058 \\
       ensemble   & 0.815 & \textbf{0.895} & 0.864 & 0.697 & 75.073 \\
       \hline
@@ -1176,34 +1181,34 @@ para imágenes de alta resolución.
 \textbf{Modelo} & \textbf{Test} & \textbf{Precisión} & \textbf{Recall} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
-yolov8s   & test  & 0.855 & 0.838 & 0.926 & 0.704 & 11.844 \\ \hline
-yolov9s   & test  & 0.851 & 0.876 & 0.933 & 0.706 & 13.492 \\ \hline
-yolov10s  & test  & 0.851 & 0.862 & 0.927 & 0.701 & \cellcolor{turquoise!30}\textbf{11.120} \\ \hline
-yolov11s  & test  & 0.846 & 0.866 & 0.930 & 0.716 & 12.143 \\ \hline
-yolov12s  & test  & 0.862 & 0.848 & \cellcolor{turquoise!30}\textbf{0.936} & \cellcolor{turquoise!30}\textbf{0.740} & 14.519 \\ \hline
-yolov12l  & test  & 0.846 & \cellcolor{turquoise!30}\textbf{0.889} & 0.934 & 0.714 & 45.214 \\ \hline
+YOLOv8s   & test  & 0.855 & 0.838 & 0.926 & 0.704 & 11.844 \\ \hline
+YOLOv9s   & test  & 0.851 & 0.876 & 0.933 & 0.706 & 13.492 \\ \hline
+YOLOv10s  & test  & 0.851 & 0.862 & 0.927 & 0.701 & \cellcolor{turquoise!30}\textbf{11.120} \\ \hline
+YOLOv11s  & test  & 0.846 & 0.866 & 0.930 & 0.716 & 12.143 \\ \hline
+YOLOv12s  & test  & 0.862 & 0.848 & \cellcolor{turquoise!30}\textbf{0.936} & \cellcolor{turquoise!30}\textbf{0.740} & 14.519 \\ \hline
+YOLOv12l  & test  & 0.846 & \cellcolor{turquoise!30}\textbf{0.889} & 0.934 & 0.714 & 45.214 \\ \hline
 custom    & test  & 0.845 & 0.853 & 0.919 & 0.678 & 12.913 \\ \hline
 ensemble & test & \cellcolor{turquoise!30}\textbf{0.869} & 0.860 & 0.842 & 0.664 & 69.572 \\
 \arrayrulecolor{black}
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
-yolov8s   & test2 & 0.924 & 0.938 & 0.969 & 0.553 & \cellcolor{turquoise!30}\textbf{30.901} \\ \hline
-yolov9s   & test2 & 0.917 & 0.927 & 0.961 & 0.542 & 46.502 \\ \hline
-yolov10s  & test2 & 0.956 & 0.898 & 0.962 & \cellcolor{turquoise!30}\textbf{0.589} & 34.355 \\ \hline
-yolov11s  & test2 & 0.929 & 0.917 & 0.964 & 0.534 & 33.114 \\ \hline
-yolov12s  & test2 & \cellcolor{turquoise!30}\textbf{0.965} & 0.917 & \cellcolor{turquoise!30}\textbf{0.975} & 0.556 & 51.508 \\ \hline
-yolov12l  & test2 & 0.957 & 0.926 & \cellcolor{turquoise!30}\textbf{0.975} & 0.562 & 75.871 \\ \hline
+YOLOv8s   & test2 & 0.924 & 0.938 & 0.969 & 0.553 & \cellcolor{turquoise!30}\textbf{30.901} \\ \hline
+YOLOv9s   & test2 & 0.917 & 0.927 & 0.961 & 0.542 & 46.502 \\ \hline
+YOLOv10s  & test2 & 0.956 & 0.898 & 0.962 & \cellcolor{turquoise!30}\textbf{0.589} & 34.355 \\ \hline
+YOLOv11s  & test2 & 0.929 & 0.917 & 0.964 & 0.534 & 33.114 \\ \hline
+YOLOv12s  & test2 & \cellcolor{turquoise!30}\textbf{0.965} & 0.917 & \cellcolor{turquoise!30}\textbf{0.975} & 0.556 & 51.508 \\ \hline
+YOLOv12l  & test2 & 0.957 & 0.926 & \cellcolor{turquoise!30}\textbf{0.975} & 0.562 & 75.871 \\ \hline
 custom    & test2 & 0.945 & 0.903 & 0.957 & 0.539 & 35.626 \\ \hline
 ensemble & test2 & 0.919 & \cellcolor{turquoise!30}\textbf{0.944} & 0.935 & 0.509 & 54.958 \\
 \arrayrulecolor{black}
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
-yolov8s   & test3 & 0.842 & 0.862 & 0.937 & 0.700 & 12.815 \\ \hline
-yolov9s   & test3 & 0.843 & 0.870 & 0.935 & 0.680 & 14.772 \\ \hline
-yolov10s  & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.826 & 0.926 & 0.668 & 11.230 \\ \hline
-yolov11s  & test3 & 0.855 & 0.874 & 0.935 & 0.698 & \cellcolor{turquoise!30}\textbf{10.875} \\ \hline
-yolov12s  & test3 & 0.836 & 0.821 & 0.922 & \cellcolor{turquoise!30}\textbf{0.723} & 15.439 \\ \hline
-yolov12l  & test3 & 0.849 & \cellcolor{turquoise!30}\textbf{0.894} & \cellcolor{turquoise!30}\textbf{0.942} & 0.701 & 47.256 \\ \hline
+YOLOv8s   & test3 & 0.842 & 0.862 & 0.937 & 0.700 & 12.815 \\ \hline
+YOLOv9s   & test3 & 0.843 & 0.870 & 0.935 & 0.680 & 14.772 \\ \hline
+YOLOv10s  & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.826 & 0.926 & 0.668 & 11.230 \\ \hline
+YOLOv11s  & test3 & 0.855 & 0.874 & 0.935 & 0.698 & \cellcolor{turquoise!30}\textbf{10.875} \\ \hline
+YOLOv12s  & test3 & 0.836 & 0.821 & 0.922 & \cellcolor{turquoise!30}\textbf{0.723} & 15.439 \\ \hline
+YOLOv12l  & test3 & 0.849 & \cellcolor{turquoise!30}\textbf{0.894} & \cellcolor{turquoise!30}\textbf{0.942} & 0.701 & 47.256 \\ \hline
 custom    & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.843 & 0.928 & 0.660 & 11.373 \\ \hline
 ensemble & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.857 & 0.837 & 0.663 & 63.758 \\
 \arrayrulecolor{black}
@@ -1217,8 +1222,8 @@ ensemble & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.857 & 0.837 & 0.66
 \section{Resultados cualitativos}
 \label{Resultados cualitativos}
 
-Uno de los problemas más comunes en la adquisición de imágenes microscópicas es la presencia de artefactos (Anillos de Newton), que pueden interferir con la detección precisa de células redondas. Por esta razón, se evaluan 
-los diferentes modelos sobre un conjunto de imágenes que contienen estos artefactos. Para pasar la evaluación, se establece que el modelo no debe detectar ningun Anillo de Newton como célula redonda, por esta razón, 
+Uno de los problemas más comunes en la adquisición de imágenes microscópicas es la presencia de artefactos (Anillos de Newton), que pueden interferir con la detección precisa de células redondas. Por esta razón, se analizan 
+los diferentes modelos sobre un conjunto de imágenes que contienen estos artefactos. Para pasar la evaluación, se establece que el modelo no debe detectar ningún Anillo de Newton como célula redonda, por esta razón, 
 se establece un umbral de confianza alto (0.5 y 0.7) para minimizar las detecciones erróneas. Los resultados obtenidos se muestran en la \autoref{tab:resultados_artefactos}.
 
 % Tabla para los artefactos
@@ -1236,29 +1241,29 @@ se establece un umbral de confianza alto (0.5 y 0.7) para minimizar las deteccio
 \arrayrulecolor{black}\hline
 Test              & 1 & 1 & 1 & 1 & 3 & 3 & 3 & 3 & 3 \\
 \arrayrulecolor{black}\hline
-yolov8s 0.5       & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv8s 0.5       & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{mygray}\hline
-yolov8s 0.7       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv8s 0.7       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
-yolov9s 0.5       & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv9s 0.5       & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{mygray}\hline
-yolov9s 0.7       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv9s 0.7       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
-yolov10s 0.5      & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
+YOLOv10s 0.5      & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
 \arrayrulecolor{mygray}\hline
-yolov10s 0.7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv10s 0.7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
-yolov11s 0.5      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv11s 0.5      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{mygray}\hline
-yolov11s 0.7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv11s 0.7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
-yolov12s 0.5      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv12s 0.5      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{mygray}\hline
-yolov12s 0.7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv12s 0.7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
-yolov12l 0.5      & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
+YOLOv12l 0.5      & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
 \arrayrulecolor{mygray}\hline
-yolov12l 0.7      & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
+YOLOv12l 0.7      & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
 \arrayrulecolor{black}\hline
 custom 0.5        & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
 \arrayrulecolor{mygray}\hline
@@ -1274,11 +1279,12 @@ ensemble       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{5
 Tres modelos destacan considerablemente frente al resto: YOLOv10s, YOLOv12s y el \textit{ensemble}; los dos primeros motivaron la construcción del ensamblado descrito en 
 \autoref{sec:Ensamblado de modelos}, ofreciendo un equilibrio competitivo. Destaca la robustez de YOLOv12s, que no detecta ningún artefacto como célula redonda, incluso con un umbral de confianza bajo (0.5).
 
-Para ampliar la comparativa visual, se seleccionan imágenes representativas del conjunto de test y se muestran las predicciones de YOLOv12s y el ensamblado junto con el
+Para ampliar la comparativa visual, se seleccionan imágenes representativas del conjunto de test y se muestran las predicciones de YOLOv12s (con un umbral de confianza de 0.5 y 0.25) y el ensamblado junto con el
 \textit{ground truth} de los expertos y la salida del modelo de la prueba de concepto (YOLOv7). 
 
 Con el fin de garantizar una comparación justa con la prueba de concepto inicial, que operaba a probabilidad 0.25, se fijó el mismo umbral (0.25) para YOLOv12s; 
-en las imágenes de la \autoref{sec:Resultados cualitativos anexo}, tanto YOLOv12s como el ensamble se aproximan al ground truth pero presentan muchos falsos negativos. Por el contrario, YOLOv7 presenta menos falsos negativos y más falsos positivos.
+en las imágenes de la \autoref{sec:Resultados cualitativos anexo}, tanto YOLOv12s (con umbral de 0.5) como el \textit{ensemble} se aproximan al ground truth pero presentan muchos falsos negativos. Por el contrario, YOLOv7 presenta pocos falsos negativos y muchos falsos positivos.
+Sin embargo, con un umbral de 0.25, YOLOv12s consigue un buen equilibro al presentar pocos falsos positivos (bastantes menos que YOLOv7) y pocos falsos negativos, dando lugar a una detección más precisa y fiable.
 
 En conjunto, YOLOv12s se perfila como el modelo más adecuado para la detección de células redondas en este dataset y, junto con la herramienta web, constituye una solución operativa para análisis automatizado; además, el ajuste interactivo del umbral 
 de confianza permite adaptar sensibilidad y especificidad a las necesidades de cada caso.
@@ -1338,7 +1344,7 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
 \subsection{Flujo de ejecución}
 \begin{enumerate}
   \item Inicio: se inicializa la sesión y se aplica el estilo personalizado CSS.
-  \item El usuario selecciona modelo e IoU: Yolov12s y 0,5.
+  \item El usuario selecciona modelo e IoU: YOLOv12s y 0,5.
   \item Carga de modelo (una sola vez) vía \texttt{@st.cache\_resource}.
   \item Carga de imagen (individual o lote) con \texttt{st.file\_uploader}. Opcional: cargar el xml con las anotaciones en formato PascVOC.
   \item Preprocesado de la imagen y envío al dispositivo (CPU/GPU).
@@ -1352,8 +1358,10 @@ hacer una evaluación de riesgos.
 Por lo tanto, este Trabajo de Fin de Máster no es un ejercicio puramente académico, sino que se constituye como una Prueba de Concepto (PoC) con un objetivo industrial definido y un respaldo institucional estratégico.
 \section{Conclusión general}
 \label{sec:Conclusión general}
+
 \section{Limitaciones del estudio}
 \label{sec:Limitaciones del estudio}
+
 \section{Lineas de trabajo futuro}
 \label{sec:Lineas de trabajo futuro}
 
