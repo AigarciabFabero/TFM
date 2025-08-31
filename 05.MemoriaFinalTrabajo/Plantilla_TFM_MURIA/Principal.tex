@@ -285,7 +285,7 @@ Con este proyecto, se pretende abordar los siguientes objetivos específicos:
   \item Investigar y estudiar casuísticas análogas en la detección de células en conjuntos de imágenes médicas.
   \item Rrealizar un preprocesamiento y anotación de los conjuntos de imágenes médicas.
   \item Implementar, entrenar y validar diferentes modelos u arquitecturas de modelos, comparar su rendimiento y optimizar hiperparámetros.
-  \item Evaluar cuantitativamente los modelos mediante métricas estandar.
+  \item Evaluar cuantitativamente los modelos mediante métricas estándar.
   \item Desarrollar una herramienta web interactiva para visualización, inferencia y exportación de resultados que facilite la validación por parte de expertos biomédicos.
   \item Garantizar la reproducibilidad y cumplimiento ético/legislativo.
   \item Documentar exhaustivamente el proyecto.
@@ -303,47 +303,47 @@ Asimismo, se revisa la literatura existente para situar el estado del arte y jus
 
 El análisis de muestras de semen es un pilar fundamental en el campo de la medicina reproductiva. Su relevancia abarca desde el diagnóstico 
 de la infertilidad en parejas y técnicas de reproducción asistida en humanos, hasta la investigación y producción en el sector ganadero. Tradicionalmente,
-este análisis se ha centrado en la motilidad, concentración y morfologia de los espermatozoides.
+este análisis se ha centrado en la motilidad, concentración y morfología de los espermatozoides.
 
 Sin embargo, un análisis seminal requiere la evaluación de otros componentes celulares, entre los que destacan las células redondas. 
 Estas constituyen un indicador diagnóstico crucial, ya que abarca linfocitos, células plasmáticas, macrófagos, mastocitos y células tumorales redondas; cuya presencia puede ser signo de infecciones o inflamaciones 
 del tracto genital, como células germinales inmaduras, que pueden indicar una alteración en el proceso de espermatogénesis \cite{HamiltonThorneRoundCells}.
 
-El método estandar para la identificación y conteo de células redondas depende de la agudeza visual de un experto a través de un microscopio; lo que convierte al proceso de
+El método estándar para la identificación y conteo de células redondas depende de la agudeza visual de un experto a través de un microscopio; lo que convierte al proceso de
 espermatogenia es un proceso subjetivo (depende del observador), lento, laborioso y cansado para el observador. Estas limitaciones motivan la necesidad 
 de desarrollar alternativas mediante herramientas automatizadas que permitan obtener resultados más rápidos, objetivos y reproducibles, optimizando el espermograma.
 
 El auge de la Inteligencia Artificial, y en particular las técnicas de Visión por Computador basadas en Aprendizaje Profundo, están protagonizando una revolución dentro del mundo de la medicina.
-La capacidad de las redes neuronales en la detección de patrones complejos han demostrado ser una herramienta de apoyo en diversas especialidades como son: análisis de imágenes radiológicas o análisis de lesiones cutáneas en dermatología, entre otras.
-En \textit{computer vision}, modelos de detección de objetos como YOLO (You Only Look Once) \cite{ultralytics_models} han demostrado un equilibrio entre precisión y velocidad de inferencia. Estos algoritmos son capaces de procesar imágenes y localizar multiples objetos de interes en milisegundos.
+La capacidad de las redes neuronales en la detección de patrones complejos ha demostrado ser una herramienta de apoyo en diversas especialidades como son: análisis de imágenes radiológicas o análisis de lesiones cutáneas en dermatología, entre otras.
+En \textit{computer vision}, modelos de detección de objetos como YOLO (You Only Look Once) \cite{ultralytics_models} han demostrado un equilibrio entre precisión y velocidad de inferencia. Estos algoritmos son capaces de procesar imágenes y localizar múltiples objetos de interés en milisegundos.
 Siendo idóneo en este tipo de trabajos clínicos.
 
-Atendiendo a estas necesidades y casuísticas, por parte de una empresa lider en el análisis espermático, surge de la necesidad de integrar estos sistemas inteligentes para la detección de células redondas al que dió solución el grupo GVIS de la 
-Universidad de León mediante una prueba de concepto \cite{HamiltonThorneRoundCells}. Demostrando así, la capacidad de estas tecnologías en este tipo de tareas complejas.
+Atendiendo a estas necesidades y casuísticas, por parte de una empresa líder en el análisis espermático, surge de la necesidad de integrar estos sistemas inteligentes para la detección de células redondas al que dio solución el grupo GVIS de la 
+Universidad de León mediante una prueba de concepto \cite{HamiltonThorneRoundCells}. Demostrando así la capacidad de estas tecnologías en este tipo de tareas complejas.
 
 Aprovechando este hito, surge la motivación de definir una nueva prueba de concepto integrada en un entorno digital, que permita igualar o superar con menos recursos, la anterior prueba de concepto. Esto se aborda a través de diferentes vías:
 
 \begin{itemize}
   \item Explorar diferentes arquitecturas de YOLO \cite{ultralytics_models}, desde modelos oficiales hasta prototipos más recientes que emplean capas de atención. 
-  \item Diseñar un modelo peronalizado para competir con los modelos existentes.
-  \item Optimización y mejora de la detección: buscar la configuración optima que maximice diferentes métricas y abordar la detección de artefactos visuales que fueron identificados como una limitación en la PoC previa. 
-  \item Desarrollar de una herramienta web interactiva que no solo sirva para evalauar imágenes sino que además, de soporte a expertos.
+  \item Diseñar un modelo personalizado para competir con los modelos existentes.
+  \item Optimización y mejora de la detección: buscar la configuración óptima que maximice diferentes métricas y abordar la detección de artefactos visuales que fueron identificados como una limitación en la PoC previa. 
+  \item Desarrollar una herramienta web interactiva que no solo sirva para evaluar imágenes sino que además, dé soporte a expertos.
 \end{itemize}
 
 \section{Estado del arte e hipótesis}
 \label{sec:Estado del arte e hipótesis}
 
-En esta sección se analiza el panorama tecnológico que sirve como fundamento para este proyecto. Se parte de las tecnologías de Inteligencia artificial que tienen relevancia en el campo de la medicina como es la 
-visión por computador, se abordan los modelos de detección de objetos utilizados y se revisan las diferentes técnicas de optimización. Finalmente, se realiza un breve y conciso estudio sobre la literatura actual 
+En esta sección se analiza el panorama tecnológico que sirve como fundamento para este proyecto. Se parte de las tecnologías de Inteligencia Artificial que tienen relevancia en el campo de la medicina como es la 
+visión por computador, se abordan los modelos de detección de objetos utilizados y se revisan las diferentes técnicas de optimización. Finalmente, se realiza un breve estudio sobre la literatura actual 
 en este campo y se define la hipótesis de trabajo.
 
 \subsection{Visión por computador y modelos de detección de objetos}
 
-La Inteligencia Artificial está en auge y algunos de los campos en los que está tomando protagonismo son el Apendizaje Profundo y la Visión por Computador; campos en los que se fundamenta esta prueba de concepto.
+La Inteligencia Artificial está en auge y algunos de los campos en los que está tomando protagonismo son el Aprendizaje Profundo y la Visión por Computador; campos en los que se fundamenta esta prueba de concepto.
 La Visión por Computador está revolucionando el análisis de imágenes dadas las capacidades de estos sistemas de interpretar datos visuales en tareas como la clasificación, segmentación semántica o la detección de objetos en la que se fundamenta este proyecto.
-Que fundamentadas en Aprendizaje Profundo, mediante el uso de Redes Neuronales, los algoritmos pueden identificar patrones complejos en las imágenes con una precisión igual o superior a la del hojo humano. 
+Fundamentadas en Aprendizaje Profundo, mediante el uso de Redes Neuronales, los algoritmos pueden identificar patrones complejos en las imágenes con una precisión igual o superior a la del ojo humano. 
 
-Dentro de este campo, la detección de objetos tiene como objeto localizar espacialmente (mediante \textit{bounding boxes}) y clasificar cada úna de las múltiples instancias de un objeto de interés dentro de una misma imágen.
+Dentro de este campo, la detección de objetos tiene como objeto localizar espacialmente (mediante \textit{bounding boxes}) y clasificar cada una de las múltiples instancias de un objeto de interés dentro de una misma imagen.
 Esta tarea es crucial para este proyecto, pues va a permitir detectar y contar las células redondas en una imagen de esperma humano.
 
 La familia de modelos de YOLO (You Only Look Once) \cite{ultralytics_models} se ha consolidado como un referente para tareas de detección, permitiendo un equilibrio entre precisión y velocidad.
@@ -395,11 +395,11 @@ Es bien sabido de la existencia de diferentes tecnologías para asegurar la robu
 La Inteligencia Artificial (IA), y en particular el Aprendizaje Profundo (\textit{Deep Learning}), están transformando el campo de análisis de imágenes médicas en especialidades como la oncología, la neurología y la oftalmología.
 
 En el ámbito de la andrología, la Inteligencia Artificial está comenzando a tomar especial relevancia en tareas como la concentración y recuento de espermatozoides, motilidad espermática, morfología espermática, integridad del ADN espermático, entre otras \cite{PannerSelvam}. En el contexto del análisis seminal, la mayor parte de las investigaciones se centran
-en la automatización del análisis morfológico de los espermatozoides, desarrollando modelos capaces de identificar con alta precisión diferentes partes de la estructura celilar (como cabeza, parte intermedia y cola) \cite{Maalej2025}.
+en la automatización del análisis morfológico de los espermatozoides, desarrollando modelos capaces de identificar con alta precisión diferentes partes de la estructura celular (como cabeza, parte intermedia y cola) \cite{Maalej2025}.
 
 Sin embargo, este proyecto presenta un desafío diferente y menos explorado, que a diferencia del análisis morfológico el cual se centra en un único tipo de célula,
-la detección de células redondas, como ya hemso visto anteriormente, implicaidentificar un grupo heterogéneo de células (principalmente leucocitos y células germinales inmaduras) en un entornocomplejo y "ruidoso" \cite{OMS}\cite{BJBS}.
-La dificultad de identificar estas células redondas, incluso para experos, y la subjetividad de los metodos manuales tradicionales \cite{Johanisson2000} justifican la necesidad de desarrollar herramientas automatizadas.
+la detección de células redondas, como ya se ha visto anteriormente, implica identificar un grupo heterogéneo de células (principalmente leucocitos y células germinales inmaduras) en un entorno complejo y "ruidoso" \cite{OMS}\cite{BJBS}.
+La dificultad de identificar estas células redondas, incluso para expertos, y la subjetividad de los métodos manuales tradicionales \cite{Johanisson2000} justifican la necesidad de desarrollar herramientas automatizadas.
 
 Este Trabajo de Fin de Máster se fundamenta en una innovadora prueba de concepto previa, desarrollada por el grupo de investigación GVIS de la Universidad de León en colaboración con la empresa Microptic S.L. \cite{microptic}, en el marco del proyecto europeo DIGIS3 \cite{digis3}. 
 Dicha prueba de concepto, tuvo como objetivo validar la viabilidad de utilizar modelos de Deep Learning para la identificación de células redondas en imágenes de semen humano. En ese trabajo inicial, se reentrenaron tres variantes del modelo YOLOv7 utilizando un conjunto de 
@@ -409,30 +409,30 @@ Este hito sirve de precedente para explorar nuevas y mejoradas arquitecturas par
 aunque utilizando muestras purificadas mediante citometría de flujo, lo que simplifica el problema al eliminar el "ruido" de fondo \cite{roundsCellsSpermatid}.
 
 Por otro lado, trabajos como el modelo ACTIVE abordan un escenario más similar al de este proyecto, al detectar espermatozoides e "impurezas" en videos microscópicos sin procesar \cite{chen2024}. Los resultados para al detección de espermatozoides son realmente buenos, sin embargo, no se puede decir lo mismo
-para las impurezas (todos los objetos presentes en la muestra que no son espermatozoides). Los propios autores admiten que, en algunos casos, incluso para expertos es dificil distinguir si un objeto
-es una impureza o un espermatozoide. Esto introduce ambigüedad en los datos de entrenamiento perjudicando el aprendizaje del modelo, especialmente para la clase más dificil de definir ("impurezas") \cite{chen2024}.
+para las impurezas (todos los objetos presentes en la muestra que no son espermatozoides). Los propios autores admiten que, en algunos casos, incluso para expertos es difícil distinguir si un objeto
+es una impureza o un espermatozoide. Esto introduce ambigüedad en los datos de entrenamiento perjudicando el aprendizaje del modelo, especialmente para la clase más difícil de definir ("impurezas") \cite{chen2024}.
 
-En síntesis, este proyecto da continuidad al desarrollo tecnológico a partir de la prueba de concepto inicial a demás de integrar y buscar superar los desafios identificados en la literatura científica más reciente. La prueba de concepto sirve como precedente para dar continuidad y actualizar las 
-arquitecturas para el problema de la detección de células redondas en muestras de semen humano, mientras que la literatura reciente pone de manifiesto los desafios y dificultades en la detección de células heterogeneas. 
+En síntesis, este proyecto da continuidad al desarrollo tecnológico a partir de la prueba de concepto inicial a demás de integrar y buscar superar los desafíos identificados en la literatura científica más reciente. La prueba de concepto sirve como precedente para dar continuidad y actualizar las 
+arquitecturas para el problema de la detección de células redondas en muestras de semen humano, mientras que la literatura reciente pone de manifiesto los desafíos y dificultades en la detección de células heterogéneas. 
 
 
 \subsection{Hipótesis de trabajo}
 
 Considerando el potencial de las arquitecturas YOLO y las diferentes técnicas de optimización, se considera que mediante la exploración de las arquitecturas YOLO que van desde la versión 8 a la 12, 
-junto con el diseño personalizado y la optima optimización de hiperparámetros, se consiga igualar o mejorar los modelos de la anterior prueba de concepto del grupo GVIS, 
-en las méticas mAP y velocidad de inferencia. Adicionalmente, se espera que gracias a la arquitectura en desarrollo de Yolov12 que incorpora mecanismos de atención, el algoritmo no identifique 
-como células redondas a los Anillos de Newton. La integración de estos modelos con la herramienta web sirvan no solo como metodo de validación final, sino que también demuestre la viabilidad del sistema 
-para ser utilizado en un marco clínico de análisis real por personal experto.
+junto con el diseño personalizado y la optimización óptima de hiperparámetros, se consiga igualar o mejorar los modelos de la anterior prueba de concepto del grupo GVIS, 
+en las métricas mAP y velocidad de inferencia. Adicionalmente, se espera que gracias a la arquitectura en desarrollo de YOLOv12 que incorpora mecanismos de atención, el algoritmo no identifique 
+como células redondas a los Anillos de Newton. La integración de estos modelos con la herramienta web sirva no solo como método de validación final, sino que también demuestre la viabilidad del sistema 
+para que sea utilizado en un marco clínico real por personal experto.
 
 \section{Definición del problema}
 \label{sec:Definición del problema}
 
-La problemática que da origen a este proyecto no es otra que la ardua y extenuante tarea que le supone a un expero la revisión manual de imágenes médicas de muestras de semen.
+La problemática que da origen a este proyecto no es otra que la ardua y extenuante tarea que le supone a un experto la revisión manual de imágenes médicas de muestras de semen.
 
 Por esta razón, el problema central que aborda este proyecto es diseñar, desarrollar y evaluar un sistema inteligente capaz de automatizar la detección de células 
-redondas sobre un conjunto de imágenes médicas de muestras de semen, utilizando para ello, tecnicas de Visión por Computador (\textit{Computer Vision}) y Aprendizaje Profundo (\textit{Deep Learning}).
+redondas sobre un conjunto de imágenes médicas de muestras de semen, utilizando para ello, técnicas de Visión por Computador (\textit{Computer Vision}) y Aprendizaje Profundo (\textit{Deep Learning}).
 
-Este sistema inteligente debe ser capaz de pocesar imágenes microscópicas como las de la \autoref{fig:Muestra de semen humano sin anotaciones}, donde las células objetivo cohexisten con una densa población de espermatozoides, diversos artefactos visuales (Anillos de Newton)
+Este sistema inteligente debe ser capaz de procesar imágenes microscópicas como las de la \autoref{fig:Muestra de semen humano sin anotaciones}, donde las células objetivo coexisten con una densa población de espermatozoides, diversos artefactos visuales (Anillos de Newton)
 y restos residuales ajenos al análisis. Asimismo, la dificultad que supone la distinción de células redondas de otros elementos morfológicamente similares (espermatozoides sin cola), esferas de las que se desconoce que son, etc.
 
 \begin{figure}[H]
@@ -442,8 +442,8 @@ y restos residuales ajenos al análisis. Asimismo, la dificultad que supone la d
   \label{fig:Muestra de semen humano sin anotaciones}
 \end{figure}
 
-Para más inri, la asignación de anotaciones sobre el conjunto de imágenes es un problema que va a generar complicaciones durante todo el proyecto. Por ejemplo,
-en la imagen \ref{fig:Anillos_Newton} anotada por un experto, presenta la problemática de los Anillos de Newton. Se verá posteriormente como afectan estos objetos a la correcta identificación de células redondas.
+para mayor dificultad, la asignación de anotaciones sobre el conjunto de imágenes es un problema que va a generar complicaciones durante todo el proyecto. Por ejemplo,
+en la imagen \ref{fig:Anillos_Newton} anotada por un experto, presenta la problemática de los Anillos de Newton. Se verá posteriormente cómo afectan estos objetos a la correcta identificación de células redondas.
 
 \begin{figure}[H]
   \centering
@@ -453,19 +453,19 @@ en la imagen \ref{fig:Anillos_Newton} anotada por un experto, presenta la proble
   Las \textit{bounding boxes} corresponden con las células redondas y los círculos rojos con los Anillos de Newton.
 \end{figure}
 
-Asimismo, en la imagen \ref{fig:feedback_experto} se evidencian las constantes dudas a cerca de las anotaciones de células redondas, no solo por el personal que define el proyecto sino por los propios expertos de Microptic \cite{microptic}. 
-Cuyo \textit{feedback} fue:
+Asimismo, en la imagen \ref{fig:feedback_experto} se evidencian las constantes dudas acerca de las anotaciones de células redondas, no solo por el personal que define el proyecto sino por los propios expertos de Microptic \cite{microptic}. 
+El \textit{feedback} fue:
 
 \begin{quote}
 “La mayoría de células marcadas con los rectángulos verdes son ciertas células redondas. Los círculos rosas también serían células (probablemente germinales, pero se necesitaría hacer una evaluación morfológica específica para saberlo). Los círculos azules marcan correctamente algunas células redondas pero también indican espermatozoides que retienen la mayor parte del citoplasma (esferas grises con un área blanca bien contrastada). En cuanto a los círculos naranjas, muchos son cabezas de espermatozoides sin cola y las esferas más pequeñas desconocemos qué son.”
 \end{quote}
 
-Esto evidencia, una vez más, el alto grado de complejidad que supone anotar este tipo de imágenes médicas, incluso bajo el marco de recomendadiones de la OMS \cite{OMS} \cite{BJBS}.
+Esto evidencia, una vez más, el alto grado de complejidad que supone anotar este tipo de imágenes médicas, incluso dentro del marco de recomendaciones de la OMS \cite{OMS} \cite{BJBS}.
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\textwidth]{figuras/rounds_cells/feedback_experto.png}
-  \caption{Ilustración de annotaciones para \textit{feedback} con experto.}
+  \caption{Ilustración de anotaciones para \textit{feedback} con experto.}
   \label{fig:feedback_experto}
 \end{figure}
 
