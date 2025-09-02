@@ -63,6 +63,8 @@
 
 \lstset{style=mystyle}
 
+\usepackage{enumitem} % Para personalizar listas de items.
+
 \renewcommand{\lstlistingname}{Script}
 % \usepackage{url}      % Para escritura de URLs.
 \usepackage[hyphens]{url}
@@ -213,7 +215,7 @@
   \item[NMS (\textit{Non-Maximum Suppression)}]: Algoritmo para eliminar las detecciones redundantes, manteniendo la caja con mayor confianza entre las solapadas
   \item[Aprendizaje profundo o \textit{deep learning}]: Área del aprendizaje automático que emplea redes neuronales profundas para aprender representaciones y resolver tareas complejas.
   \item[\textit{Transfer Learning}]: Reutilizar un modelo preentrenado y adaptarlo para entrenar un nuevo modelo con el conocimiento ya adquirido previamente con un dataset generalmente mayor.
-  \item[\textit{framework}]: Conjunto estructurado de herramientas, librerías y convenciones que facilita y agiliza el desarrollo de aplicaciones o sistemas.
+  \item[\textit{Framework}]: Conjunto estructurado de herramientas, librerías y convenciones que facilita y agiliza el desarrollo de aplicaciones o sistemas.
   % \item[\textit{Ensemble}]: Técnica para la unificación de predicciones de diferentes modelos.
   % \item[\textit{Cross Validatio}]: Técnica estadística para la evaluación de modelos, que se fundamenta en dividir el dataset en multiples pliegues (\textit{folds}) para entrenar y validar el modelo de forma iteractiva.
   % \item[\textit{Data augmentation}]: Conjunto de transformaciones sobre los datos como rotaciones, traslaciones, adición de ruido, entro otros, con el objetivo de aumentar la diversidad del dattaset y mejorar la generalización del modelo.
@@ -224,7 +226,7 @@
   \item[\textit{Widget}]: Elemento de una interface interactiva que permite al usuario controlar el comportamiento de una aplicación.
   \item[\textit{Ground truth}]: Hace alusión a las anotaciones correctas que describen las \textit{bounding boxes} de las imágenes.
   \item[\textit{Checkbox}]: Es un \textit{widget} que permite al usuario activar o desactivar una opción (boleano).  
-  \item[\textit{linter}]:  Herramienta que analiza automáticamente el código fuente para detectar errores de sintaxis u otros posibles fallos antes de ejecutar el programa. 
+  \item[\textit{Linter}]:  Herramienta que analiza automáticamente el código fuente para detectar errores de sintaxis u otros posibles fallos antes de ejecutar el programa. 
   \item[Células redondas]: Según la OMS \cite{OMS}, toda célula no espermática que se encuentra en el eyaculado. Agrupa principalmente dos típos: células germinales inmaduras y leucocitos.
   \item[Células germinales inmaduras]: Células precursoras de los espermatozoides que no han completado su desarrollo.
   \item[Leucocitos]: Glóbulos blancos, principalmente netrófilos.  
@@ -232,11 +234,13 @@
   \item[Espermatogénesis]: Proceso biológico de formación y producción de espermatozoides.
   \item[Andrología]: Área de la medicina que se centra en el estudio e investigación de cualquier aspecto relacionado con la función sexual y reproducción masculina (Por ejmplo: infertilidad masculina).  
   \item[Anillos de Newton]: Interferencia de la luz cuyo resultado es un patrón de anillos muy característico.
-  \item[\textit{overfitting}] Proceso en el que un modelo de aprendizaje automático aprende demasiado bien los datos de entrenamiento, perdiendo capacidad de generalización y obteniendo peores resultados en las pruebas de evaluación.
-  \item[TP (Verdaderos Positivos)] Células redondas correctamente detectadas por el modelo. El algoritmo identifica correctamente una célula redonda que efectivamente existe en la muestra de semen.
-  \item[FP (Falsos Positivos)] Detecciones incorrectas. Donde el modelo identifica una célula redonda que en realidad no existe o corresponde a otro elemento (como un espermatozoide sin cola o un artefacto visual).
-  \item[TN (Verdaderos Negativos)] Regiones de la imagen correctamente no marcadas como células redondas. Representan áreas donde el modelo correctamente no detecta ninguna célula.
-  \item[FN (Falsos Negativos)] Células redondas presentes en la muestra que el modelo no detecta. 
+  \item[\textit{Overfitting}]: Proceso en el que un modelo de aprendizaje automático aprende demasiado bien los datos de entrenamiento, perdiendo capacidad de generalización y obteniendo peores resultados en las pruebas de evaluación.
+  \item[TP (Verdaderos Positivos)]: Células redondas correctamente detectadas por el modelo. El algoritmo identifica correctamente una célula redonda que efectivamente existe en la muestra de semen.
+  \item[FP (Falsos Positivos)]: Detecciones incorrectas. Donde el modelo identifica una célula redonda que en realidad no existe o corresponde a otro elemento (como un espermatozoide sin cola o un artefacto visual).
+  \item[TN (Verdaderos Negativos)]: Regiones de la imagen correctamente no marcadas como células redondas. Representan áreas donde el modelo correctamente no detecta ninguna célula.
+  \item[FN (Falsos Negativos)]: Células redondas presentes en la muestra que el modelo no detecta.
+  \item[GVIS]:  Group for Vision and Intelligent Systems de la Universidad de León.  
+  \item[Inferencia]: Proceso de utilizar un modelo entrenado para hacer predicciones sobre imagenes nuevas o no vistas previamente.
 \end{description} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -277,7 +281,7 @@ un complejo modelo de Inteligencia Artificial en una solución práctica que pot
 
 Este Trabajo de Fin de Máster tiene como objetivo principal el diseño, desarrollo y validación de un sistema inteligente para la detección automatizada de células redondas en imágenes médicas de muestras de semen humano;
 mediante el empleo de técnicas de visión por computador y aprendizaje profundo. 
-Demostrando así, la integración de competencias técnicas avanzadas en inteligencia artificial, procesamiento de imágenes y desarrollo de software, entre otras habilidades transversales. 
+Demostrando así, la integración de competencias técnicas avanzadas en inteligencia artificial, procesamiento de imágenes y desarrollo de \textit{software}, entre otras habilidades transversales. 
 
 Con este proyecto, se pretende abordar los siguientes objetivos específicos: 
 
@@ -469,23 +473,169 @@ Esto evidencia, una vez más, el alto grado de complejidad que supone anotar est
   \label{fig:feedback_experto}
 \end{figure}
 
-\chapter{Gestión de proyecto software} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Gestión de proyecto \textit{software}} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Gestión de proyecto software}
 
+En este capítulo se definen las tareas a realizar durante el desarrollo,
+se establece un cronograma y se detalla el presupuesto estimado para la realización del proyecto.
+
 \section{Alcance del proyecto}
-\label{Alcance del proyecto}
+\label{sec:Alcance del proyecto}
 
 \subsection{Definición del proyecto}
+\label{sec:Definición del proyecto}
+
+El presente Trabajo de Fin de Máster se centra en el diseño, desarrollo y validación de un sistema inteligente 
+para la detección automatizada de células redondas en imágenes médicas de muestras de semen humano. 
+Este proyecto, desarrollado en colaboración con la empresa Microptic S.L., 
+aborda un desafío clave en el campo de la andrología: la necesidad de optimizar y estandarizar el análisis seminal.
+
+Para abordar esta problemática, se desarrolla una solución de \textit{software} basada en aprendizaje profundo, cuyo objetivo es automatizar 
+la detección de células redondas. El alcance se centra en la definición y desarrollo de una prueba de concepto que valida la viabilidad de 
+esta solución tecnológica en un contexto clínico y de investigación.
+
+Para ello, el proyecto abarca desde la gestión y preprocesamiento de los diferentes conjuntos de datos proporcionados por Microptic S.L.,
+hasta el entrenamiento y evaluación de las diferentes arquitecturas de modelos de detección de objetos de YOLO. 
+Como resultado final, se obtiene una herramienta web funcional que permite a los especialistas interactuar con el sistema de inteligencia artificial, 
+obteniendo detecciones de células redondas sobre imágenes médicas 
+de semen humano en tiempo real y, como consecuencia, optimizando el proceso de análisis seminal.
 
 \subsection{Presupuesto}
+\label{sec:Presupuesto}
+
+El presupuesto del proyecto es una estimación que engloba todos los costes asociados a los recursos necesarios para 
+alcanzar los objetivos definidos. Se realiza una valoración económica para simular un entorno profesional y poner valor del trabajo realizado.
+Los costes se dividen en las siguientes categorías:
 
 \subsubsection{Coste de personal}
+\label{Coste de personal}
+Los costes personales radican en la necesidad de contratar a un ingeniero informático que se encargue del
+desarrollo técnico del proyecto, así como un \textit{Scrum Master} que supervise el flujo de trabajo 
+y asegure el cumplimiento de los objetivos. 
 
-\subsubsection{Coste del hardware}
+\begin{itemize}
+  \item \textbf{Ingeniero Informático:} en España, el sueldo medio de un ingeniero informático es de 30.004,24 \euro{} anuales, según 
+  el XIX Convenio TIC \cite{ilerna_sueldo_ingeniero}. En un supuesto de un ingeniero junior con una jornada laboral de 40 horas semanales (1922 horas anuales), se traduce en un coste por hora de 
+  15,61 \euro{}/hora.
+  \item \textbf{\textit{Scrum Master}:} en España, el salario base medio es de 43.000,00 \euro{} anuales, según los
+  datos de "glassdoor" \cite{glassdoor_scrum_master}. En un supuesto de jornada laboral de 40 horas semanales, esto se traduce en un coste por hora de 
+  22,37 \euro{}/hora.
+\end{itemize}
+
+En la \autoref{tab:presupuesto_personal} se detalla el presupuesto estimado para los recursos humanos.
+
+\begin{table}[H]
+\caption{Presupuesto para los recursos humanos}
+\label{tab:presupuesto_personal}
+\centering
+\resizebox{\textwidth}{!}{%
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lccccr}
+\hline
+\textbf{Puesto de trabajo} & \textbf{Horas semanales} & \textbf{Horas totales} & \textbf{Salario (\euro{}/hora)} & \textbf{Total} \\
+\hline
+Ingeniero Informático & 25 & 300 & 15,61 & 4683,00\euro{} \\
+Srum Master & 3 & 18 & 22,37 & 402,66\euro{} \\
+\hline
+\textbf{Total} & & & & \textbf{5085,66\euro{}} \\
+\hline
+\end{tabular}
+}
+
+\end{table}
+
+\subsubsection{Coste del \textit{hardware}}
+\label{Coste del hardware}
+
+El coste del \textit{hardware} se refiere a los gastos asociados a la adqusición de los equipos
+necesarios para el desarrollo y ejecución del proyecto. En este caso, se ha optado por emplear los siguientes
+recursos:
+
+\begin{itemize}
+  \item \textbf{Equipo para el Ingeniero Informático:} el coste de un ordenador con las características
+  descritas en la \autoref{sec:hardware_local} es de 765,00\euro{} (según los precios de la web de 
+  Lenovo en 2022).
+  \item \textbf{Equipo para el \textit{Scrum Master}:} el coste de un ordenador con las caracterísiticas básicas para ofimática 
+  es de 500,00\euro{}.
+  \item \textbf{Servidor privado:} el arredamiento de un servidor privado con las caracterísitcas descritas
+  en la \autoref{sec:servidor_privado} y mantenimiento incluido, tiene un coste de 0,29\euro{}/hora \cite{T4_pricing}. 
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Desglose de costes de \textit{hardware}}
+\label{tab:coste_hardware}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lcc}
+\hline
+\textbf{Concepto} & \textbf{Cantidad} & \textbf{Coste} \\
+\hline
+Equipo Ingeniero Informático & 1 & 765,00 \euro{} \\
+Equipo \textit{Scrum Master}          & 1 & 500,00 \euro{} \\
+Servidor privado (0,29\,\euro{}/h $\times$ 25 h) & 25 h & 7,25 \euro{} \\
+\hline
+\textbf{Total} & & \textbf{1272,25\euro{}} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Coste de \textit{software} y licencias}
+\label{Coste de software y licencias}
+
+Para el desarrolo del proyecto se aconseja el empleo de \textit{software} y herramientas específicas que faciliten
+y optimicen el desarrollo del trabajo. En este caso, se ha optado por emplear GitHub Copilot, una herramienta
+de Microsoft \cite{github_copilot}. El coste de esta herramienta se recoge en la \autoref{tab:presupuesto_hardware}.
+
+\begin{table}[H]
+\caption{Presupuesto para los recursos de \textit{hardware}}
+\label{tab:presupuesto_hardware}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lccc}
+\hline
+\textbf{Concepto} & \textbf{Precio mensual} & \textbf{Meses} & \textbf{Total} \\
+\hline
+GitHub Copilot & 10,00\euro{} & 3 & 30,00\euro{} \\
+
+\hline
+\end{tabular}
+
+\end{table}
 
 \subsubsection{Costes indirectos}
+Los costes indirectos incluyen gastos generales como electricidad, internet e infraestructuras.
+Se valoran en el 15\% del coste directo del proyecto. El beneficio industrial/empresarial se fija 
+en el 11\%. Sobre la base imponible resultante se aplica el IVA general del 21\% \cite{AEAT_IVA2025}.
 
 \subsubsection{Coste total}
+A continuación, se presenta un resumen del presupuesto total estimado para la realización del proyecto. 
+Se desglosa en función de los costes de personal, \textit{hardware}, \textit{software} y licencias, los cuales constituyen
+los costes directos del proyecto, así como los costes indirectos asociados.
+
+\begin{table}[H]
+\caption{Presupuesto final del proyecto}
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{lcr}
+\hline
+\textbf{Tipo de presupuesto} & \textbf{Porcentaje} & \textbf{Coste} \\
+\hline
+Costes personal                 &          & 5.085,66\euro{} \\
+Costes \textit{hardware}        &          & 1.272,25\euro{} \\
+Costes software                 &          & 30,00\euro{} \\
+\hline
+Costes directos       &          & 6.387,91\euro{} \\
+Costes indirectos     & 15\,\%   & 958,19\euro{} \\
+Beneficio industrial  & 11\,\%   & 702,67\euro{} \\
+\hline
+Subtotal              &          & 8.048,77\euro{} \\
+IVA aplicable         & 21\,\%   & 1.690,24\euro{} \\
+\hline
+\textbf{Total}        &          & \textbf{9.739,01\euro{}} \\
+\hline
+\end{tabular}
+\label{tab:presupuesto_final}
+\end{table}
 
 \section{Plan de trabajo}
 \label{Plan de trabajo}
@@ -493,26 +643,347 @@ Esto evidencia, una vez más, el alto grado de complejidad que supone anotar est
 \subsection{Metodología}
 \label{Metodología}
 
+Para la gestión y desarrollo de este proyecto, se ha optado por una metodología ágil basada en Scrum \cite{scrum_org_what_is_scrum}.
+Este marco de trabajo promueve la entrega incremental de resultados a través de iteraciones cortas y frecuentes, conocidas como sprints, 
+lo que aporta una gran flexibilidad para adaptarse a los desafíos técnicos inherentes al desarrollo de un sistema de visión artificial 
+para la detección de células redondas.
+
+Los sprints para este proyecto tienen una duración de dos semanas, lo que permite un equilibrio adecuado entre la planificación y la ejecución.
+
+Dentro de los roles y responsabilidades, se define al tutor académico como \textit{Scrum Master} y al ingeniero informático como el desarrollador principal.
+
+Para la organización y planificación de las tareas, el proyecto se estructura en torno a un \textit{Product Backlog} (pila de producto). Este \textit{backlog} está 
+compuesto por historias de usuario, que representan cada una de las funcionalidades o tareas a desarrollar. Cada historia de usuario se define con los siguientes atributos:
+
+\begin{itemize}
+  \item Identificador (ID): Un código único para referenciar y realizar el seguimiento de cada tarea.
+  \item Título: Un nombre conciso y descriptivo que resume el objetivo.
+  \item Descripción: Un párrafo que explica con claridad qué trabajo se debe realizar.
+  \item Criterios de aceptación: Una lista de condiciones específicas y verificables que deben cumplirse para que la tarea se considere completada.
+\end{itemize}
+
 \subsection{Identificación de tareas}
 \label{Identificación de tareas}
+
+Atendiendo a la metodología Scum del proyecto, se definen las siguientes historias de usuario, que se detallan de la \autoref{tab:usuario1} a la \autoref{tab:usuario6}.
+
+\definecolor{turquoiseLight}{RGB}{64,224,208}
+
+%SPRINT 1
+\begin{table}[H]
+\centering
+\adjustbox{width=\textwidth,center}{%
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{|>{\columncolor{turquoiseLight!25}}m{2.5cm}|m{0.3cm}|>{\columncolor{turquoiseLight!25}}m{1.3cm}|p{10cm}|}
+\hline
+\textbf{ID} & 1 & \textbf{Título} & Planificación, configuración e investigación \\
+\hline
+\textbf{Descripción} & \multicolumn{3}{m{15cm}|}{Sentar las bases del proyecto, configurar el entorno de trabajo y comprender el estado del arte.} \\
+\hline
+\textbf{Criterios de aceptación} & \multicolumn{3}{m{15cm}|}{El entorno de desarrollo (local y remoto) debe estar completamente configurado y probado. Se debe completar una revisión de la literatura sobre modelos de detección de objetos y análisis de imágenes médicas. El plan de proyecto y el análisis de riesgos deben estar documentados.} \\
+\hline
+\end{tabular}%
+}
+\caption{Historia de usuario 1 (Planificación, configuración e investigación)}
+\label{tab:usuario1}
+\end{table}
+
+%SPRINT 2
+\begin{table}[H]
+\centering
+\adjustbox{width=\textwidth,center}{%
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{|>{\columncolor{turquoiseLight!25}}m{2.5cm}|m{0.3cm}|>{\columncolor{turquoiseLight!25}}m{1.3cm}|p{10cm}|}
+\hline
+\textbf{ID} & 2 & \textbf{Título} & Preprocesamiento de datos y modelo base \\
+\hline
+\textbf{Descripción} & \multicolumn{3}{m{15cm}|}{Preparar el conjunto de datos para el entrenamiento y entrenar un primer modelo para establecer una línea de base.} \\
+\hline
+\textbf{Criterios de aceptación} & \multicolumn{3}{m{15cm}|}{El conjunto de datos debe estar completamente anotado y validado. El \textit{pipeline} de datos, incluyendo el aumento de datos, debe ser funcional. Se debe haber entrenado un modelo YOLO base y obtenido las primeras métricas de rendimiento para validar el proceso.} \\
+\hline
+\end{tabular}%
+}
+\caption{Historia de usuario 2 (Preprocesamiento de datos y modelo base)}
+\label{tab:usuario2}
+\end{table}
+
+%SPRINT 3
+\begin{table}[H]
+\centering
+\adjustbox{width=\textwidth,center}{%
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{|>{\columncolor{turquoiseLight!25}}m{2.5cm}|m{0.3cm}|>{\columncolor{turquoiseLight!25}}m{1.3cm}|p{10cm}|}
+\hline
+\textbf{ID} & 3 & \textbf{Título} & Entrenamiento y optimización \\
+\hline
+\textbf{Descripción} & \multicolumn{3}{m{15cm}|}{Entrenar y comparar diferentes arquitecturas de modelos, optimizando sus hiperparámetros para obtener el mejor rendimiento.} \\
+\hline
+\textbf{Criterios de aceptación} & \multicolumn{3}{m{15cm}|}{Se deben haber entrenado y evaluado al menos dos arquitecturas de modelos diferentes. La optimización de hiperparámetros debe estar completada y documentada. Se debe realizar una validación cruzada para asegurar la generalización y evitar el sobreajuste.} \\
+\hline
+\end{tabular}%
+}
+\caption{Historia de usuario 3 (Entrenamiento y optimización)}
+\label{tab:usuario3}
+\end{table}
+
+%SPRINT 4
+\begin{table}[H]
+\centering
+\adjustbox{width=\textwidth,center}{%
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{|>{\columncolor{turquoiseLight!25}}m{2.5cm}|m{0.3cm}|>{\columncolor{turquoiseLight!25}}m{1.3cm}|p{10cm}|}
+\hline
+\textbf{ID} & 4 & \textbf{Título} & Modelos avanzados y evaluación comparativa \\
+\hline
+\textbf{Descripción} & \multicolumn{3}{m{15cm}|}{Desarrollar y entrenar un modelo ensemble y un modelo personalizado. Evaluar cuantitativamente todos los modelos (base, \textit{ensemble} y personalizado) para seleccionar el mejor.} \\
+\hline
+\textbf{Criterios de aceptación} & \multicolumn{3}{m{15cm}|}{El modelo ensemble y el modelo personalizado deben estar implementados y entrenados. Se debe realizar una evaluación comparativa con métricas (mAP, precisión, \textit{recall}) y documentar los resultados para justificar la selección del modelo final.} \\
+\hline
+\end{tabular}%
+}
+\caption{Historia de usuario 4 (Modelos y evaluación comparativa)}
+\label{tab:usuario4}
+\end{table}
+
+%SPRINT 5
+\begin{table}[H]
+\centering
+\adjustbox{width=\textwidth,center}{%
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{|>{\columncolor{turquoiseLight!25}}m{2.5cm}|m{0.3cm}|>{\columncolor{turquoiseLight!25}}m{1.3cm}|p{10cm}|}
+\hline
+\textbf{ID} & 5 & \textbf{Título} & Desarrollo de la herramienta web interactiva \\
+\hline
+\textbf{Descripción} & \multicolumn{3}{m{15cm}|}{Diseñar, implementar y probar la herramienta web con Streamlit, integrando los diferentes modelos de YOLO para permitir la detección de células en tiempo real.} \\
+\hline
+\textbf{Criterios de aceptación} & \multicolumn{3}{m{15cm}|}{La herramienta web debe ser completamente funcional: permitir la carga de imágenes (individuales y por lotes), seleccionar el modelo, visualizar las detecciones con \textit{bounding boxes}, mostrar métricas y permitir la descarga de resultados. La aplicación debe ser estable y estar documentada en el manual de usuario.} \\
+\hline
+\end{tabular}%
+}
+\caption{Historia de usuario 5 (Desarrollo de la herramienta web interactiva)}
+\label{tab:usuario5}
+\end{table}
+
+%SPRINT 6
+\begin{table}[H]
+\centering
+\adjustbox{width=\textwidth,center}{%
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{|>{\columncolor{turquoiseLight!25}}m{2.5cm}|m{0.3cm}|>{\columncolor{turquoiseLight!25}}m{1.3cm}|p{10cm}|}
+\hline
+\textbf{ID} & 6 & \textbf{Título} & Documentación final y entrega \\
+\hline
+\textbf{Descripción} & \multicolumn{3}{m{15cm}|}{Finalizar la redacción de la memoria del TFM y preparar todos los materiales para la entrega y defensa del proyecto.} \\
+\hline
+\textbf{Criterios de aceptación} & \multicolumn{3}{m{15cm}|}{La memoria del TFM debe estar completamente redactada, incluyendo todos los capítulos, anexos y bibliografía. El código del proyecto debe estar documentado y subido a un repositorio. La presentación para la defensa final debe estar preparada.} \\
+\hline
+\end{tabular}%
+}
+\caption{Historia de usuario 6 (Documentación final y entrega)}
+\label{tab:usuario6}
+\end{table}
 
 \subsection{Estimación de tareas}
 \label{Estimación de tareas}
 
+Esta sección presenta la planificación del proyecto (\autoref{tab:estimacion_tareas}), detallando las tareas a realizar y el cronograma previsto para su ejecución.
+
+\begin{table}[H]
+\caption{Estimación de tareas del proyecto}
+\centering
+\adjustbox{width=\textwidth,center}{%
+\renewcommand{\arraystretch}{0.8} % Aumenta el espaciado para mejor legibilidad
+\setlength{\arrayrulewidth}{0.6pt}
+% Definición de columnas para centrar verticalmente y ajustar anchos
+\begin{tabular}{|c|m{4.5cm}|m{6cm}|c|}
+\hline
+\rowcolor{turquoiseLight!30}
+\multicolumn{1}{|c|}{\textbf{ID}} & 
+\multicolumn{1}{c|}{\textbf{Historia de usuario}} & 
+\multicolumn{1}{c|}{\textbf{Tareas principales}} & 
+\multicolumn{1}{c|}{\textbf{Semanas}} \\
+\hline
+1 & Planificación, configuración e investigación & 
+- Investigación del estado del arte \newline - Configuración de entornos (local/remoto) \newline - Definición detallada del plan de proyecto y riesgos \newline - Análisis inicial del \textit{dataset} & 
+24-25 \\
+\hline
+2 & Preprocesamiento de datos y modelo base & 
+- Anotación, validación y aumento de datos \newline - Desarrollo del \textit{pipeline} de datos \newline - Entrenamiento y evaluación de un modelo inicial &
+26-27 \\
+\hline
+3 & Entrenamiento y optimización & 
+- Entrenamiento de múltiples arquitecturasYOLO \newline - Optimización de hiperparámetros \newline - Validación cruzada y análisis de resultados &
+28-29 \\
+\hline
+4 & Modelos avanzados y evaluación &
+- Desarrollo de modelo ensemble \newline - Implementación de modelo personalizado \newline - Evaluación comparativa &
+30-31 \\
+\hline
+5 & Desarrollo de la herramienta web & 
+- Implementación del \textit{backend} (lógica de inferencia) \newline - Creación del \textit{frontend} (interfaz de usuario) \newline - Integración y pruebas funcionales &
+32-33 \\
+\hline
+6 & Documentación final y entrega &
+- Redacción de la memoria del TFM \newline - Documentación del código y repositorio &
+34-35 \\
+\hline
+\end{tabular}
+}
+\label{tab:estimacion_tareas}
+\end{table}
+
+
 \subsection{Planificación de tareas}
 \label{Planificación de tareas}
+
+Atendiendo a la metodología agile Scrum, el desarrollo del proyecto se ha estructurado en seis \textit{sprints} de dos semanas cada uno.
+Cada \textit{sprint} se corresponde con una historia de usuario, permitiendo un desarrolle lógico y secuencial.
+En el anexo \ref{Seguimiento de proyecto} se detalla mediante del diagrama de Gantt \cite{OnlineGantt2025} la planificación de cada \textit{sprint}, con una fecha final objetivo que corresponde con la entrega del día 5 de septiembre de 2025.
+
+A continuación, se resume el enfoque de cada sprint:
+
+\begin{itemize}[label=-]
+  \item Investigación y Configuración (Semanas 24-25): Esta fase inicial se centra en establecer las bases teóricas y técnicas del proyecto. Incluye una revisión del estado del arte, la configuración de los entornos de desarrollo (local y remoto) y un análisis inicial del dataset para comprender sus características.
+  
+  \item Preprocesamiento y Modelo Base (Semanas 26-27): Se prepararan los datos para el entrenamiento. Se revisan y gestionan los diferentes conjuntos de datos. Finaliza con el entrenamiento de un primer modelo que sirve como referencia.
+  
+  \item Entrenamiento y Optimización (Semanas 28-29): Se entrenan y comparan las diferentes arquitecturas de YOLO. Se aplica la optimización de hiperparámetros y se utiliza la validación cruzada para asegurar que los modelos generalicen correctamente y no sufran de sobreajuste.
+  
+  \item Modelos Avanzados y Evaluación (Semanas 30-31): Se desarrolla un modelo \textit{ensemble} que combina las fortalezas de varios modelos, y se realiza la evaluación comparativa final.
+  
+  \item Desarrollo de la Herramienta Web (Semanas 32-33): Se dedica por completo a la creación de la aplicación interactiva con Streamlit. Se implementa tanto el backend (lógica de inferencia) como el frontend (interfaz de usuario).
+  
+  \item Documentación y Entrega Final (Semanas 34-35): La última fase se centra en consolidar todo el trabajo. Incluye la redacción final de la memoria del TFM y la documentación del código para garantizar su reproducibilidad.
+\end{itemize}
 
 \section{Gestión de recursos}
 \label{Gestión de recursos}
 
+La gestión de recursos implica la especificación, asignación y supervisión de los recursos necesarios para llevar a cabo el proyecto de manera eficiente.
+
 \subsection{Especificación y asignación de recursos}
 \label{Especificación y asignación de recursos}
 
+Los recursos disponibles para el desarrollo de este proyecto se clasifican en tres grupos:
+
+\begin{itemize}
+  \item \textbf{Recursos económicos:} El presupuesto económico viene detallado en la \autoref{sec:Presupuesto}, y asciende a un total de 9.739,01\euro{}.
+  \item \textbf{Recursos físicos:}
+    \begin{itemize}[label=-]
+      \item Equipo para Scrum Master
+      \item Equipo para el desarrollador
+      \item Servidor remoto con GPU Tesla T4 proporcionado por GVIS
+      \item Instalaciones: luz, internet, material de oficina, etc
+    \end{itemize}
+  \item \textbf{Recursos humanos:} 
+    \begin{itemize}[label=-]
+      \item \textit{Scrum Master}: Tutor académico
+      \item Desarrollador: Ingeniero Informático
+      \item Experto de Microptic S.L.
+      \item Soporte de infraestructura (GVIS): Provisión y operación del servidor remoto.
+    \end{itemize}
+\end{itemize}
+
+La asignación de recursos se realiza de la siguiente manera: cada rol humano dispone del equipo informático necesario para sus 
+funciones. El desarrollador utiliza su equipo local para el preprocesado de datos, desarrollo del \textit{pipeline} de metodológico y el desarrollo de la aplicación web con Streamlit. 
+El servidor remoto con GPU Tesla T4 se reserva para las tareas de mayor coste computacional, como el entrenamiento del modelo pesado (YOLOv12l).
+Se solicita puntualmente una consulta con el experto de Microptic S.L. para resolver dudas técnicas en las anotaciones de las imágenes.
+Finalmente, las instalaciones garantizan el soporte operativo (luz, internet) para todas las actividades.
+
 \section{Gestión de riesgos}
 \label{sec:Gestión de riesgos}
-\subsection{Identificación y análisis de riesgos}
 
-\clearpage
+Se identifican, analizan y gestionan los riesgos potenciales que podrían afectar al desarrollo exitoso del proyecto.
+
+\subsection{Identificación y análisis de riesgos}
+\label{Identificación y análisis de riesgos}
+
+Para una mayor claridad e interpretación, se elabora una tabla que detalla los riesgos identificados, su probabilidad de ocurrencia (prob.), el impacto potencial, 
+las causas subyacentes y las estrategias de gestión propuestas.
+
+\definecolor{turquoiseLight}{RGB}{64,224,208}
+
+\begin{table}[H]
+\caption{Análisis de riesgos del proyecto}
+\centering
+\adjustbox{width=\textwidth,center}{%
+\renewcommand{\arraystretch}{1.3}
+\setlength{\arrayrulewidth}{1.2pt}
+% Se han cambiado las columnas 'p' por 'm' para centrar verticalmente
+\begin{tabular}{|c|m{3cm}|c|c|c|m{5.5cm}|m{5.5cm}|}
+\hline
+\rowcolor{turquoiseLight!30}
+\multicolumn{1}{|c|}{\textbf{ID}} & 
+\multicolumn{1}{c|}{\textbf{Riesgo}} & 
+\multicolumn{1}{c|}{\textbf{Categoría}} & 
+\multicolumn{1}{c|}{\textbf{Probabilidad}} & 
+\multicolumn{1}{c|}{\textbf{Impacto}} & 
+\multicolumn{1}{c|}{\textbf{Causas}} & 
+\multicolumn{1}{c|}{\textbf{Gestión}} \\
+\hline
+1 & Etiquetado subjetivo de células & Datos & Alta & Alto & 
+Subjetividad en la identificación de células, generando inconsistencias en el etiquetado & 
+Implementar validación y reetiquetado por expertos para consolidar un \textit{ground truth} robusto \\
+\hline
+2 & Artefactos confundidos con células & Datos & Baja & Bajo & 
+Presencia de artefactos visuales (ej. Anillos de Newton) que se confunden con células redondas & 
+Elevar umbral de de confianza de los modelos y evaluarlos en imágenes con artefactos para seleccionar las mejores arquitecturas \\
+\hline
+3 & \textit{Dataset} limitado & Datos & Media & Alto & 
+La calidad, cantidad o representatividad del dataset puede ser insuficiente o contener sesgos & 
+Aplicar técnicas de \textit{data augmentation} para incrementar la diversidad y mejorar la generalización \\
+\hline
+4 & Definición ambigua de objetivos &  Planificación & Media & Alto & 
+Objetivos mal definidos o cambiantes que dificultan la planificación &
+Revisión detallada y continuada de los objetivos\\
+\hline
+5 & Cambios no planificados en requisitos & Planificación & Baja & Medio & 
+Cambios inesperados &
+Gestión de cambios y documentación detallada\\
+\hline
+6 & Desviación en los plazos & Planificación & Alta & Medio & 
+Estimaciones optimistas y retrasos en tareas críticas &
+Monitorización continua\\
+\hline
+7 & Errores de código o integración & Implementación & Alta & Bajo & 
+Escasez de pruebas, errores humanos & 
+Realización continuada de pruebas y control de versiones \\
+\hline
+8 & Faltan recursos técnicos o humanos & Implementación & Alta & Bajo & 
+Limitaciones de \textit{hardware} en el uso de GPU & 
+Se priorizan modelos ligeros, se ajusta el \textit{batch size} a la VRAM disponible; se externaliza a un servidor privado \\
+\hline
+9 & Riesgo de \textit{overfitting} & Implementación & Media & Medio & 
+Los modelos sobreajusten (overfitting) los datos de entrenamiento y no generalicen correctamente a nuevos conjuntos de imágenes & 
+Empleo de pruebas de validación, técnicas de regularización y evaluación final sobre múltiples conjuntos de test para verificar la generalización \\
+\hline
+10 & Retrasos por complejidad técnica no prevista & Implementación & Media & Bajo & 
+Subestimación de la complejidad, falta de experiencia & 
+Reuniones breves de alineación, formación continuada para el equipo \\
+\hline
+11 & Presión presupuestaria & Externo & Baja & Alto & 
+Costes de \textit{hardware} y \textit{software} puntuales & 
+Definir un tope de gasto y priorizar ejecuciones críticas\\
+\hline
+12 & Eventos improvistos & Externo & Baja & Alto & 
+Pandemia, apagón eléctrico o de internet, etc & 
+Plan de contingencia local-remoto y seguro adecuado\\
+\hline
+13 & Dependencia de terceros & Externo & Media & Medio & 
+Alquiler de GPU no disponible o retraso en entregas de \textit{hardware}, servidores caídos, etc & 
+Diversificación de proveedores y contratos sólidos con cláusulas que penalizan el incumplimiento\\
+\hline
+\end{tabular}
+}
+\label{tab:analisis_riesgos}
+\end{table}
+
 \section{Legislación y normativa}
 \label{Legislación y normativa}
 
@@ -543,7 +1014,7 @@ se detalla cómo el proyecto se ajusta y adhiere a las leyes pertinentes:
     \item \textbf{Real Decreto Legislativo 1/1996 sobre Propiedad Intelectual}\cite{RDL1996}
     
     En conformidad con el Real Decreto Legislativo 1/1996, el proyecto respeta la normativa sobre propiedad intelectual. Se ha optado por utilizar 
-    únicamente código y herramientas de software libre y de código abierto para garantizar el cumplimiento de la normativa en materia de propiedad 
+    únicamente código y herramientas de \textit{software} libre y de código abierto para garantizar el cumplimiento de la normativa en materia de propiedad 
     intelectual.
 
 \end{itemize}
@@ -611,7 +1082,7 @@ La tercera y última fase del proyecto, es dar una solución tangible y accesibl
   \item \textbf{Desarrollo de la interfaz:} Se define una aplicación interactiva empleando el framework de Streamlit, con el fin de que los expertos médicos puedan interactuar de forma intuitiva con el sistema de detección de células redondas.
   \item \textbf{Funcionalidades:} La prueba de concepto se integra con una serie de funcionalidades como la carga de imágenes y anotaciones asociadas (opcional), selección de modelo de inferencia e intervalo de confianza de las predicciones, 
   visualización de las detecciones, comparativa de resultados con el \textit{ground truth}, exportación de predicciones y métricas sobre un conjunto de imágenes. 
-  \item \textbf{Arquitectura de software:} La aplicación se diseña con un enfoque modular, que separa la lógica de procesado de la interfaz de usuario, garantizando la escalabilidad y la facilidad de mantenimiento \cite{repoTFM}.
+  \item \textbf{Arquitectura de \textit{software}:} La aplicación se diseña con un enfoque modular, que separa la lógica de procesado de la interfaz de usuario, garantizando la escalabilidad y la facilidad de mantenimiento \cite{repoTFM}.
 \end{itemize}
 
 \chapter{Experimentación} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -684,7 +1155,7 @@ Para más deralle, la información relativa al preprocesamiento del dataset se e
 Se utilizan dos entornos de desarrrollo complementarios, garantizando la reproducibilidad y escalabilidad de los resultados obtenidos.
 
 \subsection{\textit{Hardware}}
-\subsubsection{Hardware Local}
+\subsubsection{\textit{hardware} Local}
 \label{sec:hardware_local}
 El entorno principal de desarrollo es un equipo \textit{Lenovo IdeaPad Gaming 3} con las siguientes especificaciones técnicas:
 
@@ -731,14 +1202,14 @@ Como entorno complementario se ha empleado un servidor remoto proporcionado por 
     \item \textbf{Almacenamiento temporal}: 78,2 GB SSD
 \end{itemize}
 
-\subsection{\textit{Software y Frameworks}}
+\subsection{\textit{software y Frameworks}}
 
 El desarrollo se realizó empleando el siguiente \textit{stack} tecnológico:
 
 \begin{itemize}
     \item \textbf{Sistema Operativo}: Windows 11
     \item \textbf{Entorno Python}: Miniconda3 (entorno \texttt{TFM})
-    \item \textbf{IDE}: Microsoft Visual Studio Code
+    \item \textbf{IDE}: Microsoft Visual Studio Code con Github Copilot
     \item \textbf{CUDA Toolkit}: Versión 12.9
     \item \textbf{Frameworks principales}:
     \begin{itemize}
@@ -854,7 +1325,7 @@ scale & 0.06 & & \\
 \end{tabular}
 \end{table}
 
-Todos los modelos han sido entrenados y evaluados con el limitado hardware personal (\autoref{sec:hardware_local}), exceptuando el modelo YOLOv12l que demanda el uso de un servidor privado 
+Todos los modelos han sido entrenados y evaluados con el limitado \textit{hardware} personal (\autoref{sec:hardware_local}), exceptuando el modelo YOLOv12l que demanda el uso de un servidor privado 
 proporcionado por la Universidad de Leon (\autoref{sec:servidor_privado}).
 
 A continuación, se exponen e interpretan los resultados obtenidos durante los entrenamientos:
@@ -1088,7 +1559,7 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
   \]
   donde $T=10$. Esta métrica es más exigente porque penaliza detecciones con IoU bajos y refleja mejor la precisión espacial del modelo.
 
-  \item[Inferencia (ms)] Tiempo medio (en milisegundos) que tarda un modelo en procesar una única imagen (inferencia). Métrica relevante para proyectos en tiempo real.
+  \item[Inferencia (ms)] Tiempo medio (en milisegundos) que tarda un modelo en procesar una única imagen (inferencia). Relevante para proyectos en tiempo real.
 
 \end{description}
 \arrayrulecolor[HTML]{B9DAE1}
@@ -1156,6 +1627,12 @@ precisión y latencia. YOLOv8s es el más rápido ($11.006$ ms) y YOLOv11s obtie
 Analizando los nuevos conjuntos de \textit{test} (\autoref{tab:yolos_nuevos_tests}), los resultados siguen siendo similares entre modelos. Según la métrica mAP@0.5:0.95, YOLOv12s vuelve a ser el mejor (0.673), seguido de YOLOv12l (0.659). 
 El ensemble mejora precisión y recall, pero empeora mAP y latencia. El modelo custom destaca por su baja latencia y buenos resultados, especialmente en test3, 
 donde iguala la precisión del ensemble ($0.873$). Las diferencias entre el resto de modelos son mínimas.
+
+Tras el proceso de reetiquetado del conjunto de \textit{test} original, es decir, en la evaluación sobre el conjunto de test, se observan cambios intnteserantes que 
+sugieren una mejora en la calidad del \textit{ground truth}. La mayoría de los modelos muestran una mejora en la \textit{precision}, destaca el modelo ensemble con el mayor incremento (+0,054). 
+En cuanto al \textit{recall}, los resultados son más variados, pero YOLOv12l y YOLOv11s muestran mejoras significativas.
+La métrica mAP@0.5 mejora en la mayoría de los modelos mientras que la métrica mAP@0.5:0.95 sufre un descenso generalizado. Esto sugiere que, si bien los modelos identifican mejor las células redondas, la precisión de las \textit{bounding boxes} ha disminuido ligeramente.
+Asimismo, los tiempos de inferencia se mantienen con variaciones mínimas en la mayoría de los modelos.
 
 El conjunto test2 muestra latencias más altas ($31$–$76$ ms) y un descenso general de mAP@0.5:0.95, lo que indica condiciones diferentes que afectan al rendimiento.
 
@@ -1356,11 +1833,16 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
 \chapter{Conclusión} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 hacer una evaluación de riesgos.
 Por lo tanto, este Trabajo de Fin de Máster no es un ejercicio puramente académico, sino que se constituye como una Prueba de Concepto (PoC) con un objetivo industrial definido y un respaldo institucional estratégico.
+
+En resumen, el proceso de re-etiquetado ha servido para obtener una visión más realista del rendimiento de los modelos, premiando a aquellos que generalizan mejor (mayor precisión) pero también revelando una mayor dificultad para alcanzar una localización perfecta (menor mAP@0.5:0.95).
+
 \section{Conclusión general}
 \label{sec:Conclusión general}
 
 \section{Limitaciones del estudio}
 \label{sec:Limitaciones del estudio}
+
+% Los propios autores admiten que, en algunos casos, incluso para un experto es difícil distinguir si un objeto es una impureza o un espermatozoide. Esto introduce ambigüedad en los datos de entrenamiento, lo que perjudica el aprendizaje del modelo, especialmente para la clase más difícil ("impurezas") [Chen2024].
 
 \section{Lineas de trabajo futuro}
 \label{sec:Lineas de trabajo futuro}
@@ -1380,8 +1862,6 @@ Por lo tanto, este Trabajo de Fin de Máster no es un ejercicio puramente acadé
   {Anexo \thechapter}{0pt}{\Huge}
 \appendix
 
-Los propios autores admiten que, en algunos casos, incluso para un experto es difícil distinguir si un objeto es una impureza o un espermatozoide. Esto introduce ambigüedad en los datos de entrenamiento, lo que perjudica el aprendizaje del modelo, especialmente para la clase más difícil ("impurezas") [Chen2024].
-
 \chapter{Control de versiones} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Control de versiones}
 
@@ -1398,7 +1878,14 @@ Casi la totalidad del desarrollo de este proyecto final lo podemos encontrar en 
 \chapter{Seguimiento del proyecto} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Seguimiento de proyecto}
 
-%Obligatorio. Seguimiento del trabajo real.
+En este anexo se recoge el diagrama de Gantt que refleja la planificación temporal del proyecto, así como las tareas realizadas en cada una de las fases del mismo.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1\textwidth]{figuras/diagrama_gantt/gantt.png}
+  \caption{Diagrama de Gantt para la planificación del proyecto}
+  \label{fig:diagrama_gantt}
+\end{figure}
 
 
 \chapter{Herramienta Web} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2583,8 +3070,8 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
 \end{document}
 
 
-% % Cambio de nombre del TFM
-% ¿Usamos las mismas imágenes que evalua Eduardo y las comparamos con estos modelos también? En anexo o en resultados? 
-% Anexo, añado las matrices de confusión de cada modelo para cada test? con un IoU de 0.5? 
-% Anexo añado Optuna
-% ¿cuando sabemos fecha y tribunal?
+% % % Cambio de nombre del TFM
+% % ¿Usamos las mismas imágenes que evalua Eduardo y las comparamos con estos modelos también? En anexo o en resultados? 
+% % Anexo, añado las matrices de confusión de cada modelo para cada test? con un IoU de 0.5? 
+% % Anexo añado Optuna
+% % ¿cuando sabemos fecha y tribunal?
