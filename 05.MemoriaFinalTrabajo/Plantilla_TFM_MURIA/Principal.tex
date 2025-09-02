@@ -1831,21 +1831,55 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
 
 
 \chapter{Conclusión} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Conclusión general}
+\label{sec:Conclusión general}
+
 hacer una evaluación de riesgos.
 Por lo tanto, este Trabajo de Fin de Máster no es un ejercicio puramente académico, sino que se constituye como una Prueba de Concepto (PoC) con un objetivo industrial definido y un respaldo institucional estratégico.
 
 En resumen, el proceso de re-etiquetado ha servido para obtener una visión más realista del rendimiento de los modelos, premiando a aquellos que generalizan mejor (mayor precisión) pero también revelando una mayor dificultad para alcanzar una localización perfecta (menor mAP@0.5:0.95).
 
-\section{Conclusión general}
-\label{sec:Conclusión general}
 
 \section{Limitaciones del estudio}
 \label{sec:Limitaciones del estudio}
+
+A pesar de los buenos resultados, es importante reconocer las limitaciones inherentes al trabajo:
+
+\begin{itemize}
+  \item \textbf{Subgetividad y ambigüedad en las anotaciones:} La principal limitación del proyecto radica en la propia naturaleza del problema. Como se documenta en la literatura, 
+  la identificación de células redondas en muestras de semen es una tarea compleja y sujeta a una alta variabilidad, incluso entre expertos. Autores como Chen admiten que,
+  en ciertos casos, es difícil distinguir una impureza de un espermatozoide, lo que introduce una ambigüedad inevitable en los datos de entrenamiento que perjudica el aprendizaje del modelo \cite{chen2024}.
+  Esta ambigüedad en el \textit{ground truth} supone una limitación en el rendimiento máximo a alcanzar por cualquier modelo.
+  \item \textbf{Heterogeneidad de la clase "célula redonda":} Las "células redondas" no se abordan como una única categoría sino que agrupa un conjunto heterogéneo de diferentes células. Esto simplifica el problema de detección pero se pierde información valiosa 
+  \item que una clasificación más detallada podría proporcionar.
+  \item \textbf{Alcance y representatividad del dataset:} Auqnue el conjunto de datos proporcionado por Microptic S.L. \cite{microptic} es suficiente para demostrar la viabilidad de la prueba de concepto, 
+  en número de datos que lo conformas ne bastante limitado si atendemos a los grandes volúmenes de datos que suelen abordar los modelos de aprendizaje profundo. Además, todos los datos provienen de la misma empresa, limitando así, la capacidad de generalizar de los modelos
+  y la externalización del \textit{software} a otros laboratorios.
+  \item \textbf{Recursos computacionales:} Si bien durante el proceso de entrenamiento se emplea \textit{hardware} bastante limitado, el uso de un servidor, pese a las implicaciones económicas que conlleva, puede ar solución a estas limitaciones.
+  La disponibilidad de mejores recursos computacionales permite no solo explorar nuevas arquitecturas sino realizar ajustes más profundos.
+\end{itemize}
 
 % Los propios autores admiten que, en algunos casos, incluso para un experto es difícil distinguir si un objeto es una impureza o un espermatozoide. Esto introduce ambigüedad en los datos de entrenamiento, lo que perjudica el aprendizaje del modelo, especialmente para la clase más difícil ("impurezas") [Chen2024].
 
 \section{Lineas de trabajo futuro}
 \label{sec:Lineas de trabajo futuro}
+
+Los resultados de este proyecto abren nuevas y prometedoras vias de investigación. Para continuar avanzando en la detección automatizada de células redondas se proponen las liguientes lineas de trabajo:
+
+\begin{itemize}
+  \item \textbf{Exploración de otras arquitecturas:} Esta prueba de concepto se ha enfocado en detectores de una única estapa (YOLO), optimizados para ofrecer un equilibrio entre precisiñon y velocidad. Sin embargo, 
+  una alternativa a estos modelos pueden ser los de dos etapas (como \textit{Fast-RCNN}), el cual presenta generalmente mayor \textit{precision} y tiempo de inferencia. Una alternativa a esta linea de investigación es usar detectores basados en Transformers
+  (como D-FINE). Este enfoque promete una localización muy precisa incluso en escenas complejas y podría superar algunas limitaciones de los modelos puramente convolucionales.
+  \item \textbf{Gestión de los artefactos:} La baja representación de los Anillos de Newton nos dicen que la introducción de una clase nueva puede continuar dando falsos positivos en las diferentes detecciones de clases, dando lugar
+  a nuevos problemas. Sin embargo, es una vía a explorar que no se puede descartar. Esta hipótesis es necesaria si se plantea un grado superior de automatización, donde la precisión es relevante, y por tanto, el umbral de confianza debe ser menor; 
+  dando lugar a falsos positivos por parte de las diferentes arquitectiras, incluida YOLOv12s.
+  \item \textbf{Enriquecimiento del dataset:} Es bien sabido que la robustez de los modelos depende de la calidad y diversidad de los datos de entrenamiento. Es fundamental continuar ampliando el \textit{dataset} con imágenes procedentes de diferentes condiciones.
+  Un conjunto de datos más extenso y heterogéneo no solo mejoraría la capacidad de generalización de los modelos sino que abre las puertas a la detección de otras células.
+  \item \textbf{Evolución y validación de la herramienta web:} La evolución de la herramienta vez debe pasar por la inclusión de nuevos modelos como \textit{Fast-RCNN}. El siguiente paso lógico es desplegar la herramienta web en un entorno de laboratorio real 
+  para obtener el \textit{feedback} directo de los expertos. Se puede implementar una funcionalidad que permita a los especialistas corregir las predicciones del modelo, creando un ciclo de aprendizaje activo donde sus validaciones se utilicen para reentrenar y mejorar continuamente la precisión del sistema.
+\end{itemize}
 
 %%%% BIBLIOGRAFÍA %%%%
 \renewcommand\bibname{Bibliografía}
