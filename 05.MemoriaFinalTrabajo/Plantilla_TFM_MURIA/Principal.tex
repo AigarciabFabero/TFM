@@ -1853,15 +1853,13 @@ A pesar de los buenos resultados, es importante reconocer las limitaciones inher
   en ciertos casos, es difícil distinguir una impureza de un espermatozoide, lo que introduce una ambigüedad inevitable en los datos de entrenamiento que perjudica el aprendizaje del modelo \cite{chen2024}.
   Esta ambigüedad en el \textit{ground truth} supone una limitación en el rendimiento máximo a alcanzar por cualquier modelo.
   \item \textbf{Heterogeneidad de la clase "célula redonda":} Las "células redondas" no se abordan como una única categoría sino que agrupa un conjunto heterogéneo de diferentes células. Esto simplifica el problema de detección pero se pierde información valiosa 
-  \item que una clasificación más detallada podría proporcionar.
+  que una clasificación más detallada podría proporcionar.
   \item \textbf{Alcance y representatividad del dataset:} Auqnue el conjunto de datos proporcionado por Microptic S.L. \cite{microptic} es suficiente para demostrar la viabilidad de la prueba de concepto, 
   en número de datos que lo conformas ne bastante limitado si atendemos a los grandes volúmenes de datos que suelen abordar los modelos de aprendizaje profundo. Además, todos los datos provienen de la misma empresa, limitando así, la capacidad de generalizar de los modelos
   y la externalización del \textit{software} a otros laboratorios.
   \item \textbf{Recursos computacionales:} Si bien durante el proceso de entrenamiento se emplea \textit{hardware} bastante limitado, el uso de un servidor, pese a las implicaciones económicas que conlleva, puede ar solución a estas limitaciones.
   La disponibilidad de mejores recursos computacionales permite no solo explorar nuevas arquitecturas sino realizar ajustes más profundos.
 \end{itemize}
-
-% Los propios autores admiten que, en algunos casos, incluso para un experto es difícil distinguir si un objeto es una impureza o un espermatozoide. Esto introduce ambigüedad en los datos de entrenamiento, lo que perjudica el aprendizaje del modelo, especialmente para la clase más difícil ("impurezas") [Chen2024].
 
 \section{Lineas de trabajo futuro}
 \label{sec:Lineas de trabajo futuro}
