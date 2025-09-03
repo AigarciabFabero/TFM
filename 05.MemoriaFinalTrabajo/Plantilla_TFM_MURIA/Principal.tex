@@ -211,7 +211,7 @@
   \item[IoU \textit{(Intersection over Union})]: Área de unión entre dos \textit{bounding boxes} (anotación y predicción).
   \item[Métricas]: Indicadores cuantitativos para la evaluación de los modelos de inteligencia artificial.
   \item[Experto]: Persona con conocimientos especializados en un dominio específico (como biólogos, biotecnólogos, patólogos, etc.).
-  \item[Detección de Objetos]: Tarea de localizar y clasificar instancias de objetos en imágenes mediante \textit{bounding boxes} y etiquetas.
+  \item[Detección de Objetos]: Tarea de localizar y clasificar instancias de objetos en imágenes mediante \textit{bounding boxes} y etiquetas. 
   \item[NMS (\textit{Non-Maximum Suppression)}]: Algoritmo para eliminar las detecciones redundantes, manteniendo la caja con mayor confianza entre las solapadas.
   \item[Aprendizaje profundo o \textit{deep learning}]: Área del aprendizaje automático que emplea redes neuronales profundas para aprender representaciones y resolver tareas complejas.
   \item[\textit{Transfer Learning}]: Reutilizar un modelo preentrenado y adaptarlo para entrenar un nuevo modelo con el conocimiento ya adquirido previamente con un dataset generalmente mayor.
@@ -222,7 +222,7 @@
   % \item[Optuna]: Biblioteca de Python para la optimización de hiperparámetros, permitiendo encontrar las mejores configuraciones de estos. 
   \item[\textit{Streamlit}]: \textit{framework} de Python para crear aplicaciones web interactivas orientadas a la ciencia de datos y \textit{Machine Learning}.
   \item[Monolítica]: Arquitectura de software en la que la aplicación se despliega y ejecuta en un mismo proceso.     
-  \item[LabelImg]: Herramienta gráfica de código abierto para la anotación de imágenes con \textit{bounding boxes}.
+  \item[\textit{LabelImg}]: Herramienta gráfica de código abierto para la anotación de imágenes con \textit{bounding boxes}.
   \item[\textit{Widget}]: Elemento de una interfaz interactiva que permite al usuario controlar el comportamiento de una aplicación.
   \item[\textit{Ground truth}]: Hace alusión a las anotaciones correctas que describen las \textit{bounding boxes} de las imágenes.
   \item[\textit{Checkbox}]: Es un \textit{widget} que permite al usuario activar o desactivar una opción (booleano).  
@@ -241,6 +241,11 @@
   \item[FN (Falsos Negativos)]: Células redondas presentes en la muestra que el modelo no detecta.
   \item[GVIS]:  Group for Vision and Intelligent Systems de la Universidad de León.  
   \item[Inferencia]: Proceso de utilizar un modelo entrenado para hacer predicciones sobre imágenes nuevas o no vistas previamente.
+  \item[PASCAL VOC]: Formato de anotación de imágenes (\textit{Pattern Analysis, Statistical Modelling and Computational Learning Visual Object Classes}). 
+  Es un estándar para la anotación de objetos en imágenes mediante \textit{bounding boxes} rectangulares, almacenadas en archivos XML. Cada anotación incluye las coordenadas del 
+  rectángulo (xmin, ymin, xmax, ymax) y la clase del objeto.
+  \item[COCO]: Formato de anotación (\textit{Common Objects in Context}) que proporciona un estándar más completo para la detección de objetos, segmentación y etiquetado de imágenes. Utiliza archivos JSON para 
+  almacenar información sobre imágenes, categorías y anotaciones.
 \end{description} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -748,9 +753,9 @@ Atendiendo a la metodología Scum del proyecto, se definen las siguientes histor
 \hline
 \textbf{ID} & 4 & \textbf{Título} & Modelos avanzados y evaluación comparativa \\
 \hline
-\textbf{Descripción} & \multicolumn{3}{m{15cm}|}{Desarrollar y entrenar un modelo ensemble y un modelo personalizado. Evaluar cuantitativamente todos los modelos (base, \textit{ensemble} y personalizado) para seleccionar el mejor.} \\
+\textbf{Descripción} & \multicolumn{3}{m{15cm}|}{Desarrollar y entrenar un modelo \textit{ensemble} y un modelo personalizado. Evaluar cuantitativamente todos los modelos (base, \textit{ensemble} y personalizado) para seleccionar el mejor.} \\
 \hline
-\textbf{Criterios de aceptación} & \multicolumn{3}{m{15cm}|}{El modelo ensemble y el modelo personalizado deben estar implementados y entrenados. Se debe realizar una evaluación comparativa con métricas (mAP, precisión, \textit{recall}) y documentar los resultados para justificar la selección del modelo final.} \\
+\textbf{Criterios de aceptación} & \multicolumn{3}{m{15cm}|}{El modelo \textit{ensemble} y el modelo personalizado deben estar implementados y entrenados. Se debe realizar una evaluación comparativa con métricas (mAP, precisión, \textit{recall}) y documentar los resultados para justificar la selección del modelo final.} \\
 \hline
 \end{tabular}%
 }
@@ -831,7 +836,7 @@ Esta sección presenta la planificación del proyecto (\autoref{tab:estimacion_t
 28-29 \\
 \hline
 4 & Modelos avanzados y evaluación &
-- Desarrollo de modelo ensemble \newline - Implementación de modelo personalizado \newline - Evaluación comparativa &
+- Desarrollo de modelo \textit{ensemble} \newline - Implementación de modelo personalizado \newline - Evaluación comparativa &
 30-31 \\
 \hline
 5 & Desarrollo de la herramienta web & 
@@ -1046,11 +1051,11 @@ fuente de verdad (\textit{ground truth}) en las etapas posteriores.
 
 \begin{itemize}
   \item \textbf{Adquisición y consolidación:} El punto de partida es el conjunto de imágenes médicas proporcionado por Microptic S.L. \cite{microptic} 
-  Se realiza un análisis para comprender su estructura, el formato original (PascVOC) y la calidad de las anotaciones. Un conjunto de datos para entrenamiento y tres para \textit{test}.
+  Se realiza un análisis para comprender su estructura, el formato original (PASCAL VOC) y la calidad de las anotaciones. Un conjunto de datos para entrenamiento y tres para \textit{test}.
   \item \textbf{Validación por expertos:} Atendiendo a la revisión de \textit{feedback} proporcionada por expertos sobre los conjuntos de \textit{test}, se procede con el reetiquetado (mediante LabelImage \cite{labelimg_github}) para asegurar una mejor precisión de las anotaciones. 
   Como no se dispone de \textit{feedback} sobre el conjunto de entrenamiento y, además, se quiere comparar con la prueba de concepto inicial, este no se modifica ni se pide una nueva valoración de expertos sobre el conjunto de datos de entrenamiento.
   \item \textbf{Estructuración del dataset:} Para entrenar las diferentes arquitecturas de YOLO, el conjunto de datos de entrenamiento original, se divide el conjunto de datos en entrenamiento (80\%) y validación (20\%). Para ello, se emplean una semilla determinada para garantizar que los experimentos sean reproducibles. 
-  \item \textbf{Nuevo formato de datos:} Una vez se ha organizado la estructura de carpetas, las anotaciones en formato PascVOC se convierten a formato YOLO, que es requerido para la metodología actual. Adicionalmente, se generó una versión en formato COCO para garantizar la interoperabilidad y facilitar futuras aplicaciones con otros marcos de trabajo.
+  \item \textbf{Nuevo formato de datos:} Una vez se ha organizado la estructura de carpetas, las anotaciones en formato PASCAL VOC se convierten a formato YOLO, que es requerido para la metodología actual. Adicionalmente, se generó una versión en formato COCO para garantizar la interoperabilidad y facilitar futuras aplicaciones con otros marcos de trabajo.
 \end{itemize}
 
 \section{Diseño experimental, entrenamiento y evaluación de modelos.}
@@ -1098,7 +1103,7 @@ La tercera y última fase del proyecto es dar una solución tangible y accesible
 
 \section{Dataset}
 \label{sec:Dataset}
-El dataset inicial proporcionado por la empresa MICROPTIC \cite{microptic} está constituido por un conjunto de \textit{train} y \textit{test} en formato PascalVOC.
+El dataset inicial proporcionado por la empresa Microptic \cite{microptic} está constituido por un conjunto de \textit{train} y \textit{test} en formato PASCAL VOC.
 
 \begin{table}[htbp]
 \caption{Distribución del dataset original}
@@ -1109,7 +1114,7 @@ El dataset inicial proporcionado por la empresa MICROPTIC \cite{microptic} está
 \begin{adjustbox}{max width=\textwidth}
 \begin{tabular}{l c c c c c}
 \toprule
-Partición & Resoluciones (px) & Nº imágenes (resolución) & Nº imágenes & Sin instancias & Escala grises\\
+\textbf{Partición} & \textbf{Resoluciones (px)} & \textbf{Nº imágenes (resolución)} & \textbf{Nº imágenes} & \textbf{Sin instancias} & \textbf{Escala grises}\\
 \midrule
 \textit{Train} & \makecell[l]{1280\,×\,1024 \\ 768\,×\,616} & \makecell[r]{356 \\ 17} & 373 & 23 & 3 canales\\ 
 \arrayrulecolor{gray!30}\specialrule{0.6pt}{0pt}{0pt}\arrayrulecolor{black}
@@ -1121,11 +1126,11 @@ Partición & Resoluciones (px) & Nº imágenes (resolución) & Nº imágenes & S
 \label{tab:dataset_original}
 \end{table}
 
-El conjunto de datos inicial que nos proporciona Microptic \cite{microptic} está compuesto por 373 imágenes para \textit{train} y 94 para \textit{test}; de las cuales no presentan anotaciones: 23 imágenes de \textit{train} y 6 de \textit{test}.
+El conjunto de datos inicial que nos proporciona Microptic \cite{microptic} está compuesto por 373 imágenes para \textit{train} y 94 para \textit{test}, de las cuales no presentan anotaciones: 23 imágenes de \textit{train} y 6 de \textit{test}.
 El conjunto de entrenamiento se divide utilizando la función \texttt{train\_test\_split} de \textit{scikit-learn}, reservando el $80\%$ (298 imágenes) para entrenamiento y el $20\%$ (75 imágenes) para validación. 
 Esta división se realiza de forma aleatoria pero reproducible, fijando la semilla (\texttt{random\_state = 42}) para garantizar la consistencia de los resultados.
 
-Adicionalmente, la empresa proporciona un conjunto de datos del \textit{test} reevaluado por expertos del dominio. Este conjunto se reetiqueta utilizando la herramienta \textit{LabelImg} \cite{labelimg_github} en formato PascVOC. 
+Adicionalmente, la empresa proporciona un conjunto de datos del \textit{test} reevaluado por expertos del dominio. Este conjunto se reetiqueta utilizando la herramienta \textit{LabelImg} \cite{labelimg_github} en formato PASCAL VOC. 
 Las correcciones afectan a un total de 60 imágenes, incrementando el número de instancias de 1273 a 1412.
 
 Asimismo, se incluyeron dos conjuntos adicionales denominados \textit{test2} y \textit{test3}, inicialmente sin anotaciones pero que contenían \textit{bounding boxes} generados por modelos YOLO \cite{ultralytics_models} preentrenados 
@@ -1139,7 +1144,7 @@ La composición final del dataset se presenta en la \autoref{tab:dataset_final}.
 \rowcolors{2}{gray!12}{white}
 \begin{tabular}{l c c c c c}
 \toprule
-Partición & Imágenes & Instancias & 1280$\times$1024 & 768$\times$616 & Escala grises\\
+\textbf{Partición} & \textbf{Imágenes} & \textbf{Instancias} & \textbf{1280$\times$1024} & \textbf{768$\times$616} & \textbf{Escala grises}\\
 \midrule
 \textit{Train}          & 298 & 3934 & 282 & 16 & 3 canales\\
 \textit{Validation}     &  75 &  878 & 74  & 1  & 3 canales\\
@@ -1155,12 +1160,12 @@ Partición & Imágenes & Instancias & 1280$\times$1024 & 768$\times$616 & Escala
 El conjunto de \textit{train}, \textit{validation} y \textit{test} están constituidos por imágenes RGB de 3 canales, mientras que las imágenes 
 de los conjuntos de \textit{test2} y \textit{test3} están compuestos por imágenes en escala de grises de un único canal. 
 
-Para el entrenamiento de diferentes arquitecturas de detección de objetos, se convierten los formatos de PascVOC a YOLO y YOLO a COCO. 
-Para más deralle, la información relativa al preprocesamiento del dataset se encuentra en el documento \texttt{preprocesamiento.ipynb} del repositorio \cite{repoTFM}.
+Para el entrenamiento de diferentes arquitecturas de detección de objetos, se convierten los formatos de PASCAL VOC a YOLO y YOLO a COCO. 
+Para más detalle, la información relativa al preprocesamiento del dataset se encuentra en el documento \texttt{preprocesamiento.ipynb} del repositorio \cite{repoTFM}.
 
 \section{Entorno de desarrollo}
 \label{sec:Entorno de desarrollo}
-Se utilizan dos entornos de desarrrollo complementarios, garantizando la reproducibilidad y escalabilidad de los resultados obtenidos.
+Se utilizan dos entornos de desarrollo complementarios, garantizando la reproducibilidad y escalabilidad de los resultados obtenidos.
 
 \subsection{\textit{Hardware}}
 \subsubsection{\textit{hardware} Local}
@@ -1183,8 +1188,8 @@ El entorno principal de desarrollo es un equipo \textit{Lenovo IdeaPad Gaming 3}
     \begin{itemize}
         \item Memoria dedicada: 4,0 GB GDDR6
         \item Arquitectura: Ampere
-        \item Soporte CUDA: 12.9
-        \item Driver version: 576.02
+        \item Soporte CUDA: 12,9
+        \item \textit{Driver version}: 576.02
     \end{itemize}
     
     \item \textbf{Memoria RAM}: 16 GB DDR4 SODIMM
@@ -1202,7 +1207,7 @@ El entorno principal de desarrollo es un equipo \textit{Lenovo IdeaPad Gaming 3}
 
 \subsubsection{Servidor privado}
 \label{sec:servidor_privado}
-Como entorno complementario se ha empleado un servidor remoto proporcionado por del grupo GVIS de la Universidad de León.
+Como entorno complementario se ha empleado un servidor remoto proporcionado por el grupo GVIS de la Universidad de León.
 
 \begin{itemize}
     \item \textbf{GPU}: Tesla T4 con 15 GB de memoria
@@ -1228,9 +1233,9 @@ El desarrollo se realizó empleando el siguiente \textit{stack} tecnológico:
         \item Streamlit para desarrollo de interfaces web
         \item Pandas para análisis y manipulación de datos
         \item Matplotlib para visualización de datos 
-        \item Scikit-learn para métricas y otras utilidades de \textit{machine learning}
+        \item Scikit-learn para métricas y otras utilidades de \textit{Machine Learning}
         \item Jupyter Notebook para desarrollo y análisis interactivo
-        \item linter ruff para mantener un código limpio, coherente y más fácil de mantener.
+        \item Linter ruff para mantener un código limpio, coherente y más fácil de mantener.
     \end{itemize}
 \end{itemize}
 
@@ -1240,15 +1245,15 @@ recoge todas las librerías y versiones necesarias para la correcta ejecución d
 \section{Configuraciones}
 \label{sec:Configuraciones}
 
-En esta sección se abordan los aspectos más relevantes del entrenamiento, validación y dearrollo de metodologías avanzadas para la detección de células redondas.
+En esta sección se abordan los aspectos más relevantes del entrenamiento, validación y desarrollo de metodologías avanzadas para la detección de células redondas.
 
 \subsection{Entrenamiento}
 \label{sec:Entrenamiento}
 
-Para abordar el proceso de entrenamiento de forma óptima, previamentes se emplea el \textit{framework} Optuna \cite{Optuna} con las configuraciones de parámetros adjuntas en la \autoref{tab:Parámetros principales de entrenamiento para cada modelo} y,
+Para abordar el proceso de entrenamiento de forma óptima, previamente se emplea el \textit{framework} Optuna \cite{Optuna} con las configuraciones de parámetros adjuntas en la \autoref{tab:Parámetros principales de entrenamiento para cada modelo} y
 maximizando la métrica mAP@0.5:0.95. Cabe destacar que durante todo el procedimiento se garantiza la reproducibilidad y cumplimiento con las normas éticas y legales.
 
-Toda la información relativa a esta etapa, se encuentra en el documento de configuraciones (config.py) del repositorio
+Toda la información relativa a esta etapa se encuentra en el documento de configuraciones (config.py) del repositorio
 del proyecto \cite{repoTFM}. Recordar que al tener como objeto la detección de células redondas, el número de clases es uno.
 
 \begin{table}[H]
@@ -1280,13 +1285,13 @@ YOLOv12s  & 9  & 25 & 40 & 7  & 704 \\
 \arrayrulecolor{gray!30}\hline
 YOLOv12l  & 6  & 25 & 40 & 7  & 704 \\
 \arrayrulecolor{gray!30}\hline
-custom    & 10 & 25 & 40 & 12 & 704 \\
+\textit{custom}    & 10 & 25 & 40 & 12 & 704 \\
 \arrayrulecolor{gray!50}
 \specialrule{.8pt}{0pt}{0pt}
 \end{tabular}
 \end{table}
 
-Como resultado de aplicar Optuna patra cada arquitectura, se obtienen las mejores configuraciones de hiperparámetros que se recogen en \autoref{tab:Principales hiperparámetros óptimos seleccionados para cada modelo}.
+Como resultado de aplicar Optuna para cada arquitectura, se obtienen las mejores configuraciones de hiperparámetros que se recogen en \autoref{tab:Principales hiperparámetros óptimos seleccionados para cada modelo}.
 
 \begin{table}[H]
 \caption{Principales hiperparámetros óptimos seleccionados para cada modelo}
@@ -1296,13 +1301,13 @@ Como resultado de aplicar Optuna patra cada arquitectura, se obtienen las mejore
 \toprule
 \textbf{Modelo} & \textbf{lr0} & \textbf{lrf} & \textbf{momentum} & \textbf{weight\_decay} & \textbf{optimizer} \\
 \midrule
-YOLOv8s   & 0.00540 & 0.00399 & 0.90621 & 0.00010 & SGD \\
-YOLOv9s   & 0.00023 & 0.00153 & 0.84564 & 0.00033 & AdamW \\
-YOLOv10s  & 0.00540 & 0.00399 & 0.90621 & 0.00010 & SGD \\
-YOLOv11s  & 0.00023 & 0.00153 & 0.84564 & 0.00033 & AdamW \\
-YOLOv12s  & 0.00023 & 0.00932 & 0.91627 & 0.00087 & AdamW \\
-YOLOv12l  & 0.00019 & 0.00196 & 0.85495 & 0.00029 & SGD \\
-custom    & 0.00153 & 0.00111 & 0.89113 & 0.00015 & AdamW \\
+YOLOv8s   & 0,00540 & 0,00399 & 0,90621 & 0,00010 & SGD \\
+YOLOv9s   & 0,00023 & 0,00153 & 0,84564 & 0,00033 & AdamW \\
+YOLOv10s  & 0,00540 & 0,00399 & 0,90621 & 0,00010 & SGD \\
+YOLOv11s  & 0,00023 & 0,00153 & 0,84564 & 0,00033 & AdamW \\
+YOLOv12s  & 0,00023 & 0,00932 & 0,91627 & 0,00087 & AdamW \\
+YOLOv12l  & 0,00019 & 0,00196 & 0,85495 & 0,00029 & SGD \\
+\textit{custom}    & 0,00153 & 0,00111 & 0,89113 & 0,00015 & AdamW \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1310,31 +1315,31 @@ custom    & 0.00153 & 0.00111 & 0.89113 & 0.00015 & AdamW \\
 Para mejorar la capacidad de generalización de los modelos y prevenir el sobreajuste, se aplicaron técnicas de aumento de datos (\textit{data augmentation}) 
 durante el entrenamiento. Los hiperparámetros utilizados se muestran en la \autoref{tab:Hiperparámetros de data augmentation}. Los parámetros de calentamiento 
 (\textit{warmup\_epochs} y \textit{warmup\_momentum}) controlan la fase inicial del entrenamiento, donde el optimizador incrementa gradualmente la tasa de 
-aprendizaje durante 5 épocas, partiendo de un momentum de 0.75. Los parámetros de transformación geométrica incluyen: \textit{degrees}, que permite rotaciones 
+aprendizaje durante 5 épocas, partiendo de un \textit{momentum} de 0.75. Los parámetros de transformación geométrica incluyen: \textit{degrees}, que permite rotaciones 
 aleatorias de hasta 45 grados; \textit{translate}, que permite desplazamientos de hasta el 10\% de las dimensiones de la imagen; y \textit{scale}, que permite 
 cambios de escala de hasta ±6\%. Las transformaciones de volteo horizontal y vertical (\textit{fliplr} y \textit{flipud}) se aplican con una probabilidad del 50\% 
 cada una. Finalmente, el parámetro \textit{mosaic} (técnica que combina cuatro imágenes en una) se desactivó (valor 0) para evitar distorsionar el contexto 
 espacial de las células redondas, que es crucial para su correcta identificación en imágenes microscópicas.
 
 \begin{table}[H]
-\caption{Hiperparámetros de data augmentation}
+\caption{Hiperparámetros de \textit{data augmentation}}
 \label{tab:Hiperparámetros de data augmentation}
 \centering
 \begin{tabular}{lc|lc}
 \toprule
 \textbf{Parámetro} & \textbf{Valor} & \textbf{Parámetro} & \textbf{Valor} \\
 \midrule
-warmup\_epochs & 5 & flipud & 0.5 \\
-warmup\_momentum & 0.75 & fliplr & 0.5 \\
+warmup\_epochs & 5 & flipud & 0,5 \\
+warmup\_momentum & 0,75 & fliplr & 0,5 \\
 degrees & 45 & mosaic & 0 \\
-translate & 0.1 & close\_mosaic & 0 \\
-scale & 0.06 & & \\
+translate & 0,1 & close\_mosaic & 0 \\
+scale & 0,06 & & \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 Todos los modelos han sido entrenados y evaluados con el limitado \textit{hardware} personal (\autoref{sec:hardware_local}), exceptuando el modelo YOLOv12l que demanda el uso de un servidor privado 
-proporcionado por la Universidad de Leon (\autoref{sec:servidor_privado}).
+proporcionado por la Universidad de León (\autoref{sec:servidor_privado}).
 
 A continuación, se exponen e interpretan los resultados obtenidos durante los entrenamientos:
 
@@ -1376,53 +1381,53 @@ A continuación, se exponen e interpretan los resultados obtenidos durante los e
 \begin{figure}[H]
   \centering
   \includegraphics[width=1.0\textwidth]{figuras/yolo_plots/cls_loss.png}
-  \caption{\textit{Clasification Loss} sobre el conjunto de entrenamiento y validación.}
+  \caption{\textit{Classification Loss} sobre el conjunto de entrenamiento y validación.}
   \label{fig:yolo_train_cls_loss}
 \end{figure}
 
 En general, todos los modelos muestran un buen desempeño durante el entrenamiento, con métricas que mejoran y se estabilizan a lo largo de las 40 épocas (\textit{epoch}). Además, 
 no hay evidencia de un sobreajuste (\textit{overfitting}).
 
-Aparentemente el modelo yolov12s arroja mejores resultados; principalmente, en la métrica más exigente, la mAP@0.5:0.95 (\autoref{fig:yolo_train_map95}). En base a esta métrica, el peor modelo se puede considerar el custom.
+Aparentemente el modelo YOLOv12s arroja mejores resultados; principalmente, en la métrica más exigente, la mAP@0.5:0.95 (\autoref{fig:yolo_train_map95}). En base a esta métrica, el peor modelo se puede considerar el \textit{custom}.
 Sorprendentemente, el modelo YOLOv12l (el más grande y preciso) es el peor modelo en cuanto a las métricas mAP@0.5 (\autoref{fig:yolo_train_map50}) y \textit{precision} sobre el conjunto de validación (\autoref{fig:yolo_train_precision}). 
 
-A pesar de los buenos rendimientos del modelo YOLOv10s en las métricas de \textit{precisión, recall y mAP}, se aprecia como la función de pérdida (\textit{loss}), tanto en la clasificación como en las \textit{bounding boxes},
-el modelo se distancia respecto al resto con una pérdida superior a la de los demás. A pesar de que no es una perdida muy significativa, es importante tenerla en cuenta, por ser la métrica a minimizar durante el entrenamiento.
-Se puede ver como en las primeras epocas al modelo le cuesta mucho aprender a localizar y clasificar los objetos correctamente aunque finalmente consigue estabilizarse como era de esperar.
+A pesar de los buenos rendimientos del modelo YOLOv10s en las métricas de \textit{precision, recall y mAP}, se aprecia que la función de pérdida (\textit{loss}), tanto en la clasificación como en las \textit{bounding boxes},
+el modelo se distancia respecto al resto con una pérdida superior a la de los demás. A pesar de que no es una pérdida muy significativa, es importante tenerla en cuenta, por ser la métrica a minimizar durante el entrenamiento.
+Se puede ver que, en las primeras épocas, al modelo le cuesta mucho aprender a localizar y clasificar los objetos correctamente, aunque finalmente consigue estabilizarse como era de esperar.
 
 \subsection{Validación cruzada}
 \label{sec:Validación cruzada}
 
 Para demostrar la capacidad de generalización y fiabilidad de los diferentes modelos de detección de células redondas, se emplea la metodología
-de validación cruzada (\textit{k-fold cross validation}). Para esto, se ha dividido el conjunto de entrenamiento original constituido por 373 imágenes (\autoref{tab:dataset_original}) en $k=4$ pliegues o \textit{folds} de tamaño similar.
-De este modo, el proceso de entrenamiento tiene lugar con las 4 combinaciones (sin repetición) posibles, en las que un fold se reserva para validar y tres para entrenar. Los resultados obtenidos para cada modelo se recogen en la \autoref{tab:kfold_resultados}.
+de validación cruzada (\textit{k-fold cross validation}). Para ello, se ha dividido el conjunto de entrenamiento original constituido por 373 imágenes (\autoref{tab:dataset_original}) en $k=4$ pliegues o \textit{folds} de tamaño similar.
+De este modo, el proceso de entrenamiento tiene lugar con las 4 combinaciones (sin repetición) posibles, en las que un \textit{fold} se reserva para validar y tres para entrenar. Los resultados obtenidos para cada modelo se recogen en la \autoref{tab:kfold_resultados}.
 
 \begin{table}[htbp]
-\caption{Resultados de la validación cruzada (k-fold) para todos los modelos}
+\caption{Resultados de la validación cruzada (\textit{k-fold}) para todos los modelos}
 \label{tab:kfold_resultados}
 \centering
 \begin{tabular}{lcccc}
 \toprule
-\textbf{Modelo} & \textbf{Precisión} & \textbf{\textit{recall}} & \textbf{mAP50} & \textbf{mAP50-95} \\
+\textbf{Modelo} & \textbf{\textit{Precision}} & \textbf{\textit{Recall}} & \textbf{mAP50} & \textbf{mAP50-95} \\
 \midrule
-YOLOv8s  & 0.836 $\pm$ 0.008 & 0.868 $\pm$ 0.015 & 0.914 $\pm$ 0.011 & 0.723 $\pm$ 0.024 \\
-YOLOv9s  & 0.852 $\pm$ 0.015 & 0.866 $\pm$ 0.013 & 0.919 $\pm$ 0.009 & 0.729 $\pm$ 0.026 \\
-YOLOv10s & 0.854 $\pm$ 0.014 & 0.855 $\pm$ 0.011 & 0.918 $\pm$ 0.009 & 0.739 $\pm$ 0.029 \\
-YOLOv11s & 0.845 $\pm$ 0.025 & \textbf{0.869 $\pm$ 0.013} & \textbf{0.922 $\pm$ 0.012} & \textbf{0.742 $\pm$ 0.025} \\
-YOLOv12s & \textbf{0.853 $\pm$ 0.011} & 0.861 $\pm$ 0.016 & 0.918 $\pm$ 0.008 & 0.730 $\pm$ 0.018 \\
-YOLOv12l & 0.841 $\pm$ 0.002 & 0.867 $\pm$ 0.013 & 0.912 $\pm$ 0.011 & 0.724 $\pm$ 0.013 \\
-custom    & 0.836 $\pm$ 0.014 & 0.865 $\pm$ 0.014 & 0.905 $\pm$ 0.011 & 0.707 $\pm$ 0.015 \\
+YOLOv8s  & 0,836 $\pm$ 0,008 & 0,868 $\pm$ 0,015 & 0,914 $\pm$ 0,011 & 0,723 $\pm$ 0,024 \\
+YOLOv9s  & 0,852 $\pm$ 0,015 & 0,866 $\pm$ 0,013 & 0,919 $\pm$ 0,009 & 0,729 $\pm$ 0,026 \\
+YOLOv10s & 0,854 $\pm$ 0,014 & 0,855 $\pm$ 0,011 & 0,918 $\pm$ 0,009 & 0,739 $\pm$ 0,029 \\
+YOLOv11s & 0,845 $\pm$ 0,025 & \textbf{0,869 $\pm$ 0,013} & \textbf{0,922 $\pm$ 0,012} & \textbf{0,742 $\pm$ 0,025} \\
+YOLOv12s & \textbf{0,853 $\pm$ 0,011} & 0,861 $\pm$ 0,016 & 0,918 $\pm$ 0,008 & 0,730 $\pm$ 0,018 \\
+YOLOv12l & 0,841 $\pm$ 0,002 & 0,867 $\pm$ 0,013 & 0,912 $\pm$ 0,011 & 0,724 $\pm$ 0,013 \\
+\textit{custom}   & 0,836 $\pm$ 0,014 & 0,865 $\pm$ 0,014 & 0,905 $\pm$ 0,011 & 0,707 $\pm$ 0,015 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 Los datos de la \autoref{tab:kfold_resultados} se representan en la \autoref{fig:yolo_k-fold}.
-En esta figura, cada punto central indica el valor medio de rendimiento para una métrica específica (Precisión, \textit{recall}, mAP50 y mAP50-95), 
+En esta figura, cada punto central indica el valor medio de rendimiento para una métrica específica (\textit{precision}, \textit{recall}, mAP50 y mAP50-95), 
 mientras que las barras horizontales que lo rodean representan la desviación estándar obtenida a lo largo de los 4 pliegues de la validación cruzada.
 
 Analizando la \autoref{fig:yolo_k-fold}, se puede observar que, pese a las pequeñas diferencias en los promedios, los intervalos de incertidumbre se solapan entre todos los modelos
-para todas las métricas específicas a evaluar. Es un laro indicador de que los modelos ofrecen un rendimiento similar y robusto, que les permite generalizar de forma adecuada, pese al despunte del modelo YOLOv11s. 
-Asimismo, las barras de incertidumbre más pequeñas reflejan qué modelos son más estables, siendo los más estables los modelos YOLOv12s, YOLOv12l y \textit{custom}.
+para todas las métricas específicas a evaluar. Es un claro indicador de que los modelos ofrecen un rendimiento similar y robusto, que les permite generalizar de forma adecuada, pese al despunte del modelo YOLOv11s. 
+Asimismo, las barras de incertidumbre más pequeñas reflejan qué modelos son más estables, destacando los modelos YOLOv12s, YOLOv12l y \textit{custom}.
 
 De este modo, la elección de un único "mejor" modelo es difícil, ya que son todos ellos opciones excelentes y estadísticamente equivalentes para esta tarea de detección de objetos. 
 
@@ -1439,39 +1444,39 @@ De este modo, la elección de un único "mejor" modelo es difícil, ya que son t
 Para mejorar la capacidad de generalización y el rendimiento de la detección de células redondas, se implementa una estrategia de ensamblado de modelos mediante la técnica de \textit{Weighted Boxes Fusion (WBF)} \cite{repoTFM}. 
 
 Tras analizar los primeros resultados cuantitativos y cualitativos, se seleccionan dos modelos individuales con diferentes pesos, para la construcción del \textit{ensemble}. YOLOv12 con sus capacidades 
-para capturar información contextual se pondera con un peso de $0.6$ mientras que YOLOv10s, que destaca por su eficiencia y precisión en la localización, se pondera con un peso de $0.4$.
+para capturar información contextual se pondera con un peso de $0,6$ mientras que YOLOv10s, que destaca por su eficiencia y precisión en la localización, se pondera con un peso de $0,4$.
 
 Asimismo, el proceso de ensamblado se realiza siguiendo los siguientes pasos:
 
 \begin{itemize}
   \item Para cada imagen, se obtienen las predicciones de los modelos individualmente.
   \item Se normalizan las coordenadas de las cajas para garantizar compatibilidad.
-  \item Se aplica el algoritmo de (WBF) que agrupa \textit{bounding boxes} similares de diferentes modelos y las fusiona mediante un promedio ponderado según: el peso asignado a cada modelo y la confianza de cada predicción individual.
+  \item Se aplica el algoritmo de WBF que agrupa \textit{bounding boxes} similares de diferentes modelos y las fusiona mediante un promedio ponderado según: el peso asignado a cada modelo y la confianza de cada una de las predicciones individuales.
   \item Se aplica un umbral de confianza para eliminar aquellas predicciones con baja probabilidad.
 \end{itemize}
 
-Cabe destacar, cuando las predicciones de YOLOv12 y YOLOv10 no coinciden (sin solapamiento significativo de las \textit{bounding boxes}), el algoritmo mantiene las detecciones como predicciones independientes,
+Cabe destacar que, cuando las predicciones de YOLOv12 y YOLOv10 no coinciden (sin solapamiento significativo de las \textit{bounding boxes}), el algoritmo mantiene las detecciones como predicciones independientes,
 aplica el umbral de omisión de cajas a cada predicción individual y si supera dicho umbral, estas predicciones se incluyen en el resultado final.
 
 De este modo, se aprovechan las fortalezas de cada modelo y se reducen los falsos negativos al mantener detecciones únicas de cada modelo (mejora el \textit{recall}).
 
-Para obtener la configuración óptima de hiperparámetros, se exploran diferentes valores en un grid. Para el umbral de IoU (cuando dos \textit{bounding boxes} se consideran superposiciones de la misma detección) se exploran los valores 
-de 0.3, 0.4 y 0.5 y para el umbral de omisión de cajas (determina la confianza mínima para considerar una predicción) se exploran los valores de 0.25, 0.3 y 0.35.
+Para obtener la configuración óptima de hiperparámetros, se exploran diferentes valores en un \textit{grid}. Para el umbral de IoU (cuando dos \textit{bounding boxes} se consideran superposiciones de la misma detección) se exploran los valores 
+de $0,3$, $0,4$ y $0,5$ y para el umbral de omisión de cajas (determina la confianza mínima para considerar una predicción) se exploran los valores de $0,25$, $0,3$ y $0,35$.
 
-La configuración óptima resultante fue un umbral de IoU de 0.5, un umbral de omisión de cajas de 0.35 y un umbral de IoU para cada modelo de 0.25.
+La configuración óptima resultante fue un umbral de IoU de $0,5$, un umbral de omisión de cajas de 0.35 y un umbral de IoU para cada modelo de 0.25.
 
 \subsection{Modelo personalizado}
 \label{sec:Modelo personalizado}
-Este modelo personalizado o \textit{custom} representa una arquitectura híbrida al combinar elementos específicos de tres generaciones de YOLO v8, v9 y v10 \cite{repoTFM}. 
+Este modelo personalizado o \textit{custom} representa una arquitectura híbrida al combinar elementos específicos de tres generaciones de YOLOv8, YOLOv9 y YOLOv10 \cite{repoTFM}. 
 
-La arquitectura sigue el patrón típico de los modelos YOLO con una profundidad (controla el número de capas repetidas en la arquitectura) de 0.33 y un factor de anchura 
-(controla el número de canales (filtros) en cada capa convolucional de la red) de 0.50, dando lugar a un equilibrio entre rendimiento y velocidad.
+La arquitectura sigue el patrón típico de los modelos YOLO con una profundidad (controla el número de capas repetidas en la arquitectura) de $0,33$ y un factor de anchura 
+(controla el número de canales (filtros) en cada capa convolucional de la red) de $0,50$, dando lugar a un equilibrio entre rendimiento y velocidad.
 
 La arquitectura del modelo se segmenta en dos componentes clave:
 
 \subsubsection{\textit{Backbone}}
 
-Responsable de la extracción de características, integra las siguientes capas:
+Este componente es el responsable de la extracción de características e integra las siguientes capas:
 
 \begin{table}[H]
 \caption{Estructura del \textit{backbone} del modelo personalizado}
@@ -1494,7 +1499,7 @@ Responsable de la extracción de características, integra las siguientes capas:
 \end{table}
 
 \subsubsection{\textit{Head}}
-Responsable de interpretar las características y realizar la detección. Estructura FPN+PAN (Feature Pyramid Network + Path Aggregation Network):
+Responsable de interpretar las características y realizar la detección. Estructura FPN+PAN (\textit{Feature Pyramid Network + Path Aggregation Network}):
 
 \begin{table}[H]
 \caption{Estructura del \textit{head} del modelo personalizado}
@@ -1515,11 +1520,12 @@ Responsable de interpretar las características y realizar la detección. Estruc
 \end{table}
 
 Las características de este modelo son:
+
 \begin{itemize}
   \item Uso de SCDown de YOLOv10 que preserva mejor la información espacial durante la reducción dimensional.
   \item Integración del módulo RepNCSPELAN4 de YOLOv9 para mejorar la capacidad de representación.
   \item Incorporación de atención espacial (PSA) para enfocarse en regiones relevantes.
-  \item Estructura FPN+PAN optimizada para la detección a múltiltiples escalas.
+  \item Estructura FPN+PAN optimizada para la detección a múltiples escalas.
 \end{itemize}
 
 \section{Métricas}
@@ -1527,33 +1533,33 @@ Las características de este modelo son:
 Para la evaluación de los modelos, se emplea un conjunto de métricas fundamentales que se exponen a continuación.
 
 \begin{description}
-  \item[\textit{Precision}] Mide la proporción de detecciones correctas entre todas las detecciones realizadas:
+  \item[\textit{Precision}]: Mide la proporción de detecciones correctas entre todas las detecciones realizadas:
   \[
-    \mathrm{Precision} = \frac{TP}{TP + FP}
+    \mathrm{\textit{Precision}} = \frac{TP}{TP + FP}
   \]
   donde TP son los verdaderos positivos y FP los falsos positivos. Alta \textit{precision} indica pocas detecciones erróneas.
 
   \item[\textit{Recall}]: Mide la proporción de instancias reales que han sido detectadas:
   \[
-    \mathrm{Recall} = \frac{TP}{TP + FN}
+    \mathrm{\textit{Recall}} = \frac{TP}{TP + FN}
   \]
   donde FN son los falsos negativos. Un \textit{recall} alto indica que el modelo encuentra la mayoría de las instancias reales.
 
-  \item[\textit{F1-score}] Es la media armónica entre la precisión y el \textit{recall}, proporcionando una medida única que equilibra ambos aspectos. Se calcula como:
+  \item[\textit{F1-score}]: Es la media armónica entre la precisión y el \textit{recall}, proporcionando una medida única que equilibra ambos aspectos. Se calcula como:
   \[
     \mathrm{F1} = 2 \cdot \frac{\mathrm{Precision} \cdot \mathrm{Recall}}{\mathrm{Precision} + \mathrm{Recall}}
   \]
-  El F1-score es especialmente útil cuando es importante considerar tanto los falsos positivos como los falsos negativos. En este trabajo se utiliza como métrica principal en las curvas F1-confianza y en la herramienta web.
+  El \textit{F1-score} es especialmente útil cuando es importante considerar tanto los falsos positivos como los falsos negativos. En este trabajo se utiliza como métrica principal en las curvas F1-confianza y en la herramienta web.
 
-  \item[\textit{mean Average Precision (mAP)}] Para detección de objetos se calcula la curva \textit{precision}–\textit{recall} para cada clase y su área bajo la curva (AP). El \textit{mean Average Precision} es la media de las AP sobre todas las clases:
+  \item[\textit{mean Average Precision (mAP)}]: Para detección de objetos se calcula la curva \textit{precision}–\textit{recall} para cada clase y su área bajo la curva (AP). El \textit{mean Average Precision} es la media de las AP sobre todas las clases:
   \[
     \mathrm{mAP} = \frac{1}{C}\sum_{c=1}^{C} \mathrm{AP}_c
   \]
-  donde $C$ es el número de clases. En detección se considera una predicción como verdadero positivo si el \textit{Intersection over Union} (IoU) entre la caja predicha y la caja ground truth supera un umbral (por ejemplo IoU $\geq 0.5$). 
+  donde $C$ es el número de clases. En detección se considera una predicción como verdadero positivo si el \textit{Intersection over Union} (IoU) entre la caja predicha y la caja \textit{ground truth} supera un umbral (por ejemplo IoU $\geq 0.5$). 
 
   \medskip
 
-  \noindent\textbf{mAP@0.5 (mAP50).} Es la mAP calculada usando un único umbral de IoU igual a 0.5. Formalmente:
+  \noindent\textbf{mAP@0.5 (mAP50):} Es la mAP calculada usando un único umbral de IoU igual a 0.5. Formalmente:
   \[
     \mathrm{mAP@0.5} \;=\; \frac{1}{C}\sum_{c=1}^{C} \mathrm{AP}_c(\mathrm{IoU}=0.5)
   \]
@@ -1561,7 +1567,7 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
 
   \medskip
 
-  \noindent\textbf{mAP@[0.5:0.95] (mAP50:95).} Es la mAP estándar del benchmark COCO que promedia la AP de cada clase sobre múltiples umbrales de IoU desde 0.50 hasta 0.95 con paso 0.05 (10 umbrales: 0.50, 0.55, …, 0.95). Nota: COCO calcula cada AP integrando la curva \textit{precision}–\textit{recall} muestreada en 101 puntos, y después se promedian las AP en los 10 umbrales para obtener mAP@[0.5:0.95].
+  \noindent\textbf{mAP@[0.5:0.95] (mAP50:95):} Es la mAP estándar del \textit{benchmark} COCO que promedia la AP de cada clase sobre múltiples umbrales de IoU desde 0.50 hasta 0.95 con paso 0.05 (10 umbrales: 0.50, 0.55, …, 0.95). Nota: COCO calcula cada AP integrando la curva \textit{precision}–\textit{recall} muestreada en 101 puntos, y después se promedian las AP en los 10 umbrales para obtener mAP@[0.5:0.95].
   \[
     \mathrm{mAP}_{[0.5:0.95]} \;=\; \frac{1}{C}\frac{1}{T}\sum_{c=1}^{C}\sum_{t\in\{0.50,0.55,\dots,0.95\}} \mathrm{AP}_c(\mathrm{IoU}=t)
   \]
@@ -1619,8 +1625,8 @@ el valor más alto en la métrica mAP@0.5:0.95, el mejor modelo es YOLOv7.
       YOLOv11s   & \textbf{0.861} & 0.824 & 0.921 & 0.732 & 11.248 \\
       YOLOv12s   & 0.856 & 0.863 & \textbf{0.936} & \textbf{0.76} & 14.615 \\
       YOLOv12l   & 0.856 & 0.836 & 0.921 & 0.729 & 48.146 \\
-      custom     & 0.835 & 0.838 & 0.909 & 0.695 & 13.058 \\
-      ensemble   & 0.815 & \textbf{0.895} & 0.864 & 0.697 & 75.073 \\
+      \textit{custom}     & 0.835 & 0.838 & 0.909 & 0.695 & 13.058 \\
+      \textit{ensemble}   & 0.815 & \textbf{0.895} & 0.864 & 0.697 & 75.073 \\
       \hline
   \end{tabular}
   }
@@ -1629,15 +1635,15 @@ el valor más alto en la métrica mAP@0.5:0.95, el mejor modelo es YOLOv7.
 
 Comparando estos resultados con los obtenidos en este proyecto (\autoref{tab:yolov8_12_results}), el modelo YOLOv12s destaca por mejorar las métricas mAP@0.5 y mAP@0.5:0.95 (un 5.26\% más que YOLOv7) y 
 reducir la latencia respecto a versiones anteriores, por lo que se considera el mejor modelo en esta prueba. Aunque los modelos más pesados como YOLOv12l y el ensamblado 
-presentan mayores tiempos de inferencia, todos los modelos mantienen una latencia inferior a 100 ms. El ensemble logra el mayor \textit{recall} ($0.895$), pero con peores valores de mAP, 
+presentan mayores tiempos de inferencia, todos los modelos mantienen una latencia inferior a 100 ms. El \textit{ensemble} logra el mayor \textit{recall} ($0.895$), pero con peores valores de mAP, 
 precisión y latencia. YOLOv8s es el más rápido ($11.006$ ms) y YOLOv11s obtiene la mayor precisión.
 
 Analizando los nuevos conjuntos de \textit{test} (\autoref{tab:yolos_nuevos_tests}), los resultados siguen siendo similares entre modelos. Según la métrica mAP@0.5:0.95, YOLOv12s vuelve a ser el mejor (0.673), seguido de YOLOv12l (0.659). 
-El ensemble mejora precisión y \textit{recall}, pero empeora mAP y latencia. El modelo custom destaca por su baja latencia y buenos resultados, especialmente en test3, 
-donde iguala la precisión del ensemble ($0.873$). Las diferencias entre el resto de modelos son mínimas.
+El \textit{ensemble} mejora precisión y \textit{recall}, pero empeora mAP y latencia. El modelo \textit{custom} destaca por su baja latencia y buenos resultados, especialmente en test3, 
+donde iguala la precisión del \textit{ensemble} ($0.873$). Las diferencias entre el resto de modelos son mínimas.
 
 Tras el proceso de reetiquetado del conjunto de \textit{test} original, es decir, en la evaluación sobre el conjunto de test, se observan cambios intnteserantes que 
-sugieren una mejora en la calidad del \textit{ground truth}. La mayoría de los modelos muestran una mejora en la \textit{precision}, destaca el modelo ensemble con el mayor incremento (+0,054). 
+sugieren una mejora en la calidad del \textit{ground truth}. La mayoría de los modelos muestran una mejora en la \textit{precision}, destaca el modelo \textit{ensemble} con el mayor incremento (+0,054). 
 En cuanto al \textit{recall}, los resultados son más variados, pero YOLOv12l y YOLOv11s muestran mejoras significativas.
 La métrica mAP@0.5 mejora en la mayoría de los modelos mientras que la métrica mAP@0.5:0.95 sufre un descenso generalizado. Esto sugiere que, si bien los modelos identifican mejor las células redondas, la precisión de las \textit{bounding boxes} ha disminuido ligeramente.
 Asimismo, los tiempos de inferencia se mantienen con variaciones mínimas en la mayoría de los modelos.
@@ -1646,7 +1652,7 @@ El conjunto test2 muestra latencias más altas ($31$–$76$ ms) y un descenso ge
 
 En resumen, YOLOv12s es el modelo más destacado entre las arquitecturas evaluadas. El ensamblado de modelos mejora \textit{recall} y precisión al reducir falsos negativos, aunque aumenta los falsos positivos, como muestran las matrices de confusión 
 (\autoref{sec:Matrice de confusión}). En test2, las diferencias son mínimas debido al tamaño reducido del conjunto. El análisis de las curvas F1-confianza 
-(\autoref{sec:Curvas F1-confianza}) indica que el F1-score óptimo se alcanza con umbrales de confianza entre 0.25 y 0.5, por lo que se estudia YOLOv12s con un umbral de 0.35 
+(\autoref{sec:Curvas F1-confianza}) indica que el \textit{F1-score} óptimo se alcanza con umbrales de confianza entre 0.25 y 0.5, por lo que se estudia YOLOv12s con un umbral de 0.35 
 para imágenes de alta resolución.
 
 % Tabla para los resultados sobre los conjuntos de Test
@@ -1666,36 +1672,36 @@ para imágenes de alta resolución.
 \textbf{Modelo} & \textbf{Test} & \textbf{Precisión} & \textbf{Recall} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
-YOLOv8s   & test  & 0.855 & 0.838 & 0.926 & 0.704 & 11.844 \\ \hline
-YOLOv9s   & test  & 0.851 & 0.876 & 0.933 & 0.706 & 13.492 \\ \hline
-YOLOv10s  & test  & 0.851 & 0.862 & 0.927 & 0.701 & \cellcolor{turquoise!30}\textbf{11.120} \\ \hline
-YOLOv11s  & test  & 0.846 & 0.866 & 0.930 & 0.716 & 12.143 \\ \hline
-YOLOv12s  & test  & 0.862 & 0.848 & \cellcolor{turquoise!30}\textbf{0.936} & \cellcolor{turquoise!30}\textbf{0.740} & 14.519 \\ \hline
-YOLOv12l  & test  & 0.846 & \cellcolor{turquoise!30}\textbf{0.889} & 0.934 & 0.714 & 45.214 \\ \hline
-custom    & test  & 0.845 & 0.853 & 0.919 & 0.678 & 12.913 \\ \hline
-ensemble & test & \cellcolor{turquoise!30}\textbf{0.869} & 0.860 & 0.842 & 0.664 & 69.572 \\
+YOLOv8s   & test  & 0,855 & 0,838 & 0,926 & 0,704 & 11,844 \\ \hline
+YOLOv9s   & test  & 0,851 & 0,876 & 0,933 & 0,706 & 13,492 \\ \hline
+YOLOv10s  & test  & 0,851 & 0,862 & 0,927 & 0,701 & \cellcolor{turquoise!30}\textbf{11,120} \\ \hline
+YOLOv11s  & test  & 0,846 & 0,866 & 0,930 & 0,716 & 12.143 \\ \hline
+YOLOv12s  & test  & 0,862 & 0,848 & \cellcolor{turquoise!30}\textbf{0,936} & \cellcolor{turquoise!30}\textbf{0,740} & 14,519 \\ \hline
+YOLOv12l  & test  & 0,846 & \cellcolor{turquoise!30}\textbf{0,889} & 0,934 & 0,714 & 45,214 \\ \hline
+\textit{custom}    & test  & 0,845 & 0,853 & 0,919 & 0,678 & 12,913 \\ \hline
+\textit{ensemble} & test & \cellcolor{turquoise!30}\textbf{0,869} & 0,860 & 0,842 & 0,664 & 69,572 \\
 \arrayrulecolor{black}
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
-YOLOv8s   & test2 & 0.924 & 0.938 & 0.969 & 0.553 & \cellcolor{turquoise!30}\textbf{30.901} \\ \hline
-YOLOv9s   & test2 & 0.917 & 0.927 & 0.961 & 0.542 & 46.502 \\ \hline
-YOLOv10s  & test2 & 0.956 & 0.898 & 0.962 & \cellcolor{turquoise!30}\textbf{0.589} & 34.355 \\ \hline
-YOLOv11s  & test2 & 0.929 & 0.917 & 0.964 & 0.534 & 33.114 \\ \hline
-YOLOv12s  & test2 & \cellcolor{turquoise!30}\textbf{0.965} & 0.917 & \cellcolor{turquoise!30}\textbf{0.975} & 0.556 & 51.508 \\ \hline
-YOLOv12l  & test2 & 0.957 & 0.926 & \cellcolor{turquoise!30}\textbf{0.975} & 0.562 & 75.871 \\ \hline
-custom    & test2 & 0.945 & 0.903 & 0.957 & 0.539 & 35.626 \\ \hline
-ensemble & test2 & 0.919 & \cellcolor{turquoise!30}\textbf{0.944} & 0.935 & 0.509 & 54.958 \\
+YOLOv8s   & test2 & 0,924 & 0,938 & 0,969 & 0,553 & \cellcolor{turquoise!30}\textbf{30,901} \\ \hline
+YOLOv9s   & test2 & 0,917 & 0,927 & 0,961 & 0,542 & 46,502 \\ \hline
+YOLOv10s  & test2 & 0,956 & 0,898 & 0,962 & \cellcolor{turquoise!30}\textbf{0,589} & 34,355 \\ \hline
+YOLOv11s  & test2 & 0,929 & 0,917 & 0,964 & 0,534 & 33,114 \\ \hline
+YOLOv12s  & test2 & \cellcolor{turquoise!30}\textbf{0,965} & 0,917 & \cellcolor{turquoise!30}\textbf{0,975} & 0,556 & 51,508 \\ \hline
+YOLOv12l  & test2 & 0,957 & 0,926 & \cellcolor{turquoise!30}\textbf{0,975} & 0,562 & 75,871 \\ \hline
+\textit{custom}    & test2 & 0,945 & 0,903 & 0,957 & 0,539 & 35,626 \\ \hline
+\textit{ensemble} & test2 & 0,919 & \cellcolor{turquoise!30}\textbf{0,944} & 0,935 & 0,509 & 54,958 \\
 \arrayrulecolor{black}
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
 YOLOv8s   & test3 & 0.842 & 0.862 & 0.937 & 0.700 & 12.815 \\ \hline
 YOLOv9s   & test3 & 0.843 & 0.870 & 0.935 & 0.680 & 14.772 \\ \hline
-YOLOv10s  & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.826 & 0.926 & 0.668 & 11.230 \\ \hline
-YOLOv11s  & test3 & 0.855 & 0.874 & 0.935 & 0.698 & \cellcolor{turquoise!30}\textbf{10.875} \\ \hline
-YOLOv12s  & test3 & 0.836 & 0.821 & 0.922 & \cellcolor{turquoise!30}\textbf{0.723} & 15.439 \\ \hline
-YOLOv12l  & test3 & 0.849 & \cellcolor{turquoise!30}\textbf{0.894} & \cellcolor{turquoise!30}\textbf{0.942} & 0.701 & 47.256 \\ \hline
-custom    & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.843 & 0.928 & 0.660 & 11.373 \\ \hline
-ensemble & test3 & \cellcolor{turquoise!30}\textbf{0.873} & 0.857 & 0.837 & 0.663 & 63.758 \\
+YOLOv10s  & test3 & \cellcolor{turquoise!30}\textbf{0,873} & 0,826 & 0,926 & 0,668 & 11,230 \\ \hline
+YOLOv11s  & test3 & 0,855 & 0,874 & 0,935 & 0,698 & \cellcolor{turquoise!30}\textbf{10,875} \\ \hline
+YOLOv12s  & test3 & 0,836 & 0,821 & 0,922 & \cellcolor{turquoise!30}\textbf{0,723} & 15,439 \\ \hline
+YOLOv12l  & test3 & 0,849 & \cellcolor{turquoise!30}\textbf{0,894} & \cellcolor{turquoise!30}\textbf{0,942} & 0,701 & 47,256 \\ \hline
+\textit{custom}    & test3 & \cellcolor{turquoise!30}\textbf{0,873} & 0,843 & 0,928 & 0,660 & 11,373 \\ \hline
+\textit{ensemble} & test3 & \cellcolor{turquoise!30}\textbf{0,873} & 0,857 & 0,837 & 0,663 & 63,758 \\
 \arrayrulecolor{black}
 \specialrule{1.5pt}{0pt}{0pt}
 \end{tabular}
@@ -1750,11 +1756,11 @@ YOLOv12l 0.5      & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55
 \arrayrulecolor{mygray}\hline
 YOLOv12l 0.7      & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
 \arrayrulecolor{black}\hline
-custom 0.5        & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
+\textit{custom} 0.5        & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
 \arrayrulecolor{mygray}\hline
-custom 0.7        & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\textit{custom} 0.7        & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
-ensemble       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\textit{ensemble}       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
 \end{tabular}
 }
@@ -1816,8 +1822,8 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
 \begin{enumerate}
   \item \textbf{Interfaz y orquestación (UI)}: componentes como \texttt{st.file\_uploader}, \texttt{st.selectbox}, \texttt{st.slider}, \texttt{st.sidebar} y \texttt{st.image} permiten la interacción con el usuario de una forma intuitiva.
   \item \textbf{Servicios de modelo e inferencia}: Funciones en \texttt{utils/utils.py} para cargar pesos YOLO, seleccionar dispositivo (CPU/GPU), normalizar entradas y ejecutar el modelo sobre las entradas preprocesadas.
-  \item \textbf{Pipeline de datos}: Preprocesado (lectura, redimensionado, normalización), postprocesado (NMS, filtrado por confianza, conversión a anotaciones PascalVOC), y renderizado de \textit{bounding boxes}. 
-  Además, incluye la exportación de las prediciones en formato PascVOC. 
+  \item \textbf{Pipeline de datos}: Preprocesado (lectura, redimensionado, normalización), postprocesado (NMS, filtrado por confianza, conversión a anotaciones PASCAL VOC), y renderizado de \textit{bounding boxes}. 
+  Además, incluye la exportación de las prediciones en formato PASCAL VOC. 
   \item \textbf{Estado y caché}: \texttt{st.session\_state} para parámetros y resultados interactivos; \texttt{@st.cache\_resource} evita recargar 
   pesos al cambiar sólo parámetros de inferencia; \texttt{@st.cache\_data} para memoizar resultados derivado (tablas/figuras).
   \item \textbf{Estilos y experiencia de usuario}: \texttt{assets/styles.css} para mejorar el aspecto visual que por defecto ofrece \textit{Streamlit} y uso de layout 
@@ -1831,7 +1837,7 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
   \item Inicio: se inicializa la sesión y se aplica el estilo personalizado CSS.
   \item El usuario selecciona modelo e IoU: YOLOv12s y 0,5.
   \item Carga de modelo (una sola vez) vía \texttt{@st.cache\_resource}.
-  \item Carga de imagen (individual o lote) con \texttt{st.file\_uploader}. Opcional: cargar el xml con las anotaciones en formato PascVOC.
+  \item Carga de imagen (individual o lote) con \texttt{st.file\_uploader}. Opcional: cargar el xml con las anotaciones en formato PASCAL VOC.
   \item Preprocesado de la imagen y envío al dispositivo (CPU/GPU).
   \item Inferencia YOLO y postprocesado (NMS, métricas básicas).
   \item Visualización: imagen anotada, conteo, tablas, métricas y \textit{bounding boxes}.
@@ -1981,7 +1987,7 @@ sobre la imagen con un zoom (\autoref{fig:cell_app_zoom}). Asimismo, muestra el 
 \end{figure}
 
 Cabe destacar el \textit{widget} "Descargar XML" que permite al usuario descargar las predicciones del modelo realizadas sobre la imagen de entrada en un formato
-PascalVOC. 
+PASCAL VOC. 
 
 Si el usuario prefiere evaluar un conjunto de imágenes con sus respectivas anotaciones, se debe seleccionar la elección de "carpeta completa" como se muestra en la \autoref{fig:cell_app_directory}.
 
@@ -2057,7 +2063,7 @@ Posibles problemas que pueden tener lugar durante la instalación:
     \end{itemize}
   \item \textbf{Errores al procesar imágenes / XML mal formados:}
     \begin{itemize}
-      \item Validar que las imágenes están en formatos soportados (\texttt{.jpg, .jpeg, .png}) y que los XML cumplen con el formato PascalVOC.
+      \item Validar que las imágenes están en formatos soportados (\texttt{.jpg, .jpeg, .png}) y que los XML cumplen con el formato PASCAL VOC.
       \item Revisar el log de parsing en \texttt{04.Codigo/cell\_detection\_App/utils/} y corregir los ficheros señalados.
     \end{itemize}
 \end{itemize}
@@ -2134,7 +2140,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
     \centering
     \includegraphics[height=5cm]{figuras/resultados experimentacion/custom/original_test/confusion_matrix.png}
     \vspace{-0.3cm}
-    \caption{\footnotesize Custom}
+    \caption{\footnotesize \textit{custom}}
     \label{fig:confusion_custom_original_test}
   \end{subfigure}
   \hfill
@@ -2142,7 +2148,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
     \centering
     \includegraphics[height=5cm]{figuras/resultados experimentacion/ensemble/confusion_matrices/confusion_matrix_original_test.png}
     \vspace{-0.3cm}
-    \caption{\footnotesize Ensemble}
+    \caption{\footnotesize \textit{ensemble}}
     \label{fig:confusion_ensemble_original_test}
   \end{subfigure}
   
@@ -2215,7 +2221,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
     \centering
     \includegraphics[height=5cm]{figuras/resultados experimentacion/custom/test/confusion_matrix.png}
     \vspace{-0.3cm}
-    \caption{\footnotesize Custom}
+    \caption{\footnotesize \textit{custom}}
     \label{fig:confusion_custom_test}
   \end{subfigure}
   \hfill
@@ -2223,7 +2229,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
     \centering
     \includegraphics[height=5cm]{figuras/resultados experimentacion/ensemble/confusion_matrices/confusion_matrix_test.png}
     \vspace{-0.3cm}
-    \caption{\footnotesize Ensemble}
+    \caption{\footnotesize \textit{ensemble}}
     \label{fig:confusion_ensemble_test}
   \end{subfigure}
   
@@ -2296,7 +2302,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
     \centering
     \includegraphics[height=5cm]{figuras/resultados experimentacion/custom/test2/confusion_matrix.png}
     \vspace{-0.3cm}
-    \caption{\footnotesize Custom}
+    \caption{\footnotesize \textit{custom}}
     \label{fig:confusion_custom_test2}
   \end{subfigure}
   \hfill
@@ -2304,7 +2310,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
     \centering
     \includegraphics[height=5cm]{figuras/resultados experimentacion/ensemble/confusion_matrices/confusion_matrix_test2.png}
     \vspace{-0.3cm}
-    \caption{\footnotesize Ensemble}
+    \caption{\footnotesize \textit{ensemble}}
     \label{fig:confusion_ensemble_test2}
   \end{subfigure}
   
@@ -2377,7 +2383,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
     \centering
     \includegraphics[height=5cm]{figuras/resultados experimentacion/custom/test3/confusion_matrix.png}
     \vspace{-0.3cm}
-    \caption{\footnotesize Custom}
+    \caption{\footnotesize \textit{custom}}
     \label{fig:confusion_custom_test3}
   \end{subfigure}
   \hfill
@@ -2385,7 +2391,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
     \centering
     \includegraphics[height=5cm]{figuras/resultados experimentacion/ensemble/confusion_matrices/confusion_matrix_test3.png}
     \vspace{-0.3cm}
-    \caption{\footnotesize Ensemble}
+    \caption{\footnotesize \textit{ensemble}}
     \label{fig:confusion_ensemble_test3}
   \end{subfigure}
   
@@ -2454,7 +2460,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
   \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados experimentacion/custom/original_test/BoxF1_curve.png}
-    \caption{Custom}
+    \caption{\textit{custom}}
     \label{fig:custom_original_test}
   \end{subfigure}
   
@@ -2518,7 +2524,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
   \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados experimentacion/custom/test/BoxF1_curve.png}
-    \caption{Custom}
+    \caption{\textit{custom}}
     \label{fig:custom_test}
   \end{subfigure}
   
@@ -2582,7 +2588,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
   \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados experimentacion/custom/test2/BoxF1_curve.png}
-    \caption{Custom}
+    \caption{\textit{custom}}
     \label{fig:custom_test2}
   \end{subfigure}
   
@@ -2646,7 +2652,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
   \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados experimentacion/custom/test3/BoxF1_curve.png}
-    \caption{Custom}
+    \caption{\textit{custom}}
     \label{fig:custom_test3}
   \end{subfigure}
   
@@ -2686,7 +2692,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
   \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/7/7_ensemble.jpg}
-    \caption{Modelo Ensemble}
+    \caption{Modelo \textit{ensemble}}
     \label{fig:ensemble_image_7}
   \end{subfigure}
 
@@ -2732,7 +2738,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
   \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/9/9_ensemble.jpg}
-    \caption{Modelo Ensemble}
+    \caption{Modelo \textit{ensemble}}
     \label{fig:ensemble_image_9}
   \end{subfigure}
   
@@ -2778,7 +2784,7 @@ de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones 
   \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/evaluacion_cualitativa/38/38_ensemble.jpg}
-    \caption{Modelo Ensemble}
+    \caption{Modelo \textit{ensemble}}
     \label{fig:ensemble_image_38}
   \end{subfigure}
 
