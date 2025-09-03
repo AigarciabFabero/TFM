@@ -1868,8 +1868,8 @@ Los resultados de este proyecto abren nuevas y prometedoras vías de investigaci
 
 \begin{itemize}
   \item \textbf{Exploración de otras arquitecturas:} Esta prueba de concepto se ha enfocado en detectores de una única estapa (YOLO), optimizados para ofrecer un equilibrio entre precisión y velocidad. Sin embargo, 
-  una alternativa a estos modelos pueden ser los de dos etapas (como \textit{Fast-RCNN}), el cual presenta generalmente mayor \textit{precision} y tiempo de inferencia. Una alternativa a esta línea de investigación es usar detectores basados en Transformers
-  (como D-FINE). Este enfoque promete una localización muy precisa incluso en escenas complejas y podría superar algunas limitaciones de los modelos puramente convolucionales.
+  una alternativa a estos modelos pueden ser los de dos etapas (como \textit{Fast-RCNN} \cite{7410526}), el cual presenta generalmente mayor \textit{precision} y tiempo de inferencia. Una alternativa a esta línea de investigación es usar detectores basados en Transformers
+  (como D-FINE \cite{peng2024dfineredefineregressiontask}). Este enfoque promete una localización muy precisa incluso en escenas complejas y podría superar algunas limitaciones de los modelos puramente convolucionales.
   \item \textbf{Gestión de los artefactos:} La baja representación de los Anillos de Newton nos dicen que la introducción de una clase nueva puede continuar dando falsos positivos en las diferentes detecciones de clases, dando lugar
   a nuevos problemas. Sin embargo, es una vía a explorar que no se puede descartar. Esta hipótesis es necesaria si se plantea un grado superior de automatización, donde la precisión es relevante, y por tanto, el umbral de confianza debe ser menor; 
   dando lugar a falsos positivos por parte de las diferentes arquitecturas, incluida YOLOv12s.
