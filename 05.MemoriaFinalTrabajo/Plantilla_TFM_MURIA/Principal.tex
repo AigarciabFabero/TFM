@@ -1852,21 +1852,21 @@ En este capítulo se abordan las conclusiones generales del proyecto, las limita
 \section{Conclusión general}
 \label{sec:Conclusión general}
 
-Este Trabajo de Fin de Máster ha cumplido con éxito su objetivo principal: el diseño, desarrollo y validación de un sistema inteligente para la detección automatizada de células redondas en imágenes de muestras de semen, demostrando 
+Este Trabajo de Fin de Máster cumple con éxito su objetivo principal: el diseño, desarrollo y validación de un sistema inteligente para la detección automatizada de células redondas en imágenes de muestras de semen, demuestra
 la viabilidad de integrar soluciones de aprendizaje profundo en un flujo de trabajo de análisis clínico.
 
-Se ha validado la hipótesis inicial, ya que la exploración de diferentes arquitecturas de la familia YOLO, junto con la optimización de hiperparámetros, ha permitido superar el rendimiento de la prueba de concepto de partida. 
-El modelo YOLOv12s ha demostrado robustez y generalización, no solo mejorando métricas cuantitativas clave como mAP@0.5:0.95, sino también en los resultados cualitativos no solo en la no detección de anillos de Newton bajo un intervalo de confianza aceptable sino también
-reduciendo el número de FP y FN en detecciones con umbrales de confianza mucho más sensibles.  
+Se valida la hipótesis inicial, ya que la exploración de diferentes arquitecturas de la familia YOLO, junto con la optimización de hiperparámetros, permite superar el rendimiento de la prueba de concepto inicial. 
+El modelo YOLOv12s demuestra robustez y generalización, no solo mejorando métricas cuantitativas clave como mAP@0.5:0.95, sino también en los resultados cualitativos, tanto en la no detección de anillos de Newton bajo un intervalo de confianza aceptable sino también
+en la reducción de el número de FP y FN en detecciones con umbrales de confianza mucho más sensibles.  
 
-Un aspecto a destacar ha sido el proceso de reetiquetado con \textit{feedback} de expertos. Este proceso ha servido para tener una visión más realista del rendimiento de los modelos, destacando una mejoría 
-generalizada en el conjunto de métricas pero también revelando una mayor dificultad para alcanzar una localización perfecta (mAP@0.5:0.95). Esta observación pone de manifiesto la complejidad inherente 
+Un aspecto a destacar es el proceso de reetiquetado con \textit{feedback} de expertos. Este proceso sirve para tener una visión más realista del rendimiento de los modelos, destaca una mejoría 
+generalizada en el conjunto de métricas pero también revela una mayor dificultad para alcanzar una localización perfecta (mAP@0.5:0.95). Esta observación pone de manifiesto la complejidad inherente 
 del problema y la importancia de contar con datos de alta calidad para una evaluación rigurosa del rendimiento.
 
 Este trabajo no se limita al desarrollo de modelos de detección de células sino que va un paso más y los integra de una manera interactiva mediante una herramienta web. 
 De este modo, no solo se facilita la validación de los modelos, sino que se establece un puente hacia su futura integración en un entorno de laboratorio real.
 
-En definitiva, el proyecto consigue dar una solución que va desde el preprocesamiento de datos y el entrenamiento de diferentes modelos hasta el despliegue de una apliacación funcional. Se demuestra así que es posible automatizar 
+En definitiva, el proyecto consigue dar una solución que va desde el preprocesamiento de datos y el entrenamiento de diferentes modelos hasta el despliegue de una apliacación funcional. Se demuestra así que, es posible automatizar 
 una tarea tan compleja y subjetiva como es la detección de células redondas; sentando así, las bases para optimizar el espermograma y potenciar la transformación digital en el campo de la andrología.
 
 \section{Limitaciones del estudio}
@@ -1884,7 +1884,7 @@ A pesar de los buenos resultados, es importante reconocer las limitaciones inher
   \item \textbf{Alcance y representatividad del \textit{dataset}:} Aunque el conjunto de datos proporcionado por Microptic S.L. \cite{microptic} es suficiente para demostrar la viabilidad de la prueba de concepto, 
   el número de datos que lo conforman es bastante limitado si atendemos a los grandes volúmenes de datos que suelen abordar los modelos de aprendizaje profundo. Además, todos los datos provienen de la misma empresa, limitando así, la capacidad de generalizar de los modelos
   y la externalización del \textit{software} a otros laboratorios.
-  \item \textbf{Recursos computacionales:} Si bien durante el proceso de entrenamiento se emplea \textit{hardware} bastante limitado, el uso de un servidor, pese a las implicaciones económicas que conlleva, puede dar solución a estas limitaciones.
+  \item \textbf{Recursos computacionales:} Si bien durante el proceso de entrenamiento se emplea \textit{hardware} limitado, el uso de un servidor, pese a las implicaciones económicas que conlleva, puede dar solución a estas limitaciones.
   La disponibilidad de mejores recursos computacionales permite no solo explorar nuevas arquitecturas sino realizar ajustes más profundos.
 \end{itemize}
 
@@ -1894,12 +1894,11 @@ A pesar de los buenos resultados, es importante reconocer las limitaciones inher
 Los resultados de este proyecto abren nuevas y prometedoras vías de investigación. Para continuar avanzando en la detección automatizada de células redondas se proponen las siguientes líneas de trabajo:
 
 \begin{itemize}
-  \item \textbf{Exploración de otras arquitecturas:} Esta prueba de concepto se ha enfocado en detectores de una única estapa (YOLO), optimizados para ofrecer un equilibrio entre precisión y velocidad. Sin embargo, 
+  \item \textbf{Exploración de otras arquitecturas:} Esta prueba de concepto se enfoca en detectores de una única estapa (YOLO), optimizados para ofrecer un equilibrio entre precisión y velocidad. Sin embargo, 
   una alternativa a estos modelos pueden ser los de dos etapas (como \textit{Fast-RCNN} \cite{7410526}), el cual presenta generalmente mayor \textit{precision} y tiempo de inferencia. Una alternativa a esta línea de investigación es usar detectores basados en Transformers
   (como D-FINE \cite{peng2024dfineredefineregressiontask}). Este enfoque promete una localización muy precisa incluso en escenas complejas y podría superar algunas limitaciones de los modelos puramente convolucionales.
   \item \textbf{Gestión de los artefactos:} La baja representación de los anillos de Newton nos dicen que la introducción de una clase nueva puede continuar dando falsos positivos en las diferentes detecciones de clases, dando lugar
-  a nuevos problemas. Sin embargo, es una vía a explorar que no se puede descartar. Esta hipótesis es necesaria si se plantea un grado superior de automatización, donde la precisión es relevante, y por tanto, el umbral de confianza debe ser menor; 
-  dando lugar a falsos positivos por parte de las diferentes arquitecturas, incluida YOLOv12s.
+  a nuevos problemas. Sin embargo, es una vía a explorar que no se puede descartar. Esta hipótesis es necesaria si se plantea un grado superior de automatización, donde la precisión es relevante, y por tanto, el umbral de confianza debe ser menor.
   \item \textbf{Enriquecimiento del \textit{dataset}:} Es bien sabido que la robustez de los modelos depende de la calidad y diversidad de los datos de entrenamiento. Es fundamental continuar ampliando el \textit{dataset} con imágenes procedentes de diferentes condiciones.
   Un conjunto de datos más extenso y heterogéneo no solo mejoraría la capacidad de generalización de los modelos sino que abre las puertas a la detección de otras células.
   \item \textbf{Evolución y validación de la herramienta web:} La evolución de la herramienta a su vez debe pasar por la inclusión de nuevos modelos como \textit{Fast-RCNN}. El siguiente paso lógico es desplegar la herramienta web en un entorno de laboratorio real 
@@ -1924,7 +1923,7 @@ Los resultados de este proyecto abren nuevas y prometedoras vías de investigaci
 \chapter{Control de versiones} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Control de versiones}
 
-En el marco de desarrollo del Trabajo de Fin de Máster (TFM), se ha empleado GitHub como servicio de control de versiones para 
+En el marco de desarrollo del Trabajo de Fin de Máster (TFM), se emplea GitHub como servicio de control de versiones para 
 gestionar eficientemente el código fuente y la documentación del proyecto; facilitando el seguimiento, la trazabilidad y la colaboración.
 
 Esta herramienta permite un seguimiento del proyecto por parte del responsable o tutor. Además, de ser necesario, GitHub presenta
@@ -1952,6 +1951,7 @@ En este anexo se recoge el diagrama de Gantt que refleja la planificación tempo
 
 \section{Manual de usuario}
 \label{Manual de usuario}
+
 Para facilitar la interacción del usuario con la herramienta web vista con anterioridad, se define la siguiente guía de usuario.
 
 Desde el entorno, con la dependencia \textit{Streamlit}, se ejecuta el comando \texttt{streamlit run app.py} y se lanza la aplicación en el navegador predeterminado
