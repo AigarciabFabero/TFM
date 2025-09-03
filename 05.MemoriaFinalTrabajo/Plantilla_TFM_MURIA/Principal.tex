@@ -1954,7 +1954,7 @@ En este anexo se recoge el diagrama de Gantt que refleja la planificación tempo
 \label{Manual de usuario}
 Para facilitar la interacción del usuario con la herramienta web vista con anterioridad, se define la siguiente guía de usuario.
 
-Desde el entorno con la dependencia \textit{Streamlit}, se ejecuta el comando \texttt{streamlit run app.py}  se lanza la aplicación en el navegador predeterminado
+Desde el entorno, con la dependencia \textit{Streamlit}, se ejecuta el comando \texttt{streamlit run app.py} y se lanza la aplicación en el navegador predeterminado
 como se muestra en la siguiente imagen.
 
 \begin{figure}[htbp]
@@ -1965,13 +1965,13 @@ como se muestra en la siguiente imagen.
 \end{figure}
 
 En este punto, el usuario puede tomar la decisión de procesar una imagen individual o un conjunto de imágenes. Para esto, 
-tenemos el \textit{widget} que permite la selección entre "Detección individual" o "Carpeta completa". En ambos casos,
-la aplicación nos muestra una guia básica de funcionamiento como se puede apreciar en el apartado "Introducciones" en la \autoref{fig:cell_app}.
+tenemos el \textit{widget} que permite la selección entre "Detección individual" o "Carpeta completa". En ambas situaciones,
+la aplicación nos muestra una guia básica de funcionamiento en el apartado "Introducciones" en la \autoref{fig:cell_app}.
 De manera totalmente opcional, el usuario puede cargar junto a la imagen a estudio, el correspondiente conjunto de anotaciones.
 
-El \textit{widget} de Configuración permite la seleccion manual del modelo a través de un desplazable, el umbral de confianza de IoU, 
-la representación \textit{ground truth} (siempre que exista el xml asociado a la imagen) mediante un \textit{checkbox} (\autoref{fig:cell_app_gt}) y realizar un análisis exploratorio
-sobre la imagen con un zoom (\autoref{fig:cell_app_zoom}). Asimismo, muestra el dispositivo (CPU,GPU) con el que se procesan las imágenes.
+El \textit{widget} de "Configuración" permite la seleccion manual del modelo a través de un desplazable, el umbral de confianza de IoU, 
+la representación del \textit{ground truth} (siempre que exista el xml asociado a la imagen) mediante un \textit{checkbox} (\autoref{fig:cell_app_gt}) y realizar un análisis exploratorio
+sobre la imagen con un zoom (\autoref{fig:cell_app_zoom}). Asimismo, muestra el dispositivo (CPU o GPU) con el que se procesan las imágenes.
 
 \begin{figure}[htbp]
   \centering
@@ -1987,7 +1987,7 @@ sobre la imagen con un zoom (\autoref{fig:cell_app_zoom}). Asimismo, muestra el 
   \label{fig:cell_app_zoom}
 \end{figure}
 
-Cabe destacar el \textit{widget} "Descargar XML" que permite al usuario descargar las predicciones del modelo realizadas sobre la imagen de entrada en un formato
+Cabe destacar que el \textit{widget} "Descargar XML" permite al usuario descargar las predicciones del modelo realizadas sobre la imagen de entrada en un formato
 PASCAL VOC. 
 
 Si el usuario prefiere evaluar un conjunto de imágenes con sus respectivas anotaciones, se debe seleccionar la elección de "carpeta completa" como se muestra en la \autoref{fig:cell_app_directory}.
@@ -2000,8 +2000,8 @@ Si el usuario prefiere evaluar un conjunto de imágenes con sus respectivas anot
 \end{figure}
 
 En este modo de evaluación, no está permitido el uso de los \textit{widgets}: \textit{ground truth} y \textit{zoom}. Sin embargo, 
-el procesamiento del modelo seleccionado junto con su correspondiente umbral de procesamiento de IoU, está acompañado de un pequeño conjunto de métricas:
-\textit{precision}, \textit{recall} y \textit{mAP}. Para una mejor evaluación, la herramienta muestra una matriz de confusión (\autoref{fig:cell_app_metrics}).
+el procesamiento del modelo seleccionado junto con su correspondiente umbral de confianza para el IoU, está acompañado de un pequeño conjunto de métricas:
+\textit{precision}, \textit{recall}, \textit{F1-score} y \textit{mAP}. Para una mejor evaluación, la herramienta muestra una matriz de confusión (\autoref{fig:cell_app_metrics}).
 
 \begin{figure}[htbp]
   \centering
@@ -2012,13 +2012,14 @@ el procesamiento del modelo seleccionado junto con su correspondiente umbral de 
 
 \section{Recomendaciones de uso}
 \label{sec:Recomendaciones de uso}
-A continuación, se recogen pautas prácticas para el uso correcto funcionamiento de la herramienta web.
+
+A continuación, se recogen las pautas prácticas para el correcto funcionamiento de la herramienta web.
 
 \begin{itemize}
   \item \textbf{Entorno recomendado:} se recomienda usar un entorno conda para tener aisladas las dependencias del proyecto y evitar así, conflictos entre dependencias. 
   Desde el directorio \texttt{04.Code} se proponen dos alternativas:
     \begin{itemize}
-      \item Instalación del entorno completo con conda (Recomendado):
+      \item Instalación del entorno completo con conda (recomendado):
         \begin{itemize}
           \item \texttt{conda env create -f environment.yml}
           \item \texttt{conda activate tfm\_env}
@@ -2040,10 +2041,11 @@ A continuación, se recogen pautas prácticas para el uso correcto funcionamient
 
 \section{Resolución de problemas}
 \label{sec:Resolución de problemas}
-Posibles problemas que pueden tener lugar durante la instalación:
+
+Problemas que pueden tener lugar durante la instalación:
 
 \begin{itemize}
-  \item \textbf{La app no arranca / \textit{Streamlit} muestra error:}
+  \item \textbf{La app no arranca o \textit{Streamlit} muestra error:}
     \begin{itemize}
       \item Verificar dependencias: \texttt{pip install -r 04.Codigo/requirements.txt}
       \item Comprobar la salida en el terminal donde se ejecuta \texttt{streamlit run app.py} y revisar trazas de error.
@@ -2053,7 +2055,7 @@ Posibles problemas que pueden tener lugar durante la instalación:
     \begin{itemize}
       \item Confirmar que el fichero de pesos existe en \texttt{models/} y que la ruta es correcta (\path{04.Codigo/cell_detection_App/models/}).
     \end{itemize}
-  \item \textbf{Problemas con GPU / CUDA:}
+  \item \textbf{Problemas con GPU o CUDA:}
     \begin{itemize}
       \item Comprobar estado de la GPU: ejecutar \texttt{nvidia-smi} en terminal.
       \item Verificar que PyTorch detecta la GPU: 
@@ -2062,7 +2064,7 @@ Posibles problemas que pueden tener lugar durante la instalación:
         \end{itemize}
       \item Si falla, forzar ejecución en CPU desde la UI o variable de entorno: \texttt{CUDA\_VISIBLE\_DEVICES=""}.
     \end{itemize}
-  \item \textbf{Errores al procesar imágenes / XML mal formados:}
+  \item \textbf{Errores al procesar imágenes o XML mal formados:}
     \begin{itemize}
       \item Validar que las imágenes están en formatos soportados (\texttt{.jpg, .jpeg, .png}) y que los XML cumplen con el formato PASCAL VOC.
       \item Revisar el log de parsing en \texttt{04.Codigo/cell\_detection\_App/utils/} y corregir los ficheros señalados.
@@ -2074,7 +2076,7 @@ Posibles problemas que pueden tener lugar durante la instalación:
 \label{Evaluación comparativa de arquitecturas}
 
 En este anexo, se recojen las representaciones gráficas para la evaluación de los modelos sobre los diferentes conjuntos de \textit{test}. Todas las representaciones en las que no se hace notar el IoU
-de confianza del modelo, tienen por defecto un IoU de 0.5. Las representaciones a evaluar recogen información a través de matrices de confusión, curva F1-confianza y resultados cualitativos del modelo en tiempo real.
+de confianza del modelo, tienen por defecto un IoU de $0,5$. Las representaciones a evaluar recogen información a través de matrices de confusión, curva F1-confianza y resultados cualitativos del modelo en tiempo real.
 
 \section{Matrices de confusión}
 \label{sec:Matrice de confusión}
