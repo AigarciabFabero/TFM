@@ -1832,15 +1832,27 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
 
 \chapter{Conclusión} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+En este capítulo se abordan las conclusiones generales del proyecto, las limitaciones que dificultan el desarrollo del mismo y las líneas de trabajo a futuro.
 
 \section{Conclusión general}
 \label{sec:Conclusión general}
 
-hacer una evaluación de riesgos.
-Por lo tanto, este Trabajo de Fin de Máster no es un ejercicio puramente académico, sino que se constituye como una Prueba de Concepto (PoC) con un objetivo industrial definido y un respaldo institucional estratégico.
+Este Trabajo de Fin de Máster ha cumplido con éxito su objetivo principal: el diseño, desarrollo y validación de un sistema inteligente para la detección automatizada de células redondas en imágenes de muestras de semen, demostrando 
+la viabilidad de integrar soluciones de aprendizaje profundo en un flujo de trabajo de análisis clínico.
 
-En resumen, el proceso de re-etiquetado ha servido para obtener una visión más realista del rendimiento de los modelos, premiando a aquellos que generalizan mejor (mayor precisión) pero también revelando una mayor dificultad para alcanzar una localización perfecta (menor mAP@0.5:0.95).
+Se ha validado la hipótesis inicial, ya que la exploración de diferentes arquitecturas de la familia YOLO, junto con la optimización de hiperparámetros, ha permitido superar el rendimiento de la prueba de concepto de partida. 
+El modelo YOLOv12s ha demostrado robustez y generalización, no solo mejorando métricas cuantitativas clave como mAP@0.5:0.95, sino también en los resultados cualitativos no solo en la no detección de anillos de Newton bajo un intervalo de confianza aceptable sino también
+reduciendo el número de FP y FN en detecciones con umbrales de confianza mucho más sensibles.  
 
+Un aspecto a destacar ha sido el proceso de reetiquetado con feedback de expertos. Este proceso ha servido para tener una visión más realista del rendimiento de los modelos, destacando una mejoría 
+generalizada en el conjunto de métricas pero también revelando una mayor dificultad para alcanzar una localización perfecta (mAP@0.5:0.95). Esta observación pone de manifiesto la complejidad inherente 
+del problema y la importancia de contar con datos de alta calidad para una evaluación rigurosa del rendimiento.
+
+Este trabajo no se limita al desarrollo de modelos de detección de células sino que va un paso más y los integra de una manera interactiva mediante una herramienta web. 
+De este modo, no solo se facilita la validación de los modelos, sino que se establece un puente hacia su futura integración en un entorno de laboratorio real.
+
+En definitiva, el proyecto consigue dar una solución que va desde el preprocesamiento de datos y el entrenamiento de diferentes modelos hasta el despliegue de una apliacación funcional. Se demuestra así que es posible automatizar 
+una tarea tan compleja y subjetiva como es la detección de células redondas; sentando así, las bases para optimizar el espermograma y potenciar la transformación digital en el campo de la andrología.
 
 \section{Limitaciones del estudio}
 \label{sec:Limitaciones del estudio}
