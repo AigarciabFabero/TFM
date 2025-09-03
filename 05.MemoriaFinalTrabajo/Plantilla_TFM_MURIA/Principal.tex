@@ -1784,7 +1784,7 @@ de confianza permite adaptar sensibilidad y especificidad a las necesidades de c
 \chapter{Herramienta Web} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Herramienta web}
 Con el propósito de definir una herramienta de análisis automatizado, se desarrolla una interfaz intuitiva e interactiva para la detección 
-de células redondas sobre una muetra individual o colectiva. La información relativa a la aplicación,
+de células redondas sobre una muestra individual o colectiva. La información relativa a la aplicación,
 se puede encontrar en el manual de usuario (\autoref{Manual de usuario}).
 \section{Objetivos de la herramienta}
 \label{sec:Objetivos de la herramienta}
@@ -1792,12 +1792,12 @@ se puede encontrar en el manual de usuario (\autoref{Manual de usuario}).
 La herramienta web para la detección de células redondas tiene como principales objetivos:
 
 \begin{itemize}
-  \item{\textbf{Detección atomática de células en imágenes microscópicas en el contexto médico abordado con anterioridad:} Permitir identificar
+  \item{\textbf{Detección automática de células en imágenes microscópicas en el contexto médico abordado con anterioridad:} Permitir identificar
   y localizar células redondas dotando al usuario de diferentes arquitecturas de modelos.}
   \item{\textbf{Comparación de rendimiento entre modelos:} Facilitar la evaluación comparativa entre diferentes modelos,
   permitiendo al usuario seleccionar el mejor modelo y el intervalo de actuación para el IoU.}
-  \item{\textbf{Visualización de resultados:} Proporcionar una interface de visualización clara e intuitiva que permita al usuario 
-  visualizar las predicciones del modelo y las \textit{bounding boxes} del \textit{ground truth}si se dispone de las mismas.}
+  \item{\textbf{Visualización de resultados:} Proporcionar una interfaz de visualización clara e intuitiva que permita al usuario 
+  visualizar las predicciones del modelo y las \textit{bounding boxes} del \textit{ground truth} si se dispone de las mismas.}
   \item{\textbf{Análisis cuantitativo:} Permitir obtener métricas y estadísticas como: \textit{precision, accuracy}, conteo o IoU promedio}.
   \item{\textbf{Soporte a la investigación biomédica:} Facilitar la identificación temprana de diferentes grados de patología.} 
 \end{itemize}
@@ -1824,13 +1824,13 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
   \item \textbf{Interfaz y orquestación (UI)}: componentes como \texttt{st.file\_uploader}, \texttt{st.selectbox}, \texttt{st.slider}, \texttt{st.sidebar} y \texttt{st.image} permiten la interacción con el usuario de una forma intuitiva.
   \item \textbf{Servicios de modelo e inferencia}: Funciones en \texttt{utils/utils.py} para cargar pesos YOLO, seleccionar dispositivo (CPU/GPU), normalizar entradas y ejecutar el modelo sobre las entradas preprocesadas.
   \item \textbf{Pipeline de datos}: Preprocesado (lectura, redimensionado, normalización), postprocesado (NMS, filtrado por confianza, conversión a anotaciones PASCAL VOC), y renderizado de \textit{bounding boxes}. 
-  Además, incluye la exportación de las prediciones en formato PASCAL VOC. 
+  Además, incluye la exportación de las predicciones en formato PASCAL VOC. 
   \item \textbf{Estado y caché}: \texttt{st.session\_state} para parámetros y resultados interactivos; \texttt{@st.cache\_resource} evita recargar 
-  pesos al cambiar sólo parámetros de inferencia; \texttt{@st.cache\_data} para memoizar resultados derivado (tablas/figuras).
-  \item \textbf{Estilos y experiencia de usuario}: \texttt{assets/styles.css} para mejorar el aspecto visual que por defecto ofrece \textit{Streamlit} y uso de layout 
-  responsivo (columnas, botones, tooltips) para mejorar la usabilidad.
-  \item \textbf{Manejo de errores}: \texttt{st.info} para informar de estados (dispositivo, imágener y xml subidos), \texttt{st.warning} para advertir de un error en la lectura del xml, 
-  \texttt{st.error} implide continuar con la ejecución si no encuentra modelo o al no ser capaz de procesar una imagen.
+  pesos al cambiar sólo parámetros de inferencia; \texttt{@st.cache\_data} para memoizar resultados derivados (tablas/figuras).
+  \item \textbf{Estilos y experiencia de usuario}: \texttt{assets/styles.css} para mejorar el aspecto visual que por defecto ofrece \textit{Streamlit} y uso de \textit{layout} 
+  responsivo (columnas, botones, \textit{tooltips}) para mejorar la usabilidad.
+  \item \textbf{Manejo de errores}: \texttt{st.info} para informar de estados (dispositivo, imágenes y xml subidos), \texttt{st.warning} para advertir de un error en la lectura del xml, 
+  \texttt{st.error} impide continuar con la ejecución si no encuentra modelo o al no ser capaz de procesar una imagen.
 \end{enumerate}
 
 \subsection{Flujo de ejecución}
