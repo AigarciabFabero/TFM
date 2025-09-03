@@ -214,10 +214,10 @@
   \item[Detección de Objetos]: Tarea de localizar y clasificar instancias de objetos en imágenes mediante \textit{bounding boxes} y etiquetas. 
   \item[NMS (\textit{Non-Maximum Suppression)}]: Algoritmo para eliminar las detecciones redundantes, manteniendo la caja con mayor confianza entre las solapadas.
   \item[Aprendizaje profundo o \textit{deep learning}]: Área del aprendizaje automático que emplea redes neuronales profundas para aprender representaciones y resolver tareas complejas.
-  \item[\textit{Transfer Learning}]: Reutilizar un modelo preentrenado y adaptarlo para entrenar un nuevo modelo con el conocimiento ya adquirido previamente con un dataset generalmente mayor.
+  \item[\textit{Transfer Learning}]: Reutilizar un modelo preentrenado y adaptarlo para entrenar un nuevo modelo con el conocimiento ya adquirido previamente con un \textit{dataset} generalmente mayor.
   \item[\textit{Framework}]: Conjunto estructurado de herramientas, librerías y convenciones que facilita y agiliza el desarrollo de aplicaciones o sistemas.
   % \item[\textit{Ensemble}]: Técnica para la unificación de predicciones de diferentes modelos.
-  % \item[\textit{Cross Validatio}]: Técnica estadística para la evaluación de modelos, que se fundamenta en dividir el dataset en multiples pliegues (\textit{folds}) para entrenar y validar el modelo de forma iteractiva.
+  % \item[\textit{Cross Validatio}]: Técnica estadística para la evaluación de modelos, que se fundamenta en dividir el \textit{dataset} en multiples pliegues (\textit{folds}) para entrenar y validar el modelo de forma iteractiva.
   % \item[\textit{Data augmentation}]: Conjunto de transformaciones sobre los datos como rotaciones, traslaciones, adición de ruido, entro otros, con el objetivo de aumentar la diversidad del dattaset y mejorar la generalización del modelo.
   % \item[Optuna]: Biblioteca de Python para la optimización de hiperparámetros, permitiendo encontrar las mejores configuraciones de estos. 
   \item[\textit{Streamlit}]: \textit{framework} de Python para crear aplicaciones web interactivas orientadas a la ciencia de datos y \textit{Machine Learning}.
@@ -371,7 +371,7 @@ Dentro de las 12 arquitecturas de YOLO \cite{ultralytics_models}, se emplean las
   \label{fig:Yolov8_v9_v10_arquitectures}
   (a) YOLOv8 presenta una estructura principal basada en CSP, un cabezal desacoplado y libre de anclajes (\textit{anchor-free}), y una Red de Pirámide de Características (FPN) optimizada para una extracción eficiente de características a múltiples escalas. 
   (b) YOLOv9 integra la Información de Gradiente Programable con GELAN para una agregación robusta de características.
-  (c) YOLOv10 presenta una estrategia de asignación dual, cabezales ligeros y un submuestreo desacoplado de canal espacial para mejorar la precisión y velocidad de la inferencia.
+  (c) YOLOv10 presenta una estrategia de asignación dual, cabezales ligeros y un submuestreo desacoplado de canal espacial para mejorar la \textit{precision} y velocidad de la inferencia.
 \end{figure}
 
 \begin{itemize}
@@ -439,7 +439,7 @@ junto con el diseño personalizado y la optimización de hiperparámetros, se co
 en las métricas mAP y velocidad de inferencia. 
 
 Adicionalmente, se espera que gracias a la arquitectura en desarrollo de YOLOv12 que incorpora mecanismos de atención, el algoritmo no identifique 
-como células redondas a los Anillos de Newton. La integración de estos modelos con la herramienta web sirva no solo como método de validación final, sino que también demuestre la viabilidad del sistema 
+como células redondas a los anillos de Newton. La integración de estos modelos con la herramienta web sirva no solo como método de validación final, sino que también demuestre la viabilidad del sistema 
 para que sea utilizado en un marco clínico real por personal experto.
 
 \section{Definición del problema}
@@ -461,14 +461,14 @@ y restos residuales ajenos al análisis. Asimismo, la dificultad que supone la d
 \end{figure}
 
 Para mayor dificultad, la asignación de anotaciones sobre el conjunto de imágenes es un problema que va a generar complicaciones durante todo el proyecto. Por ejemplo,
-la \autoref{fig:Anillos_Newton} anotada por un experto presenta la problemática de los Anillos de Newton. Se verá posteriormente cómo afectan estos objetos a la correcta identificación de células redondas.
+la \autoref{fig:Anillos_Newton} anotada por un experto presenta la problemática de los anillos de Newton. Se verá posteriormente cómo afectan estos objetos a la correcta identificación de células redondas.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{figuras/rounds_cells/Anillos de Newton.png}
-  \caption{Ilustración con Anillos de Newton.}
+  \caption{Ilustración con anillos de Newton.}
   \label{fig:Anillos_Newton}
-  Las \textit{bounding boxes} corresponden con las células redondas y los círculos rojos con los Anillos de Newton.
+  Las \textit{bounding boxes} corresponden con las células redondas y los círculos rojos con los anillos de Newton.
 \end{figure}
 
 Asimismo, en la \autoref{fig:feedback_experto} se evidencian las constantes dudas acerca de las anotaciones de células redondas, no solo por el personal que define el proyecto, sino por los propios expertos de Microptic \cite{microptic}. 
@@ -863,7 +863,7 @@ En el anexo \autoref{Seguimiento de proyecto} se detalla mediante del diagrama d
 A continuación, se resume el enfoque de cada sprint:
 
 \begin{itemize}[label=-]
-  \item Investigación y Configuración (Semanas 24-25): Esta fase inicial se centra en establecer las bases teóricas y técnicas del proyecto. Incluye una revisión del estado del arte, la configuración de los entornos de desarrollo (local y remoto) y un análisis inicial del dataset para comprender sus características.
+  \item Investigación y Configuración (Semanas 24-25): Esta fase inicial se centra en establecer las bases teóricas y técnicas del proyecto. Incluye una revisión del estado del arte, la configuración de los entornos de desarrollo (local y remoto) y un análisis inicial del \textit{dataset} para comprender sus características.
   
   \item Preprocesamiento y Modelo Base (Semanas 26-27): Se prepararan los datos para el entrenamiento. Se revisan y gestionan los diferentes conjuntos de datos. Finaliza con el entrenamiento de un primer modelo que sirve como referencia.
   
@@ -946,11 +946,11 @@ Subjetividad en la identificación de células, generando inconsistencias en el 
 Implementar validación y reetiquetado por expertos para consolidar un \textit{ground truth} robusto \\
 \hline
 2 & Artefactos confundidos con células & Datos & Baja & Bajo & 
-Presencia de artefactos visuales (ej. Anillos de Newton) que se confunden con células redondas & 
+Presencia de artefactos visuales (ej. anillos de Newton) que se confunden con células redondas & 
 Elevar umbral de de confianza de los modelos y evaluarlos en imágenes con artefactos para seleccionar las mejores arquitecturas \\
 \hline
 3 & \textit{Dataset} limitado & Datos & Media & Alto & 
-La calidad, cantidad o representatividad del dataset puede ser insuficiente o contener sesgos & 
+La calidad, cantidad o representatividad del \textit{dataset} puede ser insuficiente o contener sesgos & 
 Aplicar técnicas de \textit{data augmentation} para incrementar la diversidad y mejorar la generalización \\
 \hline
 4 & Definición ambigua de objetivos &  Planificación & Media & Alto & 
@@ -1008,12 +1008,12 @@ se detalla cómo el proyecto se ajusta y adhiere a las leyes pertinentes:
     \item \textbf{Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales.}\cite{LOPD2018}
     
     Este proyecto respeta plenamente la Ley Orgánica 3/2018, la cual reconoce el derecho fundamental a la protección de datos personales. 
-    La creación y tratamiento del dataset de imágenes médicas se ha realizado conforme a las disposiciones de la ley, asegurando la legalidad en el tratamiento de datos biomédicos. 
+    La creación y tratamiento del \textit{dataset} de imágenes médicas se ha realizado conforme a las disposiciones de la ley, asegurando la legalidad en el tratamiento de datos biomédicos. 
     Se han obtenido los permisos explícitos necesarios para el uso de las imágenes, garantizando la privacidad y anonimización de los datos de los pacientes. 
     
     \item \textbf{Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos y por el que se deroga la Directiva 95/46/CE (Reglamento general de protección de datos).}\cite{RGPD2016}
 
-    La creación y tratamiento del dataset de imágenes médicas en este proyecto se ha realizado conforme a los principios del RGPD, garantizando la legalidad y transparencia en el 
+    La creación y tratamiento del \textit{dataset} de imágenes médicas en este proyecto se ha realizado conforme a los principios del RGPD, garantizando la legalidad y transparencia en el 
     tratamiento de datos biomédicos. Todas las imágenes han sido previamente anonimizadas y se han implementado medidas técnicas y organizativas 
     para asegurar la seguridad y privacidad de los datos, cumpliendo así con las exigencias del RGPD para datos de salud considerados de categoría 
     especial.
@@ -1082,7 +1082,7 @@ El detalle completo previo y durante la etapa de entrenamiento de los diferentes
   \begin{itemize}
     \item \textbf{Evaluación cuantitativa:} Se estudia el rendimiento individual de los modelos sobre los diferentes conjuntos de \textit{test}. Con este fin, se emplean las métricas: 
     \textit{precision}, \textit{recall}, mAP@0.5, mAP@0.5:0.95, el tiempo de inferencia y el F1-confianza (\autoref{sec:Métricas}). 
-    \item \textbf{Evaluación cualitativa:} Se evalúan los modelos en un entorno problemático, como son las imágenes con Anillos de Newton (\autoref{sec:Definición del problema}). Asimismo, se realiza una comparativa de resultados respecto a algunas imágenes de resultados obtenidos en la prueba de concepto inicial. 
+    \item \textbf{Evaluación cualitativa:} Se evalúan los modelos en un entorno problemático, como son las imágenes con anillos de Newton (\autoref{sec:Definición del problema}). Asimismo, se realiza una comparativa de resultados respecto a algunas imágenes de resultados obtenidos en la prueba de concepto inicial. 
   \end{itemize}
 \end{itemize}
 
@@ -1101,12 +1101,12 @@ La tercera y última fase del proyecto es dar una solución tangible y accesible
 \chapter{Experimentación} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Experimentación}
 
-\section{Dataset}
+\section{\textit{dataset}}
 \label{sec:Dataset}
-El dataset inicial proporcionado por la empresa Microptic \cite{microptic} está constituido por un conjunto de \textit{train} y \textit{test} en formato PASCAL VOC.
+El \textit{dataset} inicial proporcionado por la empresa Microptic \cite{microptic} está constituido por un conjunto de \textit{train} y \textit{test} en formato PASCAL VOC.
 
 \begin{table}[htbp]
-\caption{Distribución del dataset original}
+\caption{Distribución del \textit{dataset} original}
 \centering
 \begingroup
 \setlength{\tabcolsep}{8pt}
@@ -1135,11 +1135,11 @@ Las correcciones afectan a un total de 60 imágenes, incrementando el número de
 
 Asimismo, se incluyeron dos conjuntos adicionales denominados \textit{test2} y \textit{test3}, inicialmente sin anotaciones pero que contenían \textit{bounding boxes} generados por modelos YOLO \cite{ultralytics_models} preentrenados 
 por el grupo GVIS de la Universidad de León. Estas predicciones fueron posteriormente corregidas y validadas por expertos, proporcionando dos conjuntos adicionales para evaluación. 
-La composición final del dataset se presenta en la \autoref{tab:dataset_final}.
+La composición final del \textit{dataset} se presenta en la \autoref{tab:dataset_final}.
 
 \clearpage
 \begin{table}[htbp]
-\caption{Resumen del dataset de actuación}
+\caption{Resumen del \textit{dataset} de actuación}
 \centering
 \rowcolors{2}{gray!12}{white}
 \begin{tabular}{l c c c c c}
@@ -1161,7 +1161,7 @@ El conjunto de \textit{train}, \textit{validation} y \textit{test} están consti
 de los conjuntos de \textit{test2} y \textit{test3} están compuestos por imágenes en escala de grises de un único canal. 
 
 Para el entrenamiento de diferentes arquitecturas de detección de objetos, se convierten los formatos de PASCAL VOC a YOLO y YOLO a COCO. 
-Para más detalle, la información relativa al preprocesamiento del dataset se encuentra en el documento \texttt{preprocesamiento.ipynb} del repositorio \cite{repoTFM}.
+Para más detalle, la información relativa al preprocesamiento del \textit{dataset} se encuentra en el documento \texttt{preprocesamiento.ipynb} del repositorio \cite{repoTFM}.
 
 \section{Entorno de desarrollo}
 \label{sec:Entorno de desarrollo}
@@ -1590,8 +1590,8 @@ centrado en la interpretación visual y contextual de las predicciones realizada
 \section{Resultados cuantitativos}
 \label{sec:Resultados cuantitativos}
 
-En esta primera parte, se evalúan los resultados sobre el conjunto de \textit{test} original para el cual tenemos resultados asociados
-a la prueba de concepto previa (\autoref{tab:yolov7_results}). Bajo la premisa de que todos los modelos arrojan resultados similares, por los tiempos de inferencia y 
+En esta primera parte, se evalúan los resultados sobre el conjunto de \textit{test} original para el cual se tienen resultados asociados
+a la prueba de concepto previa (\autoref{tab:yolov7_results}), bajo la premisa de que todos los modelos arrojan resultados similares, por los tiempos de inferencia y 
 el valor más alto en la métrica mAP@0.5:0.95, el mejor modelo es YOLOv7.
 
 \begin{table}[H]
@@ -1602,9 +1602,9 @@ el valor más alto en la métrica mAP@0.5:0.95, el mejor modelo es YOLOv7.
       \hline
       \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{\textit{recall} (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
       \hline
-      YOLOv7      & 0.87  & \textbf{0.889} & \textbf{0.935} & \textbf{0.722} & 20.0   \\
-      YOLOv7-W6   & 0.847 & 0.883 & 0.925 & 0.694 & \textbf{16.0}   \\
-      YOLOv7-E6E  & \textbf{0.906} & 0.857 & 0.934 & 0.721 & 127.5  \\
+      YOLOv7      & 0,870  & \textbf{0,889} & \textbf{0,935} & \textbf{0,722} & 20,0   \\
+      YOLOv7-W6   & 0,847 & 0,883 & 0,925 & 0,694 & \textbf{16,0}   \\
+      YOLOv7-E6E  & \textbf{0,906} & 0,857 & 0,934 & 0,721 & 127,5  \\
       \hline
   \end{tabular}
   }
@@ -1619,14 +1619,14 @@ el valor más alto en la métrica mAP@0.5:0.95, el mejor modelo es YOLOv7.
       \hline
       \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{\textit{recall} (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
       \hline
-      YOLOv8s    & 0.843 & 0.844 & 0.920 & 0.722 & \textbf{11.006} \\
-      YOLOv9s    & 0.838 & 0.852 & 0.921 & 0.721 & 13.485 \\
-      YOLOv10s   & 0.821 & 0.867 & 0.918 & 0.717 & 11.221 \\
-      YOLOv11s   & \textbf{0.861} & 0.824 & 0.921 & 0.732 & 11.248 \\
-      YOLOv12s   & 0.856 & 0.863 & \textbf{0.936} & \textbf{0.76} & 14.615 \\
-      YOLOv12l   & 0.856 & 0.836 & 0.921 & 0.729 & 48.146 \\
-      \textit{custom}     & 0.835 & 0.838 & 0.909 & 0.695 & 13.058 \\
-      \textit{ensemble}   & 0.815 & \textbf{0.895} & 0.864 & 0.697 & 75.073 \\
+      YOLOv8s    & 0,843 & 0,844 & 0,920 & 0,722 & \textbf{11,006} \\
+      YOLOv9s    & 0,838 & 0,852 & 0,921 & 0,721 & 13,485 \\
+      YOLOv10s   & 0,821 & 0,867 & 0,918 & 0,717 & 11,221 \\
+      YOLOv11s   & \textbf{0,861} & 0,824 & 0,921 & 0,732 & 11,248 \\
+      YOLOv12s   & 0,856 & 0,863 & \textbf{0,936} & \textbf{0,760} & 14,615 \\
+      YOLOv12l   & 0,856 & 0,836 & 0,921 & 0,729 & 48,146 \\
+      \textit{custom}     & 0,835 & 0,838 & 0,909 & 0,695 & 13,058 \\
+      \textit{ensemble}   & 0,815 & \textbf{0,895} & 0,864 & 0,697 & 75,073 \\
       \hline
   \end{tabular}
   }
@@ -1675,7 +1675,7 @@ para imágenes de alta resolución.
 YOLOv8s   & test  & 0,855 & 0,838 & 0,926 & 0,704 & 11,844 \\ \hline
 YOLOv9s   & test  & 0,851 & 0,876 & 0,933 & 0,706 & 13,492 \\ \hline
 YOLOv10s  & test  & 0,851 & 0,862 & 0,927 & 0,701 & \cellcolor{turquoise!30}\textbf{11,120} \\ \hline
-YOLOv11s  & test  & 0,846 & 0,866 & 0,930 & 0,716 & 12.143 \\ \hline
+YOLOv11s  & test  & 0,846 & 0,866 & 0,930 & 0,716 & 12,143 \\ \hline
 YOLOv12s  & test  & 0,862 & 0,848 & \cellcolor{turquoise!30}\textbf{0,936} & \cellcolor{turquoise!30}\textbf{0,740} & 14,519 \\ \hline
 YOLOv12l  & test  & 0,846 & \cellcolor{turquoise!30}\textbf{0,889} & 0,934 & 0,714 & 45,214 \\ \hline
 \textit{custom}    & test  & 0,845 & 0,853 & 0,919 & 0,678 & 12,913 \\ \hline
@@ -1694,8 +1694,8 @@ YOLOv12l  & test2 & 0,957 & 0,926 & \cellcolor{turquoise!30}\textbf{0,975} & 0,5
 \arrayrulecolor{black}
 \specialrule{1.2pt}{0pt}{0pt}
 \arrayrulecolor{gray}
-YOLOv8s   & test3 & 0.842 & 0.862 & 0.937 & 0.700 & 12.815 \\ \hline
-YOLOv9s   & test3 & 0.843 & 0.870 & 0.935 & 0.680 & 14.772 \\ \hline
+YOLOv8s   & test3 & 0,842 & 0,862 & 0,937 & 0,700 & 12,815 \\ \hline
+YOLOv9s   & test3 & 0,843 & 0,870 & 0,935 & 0,680 & 14,772 \\ \hline
 YOLOv10s  & test3 & \cellcolor{turquoise!30}\textbf{0,873} & 0,826 & 0,926 & 0,668 & 11,230 \\ \hline
 YOLOv11s  & test3 & 0,855 & 0,874 & 0,935 & 0,698 & \cellcolor{turquoise!30}\textbf{10,875} \\ \hline
 YOLOv12s  & test3 & 0,836 & 0,821 & 0,922 & \cellcolor{turquoise!30}\textbf{0,723} & 15,439 \\ \hline
@@ -1713,9 +1713,10 @@ YOLOv12l  & test3 & 0,849 & \cellcolor{turquoise!30}\textbf{0,894} & \cellcolor{
 \section{Resultados cualitativos}
 \label{Resultados cualitativos}
 
-Uno de los problemas más comunes en la adquisición de imágenes microscópicas es la presencia de artefactos (Anillos de Newton), que pueden interferir con la detección precisa de células redondas. Por esta razón, se analizan 
-los diferentes modelos sobre un conjunto de imágenes que contienen estos artefactos. Para pasar la evaluación, se establece que el modelo no debe detectar ningún Anillo de Newton como célula redonda, por esta razón, 
-se establece un umbral de confianza alto (0.5 y 0.7) para minimizar las detecciones erróneas. Los resultados obtenidos se muestran en la \autoref{tab:resultados_artefactos}.
+Uno de los problemas más comunes en la adquisición de imágenes microscópicas es la presencia de artefactos (anillos de Newton), que pueden interferir con la detección precisa de células redondas. Por esta razón, se analizan 
+los diferentes modelos sobre un conjunto de imágenes que contienen estos artefactos. Para pasar la evaluación, se establece que el modelo no debe detectar ningún Anillo de Newton como célula redonda. Para pasar la evaluación, 
+se establece que el modelo no debe detectar ningún Anillo de Newton como célula redonda, por lo que se ha fijado un umbral de confianza alto ($0,5$ y $0,7$) para minimizar las detecciones erróneas. 
+Los resultados obtenidos se muestran en la \autoref{tab:resultados_artefactos}.
 
 % Tabla para los artefactos
 \definecolor{mygreen}{RGB}{0,180,0}
@@ -1732,33 +1733,33 @@ se establece un umbral de confianza alto (0.5 y 0.7) para minimizar las deteccio
 \arrayrulecolor{black}\hline
 Test              & 1 & 1 & 1 & 1 & 3 & 3 & 3 & 3 & 3 \\
 \arrayrulecolor{black}\hline
-YOLOv8s 0.5       & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv8s 0,5       & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{mygray}\hline
-YOLOv8s 0.7       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv8s 0,7       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
-YOLOv9s 0.5       & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv9s 0,5       & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{mygray}\hline
-YOLOv9s 0.7       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv9s 0,7       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
-YOLOv10s 0.5      & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
+YOLOv10s 0,5      & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
 \arrayrulecolor{mygray}\hline
-YOLOv10s 0.7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv10s 0,7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
-YOLOv11s 0.5      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv11s 0,5      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{mygray}\hline
-YOLOv11s 0.7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv11s 0,7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
-YOLOv12s 0.5      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv12s 0,5      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{mygray}\hline
-YOLOv12s 0.7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+YOLOv12s 0,7      & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
-YOLOv12l 0.5      & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
+YOLOv12l 0,5      & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
 \arrayrulecolor{mygray}\hline
-YOLOv12l 0.7      & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
+YOLOv12l 0,7      & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
 \arrayrulecolor{black}\hline
-\textit{custom} 0.5        & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
+\textit{custom} 0,5        & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} \\
 \arrayrulecolor{mygray}\hline
-\textit{custom} 0.7        & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
+\textit{custom} 0,7        & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
 \textit{ensemble}       & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{myred!30}\ding{55} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} & \cellcolor{mygreen!30}\ding{51} \\
 \arrayrulecolor{black}\hline
@@ -1774,10 +1775,10 @@ Para ampliar la comparativa visual, se seleccionan imágenes representativas del
 \textit{ground truth} de los expertos y la salida del modelo de la prueba de concepto (YOLOv7). 
 
 Con el fin de garantizar una comparación justa con la prueba de concepto inicial, que operaba a probabilidad 0.25, se fijó el mismo umbral (0.25) para YOLOv12s; 
-en las imágenes de la \autoref{sec:Resultados cualitativos anexo}, tanto YOLOv12s (con umbral de 0.5) como el \textit{ensemble} se aproximan al ground truth pero presentan muchos falsos negativos. Por el contrario, YOLOv7 presenta pocos falsos negativos y muchos falsos positivos.
-Sin embargo, con un umbral de 0.25, YOLOv12s consigue un buen equilibro al presentar pocos falsos positivos (bastantes menos que YOLOv7) y pocos falsos negativos, dando lugar a una detección más precisa y fiable.
+en las imágenes de la \autoref{sec:Resultados cualitativos anexo}, tanto YOLOv12s (con umbral de 0.5) como el \textit{ensemble} se aproximan al \textit{ground truth} pero presentan muchos falsos negativos. Por el contrario, YOLOv7 presenta pocos falsos negativos y muchos falsos positivos.
+Sin embargo, con un umbral de 0.25, YOLOv12s consigue un buen equilibrio al presentar pocos falsos positivos (bastantes menos que YOLOv7) y pocos falsos negativos, dando lugar a una detección más precisa y fiable.
 
-En conjunto, YOLOv12s se perfila como el modelo más adecuado para la detección de células redondas en este dataset y, junto con la herramienta web, constituye una solución operativa para análisis automatizado; además, el ajuste interactivo del umbral 
+En conjunto, YOLOv12s se perfila como el modelo más adecuado para la detección de células redondas en este \textit{dataset} y, junto con la herramienta web, constituye una solución operativa para análisis automatizado; además, el ajuste interactivo del umbral 
 de confianza permite adaptar sensibilidad y especificidad a las necesidades de cada caso.
 
 \chapter{Herramienta Web} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1880,7 +1881,7 @@ A pesar de los buenos resultados, es importante reconocer las limitaciones inher
   Esta ambigüedad en el \textit{ground truth} supone una limitación en el rendimiento máximo a alcanzar por cualquier modelo.
   \item \textbf{Heterogeneidad de la clase "célula redonda":} Las "células redondas" no se abordan como una única categoría sino que agrupa un conjunto heterogéneo de diferentes células. Esto simplifica el problema de detección pero se pierde información valiosa 
   que una clasificación más detallada podría proporcionar.
-  \item \textbf{Alcance y representatividad del dataset:} Aunque el conjunto de datos proporcionado por Microptic S.L. \cite{microptic} es suficiente para demostrar la viabilidad de la prueba de concepto, 
+  \item \textbf{Alcance y representatividad del \textit{dataset}:} Aunque el conjunto de datos proporcionado por Microptic S.L. \cite{microptic} es suficiente para demostrar la viabilidad de la prueba de concepto, 
   el número de datos que lo conforman es bastante limitado si atendemos a los grandes volúmenes de datos que suelen abordar los modelos de aprendizaje profundo. Además, todos los datos provienen de la misma empresa, limitando así, la capacidad de generalizar de los modelos
   y la externalización del \textit{software} a otros laboratorios.
   \item \textbf{Recursos computacionales:} Si bien durante el proceso de entrenamiento se emplea \textit{hardware} bastante limitado, el uso de un servidor, pese a las implicaciones económicas que conlleva, puede dar solución a estas limitaciones.
@@ -1896,10 +1897,10 @@ Los resultados de este proyecto abren nuevas y prometedoras vías de investigaci
   \item \textbf{Exploración de otras arquitecturas:} Esta prueba de concepto se ha enfocado en detectores de una única estapa (YOLO), optimizados para ofrecer un equilibrio entre precisión y velocidad. Sin embargo, 
   una alternativa a estos modelos pueden ser los de dos etapas (como \textit{Fast-RCNN} \cite{7410526}), el cual presenta generalmente mayor \textit{precision} y tiempo de inferencia. Una alternativa a esta línea de investigación es usar detectores basados en Transformers
   (como D-FINE \cite{peng2024dfineredefineregressiontask}). Este enfoque promete una localización muy precisa incluso en escenas complejas y podría superar algunas limitaciones de los modelos puramente convolucionales.
-  \item \textbf{Gestión de los artefactos:} La baja representación de los Anillos de Newton nos dicen que la introducción de una clase nueva puede continuar dando falsos positivos en las diferentes detecciones de clases, dando lugar
+  \item \textbf{Gestión de los artefactos:} La baja representación de los anillos de Newton nos dicen que la introducción de una clase nueva puede continuar dando falsos positivos en las diferentes detecciones de clases, dando lugar
   a nuevos problemas. Sin embargo, es una vía a explorar que no se puede descartar. Esta hipótesis es necesaria si se plantea un grado superior de automatización, donde la precisión es relevante, y por tanto, el umbral de confianza debe ser menor; 
   dando lugar a falsos positivos por parte de las diferentes arquitecturas, incluida YOLOv12s.
-  \item \textbf{Enriquecimiento del dataset:} Es bien sabido que la robustez de los modelos depende de la calidad y diversidad de los datos de entrenamiento. Es fundamental continuar ampliando el \textit{dataset} con imágenes procedentes de diferentes condiciones.
+  \item \textbf{Enriquecimiento del \textit{dataset}:} Es bien sabido que la robustez de los modelos depende de la calidad y diversidad de los datos de entrenamiento. Es fundamental continuar ampliando el \textit{dataset} con imágenes procedentes de diferentes condiciones.
   Un conjunto de datos más extenso y heterogéneo no solo mejoraría la capacidad de generalización de los modelos sino que abre las puertas a la detección de otras células.
   \item \textbf{Evolución y validación de la herramienta web:} La evolución de la herramienta a su vez debe pasar por la inclusión de nuevos modelos como \textit{Fast-RCNN}. El siguiente paso lógico es desplegar la herramienta web en un entorno de laboratorio real 
   para obtener el \textit{feedback} directo de los expertos. Se puede implementar una funcionalidad que permita a los especialistas corregir las predicciones del modelo, creando un ciclo de aprendizaje activo donde sus validaciones se utilicen para reentrenar y mejorar continuamente la precisión del sistema.
