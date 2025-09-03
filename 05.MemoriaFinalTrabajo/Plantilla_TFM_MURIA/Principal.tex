@@ -214,7 +214,10 @@
   \item[Detección de Objetos]: Tarea de localizar y clasificar instancias de objetos en imágenes mediante \textit{bounding boxes} y etiquetas. 
   \item[NMS (\textit{Non-Maximum Suppression)}]: Algoritmo para eliminar las detecciones redundantes, manteniendo la caja con mayor confianza entre las solapadas.
   \item[Aprendizaje profundo o \textit{deep learning}]: Área del aprendizaje automático que emplea redes neuronales profundas para aprender representaciones y resolver tareas complejas.
-  \item[\textit{Transfer Learning}]: Reutilizar un modelo preentrenado y adaptarlo para entrenar un nuevo modelo con el conocimiento ya adquirido previamente con un \textit{dataset} generalmente mayor.
+  \item[Aprendizaje por transferencia ()\textit{Transfer Learning})]: Estrategia de aprendizaje automático que consiste en reutilizar un modelo preentrenado en una tarea para aplicarlo como punto de partida en una segunda 
+  tarea distinta pero relacionada. En lugar de entrenar un modelo desde cero, se aprovecha el "conocimiento" (pesos y características) ya adquirido.
+  \item[Ajuste fino (\textit{Fine-Tuning})]: Técnica específica del aprendizaje por transferencia. Consiste en tomar un modelo preentrenado y continuar su entrenamiento sobre un nuevo conjunto de datos más específico. 
+  Durante este proceso, los pesos del modelo se "ajustan" o refinan, generalmente con una tasa de aprendizaje baja, para adaptar las características aprendidas previamente a las demandas de la nueva tarea.
   \item[\textit{Framework}]: Conjunto estructurado de herramientas, librerías y convenciones que facilita y agiliza el desarrollo de aplicaciones o sistemas.
   % \item[\textit{Ensemble}]: Técnica para la unificación de predicciones de diferentes modelos.
   % \item[\textit{Cross Validatio}]: Técnica estadística para la evaluación de modelos, que se fundamenta en dividir el \textit{dataset} en multiples pliegues (\textit{folds}) para entrenar y validar el modelo de forma iteractiva.
@@ -1070,6 +1073,8 @@ El detalle completo previo y durante la etapa de entrenamiento de los diferentes
   \item \textbf{Optimización de modelos:} Se realiza una búsqueda sistemática mediante el \textit{framework} Optuna \cite{Optuna} para la optimización automática de hiperparámetros.
   \item \textbf{Entrenamiento y validación:} Para obtener modelos que generalicen lo mejor posible, se emplean las técnicas:
   \begin{itemize}
+    \item \textbf{Aprendizaje por Transferencia (\textit{Fine-tuning}):} Se emplean los pesos preentrenados de las diferentes arquitecturas de YOLO. Sobre esta base de conocimiento,
+    los modelos son reentrenados específicamente con el dataset de células redondas. Este enfoque acelera el entrenamiento y permite alcanzar un rendimiento elevado.
     \item \textbf{Aumento de datos (\textit{data augmentation}):} Durante el proceso de entrenamiento, se aplican transformaciones para enriquecer la diversidad de los datos y reducir el \textit{overfitting}.
     \item \textbf{Validación cruzada (\textit{k-fold cross-validation}):} Se emplea para evaluar de forma robusta la capacidad de generalización de los modelos y la configuración de los hiperparámetros.
   \end{itemize} 
