@@ -220,7 +220,7 @@
   % \item[\textit{Cross Validatio}]: Técnica estadística para la evaluación de modelos, que se fundamenta en dividir el dataset en multiples pliegues (\textit{folds}) para entrenar y validar el modelo de forma iteractiva.
   % \item[\textit{Data augmentation}]: Conjunto de transformaciones sobre los datos como rotaciones, traslaciones, adición de ruido, entro otros, con el objetivo de aumentar la diversidad del dattaset y mejorar la generalización del modelo.
   % \item[Optuna]: Biblioteca de Python para la optimización de hiperparámetros, permitiendo encontrar las mejores configuraciones de estos. 
-  \item[Streamlit]: Framework de Python para crear aplicaciones web interactivas orientadas a la ciencia de datos y \textit{Machine Learning}.
+  \item[\textit{Streamlit}]: \textit{framework} de Python para crear aplicaciones web interactivas orientadas a la ciencia de datos y \textit{Machine Learning}.
   \item[Monolítica]: Arquitectura de software en la que la aplicación se despliega y ejecuta en un mismo proceso.     
   \item[LabelImg]: Herramienta gráfica de código abierto para la anotación de imágenes con \textit{bounding boxes}.
   \item[\textit{Widget}]: Elemento de una interfaz interactiva que permite al usuario controlar el comportamiento de una aplicación.
@@ -768,7 +768,7 @@ Atendiendo a la metodología Scum del proyecto, se definen las siguientes histor
 \hline
 \textbf{ID} & 5 & \textbf{Título} & Desarrollo de la herramienta web interactiva \\
 \hline
-\textbf{Descripción} & \multicolumn{3}{m{15cm}|}{Diseñar, implementar y probar la herramienta web con Streamlit, integrando los diferentes modelos de YOLO para permitir la detección de células en tiempo real.} \\
+\textbf{Descripción} & \multicolumn{3}{m{15cm}|}{Diseñar, implementar y probar la herramienta web con \textit{Streamlit}, integrando los diferentes modelos de YOLO para permitir la detección de células en tiempo real.} \\
 \hline
 \textbf{Criterios de aceptación} & \multicolumn{3}{m{15cm}|}{La herramienta web debe ser completamente funcional: permitir la carga de imágenes (individuales y por lotes), seleccionar el modelo, visualizar las detecciones con \textit{bounding boxes}, mostrar métricas y permitir la descarga de resultados. La aplicación debe ser estable y estar documentada en el manual de usuario.} \\
 \hline
@@ -853,7 +853,7 @@ Esta sección presenta la planificación del proyecto (\autoref{tab:estimacion_t
 
 Atendiendo a la metodología agile Scrum, el desarrollo del proyecto se ha estructurado en seis \textit{sprints} de dos semanas cada uno.
 Cada \textit{sprint} se corresponde con una historia de usuario, permitiendo un desarrolle lógico y secuencial.
-En el anexo \ref{Seguimiento de proyecto} se detalla mediante del diagrama de Gantt \cite{OnlineGantt2025} la planificación de cada \textit{sprint}, con una fecha final objetivo que corresponde con la entrega del día 5 de septiembre de 2025.
+En el anexo \autoref{Seguimiento de proyecto} se detalla mediante del diagrama de Gantt \cite{OnlineGantt2025} la planificación de cada \textit{sprint}, con una fecha final objetivo que corresponde con la entrega del día 5 de septiembre de 2025.
 
 A continuación, se resume el enfoque de cada sprint:
 
@@ -866,7 +866,7 @@ A continuación, se resume el enfoque de cada sprint:
   
   \item Modelos Avanzados y Evaluación (Semanas 30-31): Se desarrolla un modelo \textit{ensemble} que combina las fortalezas de varios modelos, y se realiza la evaluación comparativa final.
   
-  \item Desarrollo de la Herramienta Web (Semanas 32-33): Se dedica por completo a la creación de la aplicación interactiva con Streamlit. Se implementa tanto el backend (lógica de inferencia) como el frontend (interfaz de usuario).
+  \item Desarrollo de la Herramienta Web (Semanas 32-33): Se dedica por completo a la creación de la aplicación interactiva con \textit{Streamlit}. Se implementa tanto el backend (lógica de inferencia) como el frontend (interfaz de usuario).
   
   \item Documentación y Entrega Final (Semanas 34-35): La última fase se centra en consolidar todo el trabajo. Incluye la redacción final de la memoria del TFM y la documentación del código para garantizar su reproducibilidad.
 \end{itemize}
@@ -900,7 +900,7 @@ Los recursos disponibles para el desarrollo de este proyecto se clasifican en tr
 \end{itemize}
 
 La asignación de recursos se realiza de la siguiente manera: cada rol humano dispone del equipo informático necesario para sus 
-funciones. El desarrollador utiliza su equipo local para el preprocesado de datos, desarrollo del \textit{pipeline} de metodológico y el desarrollo de la aplicación web con Streamlit. 
+funciones. El desarrollador utiliza su equipo local para el preprocesado de datos, desarrollo del \textit{pipeline} de metodológico y el desarrollo de la aplicación web con \textit{Streamlit}. 
 El servidor remoto con GPU Tesla T4 se reserva para las tareas de mayor coste computacional, como el entrenamiento del modelo pesado (YOLOv12l).
 Se solicita puntualmente una consulta con el experto de Microptic S.L. para resolver dudas técnicas en las anotaciones de las imágenes.
 Finalmente, las instalaciones garantizan el soporte operativo (luz, internet) para todas las actividades.
@@ -962,7 +962,7 @@ Monitorización continua\\
 \hline
 7 & Errores de código o integración & Implementación & Alta & Bajo & 
 Escasez de pruebas, errores humanos & 
-Realización continuada de pruebas y control de versiones \\
+Realización continuada de pruebas y control de versiones \autoref{Control de versiones} \\
 \hline
 8 & Faltan recursos técnicos o humanos & Implementación & Alta & Bajo & 
 Limitaciones de \textit{hardware} en el uso de GPU & 
@@ -1000,32 +1000,31 @@ En el marco de ejecución de este proyecto, se ha llevado a cabo un riguroso cum
 se detalla cómo el proyecto se ajusta y adhiere a las leyes pertinentes:
 
 \begin{itemize}
-    \item \textbf{Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales}\cite{LOPD2018}
+    \item \textbf{Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales.}\cite{LOPD2018}
     
     Este proyecto respeta plenamente la Ley Orgánica 3/2018, la cual reconoce el derecho fundamental a la protección de datos personales. 
     La creación y tratamiento del dataset de imágenes médicas se ha realizado conforme a las disposiciones de la ley, asegurando la legalidad en el tratamiento de datos biomédicos. 
     Se han obtenido los permisos explícitos necesarios para el uso de las imágenes, garantizando la privacidad y anonimización de los datos de los pacientes. 
     
-    \item \textbf{Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos (RGPD)}\cite{RGPD2016}
+    \item \textbf{Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos y por el que se deroga la Directiva 95/46/CE (Reglamento general de protección de datos).}\cite{RGPD2016}
 
-    La creación y tratamiento del dataset de imágenes médicas en este proyecto, se ha realizado conforme a los principios del RGPD, garantizando la legalidad, transparencia en el 
+    La creación y tratamiento del dataset de imágenes médicas en este proyecto se ha realizado conforme a los principios del RGPD, garantizando la legalidad y transparencia en el 
     tratamiento de datos biomédicos. Todas las imágenes han sido previamente anonimizadas y se han implementado medidas técnicas y organizativas 
     para asegurar la seguridad y privacidad de los datos, cumpliendo así con las exigencias del RGPD para datos de salud considerados de categoría 
     especial.
     
-    \item \textbf{Reglamento (UE) 2024/1689 del Parlamento Europeo y del Consejo sobre Inteligencia Artificial}\cite{ReglamentoIA2024}
+    \item \textbf{Reglamento (UE) 2024/1689 del Parlamento Europeo y del Consejo, de 13 de junio de 2024, por el que se establecen normas armonizadas en materia de inteligencia artificial.}\cite{ReglamentoIA2024}
 
     Este reglamento establece normas armonizadas para garantizar la seguridad, ética y transparencia en el desarrollo y aplicación de sistemas de IA en la Unión Europea.  
-    En el contexto de este TFM, el sistema desarrollado se considera una herramienta de investigación y apoyo a la evaluación biomédica —no está concebido ni validado para toma de decisiones clínicas autónomas— 
+    En el contexto de este TFM, el sistema desarrollado se considera una herramienta de investigación y apoyo a la evaluación biomédica. No está concebido ni validado para toma de decisiones clínicas autónomas,
     por lo que su uso actual no se presenta como IA de alto riesgo. No obstante, para alinearse con los requisitos se incorporan las siguientes medidas: documentación completa, evaluación de riesgos y validación, 
     trazabilidad y registro para una posterior reproducibilidad.
     
-    \item \textbf{Real Decreto Legislativo 1/1996 sobre Propiedad Intelectual}\cite{RDL1996}
+    \item \textbf{Real Decreto Legislativo 1/1996, de 12 de abril, por el que se aprueba el texto refundido de la Ley de Propiedad Intelectual, regularizando, aclarando y armonizando las disposiciones legales vigentes sobre la materia.}\cite{RDL1996}
     
     En conformidad con el Real Decreto Legislativo 1/1996, el proyecto respeta la normativa sobre propiedad intelectual. Se ha optado por utilizar 
     únicamente código y herramientas de \textit{software} libre y de código abierto para garantizar el cumplimiento de la normativa en materia de propiedad 
     intelectual.
-
 \end{itemize}
 
 
@@ -1042,15 +1041,15 @@ En esta sección se describen de forma reproducible, las tres etapas clave exper
 \section{Gestión y preprocesado del \textit{dataset}}
 \label{Gestión y preprocesado del dataset}
 
-La base de cualquier sistema de aprendizaje de inteligencia artificial reside en la calidad de los datos. Esta primera fase, se centra en el estudio y procesamiento del conjunto de datos (\autoref{sec:Dataset}), que servirá como
+La base de cualquier sistema de inteligencia artificial reside en la calidad de los datos. Esta primera fase se centra en el estudio y procesamiento del conjunto de datos (\autoref{sec:Dataset}), que servirá como
 fuente de verdad (\textit{ground truth}) en las etapas posteriores.
 
 \begin{itemize}
   \item \textbf{Adquisición y consolidación:} El punto de partida es el conjunto de imágenes médicas proporcionado por Microptic S.L. \cite{microptic} 
   Se realiza un análisis para comprender su estructura, el formato original (PascVOC) y la calidad de las anotaciones. Un conjunto de datos para entrenamiento y tres para \textit{test}.
   \item \textbf{Validación por expertos:} Atendiendo a la revisión de \textit{feedback} proporcionada por expertos sobre los conjuntos de \textit{test}, se procede con el reetiquetado (mediante LabelImage \cite{labelimg_github}) para asegurar una mejor precisión de las anotaciones. 
-  Como no se tiene \textit{feedback} respecto al conjunto de entrenamiento y, además, como se quiere comparar con la prueba de concepto inicial, no se modifica ni se pide una nueva valoración de expertos sobre el conjunto de datos de entrenamiento.
-  \item \textbf{Estructuración del dataset:} Para entrenar las diferentes arquitecturas de YOLO, el conjunto de datos de entrenamiento original, se divide el conjunto de datos en entrenamiento (80\%) y validación (20\%). Empleando para esto, una semilla determinada para garantizar que los experimentos sean reproducibles. 
+  Como no se dispone de \textit{feedback} sobre el conjunto de entrenamiento y, además, se quiere comparar con la prueba de concepto inicial, este no se modifica ni se pide una nueva valoración de expertos sobre el conjunto de datos de entrenamiento.
+  \item \textbf{Estructuración del dataset:} Para entrenar las diferentes arquitecturas de YOLO, el conjunto de datos de entrenamiento original, se divide el conjunto de datos en entrenamiento (80\%) y validación (20\%). Para ello, se emplean una semilla determinada para garantizar que los experimentos sean reproducibles. 
   \item \textbf{Nuevo formato de datos:} Una vez se ha organizado la estructura de carpetas, las anotaciones en formato PascVOC se convierten a formato YOLO, que es requerido para la metodología actual. Adicionalmente, se generó una versión en formato COCO para garantizar la interoperabilidad y facilitar futuras aplicaciones con otros marcos de trabajo.
 \end{itemize}
 
@@ -1061,9 +1060,9 @@ Esta fase constituye el núcleo de la investigación, donde se exploran diferent
 El detalle completo previo y durante la etapa de entrenamiento de los diferentes modelos se recoge en la \autoref{sec:Configuraciones}.
 
 \begin{itemize}
-  \item \textbf{Arquitectura:} El código de esta fase se estructura de forma altamente modular, facilitando el mantenimiento y escalabilidad. La lógica completa se encapsula en clases y librerías reutilizables, manteniendo los cuadernos de Jupyter 
-  (Jupyter Notebooks) limpios y con un hilo argumental claro; dando lugar a una estructura limpia y clara \cite{repoTFM}.
-  \item \textbf{Optimización de modelos:} Se realiza una búsqueda sistemática mediante el framework Optuna \cite{Optuna} para la optimización automática de hiperparámetros.
+  \item \textbf{Arquitectura:} El código de esta fase se estructura de forma altamente modular, facilitando el mantenimiento y escalabilidad. La lógica completa se encapsula en clases y librerías reutilizables, manteniendo los cuadernos de \textit{Jupyter} 
+  limpios y con un hilo argumental claro \cite{repoTFM}.
+  \item \textbf{Optimización de modelos:} Se realiza una búsqueda sistemática mediante el \textit{framework} Optuna \cite{Optuna} para la optimización automática de hiperparámetros.
   \item \textbf{Entrenamiento y validación:} Para obtener modelos que generalicen lo mejor posible, se emplean las técnicas:
   \begin{itemize}
     \item \textbf{Aumento de datos (\textit{data augmentation}):} Durante el proceso de entrenamiento, se aplican transformaciones para enriquecer la diversidad de los datos y reducir el \textit{overfitting}.
@@ -1076,22 +1075,22 @@ El detalle completo previo y durante la etapa de entrenamiento de los diferentes
   \end{itemize}
   \item \textbf{Evaluación:} Se realiza una evaluación cuantitativa y cualitativa de los resultados (Ver \autoref{Resultados}).
   \begin{itemize}
-    \item \textbf{Evaluación cuantitativa:} Se estudia el rendimiento individual de los modelos sobre los diferentes conjuntos de \textit{test}. Para esto, se emplean las métricas: 
+    \item \textbf{Evaluación cuantitativa:} Se estudia el rendimiento individual de los modelos sobre los diferentes conjuntos de \textit{test}. Con este fin, se emplean las métricas: 
     \textit{precision}, \textit{recall}, mAP@0.5, mAP@0.5:0.95, el tiempo de inferencia y el F1-confianza (\autoref{sec:Métricas}). 
-    \item \textbf{Evaluación cualitativa:} Se evalúan los modelos en un entorno problemático, como son las imágenes con Anillos de Newton (\autoref{sec:Definición del problema}). Asimismo, se realiza una comparativa de resultados respecto algunas imágenes de resultados obtenidos en la prueba de concepto inicial. 
+    \item \textbf{Evaluación cualitativa:} Se evalúan los modelos en un entorno problemático, como son las imágenes con Anillos de Newton (\autoref{sec:Definición del problema}). Asimismo, se realiza una comparativa de resultados respecto a algunas imágenes de resultados obtenidos en la prueba de concepto inicial. 
   \end{itemize}
 \end{itemize}
 
 \section{Desarrollo y despliegue de la herramienta web}
 \label{Despliegue de la herramienta web}
 
-La tercera y última fase del proyecto, es dar una solución tangible y accesible para los usuarios finales (expertos) (\autoref{Herramienta web}).
+La tercera y última fase del proyecto es dar una solución tangible y accesible para los usuarios finales (expertos) (\autoref{Herramienta web}).
 
 \begin{itemize}
-  \item \textbf{Desarrollo de la interfaz:} Se define una aplicación interactiva empleando el framework de Streamlit, con el fin de que los expertos médicos puedan interactuar de forma intuitiva con el sistema de detección de células redondas.
+  \item \textbf{Desarrollo de la interfaz:} Se define una aplicación interactiva empleando el \textit{framework} de \textit{Streamlit}, con el fin de que los expertos médicos puedan interactuar de forma intuitiva con el sistema de detección de células redondas.
   \item \textbf{Funcionalidades:} La prueba de concepto se integra con una serie de funcionalidades como la carga de imágenes y anotaciones asociadas (opcional), selección de modelo de inferencia e intervalo de confianza de las predicciones, 
   visualización de las detecciones, comparativa de resultados con el \textit{ground truth}, exportación de predicciones y métricas sobre un conjunto de imágenes. 
-  \item \textbf{Arquitectura de \textit{software}:} La aplicación se diseña con un enfoque modular, que separa la lógica de procesado de la interfaz de usuario, garantizando la escalabilidad y la facilidad de mantenimiento \cite{repoTFM}.
+  \item \textbf{Arquitectura de \textit{software}:} La aplicación se diseña con un enfoque modular, que separa la lógica de procesamiento de la interfaz de usuario, garantizando la escalabilidad y la facilidad de mantenimiento \cite{repoTFM}.
 \end{itemize}
 
 \chapter{Experimentación} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1131,7 +1130,7 @@ Las correcciones afectan a un total de 60 imágenes, incrementando el número de
 
 Asimismo, se incluyeron dos conjuntos adicionales denominados \textit{test2} y \textit{test3}, inicialmente sin anotaciones pero que contenían \textit{bounding boxes} generados por modelos YOLO \cite{ultralytics_models} preentrenados 
 por el grupo GVIS de la Universidad de León. Estas predicciones fueron posteriormente corregidas y validadas por expertos, proporcionando dos conjuntos adicionales para evaluación. 
-La composición final del dataset se presenta en la Tabla~\ref{tab:dataset_final}.
+La composición final del dataset se presenta en la \autoref{tab:dataset_final}.
 
 \clearpage
 \begin{table}[htbp]
@@ -1309,7 +1308,7 @@ custom    & 0.00153 & 0.00111 & 0.89113 & 0.00015 & AdamW \\
 \end{table}
 
 Para mejorar la capacidad de generalización de los modelos y prevenir el sobreajuste, se aplicaron técnicas de aumento de datos (\textit{data augmentation}) 
-durante el entrenamiento. Los hiperparámetros utilizados se muestran en la Tabla \ref{tab:Hiperparámetros de data augmentation}. Los parámetros de calentamiento 
+durante el entrenamiento. Los hiperparámetros utilizados se muestran en la \autoref{tab:Hiperparámetros de data augmentation}. Los parámetros de calentamiento 
 (\textit{warmup\_epochs} y \textit{warmup\_momentum}) controlan la fase inicial del entrenamiento, donde el optimizador incrementa gradualmente la tasa de 
 aprendizaje durante 5 épocas, partiendo de un momentum de 0.75. Los parámetros de transformación geométrica incluyen: \textit{degrees}, que permite rotaciones 
 aleatorias de hasta 45 grados; \textit{translate}, que permite desplazamientos de hasta el 10\% de las dimensiones de la imagen; y \textit{scale}, que permite 
@@ -1404,7 +1403,7 @@ De este modo, el proceso de entrenamiento tiene lugar con las 4 combinaciones (s
 \centering
 \begin{tabular}{lcccc}
 \toprule
-\textbf{Modelo} & \textbf{Precisión} & \textbf{Recall} & \textbf{mAP50} & \textbf{mAP50-95} \\
+\textbf{Modelo} & \textbf{Precisión} & \textbf{\textit{recall}} & \textbf{mAP50} & \textbf{mAP50-95} \\
 \midrule
 YOLOv8s  & 0.836 $\pm$ 0.008 & 0.868 $\pm$ 0.015 & 0.914 $\pm$ 0.011 & 0.723 $\pm$ 0.024 \\
 YOLOv9s  & 0.852 $\pm$ 0.015 & 0.866 $\pm$ 0.013 & 0.919 $\pm$ 0.009 & 0.729 $\pm$ 0.026 \\
@@ -1418,7 +1417,7 @@ custom    & 0.836 $\pm$ 0.014 & 0.865 $\pm$ 0.014 & 0.905 $\pm$ 0.011 & 0.707 $\
 \end{table}
 
 Los datos de la \autoref{tab:kfold_resultados} se representan en la \autoref{fig:yolo_k-fold}.
-En esta figura, cada punto central indica el valor medio de rendimiento para una métrica específica (Precisión, Recall, mAP50 y mAP50-95), 
+En esta figura, cada punto central indica el valor medio de rendimiento para una métrica específica (Precisión, \textit{recall}, mAP50 y mAP50-95), 
 mientras que las barras horizontales que lo rodean representan la desviación estándar obtenida a lo largo de los 4 pliegues de la validación cruzada.
 
 Analizando la \autoref{fig:yolo_k-fold}, se puede observar que, pese a las pequeñas diferencias en los promedios, los intervalos de incertidumbre se solapan entre todos los modelos
@@ -1454,7 +1453,7 @@ Asimismo, el proceso de ensamblado se realiza siguiendo los siguientes pasos:
 Cabe destacar, cuando las predicciones de YOLOv12 y YOLOv10 no coinciden (sin solapamiento significativo de las \textit{bounding boxes}), el algoritmo mantiene las detecciones como predicciones independientes,
 aplica el umbral de omisión de cajas a cada predicción individual y si supera dicho umbral, estas predicciones se incluyen en el resultado final.
 
-De este modo, se aprovechan las fortalezas de cada modelo y se reducen los falsos negativos al mantener detecciones únicas de cada modelo (mejora el Recall).
+De este modo, se aprovechan las fortalezas de cada modelo y se reducen los falsos negativos al mantener detecciones únicas de cada modelo (mejora el \textit{recall}).
 
 Para obtener la configuración óptima de hiperparámetros, se exploran diferentes valores en un grid. Para el umbral de IoU (cuando dos \textit{bounding boxes} se consideran superposiciones de la misma detección) se exploran los valores 
 de 0.3, 0.4 y 0.5 y para el umbral de omisión de cajas (determina la confianza mínima para considerar una predicción) se exploran los valores de 0.25, 0.3 y 0.35.
@@ -1532,21 +1531,21 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
   \[
     \mathrm{Precision} = \frac{TP}{TP + FP}
   \]
-  donde TP son los verdaderos positivos y FP los falsos positivos. Alta precision indica pocas detecciones erróneas.
+  donde TP son los verdaderos positivos y FP los falsos positivos. Alta \textit{precision} indica pocas detecciones erróneas.
 
   \item[\textit{Recall}]: Mide la proporción de instancias reales que han sido detectadas:
   \[
     \mathrm{Recall} = \frac{TP}{TP + FN}
   \]
-  donde FN son los falsos negativos. Un recall alto indica que el modelo encuentra la mayoría de las instancias reales.
+  donde FN son los falsos negativos. Un \textit{recall} alto indica que el modelo encuentra la mayoría de las instancias reales.
 
-  \item[\textit{F1-score}] Es la media armónica entre la precisión y el recall, proporcionando una medida única que equilibra ambos aspectos. Se calcula como:
+  \item[\textit{F1-score}] Es la media armónica entre la precisión y el \textit{recall}, proporcionando una medida única que equilibra ambos aspectos. Se calcula como:
   \[
     \mathrm{F1} = 2 \cdot \frac{\mathrm{Precision} \cdot \mathrm{Recall}}{\mathrm{Precision} + \mathrm{Recall}}
   \]
   El F1-score es especialmente útil cuando es importante considerar tanto los falsos positivos como los falsos negativos. En este trabajo se utiliza como métrica principal en las curvas F1-confianza y en la herramienta web.
 
-  \item[\textit{mean Average Precision (mAP)}] Para detección de objetos se calcula la curva precision–recall para cada clase y su área bajo la curva (AP). El \textit{mean Average Precision} es la media de las AP sobre todas las clases:
+  \item[\textit{mean Average Precision (mAP)}] Para detección de objetos se calcula la curva \textit{precision}–\textit{recall} para cada clase y su área bajo la curva (AP). El \textit{mean Average Precision} es la media de las AP sobre todas las clases:
   \[
     \mathrm{mAP} = \frac{1}{C}\sum_{c=1}^{C} \mathrm{AP}_c
   \]
@@ -1562,7 +1561,7 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
 
   \medskip
 
-  \noindent\textbf{mAP@[0.5:0.95] (mAP50:95).} Es la mAP estándar del benchmark COCO que promedia la AP de cada clase sobre múltiples umbrales de IoU desde 0.50 hasta 0.95 con paso 0.05 (10 umbrales: 0.50, 0.55, …, 0.95). Nota: COCO calcula cada AP integrando la curva precision–recall muestreada en 101 puntos, y después se promedian las AP en los 10 umbrales para obtener mAP@[0.5:0.95].
+  \noindent\textbf{mAP@[0.5:0.95] (mAP50:95).} Es la mAP estándar del benchmark COCO que promedia la AP de cada clase sobre múltiples umbrales de IoU desde 0.50 hasta 0.95 con paso 0.05 (10 umbrales: 0.50, 0.55, …, 0.95). Nota: COCO calcula cada AP integrando la curva \textit{precision}–\textit{recall} muestreada en 101 puntos, y después se promedian las AP en los 10 umbrales para obtener mAP@[0.5:0.95].
   \[
     \mathrm{mAP}_{[0.5:0.95]} \;=\; \frac{1}{C}\frac{1}{T}\sum_{c=1}^{C}\sum_{t\in\{0.50,0.55,\dots,0.95\}} \mathrm{AP}_c(\mathrm{IoU}=t)
   \]
@@ -1585,7 +1584,7 @@ centrado en la interpretación visual y contextual de las predicciones realizada
 \section{Resultados cuantitativos}
 \label{sec:Resultados cuantitativos}
 
-En esta primera parte, se evalúan los resultados sobre el conjunto de \textit{test} original, para el cual tenemos resultados asociados
+En esta primera parte, se evalúan los resultados sobre el conjunto de \textit{test} original para el cual tenemos resultados asociados
 a la prueba de concepto previa (\autoref{tab:yolov7_results}). Bajo la premisa de que todos los modelos arrojan resultados similares, por los tiempos de inferencia y 
 el valor más alto en la métrica mAP@0.5:0.95, el mejor modelo es YOLOv7.
 
@@ -1595,7 +1594,7 @@ el valor más alto en la métrica mAP@0.5:0.95, el mejor modelo es YOLOv7.
   \resizebox{\textwidth}{!}{
   \begin{tabular}{lccccc}
       \hline
-      \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{Recall (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
+      \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{\textit{recall} (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
       \hline
       YOLOv7      & 0.87  & \textbf{0.889} & \textbf{0.935} & \textbf{0.722} & 20.0   \\
       YOLOv7-W6   & 0.847 & 0.883 & 0.925 & 0.694 & \textbf{16.0}   \\
@@ -1612,7 +1611,7 @@ el valor más alto en la métrica mAP@0.5:0.95, el mejor modelo es YOLOv7.
   \resizebox{\textwidth}{!}{
   \begin{tabular}{lccccc}
       \hline
-      \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{Recall (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
+      \textbf{Modelo} & \textbf{Precisión (P)} & \textbf{\textit{recall} (R)} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Inferencia (ms)} \\
       \hline
       YOLOv8s    & 0.843 & 0.844 & 0.920 & 0.722 & \textbf{11.006} \\
       YOLOv9s    & 0.838 & 0.852 & 0.921 & 0.721 & 13.485 \\
@@ -1630,11 +1629,11 @@ el valor más alto en la métrica mAP@0.5:0.95, el mejor modelo es YOLOv7.
 
 Comparando estos resultados con los obtenidos en este proyecto (\autoref{tab:yolov8_12_results}), el modelo YOLOv12s destaca por mejorar las métricas mAP@0.5 y mAP@0.5:0.95 (un 5.26\% más que YOLOv7) y 
 reducir la latencia respecto a versiones anteriores, por lo que se considera el mejor modelo en esta prueba. Aunque los modelos más pesados como YOLOv12l y el ensamblado 
-presentan mayores tiempos de inferencia, todos los modelos mantienen una latencia inferior a 100 ms. El ensemble logra el mayor recall ($0.895$), pero con peores valores de mAP, 
+presentan mayores tiempos de inferencia, todos los modelos mantienen una latencia inferior a 100 ms. El ensemble logra el mayor \textit{recall} ($0.895$), pero con peores valores de mAP, 
 precisión y latencia. YOLOv8s es el más rápido ($11.006$ ms) y YOLOv11s obtiene la mayor precisión.
 
 Analizando los nuevos conjuntos de \textit{test} (\autoref{tab:yolos_nuevos_tests}), los resultados siguen siendo similares entre modelos. Según la métrica mAP@0.5:0.95, YOLOv12s vuelve a ser el mejor (0.673), seguido de YOLOv12l (0.659). 
-El ensemble mejora precisión y recall, pero empeora mAP y latencia. El modelo custom destaca por su baja latencia y buenos resultados, especialmente en test3, 
+El ensemble mejora precisión y \textit{recall}, pero empeora mAP y latencia. El modelo custom destaca por su baja latencia y buenos resultados, especialmente en test3, 
 donde iguala la precisión del ensemble ($0.873$). Las diferencias entre el resto de modelos son mínimas.
 
 Tras el proceso de reetiquetado del conjunto de \textit{test} original, es decir, en la evaluación sobre el conjunto de test, se observan cambios intnteserantes que 
@@ -1645,7 +1644,7 @@ Asimismo, los tiempos de inferencia se mantienen con variaciones mínimas en la 
 
 El conjunto test2 muestra latencias más altas ($31$–$76$ ms) y un descenso general de mAP@0.5:0.95, lo que indica condiciones diferentes que afectan al rendimiento.
 
-En resumen, YOLOv12s es el modelo más destacado entre las arquitecturas evaluadas. El ensamblado de modelos mejora recall y precisión al reducir falsos negativos, aunque aumenta los falsos positivos, como muestran las matrices de confusión 
+En resumen, YOLOv12s es el modelo más destacado entre las arquitecturas evaluadas. El ensamblado de modelos mejora \textit{recall} y precisión al reducir falsos negativos, aunque aumenta los falsos positivos, como muestran las matrices de confusión 
 (\autoref{sec:Matrice de confusión}). En test2, las diferencias son mínimas debido al tamaño reducido del conjunto. El análisis de las curvas F1-confianza 
 (\autoref{sec:Curvas F1-confianza}) indica que el F1-score óptimo se alcanza con umbrales de confianza entre 0.25 y 0.5, por lo que se estudia YOLOv12s con un umbral de 0.35 
 para imágenes de alta resolución.
@@ -1779,7 +1778,7 @@ de confianza permite adaptar sensibilidad y especificidad a las necesidades de c
 \label{Herramienta web}
 Con el propósito de definir una herramienta de análisis automatizado, se desarrolla una interfaz intuitiva e interactiva para la detección 
 de células redondas sobre una muetra individual o colectiva. La información relativa a la aplicación,
-se puede encontrar en el manual de usuario (\ref{Manual de usuario}).
+se puede encontrar en el manual de usuario (\autoref{Manual de usuario}).
 \section{Objetivos de la herramienta}
 \label{sec:Objetivos de la herramienta}
 
@@ -1804,7 +1803,7 @@ una clara separación entre la lógica de procesamiento y de presentación.
 \subsection{Organización del proyecto}
 La estructura principal es:
 \begin{itemize}
-  \item \texttt{app.py}: orquestación de la interfaz (widgets Streamlit), gestión de sesión y del flujo de inferencia.
+  \item \texttt{app.py}: orquestación de la interfaz (\textit{widgets Streamlit}), gestión de sesión y del flujo de inferencia.
   \item \texttt{utils/utils.py}: servicios de \textit{backend} lógico (carga de modelos, preprocesado, inferencia, postprocesado, visualización).
   \item \texttt{assets/styles.css}: estilo e integración visual mediante \texttt{st.markdown}.
   \item \texttt{models/\{final\_model\_yolovXs\}/}: modelos entrenados para la casuística.
@@ -1813,7 +1812,7 @@ La estructura principal es:
 
 Para más información, revisar la documentación \texttt{04.Code/cell\_detection\_App} en el repositorio del proyecto \cite{repoTFM}.
 
-\subsection{Capas funcionales en Streamlit}
+\subsection{Capas funcionales en \textit{Streamlit}}
 \begin{enumerate}
   \item \textbf{Interfaz y orquestación (UI)}: componentes como \texttt{st.file\_uploader}, \texttt{st.selectbox}, \texttt{st.slider}, \texttt{st.sidebar} y \texttt{st.image} permiten la interacción con el usuario de una forma intuitiva.
   \item \textbf{Servicios de modelo e inferencia}: Funciones en \texttt{utils/utils.py} para cargar pesos YOLO, seleccionar dispositivo (CPU/GPU), normalizar entradas y ejecutar el modelo sobre las entradas preprocesadas.
@@ -1821,7 +1820,7 @@ Para más información, revisar la documentación \texttt{04.Code/cell\_detectio
   Además, incluye la exportación de las prediciones en formato PascVOC. 
   \item \textbf{Estado y caché}: \texttt{st.session\_state} para parámetros y resultados interactivos; \texttt{@st.cache\_resource} evita recargar 
   pesos al cambiar sólo parámetros de inferencia; \texttt{@st.cache\_data} para memoizar resultados derivado (tablas/figuras).
-  \item \textbf{Estilos y experiencia de usuario}: \texttt{assets/styles.css} para mejorar el aspecto visual que por defecto ofrece streamlit y uso de layout 
+  \item \textbf{Estilos y experiencia de usuario}: \texttt{assets/styles.css} para mejorar el aspecto visual que por defecto ofrece \textit{Streamlit} y uso de layout 
   responsivo (columnas, botones, tooltips) para mejorar la usabilidad.
   \item \textbf{Manejo de errores}: \texttt{st.info} para informar de estados (dispositivo, imágener y xml subidos), \texttt{st.warning} para advertir de un error en la lectura del xml, 
   \texttt{st.error} implide continuar con la ejecución si no encuentra modelo o al no ser capaz de procesar una imagen.
@@ -1960,12 +1959,12 @@ como se muestra en la siguiente imagen.
 
 En este punto, el usuario puede tomar la decisión de procesar una imagen individual o un conjunto de imágenes. Para esto, 
 tenemos el \textit{widget} que permite la selección entre "Detección individual" o "Carpeta completa". En ambos casos,
-la aplicación nos muestra una guia básica de funcionamiento como se puede apreciar en el apartado "Introducciones" en la Figura \ref{fig:cell_app}.
+la aplicación nos muestra una guia básica de funcionamiento como se puede apreciar en el apartado "Introducciones" en la \autoref{fig:cell_app}.
 De manera totalmente opcional, el usuario puede cargar junto a la imagen a estudio, el correspondiente conjunto de anotaciones.
 
 El \textit{widget} de Configuración permite la seleccion manual del modelo a través de un desplazable, el umbral de confianza de IoU, 
-la representación \textit{ground truth} (siempre que exista el xml asociado a la imagen) mediante un \textit{checkbox} (Figura \ref{fig:cell_app_gt}) y realizar un análisis exploratorio
-sobre la imagen con un zoom (Figura \ref{fig:cell_app_zoom}). Asimismo, muestra el dispositivo (CPU,GPU) con el que se procesan las imágenes.
+la representación \textit{ground truth} (siempre que exista el xml asociado a la imagen) mediante un \textit{checkbox} (\autoref{fig:cell_app_gt}) y realizar un análisis exploratorio
+sobre la imagen con un zoom (\autoref{fig:cell_app_zoom}). Asimismo, muestra el dispositivo (CPU,GPU) con el que se procesan las imágenes.
 
 \begin{figure}[htbp]
   \centering
@@ -1984,7 +1983,7 @@ sobre la imagen con un zoom (Figura \ref{fig:cell_app_zoom}). Asimismo, muestra 
 Cabe destacar el \textit{widget} "Descargar XML" que permite al usuario descargar las predicciones del modelo realizadas sobre la imagen de entrada en un formato
 PascalVOC. 
 
-Si el usuario prefiere evaluar un conjunto de imágenes con sus respectivas anotaciones, se debe seleccionar la elección de "carpeta completa" como se muestra en la Figura \ref{fig:cell_app_directory}.
+Si el usuario prefiere evaluar un conjunto de imágenes con sus respectivas anotaciones, se debe seleccionar la elección de "carpeta completa" como se muestra en la \autoref{fig:cell_app_directory}.
 
 \begin{figure}[htbp]
   \centering
@@ -1995,7 +1994,7 @@ Si el usuario prefiere evaluar un conjunto de imágenes con sus respectivas anot
 
 En este modo de evaluación, no está permitido el uso de los \textit{widgets}: \textit{ground truth} y \textit{zoom}. Sin embargo, 
 el procesamiento del modelo seleccionado junto con su correspondiente umbral de procesamiento de IoU, está acompañado de un pequeño conjunto de métricas:
-\textit{precision}, \textit{recall} y \textit{mAP}. Para una mejor evaluación, la herramienta muestra una matriz de confusión (Figura \ref{fig:cell_app_metrics}).
+\textit{precision}, \textit{recall} y \textit{mAP}. Para una mejor evaluación, la herramienta muestra una matriz de confusión (\autoref{fig:cell_app_metrics}).
 
 \begin{figure}[htbp]
   \centering
@@ -2027,7 +2026,7 @@ A continuación, se recogen pautas prácticas para el uso correcto funcionamient
   \item \textbf{Ejecución de la aplicación:} en la carpeta \texttt{04.Codigo/cell\_detection\_App} ejecutar:
     \begin{itemize}
       \item \texttt{streamlit run app.py}
-      \item Automáticamente se abre en el navegador por defecto la URL que Streamlit indique (por defecto \texttt{http://localhost:8501}).
+      \item Automáticamente se abre en el navegador por defecto la URL que \textit{Streamlit} indique (por defecto \texttt{http://localhost:8501}).
     \end{itemize}
   \item \textbf{Compatibilidad con modelos:} limitada a modelos de YOLO \cite{ultralytics_models}. 
 \end{itemize}
@@ -2037,11 +2036,11 @@ A continuación, se recogen pautas prácticas para el uso correcto funcionamient
 Posibles problemas que pueden tener lugar durante la instalación:
 
 \begin{itemize}
-  \item \textbf{La app no arranca / Streamlit muestra error:}
+  \item \textbf{La app no arranca / \textit{Streamlit} muestra error:}
     \begin{itemize}
       \item Verificar dependencias: \texttt{pip install -r 04.Codigo/requirements.txt}
       \item Comprobar la salida en el terminal donde se ejecuta \texttt{streamlit run app.py} y revisar trazas de error.
-      \item Borrar caché de Streamlit: \texttt{streamlit cache clear}.
+      \item Borrar caché de \textit{Streamlit}: \texttt{streamlit cache clear}.
     \end{itemize}
   \item \textbf{Modelo no encontrado o error de carga de pesos:}
     \begin{itemize}
