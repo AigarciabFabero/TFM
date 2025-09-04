@@ -15,29 +15,38 @@
 	\multicolumn{2}{|c|}{}	\\ \hline
 	\multicolumn{2}{|l|}{\textbf{ALUMNO}: Aitor García Blanco}	\\ \hline
 	\multicolumn{2}{|l|}{\textbf{TUTOR}: Laura Fernández Robles}	\\ \hline
-	\multicolumn{2}{|p{17cm}|}{\textbf{TÍTULO}: Detección de células redondas sobre un conjunto de imágenes médicas usando aprendizaje profundo} \\ \hline
-	\multicolumn{2}{|p{17cm}|}{\textbf{TITLE}: Round Cell Detection in Medical Images Using Deep Learning} \\ \hline
+	\multicolumn{2}{|p{17cm}|}{\textbf{TÍTULO}: Detección de células redondas en un conjunto de imágenes médicas mediante aprendizaje profundo} \\ \hline
+	\multicolumn{2}{|p{17cm}|}{\textbf{TITLE}: Round Cell Detection in Medical Image Sets Using Deep Learning} \\ \hline
 	\multicolumn{2}{|l|}{\textbf{CONVOCATORIA}: Septiembre, 2025}		\\ \hline
 	\multicolumn{2}{|p{17cm}|}{\textbf{RESUMEN}: Con el objetivo de optimizar el análisis seminal, un proceso clave en la medicina reproductiva, 
 	se aborda el diseño, desarrollo y validación de un sistema automatizado para la detección de células redondas en imágenes de muestras de semen 
 	humano sin procesar, mediante técnicas de aprendizaje profundo y visión por computador.
 	
-	La metodología se centró en la consolidación de un dataset validado por expertos, el reentrenamiento, la optimización y validación de diversas arquitecturas del modelo YOLO (de la v8 a la v12),
-	incluyendo la creación de un modelo personalizado y otro ensamblado. Los resultados obtenidos demuestran que el mejor modelo para abordar esta problemática es el YOLOv12s, 
-	superando significativamente el rendimiento de sistemas anteriores, mejorando las métricas clave y reduciendo errores, incluso frente a artefactos visuales.
+	La metodología se centra en la consolidación de un dataset validado por expertos. Posteriormente, se aborda el entrenamiento y la optimización de 
+	diversas arquitecturas del modelo YOLO (de la v8 a la v12), incluyendo la creación de un modelo con arquitectura personalizada y otro ensamblado (\textit{ensemble})
+	que fusiona las fortalezas de YOLOv10s y YOLOv12s. Para maximizar su rendimiento se aplican técnicas de ajuste fino (\textit{fine-tuning}) y aumento de datos 
+	(\textit{data augmentation}), junto con una sistemática optimización de hiperparámetros con Optuna y una evaluación mediante validación cruzada. 
+	Los resultados demuestran que el mejor modelo para abordar esta problemática es el YOLOv12s, que supera significativamente el rendimiento de 
+	sistemas anteriores.
 	
 	El proyecto culmina con el desarrollo de una herramienta web interactiva que traduce los diferentes modelos de inteligenia artificial 
 	en una solución práctica y funcional, que facilita la validación de resultados por parte del especialitas y sienta las bases para su futura integración en entornos clínicos, potenciando así 
 	la transformación digital en el campo de la andrología.} \\ \hline
-	\multicolumn{2}{|p{17cm}|}{\textbf{ABSTRACT}: To optimize semen analysis, a key process in reproductive medicine, this work addresses the design, development, and validation of an automated system 
-	for detecting round cells in raw human semen sample images, using deep learning and computer vision techniques.
-	The methodology focused on the consolidation of an expert-validated dataset, and on the retraining, optimization, and validation of various YOLO model architectures (from v8 to v12), 
-	including the creation of custom and ensemble models. The results show that YOLOv12s is the most effective model to address this problem, significantly outperforming previous systems 
-	by improving key metrics and reducing errors, even when faced with visual artifacts.
-	The project culminates in the development of an interactive web tool that translates the artificial intelligence models into a practical and functional solution. This interface facilitates 
-	the validation of results by specialists and lays the groundwork for its future integration into clinical settings, thus promoting the digital transformation in the field of andrology.} \\ 
+	\multicolumn{2}{|p{17cm}|}{\textbf{ABSTRACT}: To optimize semen analysis, a key process in reproductive medicine, this project addresses the design, 
+	development, and validation of an automated system for detecting round cells in images of unprocessed human semen samples using deep learning and 
+	computer vision techniques.
+
+	The methodology focused on the consolidation of an expert-validated dataset. Subsequently, various YOLO model architectures (from v8 to v12) were trained 
+	and optimized, including the creation of a custom architecture model and an ensemble model that combines the strengths of YOLOv10s and YOLOv12s. 
+	To maximize performance, techniques such as fine-tuning and data augmentation were applied, along with systematic hyperparameter optimization using Optuna 
+	and evaluation through cross-validation. The results demonstrate that the best model to address this problem is YOLOv12s, which significantly outperforms 
+	previous systems.
+
+	The project culminates in the development of an interactive web tool that translates the artificial intelligence models into a practical and 
+	functional solution. This tool facilitates the validation of results by specialists and lays the groundwork for its future integration into 
+	clinical environments, thereby advancing the digital transformation in the field of andrology.} \\ 
 	\hline
 	\multicolumn{2}{|p{17cm}|}{\textbf{Palabras clave}: detección de objetos (\textit{object detection}), células redondas (\textit{round cells}), 
-	análisis de semen (\textit{semen analysis}), inteligencia artificial (\textit{artificial intelligence}), aprendizaje profundo (\textit{deep learning}), reproducción asistida (\textit{assisted reproductive technology}), YOLO}	\\ 
+	análisis de semen (\textit{semen analysis}), inteligencia artificial (\textit{artificial intelligence}), aprendizaje profundo (\textit{deep learning}), visión por computador (\textit{computer vision}), YOLO}	\\ 
 	\hline
 \end{longtable}
