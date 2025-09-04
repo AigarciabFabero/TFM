@@ -275,8 +275,8 @@ Posteriormente, aplicando técnicas de aprendizaje profundo (\textit{Deep Learni
 del modelo de detección de objetos en tiempo real YOLO \cite{ultralytics_models}, un modelo personalizado y un \textit{ensemble} de modelos. El propósito fue especializar su capacidad, pasando de la detección de objetos 
 cotidianos a la identificación precisa de células redondas. Finalmente, el modelo fue entrenado y evaluado para validar su rendimiento, eficacia y viabilidad.
 
-Este trabajo incluye la creación de una interfaz digital que permite la interacción de expertos con los resultados del modelo.
-De este modo, el proyecto trasciende la investigación académica para dar continuidad a la misión de DIGIS3 \cite{digis3}: "impulsar la digitalización de las empresas a través 
+Este trabajo incluye la creación de una interfaz digital que permite
+al proyecto trascender la investigación académica para dar continuidad a la misión de DIGIS3 \cite{digis3}: "impulsar la digitalización de las empresas a través 
 de soluciones tecnológicas avanzadas". La herramienta web desarrollada actúa como un catalizador de la transformación digital para Microptic \cite{microptic}, traduciendo 
 un complejo modelo de inteligencia artificial en una solución práctica que potencia sus capacidades de análisis y establece un precedente para futuras innovaciones.
 
@@ -347,20 +347,22 @@ en este campo y se define la hipótesis de trabajo.
 
 \subsection{Visión por computador y modelos de detección de objetos}
 
-La inteligencia artificial está en auge y algunos de los campos en los que está tomando protagonismo son el aprendizaje profundo y la visión por computador. Estos son los campos en los que se fundamenta esta prueba de concepto.
-La visión por computador está revolucionando el análisis de imágenes dadas las capacidades de estos sistemas de interpretar datos visuales en tareas como la clasificación, segmentación semántica o la detección de objetos en la que se fundamenta este proyecto.
-Fundamentados en aprendizaje profundo, mediante el uso de redes neuronales, los algoritmos pueden identificar patrones complejos en las imágenes con una precisión igual o superior a la del ojo humano. 
+La inteligencia artificial está en auge y algunos de los campos en los que está tomando protagonismo son el aprendizaje profundo y la visión por computador. 
+Estos son los campos en los que se fundamenta esta prueba de concepto. La visión por computador está revolucionando el análisis de imágenes dadas las capacidades de estos 
+sistemas de interpretar datos visuales en tareas como la clasificación, segmentación semántica o la detección de objetos.
+La detección de objetos se fundamenta en aprendizaje profundo, mediante el uso de redes neuronales. Los algoritmos pueden identificar patrones complejos en las imágenes con una precisión 
+que no deja de sorprender. 
 
 Dentro de este campo, la detección de objetos tiene como objetivo localizar espacialmente (mediante \textit{bounding boxes}) y clasificar cada una de las múltiples instancias de un objeto de interés dentro de una misma imagen.
-Esta tarea es crucial para este proyecto, pues va a permitir detectar y contar las células redondas en una imagen de esperma humano.
+Esta tarea es crucial para este proyecto, pues va a permitir detectar y cuantizar las células redondas en una imagen de esperma humano.
 
 La familia de modelos de YOLO \cite{ultralytics_models} se ha consolidado como un referente para tareas de detección, permitiendo un equilibrio entre precisión y velocidad.
 Dentro de las 12 arquitecturas de YOLO \cite{ultralytics_models}, se emplean las siguientes:
 
 \begin{itemize}
-  \item \textbf{YOLOv8:} Adopta un diseño eficiente y sin anclajes (\textit{anchor-free}). Su arquitectura utiliza una versión refinada de módulos basados en CSP y una cabeza desacoplada que separa las tareas de clasificación y regresión, logrando un buen equilibrio entre velocidad y precisión \cite{defyolos}.
-  \item \textbf{YOLOv9:} Introduce la Información de Gradiente Programable (PGI) y la Red de Agregación de Capas Generalizada y Eficiente (GELAN). Estas innovaciones ayudan a mantener gradientes robustos a través de la red, mejorando la convergencia y la capacidad para detectar objetos pequeños al evitar la pérdida de información \cite{defyolos}.
-  \item \textbf{YOLOv10:} Elimina la necesidad de la supresión no máxima (NMS), un paso de postprocesamiento que consume tiempo, mediante una novedosa estrategia de asignación dual. Esto reduce significativamente la latencia de inferencia y lo hace más eficiente para la detección en tiempo real \cite{defyolos}.
+  \item \textbf{YOLOv8:} Adopta un diseño eficiente y sin anclajes (\textit{anchor-free}). Su arquitectura utiliza una versión refinada de módulos basados en \textit{Cross-Stage Partial} CSP y una cabeza desacoplada que separa las tareas de clasificación y regresión, logrando un buen equilibrio entre velocidad y precisión \cite{defyolos} (\autoref{fig:Yolov8_v9_v10_arquitectures}).
+  \item \textbf{YOLOv9:} Introduce la Información de Gradiente Programable (PGI) y la Red de Agregación de Capas Generalizada y Eficiente (GELAN). Estas innovaciones ayudan a mantener gradientes robustos a través de la red, mejorando la convergencia y la capacidad para detectar objetos pequeños al evitar la pérdida de información \cite{defyolos} (\autoref{fig:Yolov8_v9_v10_arquitectures}).
+  \item \textbf{YOLOv10:} Elimina la necesidad de la supresión no máxima (NMS), un paso de postprocesamiento que consume tiempo, mediante una novedosa estrategia de asignación dual. Esto reduce significativamente la latencia de inferencia y lo hace más eficiente para la detección en tiempo real \cite{defyolos} (\autoref{fig:Yolov8_v9_v10_arquitectures}).
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -374,8 +376,8 @@ Dentro de las 12 arquitecturas de YOLO \cite{ultralytics_models}, se emplean las
 \end{figure}
 
 \begin{itemize}
-  \item \textbf{YOLOv11:} Se enfoca en mejorar la extracción de características mediante el bloque C3k2, el módulo \textit{Spatial Pyramid Pooling-Fast} (SPPF) y la Atención Espacial Paralela (C2PSA). Estas mejoras le permiten un rendimiento más preciso, especialmente en escenarios con objetos ocluidos \cite{defyolos}.
-  \item \textbf{YOLOv12:} Su principal innovación es el módulo de Atención de Área (A²), que ajusta dinámicamente el campo receptivo para capturar señales contextuales globales y locales con un costo computacional mínimo. Esto, junto con la red R-ELAN, optimiza la fusión de características y aumenta drásticamente la velocidad de inferencia \cite{defyolos}.
+  \item \textbf{YOLOv11:} Se enfoca en mejorar la extracción de características mediante el bloque C3k2, el módulo \textit{Spatial Pyramid Pooling-Fast} (SPPF) y la Atención Espacial Paralela (C2PSA). Estas mejoras le permiten un rendimiento más preciso, especialmente en escenarios con objetos ocluidos \cite{defyolos} (\autoref{fig:Yolov11_v12_arquitectures}).
+  \item \textbf{YOLOv12:} Su principal innovación es el módulo de Atención de Área (A²), que ajusta dinámicamente el campo receptivo para capturar señales contextuales globales y locales con un costo computacional mínimo. Esto, junto con la red R-ELAN, optimiza la fusión de características y aumenta drásticamente la velocidad de inferencia \cite{defyolos} (\autoref{fig:Yolov11_v12_arquitectures}).
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -459,8 +461,9 @@ y restos residuales ajenos al análisis. Asimismo, la dificultad que supone la d
   \label{fig:Muestra de semen humano sin anotaciones}
 \end{figure}
 
-Para mayor dificultad, la asignación de anotaciones sobre el conjunto de imágenes es un problema que va a generar complicaciones durante todo el proyecto. Por ejemplo,
-la \autoref{fig:Anillos_Newton} anotada por un experto presenta la problemática de los anillos de Newton. Se verá posteriormente cómo afectan estos objetos a la correcta identificación de células redondas.
+La tarea de anotar el dataset presentó una dificultad intrínseca significativa, convirtiéndose en una fuente recurrente de complicaciones durante el desarrollo. 
+
+La \autoref{fig:Anillos_Newton} anotada por un experto presenta la problemática de los anillos de Newton. Se verá posteriormente cómo afectan estos objetos a la correcta identificación de células redondas.
 
 \begin{figure}[H]
   \centering
@@ -470,20 +473,23 @@ la \autoref{fig:Anillos_Newton} anotada por un experto presenta la problemática
   Las \textit{bounding boxes} corresponden con las células redondas y los círculos rojos con los anillos de Newton.
 \end{figure}
 
-Asimismo, en la \autoref{fig:feedback_experto} se evidencian las constantes dudas acerca de las anotaciones de células redondas, no solo por el personal que define el proyecto, sino por los propios expertos de Microptic \cite{microptic}. 
-El \textit{feedback} fue:
+Asimismo, la \autoref{fig:feedback_experto} ilustra la ambigüedad inherente al proceso de anotación, un desafío corroborado por el feedback de los expertos de Microptic. El análisis de los especialistas 
+revela que, si bien algunas anotaciones son correctas, existe una notable confusión al diferenciar las células redondas de otras estructuras visualmente similares, 
+como espermatozoides con restos de citoplasma o cabezas de espermatozoides sin cola.
 
-\begin{quote}
-“La mayoría de células marcadas con los rectángulos verdes son ciertas células redondas. Los círculos rosas también serían células (probablemente germinales, pero se necesitaría hacer una evaluación morfológica específica para saberlo). Los círculos azules marcan correctamente algunas células redondas pero también indican espermatozoides que retienen la mayor parte del citoplasma (esferas grises con un área blanca bien contrastada). En cuanto a los círculos naranjas, muchos son cabezas de espermatozoides sin cola y las esferas más pequeñas desconocemos qué son.”
-\end{quote}
+De manera crucial, se destacó que la correcta caracterización de ciertas células no es posible mediante la simple inspección visual y 
+requiere de un análisis morfológico o citológico más exhaustivo \cite{OMS}.
 
 Esto evidencia, una vez más, el alto grado de complejidad que supone anotar este tipo de imágenes médicas, incluso dentro del marco de recomendaciones de la OMS \cite{OMS} \cite{BJBS}.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{figuras/rounds_cells/feedback_experto.png}
   \caption{Ilustración de anotaciones para \textit{feedback} con experto.}
   \label{fig:feedback_experto}
+  La mayoría de células marcadas con los rectángulos verdes son ciertas células redondas. Los círculos rosas también son células redondas (probablemente germinales, pero es necesario un análisis morfológico específico para saberlo).
+  Los círculos azules marcan correctamente algunas células redondas pero también indican espermatozoides que retienen la mayor parte del citoplasma (esferas grises con un área blanca bien contrastada).
+  Muchos de los círculos naranjas son cabezas de espermatozoides sin cola y las esferas más pequeñas se desconoce que pueden ser.
 \end{figure}
 
 \chapter{Gestión de proyecto \textit{software}} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
