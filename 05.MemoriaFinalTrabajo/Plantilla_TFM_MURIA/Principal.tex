@@ -1074,10 +1074,6 @@ se recoge en la \autoref{sec:Arquitecturas}.
 Cabe destacar que, para cada versión, se entrenan los modelos ligeros (s) a excepción de la última versión YOLOv12 que se prueba con una versión más robusta (l) 
 para evaluar el impacto del tamaño del modelo en las diferentes métricas (\autoref{sec:Métricas}) y velocidad de inferencia.
 
-Para todas estas arquitecturas, se aplicó una estrategia de aprendizaje por transferencia (\textit{transfer learning}), utilizando pesos preentrenados en el conjunto de datos COCO \cite{COCO}.
-Posteriormente se realizó un ajuste fino (\textit{fine-tuning}) con el \textit{dataset} específico de imágenes de células redondas para adaptar el conocimiento previo 
-a la nueva tarea de detección.
-
 \section{Modelo \textit{ensemble}}
 \label{Modelo ensemble}
 
@@ -1382,6 +1378,10 @@ YOLOv12l  & 0,00019 & 0,00196 & 0,85495 & 0,00029 & SGD \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+Para todas las arquitecturas de la familia YOLO, se aplicó una estrategia de aprendizaje por transferencia (\textit{transfer learning}), utilizando pesos preentrenados en el conjunto de datos COCO \cite{COCO}.
+Posteriormente se realizó un ajuste fino (\textit{fine-tuning}) con el \textit{dataset} específico de imágenes de células redondas para adaptar el conocimiento previo 
+a la nueva tarea de detección.
 
 Para mejorar la capacidad de generalización de los modelos y prevenir el sobreajuste, se aplicaron técnicas de aumento de datos (\textit{data augmentation}) 
 durante el entrenamiento. Los hiperparámetros utilizados se muestran en la \autoref{tab:Hiperparámetros de data augmentation}. Los parámetros de calentamiento 
