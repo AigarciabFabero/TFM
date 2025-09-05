@@ -1075,7 +1075,7 @@ Cabe destacar que, para cada versión, se entrenan los modelos ligeros (s) a exc
 para evaluar el impacto del tamaño del modelo en las diferentes métricas (\autoref{sec:Métricas}) y velocidad de inferencia.
 
 \section{Modelo \textit{ensemble}}
-\label{Modelo ensemble}
+\label{sec:Modelo ensemble}
 
 Para mejorar la capacidad de generalización y el rendimiento de la detección de células redondas, se implementa una estrategia de ensamblado de modelos mediante la técnica de \textit{Weighted Boxes Fusion (WBF)} \cite{repoTFM}. 
 
@@ -1234,7 +1234,7 @@ Para más detalle, la información relativa al preprocesamiento del \textit{data
 Se utilizan dos entornos de desarrollo complementarios, garantizando la reproducibilidad y escalabilidad de los resultados obtenidos.
 
 \subsection{\textit{Hardware}}
-\subsubsection{\textit{hardware} Local}
+\subsubsection{\textit{Hardware} Local}
 \label{sec:hardware_local}
 El entorno principal de desarrollo es un equipo \textit{Lenovo IdeaPad Gaming 3} con las siguientes especificaciones técnicas:
 
@@ -1281,7 +1281,7 @@ Como entorno complementario se ha empleado un servidor remoto proporcionado por 
     \item \textbf{Almacenamiento temporal}: 78,2 GB SSD
 \end{itemize}
 
-\subsection{\textit{software y Frameworks}}
+\subsection{\textit{Software y Frameworks}}
 
 El desarrollo se realizó empleando el siguiente \textit{stack} tecnológico:
 
@@ -1493,7 +1493,7 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
 
   \item[\textit{F1-score}]: Es la media armónica entre la precisión y el \textit{recall}, proporcionando una medida única que equilibra ambos aspectos. Se calcula como:
   \[
-    \mathrm{F1} = 2 \cdot \frac{\mathrm{Precision} \cdot \mathrm{Recall}}{\mathrm{Precision} + \mathrm{Recall}}
+    \mathrm{F1} = 2 \cdot \frac{\mathrm{\textit{Precision}} \cdot \mathrm{\textit{Recall}}}{\mathrm{\textit{Precision}} + \mathrm{\textit{Recall}}}
   \]
   El \textit{F1-score} es especialmente útil cuando es importante considerar tanto los falsos positivos como los falsos negativos. En este trabajo se utiliza como métrica principal en las curvas F1-confianza y en la herramienta web.
 
@@ -1760,7 +1760,7 @@ YOLOv12l 0,7      & \cellcolor{myred!30}\ding{55} & \cellcolor{myred!30}\ding{55
 \end{table}
 
 Tres modelos destacan considerablemente frente al resto: YOLOv10s, YOLOv12s y el \textit{ensemble}; los dos primeros motivaron la construcción del ensamblado descrito en 
-\autoref{sec:Ensamblado de modelos}, ofreciendo un equilibrio competitivo. Destaca la robustez de YOLOv12s, que no detecta ningún artefacto como célula redonda, incluso con un umbral de confianza bajo (0.5).
+\autoref{sec:Modelo ensemble}, ofreciendo un equilibrio competitivo. Destaca la robustez de YOLOv12s, que no detecta ningún artefacto como célula redonda, incluso con un umbral de confianza bajo (0.5).
 
 Para ampliar la comparativa visual, se seleccionan imágenes representativas del conjunto de test y se muestran las predicciones de YOLOv12s (con un umbral de confianza de 0.5 y 0.25) y el ensamblado junto con el
 \textit{ground truth} de los expertos y la salida del modelo de la prueba de concepto (YOLOv7). 
@@ -1891,7 +1891,7 @@ Los resultados de este proyecto abren nuevas y prometedoras vías de investigaci
   a nuevos problemas. Sin embargo, es una vía a explorar que no se puede descartar. Esta hipótesis es necesaria si se plantea un grado superior de automatización, donde la precisión es relevante y, por tanto, el umbral de confianza debe ser menor.
   \item \textbf{Enriquecimiento del \textit{dataset}:} Es bien sabido que la robustez de los modelos depende de la calidad y diversidad de los datos de entrenamiento. Es fundamental continuar ampliando el \textit{dataset} con imágenes procedentes de diferentes condiciones.
   Un conjunto de datos más extenso y heterogéneo no solo mejoraría la capacidad de generalización de los modelos sino que abre las puertas a la detección de otras células.
-  \item \textbf{Evolución y validación de la herramienta web:} La evolución de la herramienta a su vez debe pasar por la inclusión de nuevos modelos como \textit{Fast-RCNN}. El siguiente paso lógico es desplegar la herramienta web en un entorno de laboratorio real 
+  \item \textbf{Evolución y validación de la herramienta web:} La evolución de la herramienta a su vez debe pasar por la inclusión de nuevos modelos como \textit{D-FINE} \cite{peng2024dfineredefineregressiontask}. El siguiente paso lógico es desplegar la herramienta web en un entorno de laboratorio real 
   para obtener el \textit{feedback} directo de los expertos. Se puede implementar una funcionalidad que permita a los especialistas corregir las predicciones del modelo, creando un ciclo de aprendizaje activo donde sus validaciones se utilicen para reentrenar y mejorar continuamente la precisión del sistema.
 \end{itemize}
 
