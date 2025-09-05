@@ -217,8 +217,8 @@
   Durante este proceso, los pesos del modelo se "ajustan" o refinan, generalmente con una tasa de aprendizaje baja, para adaptar las características aprendidas previamente a las demandas de la nueva tarea.
   \item[\textit{Framework}:] Conjunto estructurado de herramientas, librerías y convenciones que facilita y agiliza el desarrollo de aplicaciones o sistemas.
   % \item[\textit{Ensemble}]: Técnica para la unificación de predicciones de diferentes modelos.
-  % \item[\textit{Cross Validatio}]: Técnica estadística para la evaluación de modelos, que se fundamenta en dividir el \textit{dataset} en multiples pliegues (\textit{folds}) para entrenar y validar el modelo de forma iteractiva.
-  % \item[\textit{Data augmentation}]: Conjunto de transformaciones sobre los datos como rotaciones, traslaciones, adición de ruido, entro otros, con el objetivo de aumentar la diversidad del dattaset y mejorar la generalización del modelo.
+  % \item[\textit{Cross Validatio}]: Técnica estadística para la evaluación de modelos, que se fundamenta en dividir el \textit{dataset} en multiples pliegues (\textit{folds}) para entrenar y validar el modelo de forma iterativa.
+  % \item[\textit{Data augmentation}]: Conjunto de transformaciones sobre los datos como rotaciones, traslaciones, adición de ruido, entre otros, con el objetivo de aumentar la diversidad del dataset y mejorar la generalización del modelo.
   % \item[Optuna]: Biblioteca de Python para la optimización de hiperparámetros, permitiendo encontrar las mejores configuraciones de estos. 
   \item[\textit{Streamlit}:] \textit{Framework} de Python para crear aplicaciones web interactivas orientadas a la ciencia de datos y \textit{Machine Learning}.
   \item[Monolítica:] Arquitectura de software en la que la aplicación se despliega y ejecuta en un mismo proceso.     
@@ -285,7 +285,7 @@ un complejo modelo de inteligencia artificial en una solución práctica que pot
 
 Este Trabajo de Fin de Máster tiene como objetivo principal diseñar, desarrollar y validar de un sistema inteligente para la detección automatizada de células redondas en imágenes médicas de muestras de semen humano
 mediante el empleo de técnicas de visión por computador y aprendizaje profundo. 
-Se de muestra así, la integración de competencias técnicas avanzadas en inteligencia artificial, procesamiento de imágenes y desarrollo de \textit{software}, entre otras habilidades transversales. 
+Se demuestra así, la integración de competencias técnicas avanzadas en inteligencia artificial, procesamiento de imágenes y desarrollo de \textit{software}, entre otras habilidades transversales. 
 
 Con este proyecto, se abordan los siguientes objetivos específicos: 
 
@@ -321,15 +321,15 @@ El método estándar para la identificación y conteo de células redondas depen
 un proceso subjetivo, lento, laborioso y cansado para el observador. Estas limitaciones motivan la necesidad 
 de desarrollar alternativas mediante herramientas automatizadas que permitan obtener resultados más rápidos, objetivos y reproducibles, optimizando el espermograma.
 
-El auge de la inteligencia artificial, y en particular las técnicas de visión por computador basadas en aprendizaje profundo, están protagonizando una revolución dentro del mundo de la medicina.
+El auge de la inteligencia artificial y, en particular las técnicas de visión por computador basadas en aprendizaje profundo, están protagonizando una revolución dentro del mundo de la medicina.
 La capacidad de las redes neuronales en la detección de patrones complejos ha demostrado ser una herramienta de apoyo en diversas especialidades como son: análisis de imágenes radiológicas o análisis de lesiones cutáneas en dermatología, entre otras.
 En \textit{computer vision}, modelos de detección de objetos como YOLO (\textit{You Only Look Once}) \cite{ultralytics_models} han demostrado un equilibrio entre precisión y velocidad de inferencia. Estos algoritmos son capaces 
 de procesar imágenes y localizar múltiples objetos de interés en milisegundos, siendo idóneo en este tipo de trabajos clínicos.
 
 Atendiendo a estas necesidades y casuísticas, por parte de una empresa líder en el análisis espermático, surge la necesidad de integrar estos sistemas inteligentes para la detección de células redondas a la que dio solución el grupo GVIS de la 
-Universidad de León mediante una \textit{Proff of Concept} (PoC) \cite{HamiltonThorneRoundCells}. Demostrando así, la capacidad de estas tecnologías en este tipo de tareas complejas.
+Universidad de León mediante una \textit{Proof of Concept} (PoC) \cite{HamiltonThorneRoundCells}. Demostrando así, la capacidad de estas tecnologías en este tipo de tareas complejas.
 
-Aprovechando este hito, surge la motivación de definir una nueva prueba de concepto (PoC) integrada en un entorno digital, que permita igualar o superar con menos recursos, la anterior PoC. Esto se aborda a través de diferentes vías:
+Aprovechando este hito, surge la motivación de definir una nueva prueba de concepto (PoC) integrada en un entorno digital, que permita igualar o superar con menos recursos la anterior PoC. Esto se aborda a través de diferentes vías:
 
 \begin{itemize}
   \item Explorar diferentes arquitecturas de YOLO \cite{ultralytics_models}, desde modelos oficiales hasta prototipos más recientes que emplean capas de atención. 
@@ -371,7 +371,7 @@ Dentro de las 12 arquitecturas de YOLO \cite{ultralytics_models}, se emplean las
   \includegraphics[width=0.8\textwidth]{figuras/arquitecture YOLO/v8_v9_v10.png}
   \caption{Diagramas de arquitectura de YOLOv8, YOLOv9 y YOLOv10}
   \label{fig:Yolov8_v9_v10_arquitectures}
-  (a) YOLOv8 presenta una estructura principal basada en CSP, un cabezal desacoplado y libre de anclajes (\textit{anchor-free}), y una Red de Pirámide de Características (FPN) optimizada para una extracción eficiente de características a múltiples escalas. 
+  (a) YOLOv8 presenta una estructura principal basada en CSP, un cabezal desacoplado y libre de anclajes (\textit{anchor-free}) y una Red de Pirámide de Características (FPN) optimizada para una extracción eficiente de características a múltiples escalas. 
   (b) YOLOv9 integra la Información de Gradiente Programable con GELAN para una agregación robusta de características.
   (c) YOLOv10 presenta una estrategia de asignación dual, cabezales ligeros y un submuestreo desacoplado de canal espacial para mejorar la \textit{precision} y velocidad de la inferencia.
 \end{figure}
@@ -401,7 +401,7 @@ Es bien conocida la existencia de diferentes tecnologías para asegurar la robus
   \item \textbf{Aumento de datos (\textit{data augmentation}):} Para mejorar la capacidad de generalización de un modelo y reducir el riesgo de sobreajuste (\textit{overfitting}) en conjuntos de datos limitados se recurre a esta técnica. 
   Esta permite generar nuevas muestras de entrenamiento aplicando transformaciones geométricas (rotaciones, traslaciones, escalado, etc.) y fotométricas (cambios de brillo, contraste, etc.) sobre las imágenes originales, 
   incrementando así la diversidad del conjunto de datos.
-  \item \textbf{Validación cruzada (\textit{cross validation}):} Dentro de sus múltiples variantes, la más común consiste en dividir el conjunto de datos en K subconjuntos o pliegues. El modelo se entrena K veces, 
+  \item \textbf{Validación cruzada (\textit{cross-validation}):} Dentro de sus múltiples variantes, la más común consiste en dividir el conjunto de datos en K subconjuntos o pliegues. El modelo se entrena K veces, 
   utilizando en cada iteración un pliegue diferente para la validación y los K-1 restantes para el entrenamiento. El rendimiento final se calcula como la media de los resultados de las K iteraciones, proporcionando una medida de la capacidad 
   de generalización del modelo menos dependiente de una única división de datos. Esta técnica permite conocer si un modelo es fiable y robusto.
   \item \textbf{Ensamblado de modelos (\textit{ensemble}):} Esta técnica avanzada busca mejorar la precisión y la robustez de las predicciones combinando las salidas de múltiples modelos entrenados de forma independiente. 
@@ -410,16 +410,16 @@ Es bien conocida la existencia de diferentes tecnologías para asegurar la robus
 
 \subsection{Literatura de la investigación}
 
-La inteligencia artificial (IA), y en particular el aprendizaje profundo (\textit{Deep Learning}), están transformando el campo de análisis de imágenes médicas en especialidades como la oncología, la neurología y la oftalmología.
+La inteligencia artificial (IA) y, en particular el aprendizaje profundo (\textit{Deep Learning}), están transformando el campo de análisis de imágenes médicas en especialidades como la oncología, la neurología y la oftalmología.
 
 En el ámbito de la andrología, la inteligencia artificial está comenzando a tomar especial relevancia en tareas como la concentración y recuento de espermatozoides, motilidad espermática, morfología espermática, integridad del ADN espermático, entre otras \cite{PannerSelvam}. En el contexto del análisis seminal, la mayor parte de las investigaciones se centran
 en la automatización del análisis morfológico de los espermatozoides, desarrollando modelos capaces de identificar con alta precisión diferentes partes de la estructura celular (como cabeza, parte intermedia y cola) \cite{Maalej2025}.
 
 Sin embargo, este proyecto presenta un desafío diferente y menos explorado, que a diferencia del análisis morfológico que se centra en un único tipo de célula,
 la detección de células redondas, como ya se ha visto anteriormente, implica identificar un grupo heterogéneo de células (principalmente leucocitos y células germinales inmaduras) en un entorno complejo y "ruidoso" \cite{OMS}\cite{BJBS}.
-La dificultad de identificar estas células redondas, incluso para expertos, y la subjetividad de los métodos manuales tradicionales \cite{Johanisson2000} justifican la necesidad de desarrollar herramientas automatizadas.
+La dificultad de identificar estas células redondas, incluso para expertos y, la subjetividad de los métodos manuales tradicionales \cite{Johanisson2000} justifican la necesidad de desarrollar herramientas automatizadas.
 
-Este Trabajo de Fin de Máster se fundamenta en una innovadora POC previa, desarrollada por el grupo de investigación GVIS de la Universidad de León en colaboración con la empresa Microptic S.L. \cite{microptic}, en el marco del proyecto europeo DIGIS3 \cite{digis3}. 
+Este Trabajo de Fin de Máster se fundamenta en una innovadora PoC previa, desarrollada por el grupo de investigación GVIS de la Universidad de León en colaboración con la empresa Microptic S.L. \cite{microptic}, en el marco del proyecto europeo DIGIS3 \cite{digis3}. 
 Dicha prueba de concepto tuvo como objetivo validar la viabilidad de utilizar modelos de \textit{Deep Learning} para la identificación de células redondas en imágenes de semen humano. En ese trabajo inicial, se reentrenaron tres variantes del modelo YOLOv7 utilizando un conjunto de 
 alrededor de 400 imágenes, logrando resultados prometedores en diferentes métricas. Este hito demostró que los detectores de objetos en tiempo real podían ser adaptados con éxito a esta tarea específica a pesar de las dificultades que esto supone.
 
@@ -558,7 +558,7 @@ En la \autoref{tab:presupuesto_personal} se detalla el presupuesto estimado para
 \textbf{Puesto de trabajo} & \textbf{Horas semanales} & \textbf{Horas totales} & \textbf{Salario (\euro{}/hora)} & \textbf{Total} \\
 \hline
 Ingeniero Informático & 25 & 300 & 15,61 & 4683,00\euro{} \\
-Srum Master & 3 & 18 & 22,37 & 402,66\euro{} \\
+Scrum Master & 3 & 18 & 22,37 & 402,66\euro{} \\
 \hline
 \textbf{Total} & & & & \textbf{5085,66\euro{}} \\
 \hline
@@ -631,7 +631,7 @@ del equipo estándar de la institución. Se ha imputado un $5\%$ de los costes d
 
 \subsubsection{Costes generales}
 
-Son los gastos necerasios para el funcionamiento de la empresa, independientemente de los proyectos que tenga en marcha. Dentro de estos se incluyen internet, agua, limpieza, luz, servidor privado, etc.
+Son los gastos necesarios para el funcionamiento de la empresa, independientemente de los proyectos que tenga en marcha. Dentro de estos se incluyen internet, agua, limpieza, luz, servidor privado, etc.
 Se establece un coste del $15\%$ sobre el Presupuesto de Ejecución Material (PEM).
 
 \subsubsection{Beneficio industrial}
@@ -915,7 +915,7 @@ La gestión de recursos implica la especificación, asignación y supervisión d
 Los recursos disponibles para el desarrollo de este proyecto se clasifican en tres grupos:
 
 \begin{itemize}
-  \item \textbf{Recursos económicos:} El presupuesto económico viene detallado en la \autoref{sec:Presupuesto}, y asciende a un total de 9.739,01\euro{}.
+  \item \textbf{Recursos económicos:} El presupuesto económico viene detallado en la \autoref{sec:Presupuesto} y asciende a un total de 9.739,01\euro{}.
   \item \textbf{Recursos físicos:}
     \begin{itemize}[label=-]
       \item Equipo para Scrum Master
@@ -1067,8 +1067,8 @@ se detalla cómo el proyecto se ajusta y adhiere a las leyes pertinentes:
 \section{Arquitecturas de la familia YOLO}
 \label{Arquitecturas de la familia YOLO}
 
-Como modelo base, se selecciona la familia de arquitecturas de YOLO. A lo largo del proyecto, se exploran y evaluan sistemáticamente las arquitecturas 
-que van desde la versión 8 hasta la 12, aprovechando los avances y mejoras introducidas para determinar cual es mejor. La descripción de cada arquitectura
+Como modelo base, se selecciona la familia de arquitecturas de YOLO. A lo largo del proyecto, se exploran y evalúan sistemáticamente las arquitecturas 
+que van desde la versión 8 hasta la 12, aprovechando los avances y mejoras introducidas para determinar cuál es mejor. La descripción de cada arquitectura
 se recoge en la \autoref{sec:Arquitecturas}. 
 
 Cabe destacar que, para cada versión, se entrenan los modelos ligeros (s) a excepción de la última versión YOLOv12 que se prueba con una versión más robusta (l) 
@@ -1083,7 +1083,7 @@ a la nueva tarea de detección.
 
 Para mejorar la capacidad de generalización y el rendimiento de la detección de células redondas, se implementa una estrategia de ensamblado de modelos mediante la técnica de \textit{Weighted Boxes Fusion (WBF)} \cite{repoTFM}. 
 
-Tras analizar los primeros resultados cuantitativos y cualitativos, se seleccionan dos modelos individuales con diferentes pesos, para la construcción del \textit{ensemble}. YOLOv12 con sus capacidades 
+Tras analizar los primeros resultados cuantitativos y cualitativos, se seleccionan dos modelos individuales con diferentes pesos (tras explorar diferentes combinaciones), para la construcción del \textit{ensemble}. YOLOv12 con sus capacidades 
 para capturar información contextual se pondera con un peso de $0,6$ mientras que YOLOv10s, que destaca por su eficiencia y precisión en la localización, se pondera con un peso de $0,4$.
 
 Asimismo, el proceso de ensamblado se realiza siguiendo los siguientes pasos:
@@ -1513,7 +1513,7 @@ Para la evaluación de los modelos, se emplea un conjunto de métricas fundament
 
   \medskip
 
-  \noindent\textbf{mAP@[0.5:0.95] (mAP50:95):} Es la mAP estándar del \textit{benchmark} COCO que promedia la AP de cada clase sobre múltiples umbrales de IoU desde 0.50 hasta 0.95 con paso 0.05 (10 umbrales: 0.50, 0.55, …, 0.95). Nota: COCO calcula cada AP integrando la curva \textit{precision}–\textit{recall} muestreada en 101 puntos, y después se promedian las AP en los 10 umbrales para obtener mAP@[0.5:0.95].
+  \noindent\textbf{mAP@[0.5:0.95] (mAP50:95):} Es la mAP estándar del \textit{benchmark} COCO que promedia la AP de cada clase sobre múltiples umbrales de IoU desde 0.50 hasta 0.95 con paso 0.05 (10 umbrales: 0.50, 0.55, …, 0.95). Nota: COCO calcula cada AP integrando la curva \textit{precision}–\textit{recall} muestreada en 101 puntos y después, se promedian las AP en los 10 umbrales para obtener mAP@[0.5:0.95].
   \[
     \mathrm{mAP}_{[0.5:0.95]} \;=\; \frac{1}{C}\frac{1}{T}\sum_{c=1}^{C}\sum_{t\in\{0.50,0.55,\dots,0.95\}} \mathrm{AP}_c(\mathrm{IoU}=t)
   \]
@@ -1620,7 +1620,7 @@ el valor más alto en la métrica mAP@0.5:0.95, el mejor modelo es YOLOv7.
   \label{tab:yolov8_12_results}
 \end{table}
 
-Comparando los resultados de la POC con los obtenidos en este proyecto (\autoref{tab:yolov8_12_results}), el modelo YOLOv12s destaca por mejorar las métricas mAP@0.5 y mAP@0.5:0.95 (un $0,10\%$ y $5.26\%$, respectivamente, respecto a YOLOv7, el mejor modelo de la PoC anterior) y 
+Comparando los resultados de la PoC con los obtenidos en este proyecto (\autoref{tab:yolov8_12_results}), el modelo YOLOv12s destaca por mejorar las métricas mAP@0.5 y mAP@0.5:0.95 (un $0,10\%$ y $5,26\%$, respectivamente, respecto a YOLOv7, el mejor modelo de la PoC anterior) y 
 reducir la latencia ($5,4$ ms), por lo que se considera el mejor modelo en esta prueba. Aunque los modelos más pesados como YOLOv12l y el ensamblado 
 presentan mayores tiempos de inferencia, todos los modelos mantienen una latencia inferior a 100 ms, un tiempo de respuesta excelente para una herramienta de uso clínico. 
 
@@ -1630,7 +1630,7 @@ Cuando la prioridad es la confianza en cada detección, YOLOv11s destaca al obte
 
 Analizando los nuevos conjuntos de \textit{test} (\autoref{tab:yolos_nuevos_tests}), los resultados siguen siendo similares entre modelos. Según la métrica mAP@0.5:0.95, YOLOv12s vuelve a ser el mejor (0.673), seguido de YOLOv12l (0.659). 
 El \textit{ensemble} mejora precisión y \textit{recall}, pero empeora mAP y latencia. El modelo \textit{custom} destaca por su baja latencia y buenos resultados, especialmente en test3, 
-donde iguala la precisión del \textit{ensemble} ($0.873$). Las diferencias entre el resto de modelos son mínimas.
+donde iguala la precisión del \textit{ensemble} ($0,873$). Las diferencias entre el resto de modelos son mínimas.
 
 Tras el proceso de reetiquetado del conjunto de \textit{test} original, es decir, en la evaluación sobre el conjunto de test, se observan cambios interesantes que 
 sugieren una mejora en la calidad del \textit{ground truth} (mejora la sensibilidad de la detección). La mayoría de los modelos muestran una mejora en la \textit{precision}, destaca el modelo \textit{ensemble} con el mayor incremento (+0,054). 
@@ -1643,7 +1643,7 @@ Esto tiene sentido pues cada test contiene imágenes con diferentes grados de pa
 
 En resumen, YOLOv12s es el modelo más destacado entre las arquitecturas evaluadas. El ensamblado de modelos mejora \textit{recall} y precisión al reducir falsos negativos, aunque aumenta los falsos positivos, como muestran las matrices de confusión 
 (\autoref{sec:Matrice de confusión}). En test2, las diferencias son mínimas debido al tamaño reducido del conjunto. El análisis de las curvas F1-confianza 
-(\autoref{sec:Curvas F1-confianza}) indica que el \textit{F1-score} óptimo se alcanza con umbrales de confianza entre 0.25 y 0.5, por lo que se estudia YOLOv12s con un umbral de 0.35 
+(\autoref{sec:Curvas F1-confianza}) indica que el \textit{F1-score} óptimo se alcanza con umbrales de confianza entre 0,25 y 0,5, por lo que se estudia YOLOv12s con un umbral de 0,35 
 para imágenes de alta resolución.
 
 % Tabla para los resultados sobre los conjuntos de Test
@@ -1705,7 +1705,7 @@ YOLOv12l  & test3 & 0,849 & \cellcolor{turquoise!30}\textbf{0,894} & \cellcolor{
 \label{Resultados cualitativos}
 
 Uno de los problemas más comunes en la adquisición de imágenes microscópicas es la presencia de artefactos (anillos de Newton), que pueden interferir con la detección precisa de células redondas. Por esta razón, se analizan 
-los diferentes modelos sobre un conjunto de imágenes que contienen estos artefactos. Para pasar la evaluación, se establece que el modelo no debe detectar ningún Anillo de Newton como célula redonda. Para pasar la evaluación, 
+los diferentes modelos sobre un conjunto de imágenes que contienen estos artefactos. Para pasar la evaluación, 
 se establece que el modelo no debe detectar ningún Anillo de Newton como célula redonda, por lo que se ha fijado un umbral de confianza alto ($0,5$ y $0,7$) para minimizar las detecciones erróneas. 
 Los resultados obtenidos se muestran en la \autoref{tab:resultados_artefactos}.
 
@@ -1774,7 +1774,7 @@ En conjunto, YOLOv12s se perfila como el modelo más adecuado para la detección
 \chapter{Herramienta Web} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{Herramienta web}
 Con el propósito de definir una herramienta de análisis automatizado, se desarrolla una interfaz intuitiva e interactiva para la detección 
-de células redondas sobre una muestra individual o colectiva. La información relativa a la aplicación,
+de células redondas sobre una muestra individual o colectiva. La información relativa a la aplicación
 se puede encontrar en el manual de usuario (\autoref{Manual de usuario}).
 \section{Objetivos de la herramienta}
 \label{sec:Objetivos de la herramienta}
@@ -1847,7 +1847,7 @@ la viabilidad de integrar soluciones de aprendizaje profundo en un flujo de trab
 
 Se valida la hipótesis inicial, ya que la exploración de diferentes arquitecturas de la familia YOLO, junto con la optimización de hiperparámetros, permite superar el rendimiento de la prueba de concepto inicial. 
 El modelo YOLOv12s demuestra robustez y generalización, no solo mejorando métricas cuantitativas clave como mAP@0.5:0.95, sino también en los resultados cualitativos, tanto en la no detección de anillos de Newton bajo un intervalo de confianza aceptable sino también
-en la reducción de el número de FP y FN en detecciones con umbrales de confianza mucho más sensibles.  
+en la reducción del número de FP y FN en detecciones con umbrales de confianza mucho más sensibles.  
 
 Un aspecto a destacar es el proceso de reetiquetado bajo el \textit{feedback} de expertos. Este proceso sirve para tener una perspectiva más realista del rendimiento de los modelos; destaca una mejoría 
 generalizada en el conjunto de métricas pero también revela una mayor dificultad para alcanzar una localización perfecta (mAP@0.5:0.95). Esta observación pone de manifiesto la complejidad inherente 
@@ -1856,7 +1856,7 @@ del problema y la importancia de contar con datos de alta calidad para una evalu
 Este trabajo no se limita al desarrollo de modelos de detección de células sino que va un paso más y los integra de una manera interactiva mediante una herramienta web. 
 De este modo, no solo se facilita la validación de los modelos, sino que se establece un puente hacia su futura integración en un entorno de laboratorio real.
 
-En definitiva, el proyecto consigue dar una solución que va desde el preprocesamiento de datos y el entrenamiento de diferentes modelos hasta el despliegue de una apliacación funcional. Se demuestra así que, es posible automatizar 
+En definitiva, el proyecto consigue dar una solución que va desde el preprocesamiento de datos y el entrenamiento de diferentes modelos hasta el despliegue de una aplicación funcional. Se demuestra así que, es posible automatizar 
 una tarea tan compleja y subjetiva como es la detección de células redondas; sentando así, las bases para optimizar el espermograma y potenciar la transformación digital en el campo de la andrología.
 
 \section{Limitaciones del estudio}
@@ -1878,7 +1878,7 @@ A pesar de los buenos resultados, es importante reconocer las limitaciones inher
   La disponibilidad de mejores recursos computacionales permite no solo explorar nuevas arquitecturas sino realizar ajustes más profundos.
 \end{itemize}
 
-\section{Lineas de trabajo futuro}
+\section{Líneas de trabajo futuro}
 \label{sec:Lineas de trabajo futuro}
 
 Los resultados de este proyecto abren nuevas y prometedoras vías de investigación. Para continuar avanzando en la detección automatizada de células redondas se proponen las siguientes líneas de trabajo:
@@ -1888,7 +1888,7 @@ Los resultados de este proyecto abren nuevas y prometedoras vías de investigaci
   una alternativa a estos modelos pueden ser los de dos etapas (como \textit{Fast-RCNN} \cite{7410526}), el cual presenta generalmente mayor \textit{precision} y tiempo de inferencia. Una alternativa a esta línea de investigación es usar detectores basados en Transformers
   (como D-FINE \cite{peng2024dfineredefineregressiontask}). Este enfoque promete una localización muy precisa incluso en escenas complejas y podría superar algunas limitaciones de los modelos puramente convolucionales.
   \item \textbf{Gestión de los artefactos:} La baja representación de los anillos de Newton nos dicen que la introducción de una clase nueva puede continuar dando falsos positivos en las diferentes detecciones de clases, dando lugar
-  a nuevos problemas. Sin embargo, es una vía a explorar que no se puede descartar. Esta hipótesis es necesaria si se plantea un grado superior de automatización, donde la precisión es relevante, y por tanto, el umbral de confianza debe ser menor.
+  a nuevos problemas. Sin embargo, es una vía a explorar que no se puede descartar. Esta hipótesis es necesaria si se plantea un grado superior de automatización, donde la precisión es relevante y, por tanto, el umbral de confianza debe ser menor.
   \item \textbf{Enriquecimiento del \textit{dataset}:} Es bien sabido que la robustez de los modelos depende de la calidad y diversidad de los datos de entrenamiento. Es fundamental continuar ampliando el \textit{dataset} con imágenes procedentes de diferentes condiciones.
   Un conjunto de datos más extenso y heterogéneo no solo mejoraría la capacidad de generalización de los modelos sino que abre las puertas a la detección de otras células.
   \item \textbf{Evolución y validación de la herramienta web:} La evolución de la herramienta a su vez debe pasar por la inclusión de nuevos modelos como \textit{Fast-RCNN}. El siguiente paso lógico es desplegar la herramienta web en un entorno de laboratorio real 
